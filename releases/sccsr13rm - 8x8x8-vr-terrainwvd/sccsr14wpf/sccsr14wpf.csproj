@@ -1,0 +1,149 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="scgraphics\SC_Grid\**" />
+    <Compile Remove="scgraphics\_sc_models\**" />
+    <Compile Remove="scgraphics\_sc_shaders\**" />
+    <EmbeddedResource Remove="scgraphics\SC_Grid\**" />
+    <EmbeddedResource Remove="scgraphics\_sc_models\**" />
+    <EmbeddedResource Remove="scgraphics\_sc_shaders\**" />
+    <None Remove="scgraphics\SC_Grid\**" />
+    <None Remove="scgraphics\_sc_models\**" />
+    <None Remove="scgraphics\_sc_shaders\**" />
+    <Page Remove="scgraphics\SC_Grid\**" />
+    <Page Remove="scgraphics\_sc_models\**" />
+    <Page Remove="scgraphics\_sc_shaders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Forces\PseudoCloth.cs" />
+    <Compile Remove="scconsole\MainViewModel.cs" />
+    <Compile Remove="scconsole\Sample2DRenderer.cs" />
+    <Compile Remove="scconsole\scgraphicssec - 2022feb17-0-works-lag.cs" />
+    <Compile Remove="scconsole\scgraphicssec - blank.cs" />
+    <Compile Remove="scconsole\scgraphicssec - Copy.cs" />
+    <Compile Remove="scconsole\scgraphicssec-backup.cs" />
+    <Compile Remove="scconsole\SC_Segment.cs" />
+    <Compile Remove="scconsole\Win32HwndControl.cs" />
+    <Compile Remove="scjitter\sc_globals.cs" />
+    <Compile Remove="scjitter\sc_globals_accessor.cs" />
+    <Compile Remove="scjitter\sc_icomponent.cs" />
+    <Compile Remove="scjitter\sc_interface.cs" />
+    <Compile Remove="scvoxellevelgen\LevelGenerator4 - backup.cs" />
+    <Compile Remove="scvoxellevelgen\newFloorTiles - backup.cs" />
+    <Compile Remove="scvoxellevelgen\newFloorTiles - backup2022feb16.cs" />
+    <Compile Remove="scvoxellevelgen\sccstriglevelchunk - backup2022feb16.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="sciklimbs\texture.ps" />
+    <None Remove="sciklimbs\texture.vs" />
+    <None Remove="sciklimbs\texture_voxel.ps" />
+    <None Remove="sciklimbs\texture_voxel.vs" />
+    <None Remove="scterrain\geom.gs" />
+    <None Remove="scterrain\geometryshader - backup.gs" />
+    <None Remove="scterrain\geometryshader - backup2022feb15.gs" />
+    <None Remove="scvoxelscreen\HLSL.gs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPS.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVS.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkPS.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkVS.vs" />
+    <None Remove="scvoxelscreen\textureTrigChunkPS.ps" />
+    <None Remove="scvoxelscreen\textureTrigChunkVS.vs" />
+    <None Remove="terrainGrassDirt.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="sciklimbs\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sciklimbs\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sciklimbs\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sciklimbs\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\sccsvertbindchunkheightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\sccsvertbindchunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\sccsvertbindchunkheightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\sccsvertbindchunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\textureTrigChunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scvoxelscreen\textureTrigChunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Debug\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

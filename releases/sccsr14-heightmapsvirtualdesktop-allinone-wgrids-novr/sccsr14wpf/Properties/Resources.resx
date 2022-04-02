@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="colordom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\colordom.ds;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="colorhull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\colorhull.hs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="geometryshader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scterrain\geometryshader.gs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="HLSL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\hlsl.gs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="HLSLchunkkeyboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\hlslchunkkeyboard.gs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="LightPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\rasterspeclight\lightps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="LightVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\rasterspeclight\lightvs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapPSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmappsdx.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapPSeight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmappseight.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapPSeightdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmappseightdx.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapPSsixteendx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmappssixteendx.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapvs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapVSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapvsdx.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapVSeight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapvseight.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapVSeightdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapvseightdx.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkheightmapVSsixteendx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkheightmapvssixteendx.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkPSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkpsdx.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkvs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sccsvertbindchunkVSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\sccsvertbindchunkvsdx.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texturePS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\textureps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scterrain\texturetrig.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrig1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scterrain\texturetrig.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrigChunkPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\texturetrigchunkps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrigChunkPSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\texturetrigchunkpsdx.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrigChunkVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\texturetrigchunkvs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureTrigChunkVSdx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scvoxelscreen\texturetrigchunkvsdx.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="textureVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texturevs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxel.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxel.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxel.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxel3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxel.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxelPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxelps.ps;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="texture_voxelVS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sciklimbs\texture_voxelvs.vs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+</root>

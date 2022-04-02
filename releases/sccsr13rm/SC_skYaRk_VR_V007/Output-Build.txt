@@ -1,0 +1,207 @@
+﻿1>------ Build started: Project: SC_skYaRk_VR_V007, Configuration: Release Any CPU ------
+1>SC_SharpDX_ScreenCapture.cs(84,7,84,13): warning CS0105: The using directive for 'System' appeared previously in this namespace
+1>SC_SharpDX_ScreenCapture.cs(85,7,85,25): warning CS0105: The using directive for 'System.Diagnostics' appeared previously in this namespace
+1>SC_SharpDX_ScreenCapture.cs(86,7,86,16): warning CS0105: The using directive for 'System.IO' appeared previously in this namespace
+1>SC_SharpDX_ScreenCapture.cs(87,7,87,14): warning CS0105: The using directive for 'SharpDX' appeared previously in this namespace
+1>SC_SharpDX_ScreenCapture.cs(90,7,90,19): warning CS0105: The using directive for 'SharpDX.DXGI' appeared previously in this namespace
+1>SC_SharpDX_ScreenCapture.cs(92,7,92,18): warning CS0105: The using directive for 'SharpDX.WIC' appeared previously in this namespace
+1>SC_Console_Menu\SC_Console_Menu.cs(333,30,333,32): warning CS0168: The variable 'ex' is declared but never used
+1>SC_Graphics\SC_Grid\DTerrain_World_Axis_X.cs(119,21,119,26): warning CS0219: The variable 'index' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(396,23,396,32): warning CS0219: The variable '_size_two' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(779,21,779,33): warning CS0219: The variable 'secondLayerX' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(780,21,780,33): warning CS0219: The variable 'secondLayerY' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(781,21,781,33): warning CS0219: The variable 'secondLayerZ' is assigned but its value is never used
+1>SC_Console\SC_Console_DIRECTX.cs(493,34,493,36): warning CS0168: The variable 'ex' is declared but never used
+1>Program.cs(964,13,964,20): warning CS0162: Unreachable code detected
+1>Program.cs(163,18,163,44): warning CS0168: The variable '_console_voice_recognition' is declared but never used
+1>Program.cs(164,17,164,34): warning CS0219: The variable '_voiceRecognition' is assigned but its value is never used
+1>Program.cs(169,17,169,39): warning CS0219: The variable '_start_console_ui_menu' is assigned but its value is never used
+1>Program.cs(192,59,192,67): warning CS0168: The variable 'objecter' is declared but never used
+1>SC_Graphics\SC_Grid\DColorShaderClass1.cs(120,30,120,32): warning CS0168: The variable 'ex' is declared but never used
+1>SC_Graphics\SC_Textures\SC_VR_Touch_Textures\DTextureShaderClass1.cs(227,30,227,32): warning CS0168: The variable 'ex' is declared but never used
+1>SC_Graphics\SC_Grid\DObjectColorShaderClass1.cs(119,30,119,32): warning CS0168: The variable 'ex' is declared but never used
+1>Program.cs(1275,30,1275,32): warning CS0168: The variable 'ex' is declared but never used
+1>SC_SharpDX_ScreenCapture.cs(512,37,512,39): warning CS0168: The variable 'ex' is declared but never used
+1>SC_SharpDX_ScreenCapture.cs(685,21,685,28): warning CS0219: The variable '_cIndex' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(686,21,686,33): warning CS0219: The variable 'byteIndexPos' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(1590,38,1590,40): warning CS0168: The variable 'ex' is declared but never used
+1>SC_Console\SC_Console_DIRECTX.cs(159,19,159,28): warning CS0169: The field 'SC_Console_DIRECTX.swapChain' is never used
+1>SC_SharpDX_ScreenCapture.cs(169,31,169,63): warning CS0169: The field 'SC_SharpDX_ScreenCapture._unmanagedMemoryStreamPlayerRect' is never used
+1>SC_Console\SC_Console_DIRECTX.cs(156,19,156,30): warning CS0169: The field 'SC_Console_DIRECTX._backBuffer' is never used
+1>SC_SharpDX_ScreenCapture.cs(579,19,579,33): warning CS0169: The field 'SC_SharpDX_ScreenCapture.smallerTexture' is never used
+1>SC_System\SC_Systems.cs(72,65,72,81): warning CS0169: The field 'SC_Systems._main_someObject' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(2525,28,2525,51): warning CS0169: The field 'SC_Console_GRAPHICS._lastShaderResourceView' is never used
+1>SC_Console\SC_Console_CORE.cs(257,14,257,27): warning CS0169: The field 'SC_Console_CORE.processHandle' is never used
+1>SC_SharpDX_ScreenCapture.cs(580,28,580,46): warning CS0169: The field 'SC_SharpDX_ScreenCapture.smallerTextureView' is never used
+1>SC_Graphics\SC_Models\DModelClass4_cube.cs(24,20,24,29): warning CS0649: Field 'DModelClass4_cube.component' is never assigned to, and will always have its default value null
+1>SC_SharpDX_ScreenCapture.cs(389,31,389,39): warning CS0169: The field 'SC_SharpDX_ScreenCapture.imager00' is never used
+1>SC_Console\SC_Console_DIRECTX.cs(88,34,88,51): warning CS0649: Field 'SC_Console_DIRECTX._renderTargetView' is never assigned to, and will always have its default value null
+1>SC_Console\SC_Console_VoRec.cs(49,30,49,48): warning CS0169: The field 'SC_Console_VoRec._assigned_keyboard' is never used
+1>SC_Console\SC_Console_WRITER.cs(99,19,99,29): warning CS0169: The field 'SC_Console_WRITER._fastNoise' is never used
+1>SC_Console\SC_Console_VoRec.cs(40,31,40,45): warning CS0169: The field 'SC_Console_VoRec.masteringVoice' is never used
+1>SC_Graphics\SC_Models\DModelClass4_grid_Tiles.cs(51,13,51,19): warning CS0169: The field 'DModelClass4_grid_Tiles._instY' is never used
+1>SC_SharpDX_ScreenCapture.cs(578,19,578,38): warning CS0169: The field 'SC_SharpDX_ScreenCapture._lastTexture2DFinal' is never used
+1>SC_SharpDX_ScreenCapture.cs(567,16,567,26): warning CS0169: The field 'SC_SharpDX_ScreenCapture.ptrIntInit' is never used
+1>SC_Console\SC_Console_CORE.cs(618,65,618,75): warning CS0169: The field 'SC_Console_CORE._data00_IN' is never used
+1>SC_SharpDX_ScreenCapture.cs(144,13,144,34): warning CS0169: The field 'SC_SharpDX_ScreenCapture._bytesTotalPlayerRect' is never used
+1>SC_Graphics\SC_Models\DModelClass4_grid_Tiles.cs(50,13,50,19): warning CS0169: The field 'DModelClass4_grid_Tiles._instX' is never used
+1>SC_Console\SC_Console_CORE.cs(616,16,616,28): warning CS0169: The field 'SC_Console_CORE.testingTasks' is never used
+1>SC_SharpDX_ScreenCapture.cs(136,31,136,48): warning CS0649: Field 'SC_SharpDX_ScreenCapture._bitmapPlayerRect' is never assigned to, and will always have its default value null
+1>SC_Console\SC_Console_GRAPHICS.cs(980,17,980,26): warning CS0169: The field 'SC_Console_GRAPHICS.crossProd' is never used
+1>SC_Console\SC_Console_CORE.cs(259,18,259,36): warning CS0169: The field 'SC_Console_CORE.PaintHookProcedure' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(283,17,283,24): warning CS0169: The field 'SC_Console_GRAPHICS.lowestZ' is never used
+1>SC_Graphics\SC_Models\DModelClass4_grid_Tiles.cs(52,13,52,19): warning CS0169: The field 'DModelClass4_grid_Tiles._instZ' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(281,17,281,24): warning CS0169: The field 'SC_Console_GRAPHICS.lowestY' is never used
+1>SC_SharpDX_ScreenCapture.cs(393,15,393,25): warning CS0169: The field 'SC_SharpDX_ScreenCapture.memBytePtr' is never used
+1>SC_SharpDX_ScreenCapture.cs(165,24,165,31): warning CS0169: The field 'SC_SharpDX_ScreenCapture.fuckOff' is never used
+1>SC_Console\SC_Console_CORE.cs(97,59,97,75): warning CS0169: The field 'SC_Console_CORE._ResultsOfTasks1' is never used
+1>SC_SharpDX_ScreenCapture.cs(157,16,157,39): warning CS0169: The field 'SC_SharpDX_ScreenCapture._arrayPreviousPlayerPos' is never used
+1>SC_Console\SC_Console_DIRECTX.cs(1215,17,1215,31): warning CS0169: The field 'SC_Console_DIRECTX._xaudio_device' is never used
+1>SC_SharpDX_ScreenCapture.cs(158,16,158,38): warning CS0169: The field 'SC_SharpDX_ScreenCapture._currentArrayPlayerPos' is never used
+1>SC_SharpDX_ScreenCapture.cs(948,16,948,23): warning CS0169: The field 'SC_SharpDX_ScreenCapture._buffer' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(284,17,284,25): warning CS0169: The field 'SC_Console_GRAPHICS.highestZ' is never used
+1>SC_Console\SC_Console_DIRECTX.cs(1264,60,1264,80): warning CS0169: The field 'SC_Console_DIRECTX._someReceivedObject0' is never used
+1>SC_Console\SC_Console_CORE.cs(96,17,96,33): warning CS0169: The field 'SC_Console_CORE._ResultsOfTasks0' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(979,17,979,23): warning CS0169: The field 'SC_Console_GRAPHICS.vecTwo' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(978,17,978,23): warning CS0169: The field 'SC_Console_GRAPHICS.vecOne' is never used
+1>SC_Console\SC_Console_CORE.cs(615,22,615,31): warning CS0169: The field 'SC_Console_CORE._mainTask' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(2617,13,2617,20): warning CS0169: The field 'SC_Console_GRAPHICS.strider' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(923,16,923,28): warning CS0649: Field 'SC_Console_GRAPHICS.percentXLeft' is never assigned to, and will always have its default value 0
+1>SC_Console\SC_Console_GRAPHICS.cs(279,17,279,24): warning CS0169: The field 'SC_Console_GRAPHICS.lowestX' is never used
+1>SC_Console\SC_Console_CORE.cs(107,15,107,20): warning CS0169: The field 'SC_Console_CORE.task0' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(282,17,282,25): warning CS0169: The field 'SC_Console_GRAPHICS.highestY' is never used
+1>SC_Console\SC_Console_CORE.cs(105,17,105,36): warning CS0169: The field 'SC_Console_CORE._mainObjectToReturn' is never used
+1>SC_SharpDX_ScreenCapture.cs(391,16,391,25): warning CS0169: The field 'SC_SharpDX_ScreenCapture.memIntPtr' is never used
+1>SC_SharpDX_ScreenCapture.cs(150,41,150,75): warning CS0169: The field 'SC_SharpDX_ScreenCapture._previousDuplicateFrameInformation' is never used
+1>SC_Console\SC_Console_DIRECTX.cs(155,36,155,46): warning CS0169: The field 'SC_Console_DIRECTX.rasterDesc' is never used
+1>SC_SharpDX_ScreenCapture.cs(164,23,164,30): warning CS0169: The field 'SC_SharpDX_ScreenCapture._thread' is never used
+1>SC_AI_Language\SC_AI_Language.cs(78,19,78,34): warning CS0169: The field 'SC_AI_Language.stringOfMathOps' is never used
+1>SC_SharpDX_ScreenCapture.cs(949,16,949,37): warning CS0169: The field 'SC_SharpDX_ScreenCapture._bufferPlayerShipRect' is never used
+1>SC_SharpDX_ScreenCapture.cs(155,16,155,32): warning CS0169: The field 'SC_SharpDX_ScreenCapture._emptyArrayPaste' is never used
+1>SC_SharpDX_ScreenCapture.cs(156,16,156,31): warning CS0169: The field 'SC_SharpDX_ScreenCapture._arrayPlayerPos' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(280,17,280,25): warning CS0169: The field 'SC_Console_GRAPHICS.highestX' is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(924,16,924,28): warning CS0649: Field 'SC_Console_GRAPHICS.percentYLeft' is never assigned to, and will always have its default value 0
+1>SC_Console\SC_Console_CORE.cs(100,59,100,65): warning CS0169: The field 'SC_Console_CORE._data0' is never used
+1>SC_AI_Language\SC_AI_Language.cs(85,14,85,31): warning CS0414: The field 'SC_AI_Language.functionCounter02' is assigned but its value is never used
+1>SC_Console\SC_Console_READER.cs(44,16,44,35): warning CS0414: The field 'SC_Console_READER._lastConsoleMessage' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(80,15,80,26): warning CS0414: The field 'SC_AI_Language.secondInput' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(96,14,96,45): warning CS0414: The field 'SC_AI_Language.frameCounterForVoiceRecognition' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(38,14,38,25): warning CS0414: The field 'DContainmentGrid_Screen._faceBottom' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(87,13,87,28): warning CS0414: The field 'SC_Console_CORE._anotherCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(239,14,239,37): warning CS0414: The field 'SC_Console_GRAPHICS.hasUsedThumbStickRightD' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(250,21,250,32): warning CS0414: The field 'SC_Console_GRAPHICS._startOnce0' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(54,22,54,48): warning CS0414: The field 'SC_Console_VoRec._keyboard_frame_countdown0' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(951,13,951,20): warning CS0414: The field 'SC_SharpDX_ScreenCapture.counter' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(37,20,37,32): warning CS0414: The field 'SC_Console_VoRec.startupItems' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(157,13,157,23): warning CS0414: The field 'SC_Console_WRITER.thresholdX' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(259,14,259,26): warning CS0414: The field 'SC_Console_GRAPHICS._startOnce02' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(58,20,58,42): warning CS0414: The field 'SC_Console_VoRec._keyboard_other_swtch0' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(933,13,933,14): warning CS0414: The field 'SC_SharpDX_ScreenCapture.i' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(1003,13,1003,34): warning CS0414: The field 'SC_Console_GRAPHICS._switchingLockedMouse' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(39,24,39,32): warning CS0414: The field 'SC_Console_VoRec._xaudio2' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(149,13,149,18): warning CS0414: The field 'SC_Console_WRITER.tempY' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(1104,16,1104,34): warning CS0414: The field 'SC_SharpDX_ScreenCapture.targetProcessName0' is assigned but its value is never used
+1>SC_System\SC_Systems.cs(74,13,74,26): warning CS0414: The field 'SC_Systems._totalThreads' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(77,20,77,59): warning CS0414: The field 'SC_Console_VoRec._stopWatch_thread_secondary_reset_swtch' is assigned but its value is never used
+1>SC_Console\SC_Console_DIRECTX.cs(1216,13,1216,23): warning CS0414: The field 'SC_Console_DIRECTX._getXAudio' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(145,14,145,56): warning CS0414: The field 'SC_AI_Language._AlphabetConsoleLineTitleConsoleCursorPosY' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(94,14,94,31): warning CS0414: The field 'SC_AI_Language.counterTotalWords' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(39,14,39,22): warning CS0414: The field 'DContainmentGrid._faceTop' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(27,20,27,36): warning CS0414: The field 'SC_Console_VoRec._startRecCounter' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_World_Axis_X.cs(44,15,44,23): warning CS0414: The field 'DTerrain_World_Axis_X._offsetX' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(77,14,77,24): warning CS0414: The field 'SC_AI_Language.mathSwitch' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(174,13,174,32): warning CS0414: The field 'SC_Console_WRITER._switch_for_console' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_Screen_Metric.cs(46,15,46,23): warning CS0414: The field 'DTerrain_Screen_Metric._offsetZ' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(2618,13,2618,37): warning CS0414: The field 'SC_Console_GRAPHICS._updateSceneFrameCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(875,37,875,46): warning CS0414: The field 'SC_Console_GRAPHICS._messager' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(147,13,147,18): warning CS0414: The field 'SC_Console_WRITER.tempX' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(150,13,150,19): warning CS0414: The field 'SC_Console_WRITER.tempYY' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(104,14,104,27): warning CS0414: The field 'SC_Console_CORE._startConsole' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(145,16,145,32): warning CS0414: The field 'SC_Console_WRITER._task_working_02' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(109,15,109,30): warning CS0414: The field 'SC_Console_WRITER.staticPlaneSize' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(458,13,458,25): warning CS0414: The field 'SC_SharpDX_ScreenCapture._testCounter' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(144,14,144,56): warning CS0414: The field 'SC_AI_Language._AlphabetConsoleLineTitleConsoleCursorPosX' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(236,14,236,36): warning CS0414: The field 'SC_Console_GRAPHICS.hasUsedThumbStickLeftW' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(173,13,173,33): warning CS0414: The field 'SC_Console_WRITER._counter_for_console' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(34,65,34,75): warning CS0414: The field 'SC_Console_VoRec._data00_IN' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(111,21,111,33): warning CS0414: The field 'SC_Console_WRITER._HeightScale' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(1106,16,1106,34): warning CS0414: The field 'SC_SharpDX_ScreenCapture.targetProcessName1' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(232,14,232,46): warning CS0414: The field 'SC_Console_GRAPHICS._canResetCounterTouchLeftButtonA' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(44,14,44,24): warning CS0414: The field 'DContainmentGrid_Screen._faceFront' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(135,13,135,28): warning CS0414: The field 'SC_Console_WRITER._xLastCursorPos' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(101,14,101,32): warning CS0414: The field 'SC_Console_CORE._xCurrentCursorPos' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(38,14,38,25): warning CS0414: The field 'DContainmentGrid._faceBottom' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(66,20,66,43): warning CS0414: The field 'SC_Console_VoRec._stopWatch_thread_swtch' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(88,17,88,25): warning CS0414: The field 'SC_AI_Language.lastWord' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(88,13,88,29): warning CS0414: The field 'SC_Console_CORE._thankYouCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(76,20,76,53): warning CS0414: The field 'SC_Console_VoRec._stopWatch_thread_secondary_swtch' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(237,14,237,36): warning CS0414: The field 'SC_Console_GRAPHICS.hasUsedThumbStickLeftS' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(235,14,235,46): warning CS0414: The field 'SC_Console_GRAPHICS._canResetCounterTouchLeftButtonY' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(249,21,249,31): warning CS0414: The field 'SC_Console_GRAPHICS._startOnce' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(42,14,42,24): warning CS0414: The field 'DContainmentGrid._faceRight' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(124,14,124,34): warning CS0414: The field 'SC_Console_CORE._console_is_alive_00' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(155,13,155,16): warning CS0414: The field 'SC_Console_WRITER.xxi' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(160,13,160,16): warning CS0414: The field 'SC_Console_WRITER.yyi' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_World_Axis_X.cs(46,15,46,23): warning CS0414: The field 'DTerrain_World_Axis_X._offsetZ' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(159,13,159,15): warning CS0414: The field 'SC_Console_WRITER.yy' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(108,13,108,17): warning CS0414: The field 'SC_Console_WRITER.seed' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(153,13,153,19): warning CS0414: The field 'SC_Console_WRITER.totalX' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(161,13,161,17): warning CS0414: The field 'SC_Console_WRITER.maxY' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(86,14,86,31): warning CS0414: The field 'SC_AI_Language.functionCounter03' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(1101,17,1101,29): warning CS0414: The field 'SC_SharpDX_ScreenCapture._voidExpanse' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(165,13,165,29): warning CS0414: The field 'SC_Console_WRITER._lastFrameHeight' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(154,13,154,15): warning CS0414: The field 'SC_Console_WRITER.xx' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(144,16,144,32): warning CS0414: The field 'SC_Console_WRITER._task_working_01' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(158,13,158,19): warning CS0414: The field 'SC_Console_WRITER.totalY' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(166,13,166,38): warning CS0414: The field 'SC_Console_WRITER._switchForChangeByteArray' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(79,15,79,25): warning CS0414: The field 'SC_AI_Language.firstInput' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(162,13,162,23): warning CS0414: The field 'SC_Console_WRITER.thresholdY' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(156,13,156,17): warning CS0414: The field 'SC_Console_WRITER.maxX' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(45,14,45,23): warning CS0414: The field 'DContainmentGrid._faceBack' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(1105,16,1105,34): warning CS0414: The field 'SC_SharpDX_ScreenCapture.targetProcessName2' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(45,14,45,23): warning CS0414: The field 'DContainmentGrid_Screen._faceBack' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_World_Axis_X.cs(45,15,45,23): warning CS0414: The field 'DTerrain_World_Axis_X._offsetY' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(171,13,171,29): warning CS0414: The field 'SC_Console_WRITER.cursorMoveSwitch' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(42,23,42,32): warning CS0414: The field 'SC_Console_VoRec._lastpath' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(110,21,110,33): warning CS0414: The field 'SC_Console_WRITER._detailScale' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(463,14,463,29): warning CS0414: The field 'SC_SharpDX_ScreenCapture._startStopWatch' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(42,14,42,24): warning CS0414: The field 'DContainmentGrid_Screen._faceRight' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(164,13,164,28): warning CS0414: The field 'SC_Console_WRITER._lastFrameWidth' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(143,16,143,32): warning CS0414: The field 'SC_Console_WRITER._task_working_00' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(83,14,83,31): warning CS0414: The field 'SC_AI_Language.functionCounter00' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(84,14,84,31): warning CS0414: The field 'SC_AI_Language.functionCounter01' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(238,14,238,36): warning CS0414: The field 'SC_Console_GRAPHICS.hasUsedThumbStickLeftA' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(246,14,246,34): warning CS0414: The field 'SC_Console_GRAPHICS._createdSceneObjects' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(233,14,233,46): warning CS0414: The field 'SC_Console_GRAPHICS._canResetCounterTouchLeftButtonB' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(41,14,41,23): warning CS0414: The field 'DContainmentGrid_Screen._faceLeft' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(44,14,44,24): warning CS0414: The field 'DContainmentGrid._faceFront' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(59,20,59,42): warning CS0414: The field 'SC_Console_VoRec._keyboard_other_swtch1' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(90,17,90,33): warning CS0414: The field 'SC_AI_Language.totalCombination' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(92,17,92,28): warning CS0414: The field 'SC_AI_Language.currentWord' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(247,21,247,35): warning CS0414: The field 'SC_Console_GRAPHICS._shaderQuality' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(123,14,123,34): warning CS0414: The field 'SC_Console_CORE._Task00_init_console' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(102,14,102,32): warning CS0414: The field 'SC_Console_CORE._yCurrentCursorPos' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(112,15,112,22): warning CS0414: The field 'SC_Console_WRITER.noiseXZ' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid.cs(41,14,41,23): warning CS0414: The field 'DContainmentGrid._faceLeft' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DContainmentGrid_Screen.cs(39,14,39,22): warning CS0414: The field 'DContainmentGrid_Screen._faceTop' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(810,13,810,25): warning CS0414: The field 'SC_SharpDX_ScreenCapture._someCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(136,13,136,28): warning CS0414: The field 'SC_Console_WRITER._yLastCursorPos' is assigned but its value is never used
+1>SC_Console\SC_Console_VoRec.cs(67,20,67,49): warning CS0414: The field 'SC_Console_VoRec._stopWatch_thread_reset_swtch' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(148,13,148,19): warning CS0414: The field 'SC_Console_WRITER.tempXX' is assigned but its value is never used
+1>Program.cs(53,23,53,32): warning CS0414: The field 'Program._username' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(97,14,97,60): warning CS0414: The field 'SC_AI_Language.frameCounterForVoiceRecognitionRecognizedWords' is assigned but its value is never used
+1>SC_AI_Language\SC_AI_Language.cs(143,16,143,41): warning CS0414: The field 'SC_AI_Language._AlphabetConsoleLineTitle' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(122,15,122,21): warning CS0414: The field 'SC_Console_CORE.task01' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(2616,28,2616,41): warning CS0414: The field 'SC_Console_GRAPHICS._frameCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(230,14,230,47): warning CS0414: The field 'SC_Console_GRAPHICS._canResetCounterTouchRightButtonB' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(924,13,924,25): warning CS0414: The field 'SC_SharpDX_ScreenCapture.imageCounter' is assigned but its value is never used
+1>SC_Console\SC_Console_CORE.cs(99,14,99,33): warning CS0414: The field 'SC_Console_CORE._counterTaskIsAlive' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_Screen_Metric.cs(44,15,44,23): warning CS0414: The field 'DTerrain_Screen_Metric._offsetX' is assigned but its value is never used
+1>SC_Console\SC_Console_GRAPHICS.cs(253,14,253,30): warning CS0414: The field 'SC_Console_GRAPHICS.isHoldingBUTTONA' is assigned but its value is never used
+1>SC_SharpDX_ScreenCapture.cs(1102,17,1102,26): warning CS0414: The field 'SC_SharpDX_ScreenCapture._SCSkyArk' is assigned but its value is never used
+1>SC_Graphics\SC_Grid\DTerrain_Screen_Metric.cs(45,15,45,23): warning CS0414: The field 'DTerrain_Screen_Metric._offsetY' is assigned but its value is never used
+1>SC_Console_Menu\SC_Console_Menu.cs(16,20,16,31): warning CS0414: The field 'SC_Console_Menu._work_doner' is assigned but its value is never used
+1>SC_Console\SC_Console_WRITER.cs(133,13,133,32): warning CS0414: The field 'SC_Console_WRITER.main_switch_counter' is assigned but its value is never used
+1>SC_skYaRk_VR_V007 -> C:\Users\znyN3k0RnZ\source\repos\SC_skYaRk_VR_V007\SC_skYaRk_VR_V007\bin\Release\netcoreapp2.1\SC_skYaRk_VR_V007.dll
+1>Done building project "SC_skYaRk_VR_V007.csproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

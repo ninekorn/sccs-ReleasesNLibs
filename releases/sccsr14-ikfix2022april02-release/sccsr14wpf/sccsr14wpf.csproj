@@ -1,0 +1,234 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	<LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="scgraphics\SC_Grid\**" />
+    <Compile Remove="scgraphics\_sc_models\**" />
+    <Compile Remove="scgraphics\_sc_shaders\**" />
+    <Compile Remove="scterrain\**" />
+    <Compile Remove="scvoxellevelgen\**" />
+    <EmbeddedResource Remove="scgraphics\SC_Grid\**" />
+    <EmbeddedResource Remove="scgraphics\_sc_models\**" />
+    <EmbeddedResource Remove="scgraphics\_sc_shaders\**" />
+    <EmbeddedResource Remove="scterrain\**" />
+    <EmbeddedResource Remove="scvoxellevelgen\**" />
+    <None Remove="scgraphics\SC_Grid\**" />
+    <None Remove="scgraphics\_sc_models\**" />
+    <None Remove="scgraphics\_sc_shaders\**" />
+    <None Remove="scterrain\**" />
+    <None Remove="scvoxellevelgen\**" />
+    <Page Remove="scgraphics\SC_Grid\**" />
+    <Page Remove="scgraphics\_sc_models\**" />
+    <Page Remove="scgraphics\_sc_shaders\**" />
+    <Page Remove="scterrain\**" />
+    <Page Remove="scvoxellevelgen\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Forces\PseudoCloth.cs" />
+    <Compile Remove="MainWindow - 10march2022-1.xaml.cs" />
+    <Compile Remove="MainWindow - backup10march2022.xaml.cs" />
+    <Compile Remove="MainWindow - backup25feb2022-1.xaml.cs" />
+    <Compile Remove="MainWindow - backup25feb2022.xaml.cs" />
+    <Compile Remove="MainWindow - failtoforms.xaml.cs" />
+    <Compile Remove="mikasc\DxWindow.cs" />
+    <Compile Remove="mikasc\Interop\NativeMethodsanotherother.cs" />
+    <Compile Remove="mikasc\Vertex.cs" />
+    <Compile Remove="mikasc\WindowPick.xaml.cs" />
+    <Compile Remove="mikasc\WindowPicker-old.cs" />
+    <Compile Remove="mikasc\WindowPicker.cs" />
+    <Compile Remove="mikasc\WindowPicker.xaml-old.cs" />
+    <Compile Remove="scconsole\MainViewModel.cs" />
+    <Compile Remove="scconsole\Sample2DRenderer.cs" />
+    <Compile Remove="scconsole\scconsolereader.cs" />
+    <Compile Remove="scconsole\scconsolewriter.cs" />
+    <Compile Remove="scconsole\scdirectx -backup23feb2022-0.cs" />
+    <Compile Remove="scconsole\scgraphicsmain.cs" />
+    <Compile Remove="scconsole\scgraphicssec - 2022feb17-0-works-lag.cs" />
+    <Compile Remove="scconsole\scgraphicssec - 26feb2022-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-2.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-3.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-4.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-5.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16-6.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb16.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-0-works.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-1-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-2-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-3-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-4-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-5-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-6-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-7-8x8x1fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb17-8-4x4x1works.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb18-0-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb18-1-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-0-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-1-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-2-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-3-8x8x1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19-sameslot.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb19.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-1.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-2 - fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-3-beforechanges.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-4.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-5.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-6-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb21-7-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb22-00-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb27-0-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022feb27-1-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022march05-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars01-0-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars01-1-success.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars01-2-success.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars01-3-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars02-0-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars02-1-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars02-2-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars03-0-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars03-00-before.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars03-1-success.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars06-0-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars06-1-fail.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backup2022mars08-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - backupnew2022feb26-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec - blank.cs" />
+    <Compile Remove="scconsole\scgraphicssec -22feb2022-0.cs" />
+    <Compile Remove="scconsole\scgraphicssec-backup.cs" />
+    <Compile Remove="scconsole\scintermediateupdate.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb19-0.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb19-1-fail.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb21-0-fail.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb21-1 - fail.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb21-3-working.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb23-0-working.cs" />
+    <Compile Remove="scconsole\scupdate - backup 2022feb23-1-bug.cs" />
+    <Compile Remove="scconsole\scupdate - backup-2022feb21-2-myoriginal.cs" />
+    <Compile Remove="scconsole\scupdate - backup-2022feb21-3-experiment.cs" />
+    <Compile Remove="scconsole\scupdate - backup-2022feb21-4-experiment.cs" />
+    <Compile Remove="scconsole\scupdate - backup-2022feb22-5-experiment.cs" />
+    <Compile Remove="scconsole\scupdate - backup-2022feb22-6-experiment.cs" />
+    <Compile Remove="scconsole\SC_Segment.cs" />
+    <Compile Remove="scconsole\Win32HwndControl.cs" />
+    <Compile Remove="sccssharpdxscreencapture - backup24feb2022.cs" />
+    <Compile Remove="sccssharpdxscreencapture - fullset.cs" />
+    <Compile Remove="sciklimbs\sccsikvoxellimbs.cs" />
+    <Compile Remove="sciklimbs\sccsvoxels.cs" />
+    <Compile Remove="sciklimbs\sc_voxel.cs" />
+    <Compile Remove="sciklimbs\sc_voxel_instances.cs" />
+    <Compile Remove="sciklimbs\sc_voxel_shader_final.cs" />
+    <Compile Remove="scjitter\sc_globals.cs" />
+    <Compile Remove="scjitter\sc_globals_accessor.cs" />
+    <Compile Remove="scjitter\sc_icomponent.cs" />
+    <Compile Remove="scjitter\sc_interface.cs" />
+    <Compile Remove="scnewscreeninst\scchunkvscreen.cs" />
+    <Compile Remove="scnewscreeninst\scchunkvscreenshader.cs" />
+    <Compile Remove="scvoxelscreen\sccstrigvertbuilderscreen - backup2022feb22-backface.cs" />
+    <Compile Remove="scvoxelscreen\SC_instancedChunkPrim - backup2022feb19-sameslot.cs" />
+    <Compile Remove="scvoxelscreen\SC_instancedChunkPrim - backup2022feb19.cs" />
+    <Compile Remove="scvoxelscreen\SC_instancedChunkPrim - backup2022feb22-bug.cs" />
+    <Compile Remove="scvoxelscreen\SC_instancedChunk_shader_final -feb22backup2022-0.cs" />
+    <Compile Remove="scvoxelscreen\SC_instancedChunk_shader_final -feb22backup2022-1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeight - 2022feb23-0.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - backup07march2022-0.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - backup07march2022-1.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - backup08march2022-0.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - backup09march2022-0.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - backup10march2022-1.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx - Copy.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx -fail-02mars2022.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx -fail-22feb2022.ps" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeight - 2022feb23-0.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeight - 2022feb24-0.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx - 2022mars06-0.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx - 2022mars08-0.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx - 2022mars09-0.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx - 2022mars09-1-breakables.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx-2022mars-06-1-old.vs" />
+    <None Remove="scvoxelscreen\sccsvertbindchunkPS - Copy.ps" />
+    <None Remove="Shader.fx" />
+    <None Remove="terrainGrassDirt.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="MainWindow - 10march2022-1.xaml" />
+    <Page Remove="MainWindow - backup10march2022.xaml" />
+    <Page Remove="MainWindow - backup25feb2022-1.xaml" />
+    <Page Remove="MainWindow - backup25feb2022.xaml" />
+    <Page Remove="MainWindow - failtoforms.xaml" />
+    <Page Remove="mikasc\WindowPick.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Shader.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.22000.196" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.RawInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.Runtime.WindowsRuntime" Version="4.7.0" />
+    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="scnewscreeninst\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\inputsimulator\WindowsInput\WindowsInput.csproj" />
+    <ProjectReference Include="..\..\..\libraries\jitter_sc\jitter_sc.csproj" />
+    <ProjectReference Include="..\..\..\libraries\sc_message_object\sc_message_object.csproj" />
+  </ItemGroup>
+
+</Project>

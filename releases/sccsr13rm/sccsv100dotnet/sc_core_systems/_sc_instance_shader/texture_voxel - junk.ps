@@ -1,0 +1,300 @@
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+SamplerState textureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+cbuffer LightBuffer
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding0;
+	float3 lightPosition;
+	float padding1;
+};
+
+struct PixelInputType
+{ 
+	float4 position : POSITION;
+    float2 tex : TEXCOORD0;
+	float4 color : COLOR;
+	float3 normal : NORMAL;
+	float4 instancePosition : POSITION1;
+	float4 instanceRadRot : POSITION2;
+	float4 instanceRadRotRIGHT : POSITION3;
+	float4 instanceRadRotUP : POSITION4;
+};
+
+//float _lastDOTProdAngleWithHypAndOpp = -1;
+static const float PI = 3.1415926535897932384626433832795f;
+static const float3 world_forward = float3(0,0,1);
+static const float3 world_backward = float3(0,0,-1);
+static const float3 world_right = float3(1,0,0);
+static const float3 world_left = float3(-1,0,0);
+static const float3 world_up = float3(0,1,0);
+static const float3 world_down = float3(0,-1,0);
+
+
+
+
+float sc_check_distance_node_3d_geometry(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float maxx, float maxy, float maxz) 
+{
+	//STEVE CHASSÉ 3D blueprint for sphere type and a ton more. based on 2d version of Sebastian Lague
+	float dstX = abs((nodeA.x) - (nodeB.x));
+	float dstY = abs((nodeA.y) - (nodeB.y));
+	float dstZ = abs((nodeA.z) - (nodeB.z));
+
+	float dstX_vs_dstZ = 0;
+	float dstX_vs_dstY = 0;
+	float dstY_vs_dstZ = 0;
+
+	if (dstX > dstZ)
+	{
+		dstX_vs_dstZ = maxx * dstZ + minx * (dstX - dstZ);
+	}
+	else
+	{
+		dstX_vs_dstZ = maxx * dstX + minx * (dstZ - dstX);
+	}
+
+	if (dstX > dstY)
+	{
+		dstX_vs_dstY = maxy * dstY + miny * (dstX - dstY);
+	}
+	else
+	{
+		dstX_vs_dstY = maxy * dstX + miny * (dstY - dstX);
+	}
+
+	if (dstY > dstZ)
+	{
+		dstY_vs_dstZ = maxz * dstZ + minz * (dstY - dstZ);
+	}
+	else
+	{
+		dstY_vs_dstZ = maxz * dstY + minz * (dstZ - dstY);
+	}
+	return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+
+
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+
+	/*if(input.color.x == 0.0 && input.color.y == 0.0  && input.color.z == 0.0  && input.color.w == 0.0)
+	{
+		float4 textureColor;
+		// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+		textureColor = shaderTexture.Sample(SampleType, input.tex);
+		return textureColor;
+	}
+	else
+	{
+		//input.color = float4(0.15f,0.35f,0.95f,1); light blue turquoise
+		//input.color = float4(0.55,0.25,0.25,1); //red blood
+		//input.color = float4(0.05,0.05,0.05,1); //grey
+
+		float x = dot(input.normal, float3(1, 0.25, 0.4));	
+		x = x * 0.5 - 0.5;
+		//input.color = input.color;
+		float3 color = lerp(float3(input.color.x*0.75, input.color.y*0.75, input.color.z*0.75), float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), x);
+		input.color.xyz = color;
+		input.color.w = 1.0;
+		//input.Pos = input[i].Pos;
+		//input.tex = input[i].tex;
+	
+		//input.color = float4(0.15f,0.15f,0.75f,1);
+		return input.color;
+	}*/
+
+	
+
+	/*float4 textureCol;
+	float3 lightD;
+	float lightI;
+	float4 col;
+
+	float4 ambientCol = float4(0.15, 0.15, 0.15, 1.0);
+	float4 diffuseCol = float4(1, 1, 1, 1.0);
+	//lightDirection = float3(1,0,0);
+
+	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+	textureCol = shaderTexture.Sample(SampleType, input.tex);
+
+	// Set the default output color to the ambient light value for all pixels.
+	col = ambientCol;
+
+	// Invert the light direction for calculations.
+	lightD = - lightDirection;
+
+	// Calculate the amount of the light on this pixel.
+	lightI = saturate(dot(input.normal, lightD));
+
+	if(lightI > 0.0f)
+	{
+		// Determine the final diffuse color based on the diffuse color and the amount of light intensity.
+		col += (diffuseCol * lightI);
+	}
+
+	// Saturate the final light color.
+	col = saturate(col);
+
+	// Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+	// EX 2: for seeing only the lighting effect.
+	col = col * textureCol;
+	input.color = col;
+	return input.color;*/
+
+
+
+	//float x = dot(input.normal, float3(0.25, -0.25, -0.4));	
+	//float x = (cross(input.normal, float3(1, 0.25, 0.4)).y);
+	
+	//float dotter = dot(input.normal, world_up);	
+	//dotter = (dotter * 0.01f) + 0.99f;
+	//float x = (cross(input.normal, float3(-0.35, 0.75, 0.4)).y);
+	//float x = (cross(input.normal, float3(1, 0.25, 0.4)).y);
+	//float x = dot(input.instanceRadRotUP, world_up);	
+	//x = x * 0.75 - 0.5; //x * 0.5 - 0.5
+
+	//float3 color = lerp(float3(input.color.x*0.85f*dotter, input.color.y*0.85f*dotter, input.color.z*0.85f*dotter), float3(input.color.x*0.95f*dotter, input.color.y*0.95f*dotter, input.color.z*0.95f*dotter), x);
+	//input.color.xyz = color;
+	//input.color.w = 1.0;
+	
+	/*float4 ambientCol = float4(0.55, 0.55, 0.55, 1.0);
+	float4 diffuseCol = float4(1, 0, 0, 1.0);
+
+	float3 lightDir;
+	float lightIntensity;
+	float4 colorer;
+
+	colorer = ambientCol;
+
+	lightDir = -lightDirection;
+
+	float3 inputPos = input.instancePosition.xyz + input.position.xyz;
+	float distTot = sqrt(((lightPosition.x - inputPos.x)*(lightPosition.x - inputPos.x)) + ((lightPosition.y - inputPos.y)*(lightPosition.y - inputPos.y)) + ((lightPosition.z - inputPos.z)*(lightPosition.z - inputPos.z)));
+
+	float3 dirLightToFace = lightPosition - inputPos;
+	dirLightToFace /= distTot;
+
+	float someOtherDot = dot(dirLightToFace, lightDir);
+
+	//float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, lightDir));
+
+	float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+	someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+	
+
+
+	
+	float test = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 10, 10, 10, 10, 10, 10);
+
+	input.color = float4(0.15,0.15,0.15,1);
+	//float x = dot(input.normal, float3(1, 0.25, 0.4));	
+	//x = x * 0.5 - 0.5;
+	//input.color = input.color;
+	//float3 color = lerp(float3(input.color.x*0.75, input.color.y*0.75, input.color.z*0.75), float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), x);
+	input.color.xyz *= someOtherDot * distTot * 0.01f;
+	input.color.w = 1.0;
+	return input.color;*/
+
+
+	/*if(test < 150)
+	{	
+		input.color = float4(0.15,0.15,0.15,1);
+		//float x = dot(input.normal, float3(1, 0.25, 0.4));	
+		//x = x * 0.5 - 0.5;
+		//input.color = input.color;
+		//float3 color = lerp(float3(input.color.x*0.75, input.color.y*0.75, input.color.z*0.75), float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), x);
+		input.color.xyz *= someOtherDot;
+		input.color.w = 1.0;
+	}
+	else
+	{	
+		input.color = float4(0.15,0.15,0.15,1);
+		//float x = dot(input.normal, float3(1, 0.25, 0.4));	
+		//x = x * 0.5 - 0.5;
+		//input.color = input.color;
+		//float3 color = lerp(float3(input.color.x*0.75, input.color.y*0.75, input.color.z*0.75), float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), x);
+		input.color.xyz *= someOtherDot;
+		input.color.w = 1.0;
+	}*/
+
+
+
+
+	/*
+
+
+	if(distTot < padding1)
+	{	
+		if (someOtherDot >= 0.5f)
+		{			
+			float someTester = padding1 - distTot;
+			float distMod = someTester;
+			distMod *= 0.01f;	
+			float4 modColor = colorer;
+
+			if(distTot < padding0)
+			{				
+				float someTester = padding1 - distTot;
+				float distMod = someTester;
+				distMod *= 0.01f;	
+				float4 modColor = colorer;
+
+				modColor += (diffuseColor * (someOtherDot)) * distMod;
+				modColor = saturate(modColor);
+				input.color = input.color * modColor*0.95f;
+			}	
+			else
+			{
+				float someTester = padding1 - (distTot);
+				float distMod = someTester;
+				distMod *= 0.01f;	
+				float4 modColor = colorer;
+
+				modColor += (diffuseColor * (someOtherDot)) * distMod;
+				modColor = saturate(modColor);
+				input.color = input.color * modColor*0.95f;
+			}			
+		}
+		else
+		{
+			if(distTot < padding0)
+			{
+				float someTester = padding1 - distTot;
+				float distMod = someTester;
+				distMod *= 0.01f;	
+				float4 modColor = colorer;
+
+				modColor += (diffuseColor * (someOtherDot)) * distMod;
+				modColor = saturate(modColor);
+
+				input.color = input.color * modColor*0.95f;
+			}	
+			else
+			{
+				float someTester = padding1 - (distTot);
+				float distMod = someTester;
+				distMod *= 0.01f;	
+				float4 modColor = colorer;
+
+				modColor += (diffuseColor * (someOtherDot)) * distMod;
+				modColor = saturate(modColor);
+
+				input.color = input.color * modColor*0.95f;
+			}
+		}
+	}
+	return input.color;*/
+}
+
+

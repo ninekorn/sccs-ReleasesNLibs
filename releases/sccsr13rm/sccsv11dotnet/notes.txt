@@ -1,0 +1,76 @@
+﻿currently incorporating:
+
+I. chunk spheroid or chunk cube or chunk perlin jitter object.
+II. wow... falling cubes. who didn't see that in unity or etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+currently missing:
+
+I. desktop screen
+II. all other primitives of jitter.
+III. wrong variable names _sc instead of SC_
+IV. all demo scenes of Jitter.
+V. buoyancy which is not in the demo but i was able to make it work partially.
+VI. incorporating/provinding the identical setup in bepuv1, bepuv2
+VII. incorporate the Randy Gaul Steve Chassé c# version of his Impulse Engine inside of the console visual display for fancy eyes always wanting more fluff fluff. but again i want this engine anyway and it was going to be 
+	 in the console and in the main program. But i will upgrade it with my grid type index for fast lookup of rigidbody indexes instead of looping a whole scene of all rigidbodies. Right now it lags before even spawning 20
+	 rigidbodies in the scene. But i think i didn't properly setup the "dont calculate if" section of the detect collision part.
+VIII. there is no "ability" duh yet to dispatch to external menus the correct course of action if wrong password/username is entered or anything like that yet.
+IX. username/password could be done through network also (not yet). no loading of accessing data if you do not get through user/pass part. BUT, why shut down the program, someone has activated it. let's run some other menus
+	here and there and some activation of some external microphone plugged to machine learning and lets learn the language of the sound currently being monitored by the program etc. but that, it's something that i can't code.
+	because it demands to be in a position of "authority" like our governments authorities to do something like this. But as long as they would be righteous, USA did it with "Big Brother" i think it was called, what about 
+	those programs that the government was using back when Snowden was working for the USA gov? so yeah, in a war situation, if i was a the top of the canadian army command i would litterally say, fuck off, don't get caught,
+	if you do, blame it on a virus that got into your computer and that sent the ip "knock knock ping" on their computers and apologize. in a war situation, why impose limits to ourselves when we are the good guys when the
+	Nazis in WWII litterally did everything they could to get control of RatLines from Churches man, from fucking Churches with Priest that pray to the God. fuck that man, i would litterally have Obama and Trump "apologize" 
+	in some form or fashion to Snowden and have him at the top of a program that would maybe save lives instead of "controlling" lives. A program where yes you listen but only to "violence" and "plans being made" of terrorists
+	and all that shit. So yeah Snowden, if nazis were at the top of food chains of very high authority departments of USA, did the right choice. He is not an enemy, he was just acting out of pure moral right choices and might
+	have been the rare ones to have done so. and he did so for his country USA. You can activate extra threads to load whatnot. My goal was to build my program and once i am ready, IF, it seems to go to hell in the world like nazis in the
+	media trying to whatnot just like the videos of the game Wolfenstein etc, i can/will/could/could not/wouldn't/would not/might/might not/ decide to leave my "print" inside of the ip/packet that comes to my pc and simply release
+	it back without ever changing anything to it. Let the package do what it wants but to tell me only one thing and only one thing. The location of where it comes from but that is like the cia/fbi/rcmp/grc/nsa/etc programs that 
+	we fake see on tv, the location can be dispersed in dozens /hundreds/thousands/millions/billions of connections around the world. so doing that is non-sense and would serve me no purpose and the governement Men In Black 
+	probably don't like citizens to dick around sending packets back with a print to get a pinpoint on the location of the "incoming pings" to my computer. I can/will/could/could not/wouldn't/would not/might/might not/ have 
+	re-installed wireshark for about 4-5 years and the reason i didn't do so is that it cramps your fucking hard drives just to save the data of the communications to your computer. its wayyy more hungry in data than the
+	videos i can/will/could/could not/wouldn't/would not/might/might not/ saved on my harddrive because those too take a shit ton of space but i fucking lost a 2TB of data. that really hurts. 
+X. the program currently is non-protected and easily accessible by any possible means so it is not to be considered a secure program yet.
+
+
+

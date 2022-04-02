@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AAFCCF47-E50A-45D3-BBCA-34BF3F565A04}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>sccsr11wpf</RootNamespace>
+    <AssemblyName>sccsr11wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.D3DCompiler, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.D3DCompiler.4.2.0\lib\net45\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Desktop.4.2.0\lib\net45\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D11.4.2.0\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.2.0\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.4.2.0\lib\net45\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectSound, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectSound.4.2.0\lib\net45\SharpDX.DirectSound.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.2.0\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.MediaFoundation.4.2.0\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XAudio2.4.2.0\lib\net45\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.4.2.0\lib\net45\SharpDX.XInput.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ab3d_oculus_wrapper\EyeTexture.cs" />
+    <Compile Include="ab3d_oculus_wrapper\MirrorTexture.cs" />
+    <Compile Include="ab3d_oculus_wrapper\SharpDXHelpers.cs" />
+    <Compile Include="ab3d_oculus_wrapper\TextureSwapChain.cs" />
+    <Compile Include="DSoundClass1.cs" />
+    <Compile Include="sc_file_stream.cs" />
+    <Compile Include="sc_interface.cs" />
+    <Compile Include="sc_maths.cs" />
+    <Compile Include="sc_message_object\scmessageobject.cs" />
+    <Compile Include="SC_SharpDX_ScreenCapture.cs" />
+    <Compile Include="SC_SharpDX_ScreenFrame.cs" />
+    <Compile Include="sc_terrain\SC_Globals.cs" />
+    <Compile Include="sc_terrain\SC_GlobalsVoxelInstancing.cs" />
+    <Compile Include="sc_terrain\SimplexNoise.cs" />
+    <Compile Include="SoundPlayer.cs" />
+    <Compile Include="_sc_console\SC_console_directx.cs" />
+    <Compile Include="_sc_console\SC_Console_GRAPHICS.cs" />
+    <Compile Include="_sc_console\_sc_console_core.cs" />
+    <Compile Include="_sc_console\_sc_console_keyboard_input.cs" />
+    <Compile Include="_sc_console\_sc_console_reader.cs" />
+    <Compile Include="_sc_console\_sc_console_writer.cs" />
+    <Compile Include="_sc_console_menu\_sc_console_menu_00.cs" />
+    <Compile Include="_sc_console_menu\_sc_console_menu_01.cs" />
+    <Compile Include="_sc_core\_sc_systems.cs" />
+    <Compile Include="_sc_core\_sc_system_configuration.cs" />
+    <Compile Include="_sc_core\_sc_system_info.cs" />
+    <Compile Include="_sc_globals.cs" />
+    <Compile Include="_sc_graphics\_sc_camera\_sc_camera.cs" />
+    <Compile Include="_sc_graphics\_sc_models\SC_cube.cs" />
+    <Compile Include="_sc_graphics\_sc_models\SC_cube_instances.cs" />
+    <Compile Include="_sc_graphics\_sc_models\sc_perko_voxel.cs" />
+    <Compile Include="_sc_graphics\_sc_models\SC_VR_Cube.cs" />
+    <Compile Include="_sc_graphics\_sc_models\_sc_spectrum.cs" />
+    <Compile Include="_sc_graphics\_sc_models\_sc_spectrum_instances.cs" />
+    <Compile Include="_sc_graphics\_sc_models\_sc_voxel.cs" />
+    <Compile Include="_sc_graphics\_sc_models\_sc_voxel_instances.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\SC_cloth_shader.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\SC_cube_shader_final.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\SC_VR_Touch_Shader.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\_sc_spectrum_shader_final.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\_sc_texture_loader.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\_sc_texture_shader.cs" />
+    <Compile Include="_sc_graphics\_sc_shaders\_sc_voxel_spheroid_shader_final.cs" />
+    <Compile Include="_sc_graphics\_sc_shader_manager\SC_ShaderManagerClass.cs" />
+    <Compile Include="_sc_icomponent.cs" />
+    <Compile Include="_sc_jitter\Conversion.cs" />
+    <Compile Include="_sc_jitter\IComponent.cs" />
+    <Compile Include="_sc_jitter\ITransform.cs" />
+    <Compile Include="_sc_load_bitmap.cs" />
+    <Compile Include="_sc_terrain\FastNoise.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="LICENSE" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="sc_terrain\HLSLchunkkeyboard.gs" />
+    <None Include="sc_terrain\sccsvertbindchunkPS.ps" />
+    <None Include="sc_terrain\sccsvertbindchunkVS.vs" />
+    <None Include="sc_terrain\sccsvertbindchunkVSMOD.vs" />
+    <None Include="sc_terrain\sccsvertexshader.vs" />
+    <None Include="sc_terrain\textureTrigChunkPS.ps" />
+    <None Include="sc_terrain\textureTrigChunkVS.vs" />
+    <None Include="sc_terrain\textureTrigChunkVSMOD.vs" />
+    <Resource Include="1x1_pink_color.png" />
+    <Resource Include="notes.txt" />
+    <Resource Include="terrainGrassDirt.bmp" />
+    <Content Include="_sc_instance_shader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\red.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\red.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\Jitter\Jitter.csproj">
+      <Project>{aa03ef1a-94f7-4d30-ab14-2092863ff923}</Project>
+      <Name>Jitter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

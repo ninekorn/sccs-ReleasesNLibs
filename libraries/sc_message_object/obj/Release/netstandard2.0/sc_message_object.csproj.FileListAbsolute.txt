@@ -1,0 +1,13 @@
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.deps.json
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.AssemblyInfoInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.AssemblyInfo.cs
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\bin\Release\netstandard2.0\jitter_sc.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\bin\Release\netstandard2.0\jitter_sc.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.csproj.AssemblyReference.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\sc_message_object\obj\Release\netstandard2.0\sc_message_object.csproj.CopyComplete

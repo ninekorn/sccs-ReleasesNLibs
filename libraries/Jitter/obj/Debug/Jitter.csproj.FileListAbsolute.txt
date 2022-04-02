@@ -1,0 +1,5 @@
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\bin\Debug\Jitter.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\bin\Debug\Jitter.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Debug\Jitter.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Debug\Jitter.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Debug\Jitter.pdb

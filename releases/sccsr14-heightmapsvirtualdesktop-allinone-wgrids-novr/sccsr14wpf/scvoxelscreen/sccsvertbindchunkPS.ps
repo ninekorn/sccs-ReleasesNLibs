@@ -1,0 +1,594 @@
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+SamplerState textureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+cbuffer MatrixBuffer :register(b0)
+{
+	float4x4 world;
+	float4x4 view;
+	float4x4 proj;
+};
+
+cbuffer LightBuffer :register(b1)
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding0;
+	float3 lightPosition;
+	float padding1;
+};
+
+struct PixelInputType
+{
+    float4 position : SV_POSITION;
+	float4 color : COLOR0; //byte map index xyz and w for typeofface 0 to 5
+	float3 normal : NORMAL0;
+	float paddingvert0 : PSIZE0;	//instance width
+	float2 tex : TEXCOORD0;
+	//float paddingvert1 : PSIZE1;	//instance height
+	//float paddingvert2 : PSIZE2;	//instance depth
+	float4 instancePosition : POSITION1;
+	float4 instanceRadRotFORWARD : POSITION2;
+	float4 instanceRadRotRIGHT : POSITION3;
+	float4 instanceRadRotUP : POSITION4;
+	float4 mapmatrix0 : POSITION5;
+	float4 mapmatrix1 : POSITION6;
+	float4 mapmatrix2 : POSITION7;
+	float4 mapmatrix3 : POSITION8;
+	float4 mapmatrix4 : POSITION9;
+	float4 mapmatrix5 : POSITION10;
+	float4 mapmatrix6 : POSITION11;
+	float4 mapmatrix7 : POSITION12;
+	float4 mapmatrix8 : POSITION13;
+	float4 mapmatrix9 : POSITION14;
+	float4 mapmatrix10 : POSITION15;
+	float4 mapmatrix11 : POSITION16;
+	float4 mapmatrix12 : POSITION17;
+	float4 mapmatrix13 : POSITION18;
+	float4 mapmatrix14 : POSITION19;
+	float4 mapmatrix15 : POSITION20;
+
+	float4 heightmapmat0 : POSITION21;
+	float4 heightmapmat1 : POSITION22;
+	float4 heightmapmat2 : POSITION23;
+	float4 heightmapmat3 : POSITION24;
+
+	/*int one : PSIZE3;	
+	int oneTwo : PSIZE4;
+	int two : PSIZE5;	
+	int twoTwo : PSIZE6;	
+	int three : PSIZE7;	
+	int threeTwo : PSIZE8;	
+	int four : PSIZE9;	
+	int fourTwo : PSIZE10;*/
+	int xindex : PSIZE11;	
+	int yindex : PSIZE12;
+};
+
+//float _lastDOTProdAngleWithHypAndOpp = -1;
+static const float PI = 3.1415926535897932384626433832795f;
+static const float3 world_forward = float3(0,0,1);
+static const float3 world_backward = float3(0,0,-1);
+static const float3 world_right = float3(1,0,0);
+static const float3 world_left = float3(-1,0,0);
+static const float3 world_up = float3(0,1,0);
+static const float3 world_down = float3(0,-1,0);
+
+
+static float dstX= 0;
+static float dstY= 0;
+static float dstZ = 0;
+static float dstX_vs_dstZ = 0;
+static float dstX_vs_dstY = 0;
+static float dstY_vs_dstZ = 0;
+
+float sc_check_distance_node_3d_geometry(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float maxx, float maxy, float maxz) 
+{
+	//STEVE CHASSÉ 3D blueprint for sphere type and a ton more. based on 2d version of Sebastian Lague. but my version is not perfect. i don't know yet what else to put in there.
+	//the solution was easier than i thought and it came to me quite fast after fearing for months i'd never be able to quickly get this function written. This function is also a
+	//main part of the upgrade that i want to implement to the Jitter physics engine for spatial awareness. In the jitter physics engine, it seems as if every frame that the objects
+	//are enabled and non-static, jitter checks ALL bounding boxes for collisions between all of them. So of course at some point, the more objects in the scene, the more bounding
+	//boxes it has to check for each individual objects. for instance, lets say there is 1000 objects in the scene, so index 0 to index 999, if object 0 checks against ALL other
+	//998 objects, it's a huge waste of performance. But there are collision "islands" in the jitter physics engine but those i believe are chosen only when bounding boxes are 
+	//officially declared as colliding. so i want to see if i can use a fast distance checker (which i didnt test yet against Math.Sqrt or the very fast quake sqrt). But all of
+	//the things i learned in doing chunks are also going to be needed for when im going to start developing things around and inside of the Jitter Physics Engine. So prior upgrading the physics
+	//engine jitter for my engine sccoresystems, i can only have 4000 max objects and it would lag the scene. but the tests are not carved on rock yet because, 
+	//1. im not loading the dll how i should maybe
+	//2. maybe because multiple instances of the physics engine like i am loading them isn't the proper way to do it? in monogame, to load different scene instances, they use 
+	//   Activator.CreateInstance and i was unable to use that anywhere back then. I might try again at some point... But right now i am using an interface. In sccsv10
+	//
+
+
+	dstX = abs((nodeA.x) - (nodeB.x));
+	dstY = abs((nodeA.y) - (nodeB.y));
+	dstZ = abs((nodeA.z) - (nodeB.z));
+
+	dstX_vs_dstZ = 0;
+	dstX_vs_dstY = 0;
+	dstY_vs_dstZ = 0;
+
+	if (dstX > dstZ)
+	{
+		dstX_vs_dstZ = maxx * dstZ + minx * (dstX - dstZ);
+	}
+	else
+	{
+		dstX_vs_dstZ = maxx * dstX + minx * (dstZ - dstX);
+	}
+
+	if (dstX > dstY)
+	{
+		dstX_vs_dstY = maxy * dstY + miny * (dstX - dstY);
+	}
+	else
+	{
+		dstX_vs_dstY = maxy * dstX + miny * (dstY - dstX);
+	}
+
+	if (dstY > dstZ)
+	{
+		dstY_vs_dstZ = maxz * dstZ + minz * (dstY - dstZ);
+	}
+	else
+	{
+		dstY_vs_dstZ = maxz * dstY + minz * (dstZ - dstY);
+	}
+	return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+float4 the_color = float4(0.65,0.65,0.65,1);
+
+static int tinyChunkWidth = 8;
+static int tinyChunkHeight = 8;
+static int tinyChunkDepth = 1;
+
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+	float4 somemoddedinputcolor = input.color;
+	// WARNING==INPUT.COLOR IS NOT THE COLOR WHEN COMING IN, IT IS THE INDEX POSITION OF EACH BYTES X/Y/Z. BUT IN ORDER TO DISPLAY A COLOR, YOU NEED TO HAVE THIS PIXEL SHADER INPUT.COLOR 
+	// SET TO THE DESIRED COLOR WHEN THIS HLSL METHOD FINISHES OTHERWISE YOU WILL GET A MULTICOLOR CHUNK BECAUSE THE INDEXES GO STRAIGHT FROM 0 TO THE WIDTH OF THE CHUNK FROM 0 TO 3 IN THE 
+	// X/Y/Z AXIS AND THAT IS THE COLORS.
+
+	float3 inputPos;// = float3();
+
+	inputPos.x = input.position.x + input.instancePosition.x + somemoddedinputcolor.x;
+	inputPos.y = input.position.y + input.instancePosition.y + somemoddedinputcolor.y;
+	inputPos.z = input.position.z + input.instancePosition.z + somemoddedinputcolor.z;
+
+	/*float3 lightDir;
+	float lightIntensity;
+	float4 colorer;
+
+	colorer = ambientColor;
+
+	lightDir = -lightDirection;
+
+	float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 9, 9, 9, 9, 9, 9);
+	//float distTot = sqrt(((lightPosition.x - inputPos.x)*(lightPosition.x - inputPos.x)) + ((lightPosition.y - inputPos.y)*(lightPosition.y - inputPos.y)) + ((lightPosition.z - inputPos.z)*(lightPosition.z - inputPos.z)));
+
+	float3 dirLightToFace = lightPosition - inputPos;
+	dirLightToFace /= distTot;
+
+	float someOtherDot = dot(dirLightToFace, lightDir);
+
+	if(someOtherDot >= 0)
+	{
+		float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+		//someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+
+		float someTester = padding1 - distTot;
+		float distMod = someTester;
+		distMod *= 0.1f;	 //0.01f
+		float4 modColor = colorer;
+
+		modColor += (diffuseColor * (DOTProdAngleWithHypAndOpp)) * distMod;
+		modColor = saturate(modColor);
+
+		//DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+		somemoddedinputcolor = input.colorsNFaces + DOTProdAngleWithHypAndOpp * modColor;// * modColor * 0.75f;
+
+		if(input.normal.x == 1.0)
+		{
+			somemoddedinputcolor *= 0.555f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.x == -1.0)
+		{
+			somemoddedinputcolor *=  0.145f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.y == 1.0)
+		{
+			somemoddedinputcolor*=  0.475f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.y == -1.0)
+		{
+			somemoddedinputcolor*=  0.135f;//float4(0.15,0.95,0.15,1);
+		}
+		if(input.normal.z == 1.0)
+		{
+			somemoddedinputcolor *=  0.765f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.z == -1.0)
+		{
+			somemoddedinputcolor *=  0.35f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		float somedot = dot(input.normal, dirLightToFace);
+
+		if(somedot <= 0)
+		{	
+			// Invert the light direction for calculations.
+			lightDir = - lightDirection;
+
+			// Calculate the amount of the light on this pixel.
+			lightIntensity = saturate(dot(input.normal, dirLightToFace));
+
+			somemoddedinputcolor *=  1 + (saturate(lightIntensity * somedot * distTot*0.35f));
+		}
+	}
+	else
+	{
+		float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+		//someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+
+		float someTester = padding1 - distTot;
+		float distMod = someTester;
+		distMod *= 0.1f;	 //0.01f
+		float4 modColor = colorer;
+
+		modColor += (diffuseColor * (DOTProdAngleWithHypAndOpp)) * distMod;
+		modColor = saturate(modColor);
+
+
+		//DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+
+		somemoddedinputcolor = input.colorsNFaces + DOTProdAngleWithHypAndOpp * modColor;// * modColor * 0.75f;
+
+
+		if(input.normal.x == 1.0)
+		{
+			somemoddedinputcolor *= 0.555f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.x == -1.0)
+		{
+			somemoddedinputcolor *=  0.145f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.y == 1.0)
+		{
+			somemoddedinputcolor*=  0.475f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.y == -1.0)
+		{
+			somemoddedinputcolor*=  0.135f;//float4(0.15,0.95,0.15,1);
+		}
+		if(input.normal.z == 1.0)
+		{
+			somemoddedinputcolor *=  0.765f;//float4(0.15,0.95,0.15,1);
+		}
+	
+		if(input.normal.z == -1.0)
+		{
+			somemoddedinputcolor *=  0.35f;//float4(0.15,0.95,0.15,1);
+		}
+	}*/
+	
+	int x = int(input.color.x); 
+	int y = int(input.color.y); 
+	int z = int(input.color.z);
+	int facetype = int(input.color.w);
+
+	//int instancesw = int(input.paddingvert0);
+	//int instancesh = int(input.paddingvert1);
+	//int instancesd = int(input.paddingvert2);
+
+	int instancesw = 240;//int(input.paddingvert0); // 256 // 480
+	int instancesh = 135;//int(input.paddingvert1); // 128 // 270
+	int instancesd = 1;//int(input.paddingvert2);
+
+
+	//10 instances width
+	//10 instances height
+	//1 instance depth
+
+	//4 bytes width
+	//4 bytes height
+	//4 bytes depth
+
+
+
+
+
+	int oriscreenx = instancesw * 8; //80 when using 20 width instances in SC_GlobalsChunkKeyboard //// 192 <=> 768 
+ 	int oriscreeny = instancesh * 8; //40 when using 10 height instances in SC_GlobalsChunkKeyboard //// 108 <=> 432
+
+	float somemul = 1/oriscreenx; //80 when using 20 width instances in SC_GlobalsChunkKeyboard //// 192 <=> 768
+
+	float4 textureColor;
+	float2 test = input.tex;
+
+	float4 somecolor = float4(0.05f,0.05f,0.05f,1.0f);
+
+	input.xindex = instancesw - 1 - input.xindex;
+
+	if(tinyChunkWidth == 4)
+	{
+		if(facetype == 4) // == 4 backface
+		{
+			if(input.xindex == 0.0f  && input.yindex == 0.0f)
+			{		
+				//somemul = (1/80);
+				if(x == 0 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * (input.yindex + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 1 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * (input.yindex + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 2 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * (input.yindex + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 3 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * (input.yindex + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else 
+				{
+					textureColor = somecolor;
+				}
+			}
+			else //if(input.xindex == 0.0f  && input.yindex == 1.0f)
+			{		
+				//somemul = (1/80);
+				if(x == 0 && z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 1 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 2 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else if(x == 3 &&  z == tinyChunkDepth-1)
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else 
+				{
+					textureColor = somecolor;
+				}
+			}
+		}
+		else
+		{
+			textureColor = somecolor;
+		}
+	}
+	else if(tinyChunkWidth == 8)
+	{
+		if(facetype == 4) // == 4 backface
+		{
+			/*if(input.xindex == 0.0f  && input.yindex == 0.0f)
+			{	
+				if(x >= 0 && z == tinyChunkDepth - 1 && x < tinyChunkWidth && z == tinyChunkDepth - 1) //x >= 0 && z == tinyChunkDepth - 1 && x < tinyChunkWidth && z == tinyChunkDepth - 1
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else{
+					textureColor = somecolor;
+				}
+			}
+			else{
+				textureColor = somecolor;
+			}*/
+
+			if(z == tinyChunkDepth - 1)
+			{
+				test = (test/ float2(oriscreenx,oriscreeny));
+				float2 testY = input.tex;
+				test.x = (test.x + (somemul * (input.xindex)));
+				test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+				test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+				input.tex = test;
+				textureColor = shaderTexture.Sample(SampleType, input.tex);	
+			}
+			else
+			{
+				textureColor = somecolor;
+			}
+		}
+		else
+		{
+			textureColor = somecolor;
+		}
+	}
+	else if(tinyChunkWidth == 16)
+	{
+		if(facetype == 4) // == 4 backface
+		{
+			/*if(input.xindex == 0.0f  && input.yindex == 0.0f)
+			{	
+				if(x >= 0 && z == tinyChunkDepth - 1 && x < tinyChunkWidth && z == tinyChunkDepth - 1) //x >= 0 && z == tinyChunkDepth - 1 && x < tinyChunkWidth && z == tinyChunkDepth - 1
+				{
+					test = (test/ float2(oriscreenx,oriscreeny));
+					float2 testY = input.tex;
+					test.x = (test.x + (somemul * (input.xindex)));
+					test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					//test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * (input.xindex + (x))));
+					test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//test.x *=-1;
+					input.tex = test;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);	
+				}
+				else{
+					textureColor = somecolor;
+				}
+			}
+			else{
+				textureColor = somecolor;
+			}*/
+
+			if(z == tinyChunkDepth - 1)
+			{
+				test = (test/ float2(oriscreenx,oriscreeny));
+				float2 testY = input.tex;
+				test.x = (test.x + (somemul * (input.xindex)));
+				test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+				test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+				input.tex = test;
+				textureColor = shaderTexture.Sample(SampleType, input.tex);	
+			}
+			else
+			{
+				textureColor = somecolor;
+			}
+		}
+		else
+		{
+			textureColor = somecolor;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+	if(textureColor.x == 0.0f && textureColor.y == 0.0f && textureColor.z == 0.0f && textureColor.w == 0.0f)
+	{
+		textureColor = somecolor;
+	}*/
+
+	textureColor = textureColor; //somemoddedinputcolor
+
+	/*if(input.color.w == 0.0)
+	{
+		textureColor.w = 0.0;
+	}*/
+	/*
+	float dismissx = dot(input.normal, float3(1, 0.45, 0.65));	
+	x = x * 0.5 - 0.5;
+	if(dismissx < 0)
+	{
+		textureColor = somecolor;
+	}*/
+
+
+	//textureColor.w = 0.15;
+
+
+	return textureColor ;
+}
+
+
+
+
+
+
+
+
+
+

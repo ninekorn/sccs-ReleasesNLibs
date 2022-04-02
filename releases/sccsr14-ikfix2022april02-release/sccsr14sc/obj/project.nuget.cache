@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "jTGR/s+6iCVwIrWnK8zVFVVsTeN43FJrFNprfRI9m4AWjmwlmJTIo9YgIDxOv2fOzBIbJETuRTLjOHV4VMp5mw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\tests\\sccsr14-breakables-CURRENT\\sccsr14sc\\sccsr14form.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\steve\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.2.13\\microsoft.netcore.universalwindowsplatform.6.2.13.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.22000.196\\microsoft.windows.sdk.contracts.10.0.22000.196.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx\\4.2.0\\sharpdx.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.d3dcompiler\\4.2.0\\sharpdx.d3dcompiler.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.desktop\\4.2.0\\sharpdx.desktop.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct2d1\\4.2.0\\sharpdx.direct2d1.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct3d11\\4.2.0\\sharpdx.direct3d11.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct3d9\\4.2.0\\sharpdx.direct3d9.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.directinput\\4.2.0\\sharpdx.directinput.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.directsound\\4.2.0\\sharpdx.directsound.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.dxgi\\4.2.0\\sharpdx.dxgi.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.mathematics\\4.2.0\\sharpdx.mathematics.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.mediafoundation\\4.2.0\\sharpdx.mediafoundation.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.rawinput\\4.2.0\\sharpdx.rawinput.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.xaudio2\\4.2.0\\sharpdx.xaudio2.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.xinput\\4.2.0\\sharpdx.xinput.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\system.runtime.interopservices.windowsruntime\\4.3.0\\system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\system.runtime.windowsruntime\\4.7.0\\system.runtime.windowsruntime.4.7.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.7.0\\system.runtime.windowsruntime.ui.xaml.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

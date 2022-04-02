@@ -1,0 +1,13 @@
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\bin\Release\netcoreapp2.2\sccscleansolution.deps.json
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\bin\Release\netcoreapp2.2\sccscleansolution.runtimeconfig.json
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\bin\Release\netcoreapp2.2\sccscleansolution.runtimeconfig.dev.json
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\bin\Release\netcoreapp2.2\sccscleansolution.dll
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\bin\Release\netcoreapp2.2\sccscleansolution.pdb
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.AssemblyInfoInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.AssemblyInfo.cs
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.dll
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.pdb
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.csproj.AssemblyReference.cache
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\Documents\GitHub\sccs\utilities\sccscleansolution\sccscleansolution\obj\Release\netcoreapp2.2\sccscleansolution.genruntimeconfig.cache

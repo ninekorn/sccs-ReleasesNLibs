@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.props" Condition="Exists('..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D41ADD7E-1F7A-4087-A03D-B34AF4997118}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>sccsr14sc</RootNamespace>
+    <AssemblyName>sccsr14sc</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+<LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.D3DCompiler, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.D3DCompiler.4.2.0\lib\net45\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Desktop.4.2.0\lib\net45\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D11.4.2.0\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.2.0\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.4.2.0\lib\net45\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectSound, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectSound.4.2.0\lib\net45\SharpDX.DirectSound.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.2.0\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.MediaFoundation.4.2.0\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.RawInput, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.RawInput.4.2.0\lib\net45\SharpDX.RawInput.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XAudio2.4.2.0\lib\net45\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.4.2.0\lib\net45\SharpDX.XInput.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Win32.Shared">
+      <HintPath>..\..\..\..\..\..\Desktop\dotnet-window-capture-master\dotnet-window-capture-master\Source\Win32.Shared\bin\Debug\Win32.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ab3d_dxengine_vr\EyeTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\MirrorTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\SharpDXHelpers.cs" />
+    <Compile Include="ab3d_dxengine_vr\TextureSwapChain.cs" />
+    <Compile Include="Forces\Buoyancy.cs" />
+    <Compile Include="Forces\ForceGenerator.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mikasc\DwmSharedSurface.cs" />
+    <Compile Include="mikasc\GraphicsCapture.cs" />
+    <Compile Include="mikasc\Interfaces\ICaptureMethod.cs" />
+    <Compile Include="mikasc\Interop\ComObjects.cs" />
+    <Compile Include="mikasc\Interop\NativeMethods.cs" />
+    <Compile Include="mikasc\Interop\NativeMethodsgc.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scconsole\DInputClass2.cs" />
+    <Compile Include="scconsole\keyboardinput.cs" />
+    <Compile Include="scconsole\scconsolecore.cs" />
+    <Compile Include="scconsole\scdirectx.cs" />
+    <Compile Include="scconsole\scgraphicssec.cs" />
+    <Compile Include="scconsole\scupdate.cs" />
+    <Compile Include="scconsole_menu\sc_console_menu_00.cs" />
+    <Compile Include="scconsole_menu\sc_console_menu_01.cs" />
+    <Compile Include="sccore\scglobals.cs" />
+    <Compile Include="sccore\scglobalsaccessor.cs" />
+    <Compile Include="sccore\scicomponent.cs" />
+    <Compile Include="sccore\scinterface.cs" />
+    <Compile Include="sccore\scsystemconfiguration.cs" />
+    <Compile Include="sccore\scsysteminfo.cs" />
+    <Compile Include="sccsscreenframe.cs" />
+    <Compile Include="sccssharpdxscreencapture.cs" />
+    <Compile Include="scgraphics\_sc_camera\_sc_camera.cs" />
+    <Compile Include="scgraphics\_sc_shader_manager\scshadermanager.cs" />
+    <Compile Include="sciklimbs\Noise.cs" />
+    <Compile Include="sciklimbs\SC_cube.cs" />
+    <Compile Include="sciklimbs\SC_cube_instances.cs" />
+    <Compile Include="sciklimbs\SC_cube_shader_final.cs" />
+    <Compile Include="scjitter\Conversion.cs" />
+    <Compile Include="scjitter\IComponent.cs" />
+    <Compile Include="scjitter\ITransform.cs" />
+    <Compile Include="scmessage_object\scmessageobject.cs" />
+    <Compile Include="scvoxelscreen\chunkscreen.cs" />
+    <Compile Include="scvoxelscreen\FastNoise.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreen.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreenmorescreens.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreenreduced.cs" />
+    <Compile Include="scvoxelscreen\SC_Globals.cs" />
+    <Compile Include="scvoxelscreen\SC_GlobalsVoxelInstancing.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunkPrim.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk_instances.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk_shader_final.cs" />
+    <Compile Include="sc_maths.cs" />
+    <Compile Include="SoundPlayer.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="sciklimbs\texture.ps" />
+    <None Include="sciklimbs\texture.vs" />
+    <None Include="sciklimbs\texturePS.ps" />
+    <None Include="sciklimbs\textureVS.vs" />
+    <None Include="sciklimbs\texture_voxel.ps" />
+    <None Include="sciklimbs\texture_voxel.vs" />
+    <None Include="sciklimbs\texture_voxelPS.ps" />
+    <None Include="sciklimbs\texture_voxelVS.vs" />
+    <None Include="scvoxelscreen\colordom.ds" />
+    <None Include="scvoxelscreen\colorhull.hs" />
+    <None Include="scvoxelscreen\HLSL.gs" />
+    <None Include="scvoxelscreen\HLSLchunkkeyboard.gs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPS.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeight.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVS.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSdx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeight.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkPS.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkPSdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkVS.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkVSdx.vs" />
+    <None Include="scvoxelscreen\textureTrigChunkPS.ps" />
+    <None Include="scvoxelscreen\textureTrigChunkPSdx.ps" />
+    <None Include="scvoxelscreen\textureTrigChunkVS.vs" />
+    <None Include="scvoxelscreen\textureTrigChunkVSdx.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Shader.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\inputsimulator\WindowsInput\WindowsInput.csproj">
+      <Project>{3549cd6f-80f8-450f-b99e-cf0a736b1f2a}</Project>
+      <Name>WindowsInput</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\libraries\jitter_sc\jitter_sc.csproj">
+      <Project>{a83a52d9-90a7-4206-941b-10077f303cad}</Project>
+      <Name>jitter_sc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\libraries\sc_message_object\sc_message_object.csproj">
+      <Project>{957d0400-5d45-4f31-b36f-7446ff43fe54}</Project>
+      <Name>sc_message_object</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.7.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.7.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.targets" Condition="Exists('..\packages\Microsoft.Windows.SDK.Contracts.10.0.22000.196\build\Microsoft.Windows.SDK.Contracts.targets')" />
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net461\System.Runtime.WindowsRuntime.targets')" />
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.7.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.7.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" />
+</Project>

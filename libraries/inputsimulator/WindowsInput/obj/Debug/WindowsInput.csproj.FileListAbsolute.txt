@@ -1,0 +1,7 @@
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\bin\Debug\WindowsInput.xml
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\bin\Debug\WindowsInput.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\bin\Debug\WindowsInput.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\obj\Debug\WindowsInput.csproj.AssemblyReference.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\obj\Debug\WindowsInput.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\obj\Debug\WindowsInput.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\inputsimulator\WindowsInput\obj\Debug\WindowsInput.pdb

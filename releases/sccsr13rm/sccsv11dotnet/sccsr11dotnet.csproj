@@ -1,0 +1,150 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AB3D_VR\**" />
+    <Compile Remove="AB3D_VR_dx11_example\**" />
+    <Compile Remove="Forces\**" />
+    <Compile Remove="sc_brollof_perceptron\**" />
+    <Compile Remove="sc_brollof_perceptron_too soon anyway\**" />
+    <Compile Remove="SC_pathfind_assets\**" />
+    <Compile Remove="sc_write_to_xml\**" />
+    <Compile Remove="_discarded\**" />
+    <Compile Remove="_sc_core_systems\**" />
+    <Compile Remove="_sc_core_systems_dll\**" />
+    <Compile Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <EmbeddedResource Remove="AB3D_VR\**" />
+    <EmbeddedResource Remove="AB3D_VR_dx11_example\**" />
+    <EmbeddedResource Remove="Forces\**" />
+    <EmbeddedResource Remove="sc_brollof_perceptron\**" />
+    <EmbeddedResource Remove="sc_brollof_perceptron_too soon anyway\**" />
+    <EmbeddedResource Remove="SC_pathfind_assets\**" />
+    <EmbeddedResource Remove="sc_write_to_xml\**" />
+    <EmbeddedResource Remove="_discarded\**" />
+    <EmbeddedResource Remove="_sc_core_systems\**" />
+    <EmbeddedResource Remove="_sc_core_systems_dll\**" />
+    <EmbeddedResource Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <None Remove="AB3D_VR\**" />
+    <None Remove="AB3D_VR_dx11_example\**" />
+    <None Remove="Forces\**" />
+    <None Remove="sc_brollof_perceptron\**" />
+    <None Remove="sc_brollof_perceptron_too soon anyway\**" />
+    <None Remove="SC_pathfind_assets\**" />
+    <None Remove="sc_write_to_xml\**" />
+    <None Remove="_discarded\**" />
+    <None Remove="_sc_core_systems\**" />
+    <None Remove="_sc_core_systems_dll\**" />
+    <None Remove="_sc_graphics\SC_visual_object_manager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="SC_Console_VoRec.cs" />
+    <Compile Remove="sc_pathfind.cs" />
+    <Compile Remove="_sc_console\SC_Console_DIRECTX - DXENGINE.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - DXENGINE.cs" />
+    <Compile Remove="_sc_console\SC_Console_WRITER - BACKUP.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\DModelClass2.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\DModelClass2_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel- removed covid19.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-fail again - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-failing.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_VR_IcoSphere.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_voxel_spheroid - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_voxel_spheroid - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_voxel_spheroid_instances - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_voxel_spheroid_instances - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\_sc_obj_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\SC_ShaderManagerClass -crap.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager.cs" />
+    <Compile Remove="_sc_terrain\chunk - Copy.cs" />
+    <Compile Remove="_sc_terrain\chunk.cs" />
+    <Compile Remove="_sc_terrain\chunki.cs" />
+    <Compile Remove="_sc_terrain\chunk_pos.cs" />
+    <Compile Remove="_sc_terrain\SC_VR_Chunk.cs" />
+    <Compile Remove="_sc_terrain\SC_VR_Chunk_Shader.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="monkey.obj" />
+    <None Remove="_sc_instance_shader\InstancedTexture.ps" />
+    <None Remove="_sc_instance_shader\InstancedTexture.vs" />
+    <None Remove="_sc_instance_shader\texture.ps" />
+    <None Remove="_sc_instance_shader\texture.vs" />
+    <None Remove="_sc_instance_shader\texture_voxel.ps" />
+    <None Remove="_sc_instance_shader\texture_voxel.vs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="monkey.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ab3d.DXEngine" Version="4.4.7874" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\Jitter\Jitter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

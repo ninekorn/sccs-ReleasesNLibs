@@ -1,0 +1,1 @@
+﻿//the logic behind that perceptron is for 2d 360 turn left or right depending on position of waypoint or player pos.

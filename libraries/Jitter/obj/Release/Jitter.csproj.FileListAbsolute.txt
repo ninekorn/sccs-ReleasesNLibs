@@ -1,0 +1,6 @@
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\bin\Release\Jitter.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\bin\Release\Jitter.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Release\Jitter.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Release\Jitter.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Release\Jitter.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\Jitter\obj\Release\Jitter.csproj.AssemblyReference.cache

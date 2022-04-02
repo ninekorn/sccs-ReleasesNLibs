@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A6B70BC-57B7-4E4A-9B11-DCCC9C961016}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SCCoreSystems</RootNamespace>
+    <AssemblyName>SCCoreSystems</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="borderlessconsole.cs" />
+    <Compile Include="DSoundClass1.cs" />
+    <Compile Include="DWaveSoundClass1.cs" />
+    <Compile Include="Is64Bit.cs" />
+    <Compile Include="sccsscreenframe.cs" />
+    <Compile Include="sccssharpdxscreencapture.cs" />
+    <Compile Include="SC_ASCII.cs" />
+    <Compile Include="sc_brollof_perceptron\Perceptron.cs" />
+    <Compile Include="sc_brollof_perceptron\SC_AI.cs" />
+    <Compile Include="sc_brollof_perceptron\SC_AI_Start.cs" />
+    <Compile Include="sc_brollof_perceptron\Trainer.cs" />
+    <Compile Include="SC_Console.cs" />
+    <Compile Include="sc_console\sc_console_core.cs" />
+    <Compile Include="sc_console\SC_console_directx.cs" />
+    <Compile Include="sc_console\sc_console_keyboard_input.cs" />
+    <Compile Include="sc_console\sc_console_reader.cs" />
+    <Compile Include="sc_console\sc_console_writer.cs" />
+    <Compile Include="sc_console\sc_graphics_main.cs" />
+    <Compile Include="sc_console\sc_graphics_sec.cs" />
+    <Compile Include="sc_console\SC_Intermediate_Update.cs" />
+    <Compile Include="sc_console\SC_Segment.cs" />
+    <Compile Include="sc_console\SC_Update.cs" />
+    <Compile Include="sc_console_menu\sc_console_menu_00.cs" />
+    <Compile Include="sc_console_menu\sc_console_menu_01.cs" />
+    <Compile Include="sc_core\sc_system_configuration.cs" />
+    <Compile Include="sc_core\sc_system_info.cs" />
+    <Compile Include="sc_file_stream.cs" />
+    <Compile Include="sc_globals.cs" />
+    <Compile Include="sc_globals_accessor.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DColorShaderClass1.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DContainmentGrid.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DObjectColorShaderClass1.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DObjectGrid.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DTerrainClass1.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DTerrain_Grid_Y.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DTerrain_Screen.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DTerrain_Screen_Metric.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DTerrain_World_Axis_X.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DXAxis.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DYAxis.cs" />
+    <Compile Include="sc_graphics\SC_Grid\DZAxis.cs" />
+    <Compile Include="sc_graphics\SC_Grid\SC_DRGrid.cs" />
+    <Compile Include="sc_graphics\_sc_camera\_sc_camera.cs" />
+    <Compile Include="sc_graphics\_sc_models\chunk.cs" />
+    <Compile Include="sc_graphics\_sc_models\Marching.cs" />
+    <Compile Include="sc_graphics\_sc_models\RoundedCube.cs" />
+    <Compile Include="sc_graphics\_sc_models\sccsikvoxellimbs.cs" />
+    <Compile Include="sc_graphics\_sc_models\sccstrigvertbuilder.cs" />
+    <Compile Include="sc_graphics\_sc_models\sccstrigvertbuilderreduced.cs" />
+    <Compile Include="sc_graphics\_sc_models\sccsvoxels.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_containment_grid.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_containment_grid_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_cube.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_cube_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_grid.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_grid_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_instancedChunk.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_instancedChunkPrim.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_instancedChunk_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_jitter_cloth.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_jitter_cloth_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_perko_voxel.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_spectrum.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_spectrum_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_voxel.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_voxel_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_voxel_pchunk.cs" />
+    <Compile Include="sc_graphics\_sc_models\sc_voxel_pchunk_instances.cs" />
+    <Compile Include="sc_graphics\_sc_models\SC_VR_Cube.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_cloth_shader.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_containment_grid_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_cube_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_grid_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_instancedChunk_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_jitter_cloth_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\sc_spectrum_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\sc_voxel_pchunk_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\sc_voxel_shader_final.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\SC_VR_Touch_Shader.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\_sc_texture_loader.cs" />
+    <Compile Include="sc_graphics\_sc_shaders\_sc_texture_shader.cs" />
+    <Compile Include="sc_graphics\_sc_shader_manager\SC_ShaderManagerClass.cs" />
+    <Compile Include="sc_icomponent.cs" />
+    <Compile Include="sc_interface.cs" />
+    <Compile Include="sc_jitter\Conversion.cs" />
+    <Compile Include="sc_jitter\IComponent.cs" />
+    <Compile Include="sc_jitter\ITransform.cs" />
+    <Compile Include="sc_maths.cs" />
+    <Compile Include="sc_message_object\scmessageobject.cs" />
+    <Compile Include="sc_terrain\FastNoise.cs" />
+    <Compile Include="sc_terrain\Noise.cs" />
+    <Compile Include="sc_terrain\sccsplanetchunk.cs" />
+    <Compile Include="sc_terrain\sccsproceduralplanetbuilder.cs" />
+    <Compile Include="sc_terrain\SC_Globals.cs" />
+    <Compile Include="sc_terrain\SC_GlobalsVoxelInstancing.cs" />
+    <Compile Include="sc_write_to_xml\write_to_xml.cs" />
+    <Compile Include="SoundPlayer.cs" />
+    <Compile Include="_sc_load_bitmap.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ab3d_dxengine_vr\EyeTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\MirrorTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\SharpDXHelpers.cs" />
+    <Compile Include="ab3d_dxengine_vr\TextureSwapChain.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forces\Buoyancy.cs" />
+    <Compile Include="Forces\ForceGenerator.cs" />
+    <Compile Include="Forces\PseudoCloth.cs" />
+    <Compile Include="heightmap\DFontShaderClass1.cs" />
+    <Compile Include="heightmap\DTerrainHeightMapClass1.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="terrainGrassDirt.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="1x1_pink_color.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="notes.txt" />
+    <Resource Include="readme.txt" />
+    <Content Include="heightmap01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="monkey.obj" />
+    <Content Include="sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="sc_terrain\HLSLchunkkeyboard.gs" />
+    <None Include="sc_terrain\sccsvertbindchunkPS.ps" />
+    <None Include="sc_terrain\sccsvertbindchunkVS.vs" />
+    <None Include="sc_terrain\sccsvertexshader.vs" />
+    <Content Include="sc_terrain\textureTrigChunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVSMOD.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="sc_brollof_perceptron\work notes.txt" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="sc not-instanced shader\font.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc not-instanced shader\font.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heightmap\heightmap01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="heightmap\old\heightmap01iss.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="heightmap\old\ship.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="heightmap\not working\heightmap01Sobel.bmp" />
+    <Resource Include="heightmap\not working\heightmap01Diffuse.bmp" />
+    <Resource Include="heightmap\heightmap01Diffuse.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SharpDX.D3DCompiler">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Desktop">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Direct2D1">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Direct3D11">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.DirectInput">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.DirectSound">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.MediaFoundation">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.XAudio2">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Drawing.Common">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Speech">
+      <Version>6.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

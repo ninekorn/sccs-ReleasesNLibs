@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC_skYaRk_VR_V007", "SC_skYaRk_VR_V007\SC_skYaRk_VR_V007.csproj", "{458D0A2C-3410-40F4-A9D9-E2AB6B5379CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{458D0A2C-3410-40F4-A9D9-E2AB6B5379CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{458D0A2C-3410-40F4-A9D9-E2AB6B5379CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{458D0A2C-3410-40F4-A9D9-E2AB6B5379CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{458D0A2C-3410-40F4-A9D9-E2AB6B5379CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C6E4A94-8D7C-4C38-ADCA-72CA656A6592}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Rllgr13UKCD7gzG3BDs6jNaK+DRCSX33bln9vBBCM6g+e4qDKUqoJD5UdkPnO3J6w408qOLEp9f7M17Ugygdew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\libraries\\sc_message_object\\sc_message_object.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\steve\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

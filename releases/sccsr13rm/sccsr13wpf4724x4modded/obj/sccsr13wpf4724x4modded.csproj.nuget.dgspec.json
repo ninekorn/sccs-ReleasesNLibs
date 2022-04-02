@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\steve\\Documents\\GitHub\\sccs\\releases\\sccsr13rm\\sccsr13wpf4724x4modded\\sccsr13wpf4724x4modded.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\steve\\Documents\\GitHub\\sccs\\releases\\sccsr13rm\\sccsr13wpf4724x4modded\\sccsr13wpf4724x4modded.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\releases\\sccsr13rm\\sccsr13wpf4724x4modded\\sccsr13wpf4724x4modded.csproj",
+        "projectName": "SCCoreSystems",
+        "projectPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\releases\\sccsr13rm\\sccsr13wpf4724x4modded\\sccsr13wpf4724x4modded.csproj",
+        "packagesPath": "C:\\Users\\steve\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\releases\\sccsr13rm\\sccsr13wpf4724x4modded\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\steve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "SharpDX.D3DCompiler": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Desktop": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct2D1": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.DirectInput": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.DirectSound": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.MediaFoundation": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.XAudio2": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Speech": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

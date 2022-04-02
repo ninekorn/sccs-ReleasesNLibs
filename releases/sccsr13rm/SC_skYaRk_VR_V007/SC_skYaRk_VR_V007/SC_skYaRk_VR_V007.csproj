@@ -1,0 +1,237 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationManifest>app1.manifest</ApplicationManifest>
+    <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+	
+	
+  <ItemGroup>
+    <Compile Remove="Primitives3D\**" />
+    <Compile Remove="SC_dLL_backup\**" />
+    <Compile Remove="SC_Graphics\SC_DX11\**" />
+    <Compile Remove="SC_Graphics\SC_Grid_fail\**" />
+    <Compile Remove="SC_Graphics\SC_Textures\original_human_rig\**" />
+    <EmbeddedResource Remove="Primitives3D\**" />
+    <EmbeddedResource Remove="SC_dLL_backup\**" />
+    <EmbeddedResource Remove="SC_Graphics\SC_DX11\**" />
+    <EmbeddedResource Remove="SC_Graphics\SC_Grid_fail\**" />
+    <EmbeddedResource Remove="SC_Graphics\SC_Textures\original_human_rig\**" />
+    <None Remove="Primitives3D\**" />
+    <None Remove="SC_dLL_backup\**" />
+    <None Remove="SC_Graphics\SC_DX11\**" />
+    <None Remove="SC_Graphics\SC_Grid_fail\**" />
+    <None Remove="SC_Graphics\SC_Textures\original_human_rig\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="dblMathUtil.cs" />
+    <Compile Remove="FastMemCopy.cs" />
+    <Compile Remove="Forces\PseudoCloth - Copy.cs" />
+    <Compile Remove="Forces\PseudoCloth-mod.cs" />
+    <Compile Remove="Forces\PseudoCloth_mod_01.cs" />
+    <Compile Remove="Program - backup.cs" />
+    <Compile Remove="Program - backup2022feb09.cs" />
+    <Compile Remove="Rot_Visual_ThumbStick.cs" />
+    <Compile Remove="SC_AI_Language\GlobalSuppressions.cs" />
+    <Compile Remove="SC_AI_Language\MainWindow.xaml.cs" />
+    <Compile Remove="SC_AI_Language\SC_AI_Language.cs" />
+    <Compile Remove="SC_AI_Language\SC_ASCII.cs" />
+    <Compile Remove="SC_AI_Language\TrainingItem.cs" />
+    <Compile Remove="SC_AI_Language\_OBSOLETE_GlobalSuppressions.cs" />
+    <Compile Remove="SC_AI_Language\_OBSOLETE_MainWindow.xaml.cs" />
+    <Compile Remove="SC_AI_Language\_OBSOLETE_SC_ASCII.cs" />
+    <Compile Remove="SC_AI_Language\_OBSOLETE_TrainingItem.cs" />
+    <Compile Remove="SC_Console\SC_Console0.cs" />
+    <Compile Remove="SC_Console\SC_Console1.cs" />
+    <Compile Remove="SC_Console\SC_Console2.cs" />
+    <Compile Remove="SC_Console\SC_Console3.cs" />
+    <Compile Remove="SC_Console\SC_Console_DIRECT2DCOMPONENT.cs" />
+    <Compile Remove="SC_Console\SC_Console_DIRECTX - BACKUP.cs" />
+    <Compile Remove="SC_Console\SC_Console_DIRECTXCOMPONENT.cs" />
+    <Compile Remove="SC_Console\SC_Console_DIRECTX_fail.cs" />
+    <Compile Remove="SC_Console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="SC_Console\SC_Console_GRAPHICS -BACKUP.cs" />
+    <Compile Remove="SC_Console\SC_Console_GRAPHICS -fail 01.cs" />
+    <Compile Remove="SC_Console\SC_Console_GRAPHICS_fail.cs" />
+    <Compile Remove="SC_Console\SC_Console_SAMPLE2DRENDERER.cs" />
+    <Compile Remove="SC_Console\SC_Console_VoRec.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console0.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console1.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console2.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console3.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console_DIRECT2DCOMPONENT.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console_DIRECTXCOMPONENT.cs" />
+    <Compile Remove="SC_Console\_OBSOLETE_SC_Console_SAMPLE2DRENDERER.cs" />
+    <Compile Remove="SC_DirectX.cs" />
+    <Compile Remove="SC_Dispatch_Atomic_Ops.cs" />
+    <Compile Remove="SC_Globals_chains.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\CreateIcoSphere.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\DModelClass2_tests.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\SC_Desk_Screen_instances.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\SC_VR_Chunk.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\SC_VR_Cloth.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\SC_VR_Cloth_instances.cs" />
+    <Compile Remove="SC_Graphics\SC_Models\SC_VR_IcoSphere.cs" />
+    <Compile Remove="SC_Graphics\SC_ShaderManager\SC_ShaderManagerClass_fail.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\DTextureShader4Cloth.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\DTextureShaderClass1_fail.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\DTextureShader_Cube.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_Cube_Shader.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_Desk_Screen_Shader.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_Screen_Shader_Final.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_VR_Chunk_Shader.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_VR_ICO_Shader.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_VR_Terrain_Shader.cs" />
+    <Compile Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\SC_VR_Touch_Shader.cs" />
+    <Compile Remove="SC_Handle\_OBSOLETE_DirectXComponent.cs" />
+    <Compile Remove="SC_Handle\_OBSOLETE_Win32HwndControl.cs" />
+    <Compile Remove="SC_IComponent.cs" />
+    <Compile Remove="SC_Load_Bitmap.cs" />
+    <Compile Remove="SC_SharpDX_ScreenCapture - BACKUP.cs" />
+    <Compile Remove="SC_SharpDX_ScreenCapture - BACKUP2.cs" />
+    <Compile Remove="SC_System\SC_GCGollect.cs" />
+    <Compile Remove="SC_System\SC_ThreadPool.cs" />
+    <Compile Remove="SC_System\_OBSOLETE_SC_GCGollect.cs" />
+    <Compile Remove="SC_System\_OBSOLETE_SC_ThreadPool.cs" />
+    <Compile Remove="SC_Utilities.cs" />
+    <Compile Remove="TestCSharp0.cs" />
+    <Compile Remove="TestCSharp1.cs" />
+    <Compile Remove="_OBSOLETE_FastMemCopy.cs" />
+    <Compile Remove="_OBSOLETE_SC_DirectX.cs" />
+    <Compile Remove="_OBSOLETE_SC_Dispatch_Atomic_Ops.cs" />
+    <Compile Remove="_OBSOLETE_SC_Globals_chains.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="0.png" />
+    <None Remove="32x32.png" />
+    <None Remove="InstanceShader\Color.ps" />
+    <None Remove="InstanceShader\Color.vs" />
+    <None Remove="InstanceShader\InstancedTexture.ps" />
+    <None Remove="InstanceShader\InstancedTexture.vs" />
+    <None Remove="InstanceShader\red.ps" />
+    <None Remove="InstanceShader\red.vs" />
+    <None Remove="InstanceShader\texture.ps" />
+    <None Remove="InstanceShader\texture.vs" />
+    <None Remove="InstanceShader\textureScreen.ps" />
+    <None Remove="InstanceShader\textureScreen.vs" />
+    <None Remove="Resources\HLSL.gs" />
+    <None Remove="Resources\red.ps" />
+    <None Remove="Resources\red.vs" />
+    <None Remove="screenRec0.png" />
+    <None Remove="SC_AI_Language\MainWindow.xaml" />
+    <None Remove="SC_AI_Language\_OBSOLETE_MainWindow.xaml" />
+    <None Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\textureTrigPS.ps" />
+    <None Remove="SC_Graphics\SC_Textures\SC_VR_Touch_Textures\textureTrigVS.vs" />
+    <None Remove="terrainGrassDirt.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="InstanceShader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\InstancedTexture.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\InstancedTexture.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\red.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\red.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\textureScreen.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\textureScreen.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\texture.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InstanceShader\texture.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HLSL.gs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\red.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\red.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SC_AI_Language\" />
+    <Folder Include="SC_Graphics\SC_ShaderManager\" />
+    <Folder Include="SC_Handle\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

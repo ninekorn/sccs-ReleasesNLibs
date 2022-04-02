@@ -1,0 +1,26 @@
+﻿Texture2D shaderTexture;
+SamplerState SampleType;
+
+struct PixelInputType
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+	float2 tex: TEXCOORD0;
+	//float4 Nor: NORMAL;
+
+};
+
+float4 ColorPixelShader(PixelInputType input) : SV_TARGET
+{
+	//float4 textureColor ;
+
+	// EX: 5 - Change pixel shader output to half brightness.
+	//input.color.g *= 0.5f;
+	//input.tex.y = 1-input.tex.y;
+
+	//textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+
+	//input.tex = input.tex;
+	return input.color;
+}

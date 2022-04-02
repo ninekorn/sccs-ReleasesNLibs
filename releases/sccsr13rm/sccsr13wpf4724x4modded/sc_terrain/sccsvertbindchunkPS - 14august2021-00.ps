@@ -1,0 +1,338 @@
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+SamplerState textureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+cbuffer MatrixBuffer :register(b0)
+{
+	float4x4 world;
+	float4x4 view;
+	float4x4 proj;
+};
+
+cbuffer LightBuffer :register(b1)
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding0;
+	float3 lightPosition;
+	float padding1;
+};
+
+struct PixelInputType
+{
+    float4 position : SV_POSITION;
+	float4 color : COLOR0;
+	float3 normal : NORMAL0;
+	int padding0 : PSIZE0;	
+	float2 tex : TEXCOORD0;
+	int padding1 : PSIZE1;	
+	int padding2 : PSIZE2;	
+	float4 instancePosition : POSITION1;
+	float4 instanceRadRotFORWARD : POSITION2;
+	float4 instanceRadRotRIGHT : POSITION3;
+	float4 instanceRadRotUP : POSITION4;
+	float4 colorsNFaces : POSITION5;
+	float4 mapmatrix0 : POSITION6;
+	float4 mapmatrix1 : POSITION7;
+	float4 mapmatrix2 : POSITION8;
+	float4 mapmatrix3 : POSITION9;
+	/*int one : PSIZE3;	
+	int oneTwo : PSIZE4;
+	int two : PSIZE5;	
+	int twoTwo : PSIZE6;	
+	int three : PSIZE7;	
+	int threeTwo : PSIZE8;	
+	int four : PSIZE9;	
+	int fourTwo : PSIZE10;*/
+	int xindex : PSIZE11;	
+	int yindex : PSIZE12;
+};
+
+
+static int tinyChunkWidth = 4;
+static int tinyChunkHeight = 4;
+static int tinyChunkDepth = 4;
+
+
+//////////////////////
+////   Pixel Shader
+/////////////////////
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+	float4 textureColor;
+	float3 lightDir;
+	float lightIntensity;
+	float4 color;
+
+
+
+	float2 test = input.tex; 
+	//test == float2(1.0,0); || float2(0,1.0);
+
+
+
+	int x = int(input.color.x); 
+	int y = int(input.color.y); 
+	int z = int(input.color.z);
+
+	int oriscreenx = 10;
+	int oriscreeny = 10;
+
+	int sizex = 76;
+	int sizey = 40;
+
+	// when using 250 inst_screen_x in the script sc_graphics_sec.cs then use 500 here.
+	//test = (test/ float2(64,64));
+	test = (test/ float2(oriscreenx,oriscreeny));
+
+	float2 testY = input.tex;
+
+
+
+
+	//10 instances width
+	//10 instances height
+	//1 instance depth
+
+	//4 bytes width
+	//4 bytes height
+	//4 bytes depth
+
+	oriscreenx = 10;
+	oriscreeny = 10;
+
+
+
+	/*test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 0.5f) * (input.xindex))); // ((3) + ((1.0f/float(10)) * 0.5f) * (7));
+	test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 0.5f) * (input.yindex)));	
+
+	for(int xi = 0;xi < x + 1;xi++)
+	{
+		for(int yi = 0;xi < x + 1;xi++)
+		{
+			for(int xi = 0;xi < x + 1;xi++)
+			{
+				test.x = ((test.x) + (((1.0f/float(10))*0.5f) * (input.xindex + x))); // ((3) + ((1.0f/float(10)) * 0.5f) * (7));
+				test.y = ((test.y) + (((1.0f/float(10))*0.5f) * (input.yindex + y)));	
+			}
+		}
+	}*/
+
+
+
+	/*int sometotal = x*y*z; //*tinyChunkDepth //tinyChunkWidth*tinyChunkHeight
+
+
+	int posx = 0;
+    int posy = 0;
+    int posz = 0;
+    int xx = 0;
+    int yy = 0;
+    int zz = 0;
+    int swtchx = 0;
+    int swtchy = 0;
+    int swtchz = 0;
+
+    for (int i = 0; i < sometotal; i++)
+    {
+        //if (t0 < sometotal)
+        {
+            posx = (xx);
+            posy = (yy);
+            posz = (zz);
+
+            //var planetchunkpos = new Vector3(posx * realplanetwidth, posy * realplanetwidth, posz * realplanetwidth);
+            //planetchunkpos = new Vector3(posx0, posy0, posz0);
+
+            int xi = xx;
+            int yi = yy;
+            int zi = zz;
+
+            if (xi < 0)
+            {
+                xi *= -1;
+                xi = (chunkwidthr) + xi;
+            }
+            if (yi < 0)
+            {
+                yi *= -1;
+                yi = (chunkheightr) + yi;
+            }
+            if (zi < 0)
+            {
+                zi *= -1;
+                zi = (chunkdepthr) + zi;
+            }
+
+            int someindexmain = xi + (tinyChunkWidth) * (yi + (tinyChunkHeight) * zi);
+
+			test.x = ((test.x) + (((1.0f/float(10))*0.5f) * (input.xindex + x))); // ((3) + ((1.0f/float(10)) * 0.5f) * (7));
+			test.y = ((test.y) + (((1.0f/float(10))*0.5f) * (input.yindex + y)));	
+
+
+            if (someindexmain < sometotal)
+            {
+			
+            }
+            else
+            {
+             
+
+            }
+
+            zz++;
+            if (zz >= (tinyChunkDepth))
+            {
+                xx++;
+                zz = 0;
+                swtchx = 1;
+            }
+            if (xx >= (tinyChunkWidth) && swtchx == 1)
+            {
+                yy++;
+                xx = 0;
+                swtchx = 0;
+                swtchy = 1;
+            }
+            if (yy >= (tinyChunkHeight) && swtchy == 1)
+            {
+                //yy = 0;
+                swtchy = 0;
+                swtchx = 0;
+                swtchz = 1;
+            }
+            //t++;
+        }
+    }*/
+
+
+
+
+	/*for(int xi = 0;xi < x + 1;xi++)
+	{
+		for(int yi = 0;yi < y + 1;yi++)
+		{
+			test.x = ((test.x) + (((1.0f/float(10))*0.5f) * (input.xindex + xi))); // ((3) + ((1.0f/float(10)) * 0.5f) * (7));
+			test.y = ((test.y) + (((1.0f/float(10))*0.5f) * (input.yindex + yi)));	
+		}
+	}*/
+
+
+
+
+
+
+
+
+
+	if(input.xindex == 0.0f  && input.yindex == 0.0f ) //&& x == 0 && y == 0 && z == 0
+	{		
+		if(x == 0 && y == tinyChunkHeight-1 && z == tinyChunkDepth-1)
+		{
+			test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 0.5f) * (input.xindex))); 
+			test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 0.5f) * (input.yindex)));	
+
+			test.x = ((test.x) + (((1.0f/float(10))) * ((20-1-input.xindex) + x))); 
+			test.y = ((test.y) + (((1.0f/float(10))*0.5f) * (input.yindex + (tinyChunkHeight - 1 - y))));	
+			
+			float tempx = test.x;
+			test.x = test.y;
+			test.y = 1 - tempx;
+
+			input.tex = test;
+			textureColor = shaderTexture.Sample(SampleType, input.tex);
+		}
+		else if(x == 1 && y == tinyChunkHeight-1 && z == tinyChunkDepth-1)
+		{
+			test.x = ((test.x) + (((1.0f/float(oriscreenx)) * 0.5f) * (input.xindex)));
+			test.y = ((test.y) + (((1.0f/float(oriscreeny)) * 0.5f) * (input.yindex)));	
+
+			test.x = ((test.x) + (((1.0f/float(10))) * ((20-1-input.xindex) + x))); 
+			test.y = ((test.y) + (((1.0f/float(10))*0.5f) * (input.yindex + (tinyChunkHeight - 1 - y))));	
+			
+			
+
+			//float tempx = test.x;
+			//test.x = test.y;
+			//test.y = 1 - tempx;
+
+			input.tex = test;
+			textureColor = shaderTexture.Sample(SampleType, input.tex);
+		}
+		else if(x == 2 && y == tinyChunkHeight-1 && z == tinyChunkDepth-1)
+		{
+			textureColor = float4(0.25,0.25,0.25,1);
+		}
+		else if(x == 3 && y == tinyChunkHeight-1 && z == tinyChunkDepth-1)
+		{
+			textureColor = float4(0.25,0.25,0.25,1);
+		}
+		else 
+		{
+			textureColor = float4(0.25,0.25,0.25,1);
+		}
+	}
+	else
+	{
+		textureColor = float4(0.25,0.25,0.25,1);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// Set the default output color to the ambient light value for all pixels.
+	color = ambientColor;
+
+	// Invert the light direction for calculations.
+	lightDir = -lightDirection;
+
+	// Calculate the amount of the light on this pixel.
+	lightIntensity = saturate(dot(input.normal, lightDir));
+
+	if(lightIntensity > 0.0f)
+	{
+		// Determine the final diffuse color based on the diffuse color and the amount of light intensity.
+		color += (diffuseColor * lightIntensity);
+	}
+
+	// Saturate the final light color.
+	color = saturate(color);
+
+	// Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+	// EX 2: for seeing only the lighting effect.
+	color = color * textureColor;
+
+	input.color = color*input.color;
+
+	return textureColor;//input.color;
+}
+
+
+// when using 250 inst_screen_x in the script sc_graphics_sec.cs then use 0.004 here.
+//test.x = (test.x + (0.02631578947368421052631578947369 * (input.xindex)) + (0.02631578947368421052631578947369 * (input.xindex * x)));
+//test.y = (test.y + (0.05 * (input.yindex)) + (0.05 * (input.yindex * y)));
+//test.x = (test.x + ((1.0f/float(oriscreenx)) * 0.5f) * (input.xindex));
+//test.y = (test.y + ((1.0f/float(oriscreeny)) * 0.5f) * (input.yindex));	
+
+//test.x = (test.x + ((1.0f/float(oriscreenx)) * 0.5f) * (input.xindex))+ ((1.0f/float(oriscreenx)) * 0.5f) * (x);
+//test.y = (test.y + ((1.0f/float(oriscreeny)) * 0.5f) * (input.yindex))+ ((1.0f/float(oriscreeny)) * 0.5f) * (y);	

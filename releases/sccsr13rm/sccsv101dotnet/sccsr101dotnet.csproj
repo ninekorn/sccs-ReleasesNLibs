@@ -1,0 +1,224 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ab3d_dxengine_vr\**" />
+    <Compile Remove="SC_pathfind_assets\**" />
+    <Compile Remove="sc_script_backup\**" />
+    <Compile Remove="sc_write_to_xml\**" />
+    <Compile Remove="_discarded\**" />
+    <Compile Remove="_dll_sc\**" />
+    <Compile Remove="_sc_graphics\SC_Grid\**" />
+    <Compile Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <Compile Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <Compile Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <Compile Remove="_sc_object_messenger_dispatcher\**" />
+    <EmbeddedResource Remove="ab3d_dxengine_vr\**" />
+    <EmbeddedResource Remove="SC_pathfind_assets\**" />
+    <EmbeddedResource Remove="sc_script_backup\**" />
+    <EmbeddedResource Remove="sc_write_to_xml\**" />
+    <EmbeddedResource Remove="_discarded\**" />
+    <EmbeddedResource Remove="_dll_sc\**" />
+    <EmbeddedResource Remove="_sc_graphics\SC_Grid\**" />
+    <EmbeddedResource Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <EmbeddedResource Remove="_sc_object_messenger_dispatcher\**" />
+    <None Remove="ab3d_dxengine_vr\**" />
+    <None Remove="SC_pathfind_assets\**" />
+    <None Remove="sc_script_backup\**" />
+    <None Remove="sc_write_to_xml\**" />
+    <None Remove="_discarded\**" />
+    <None Remove="_dll_sc\**" />
+    <None Remove="_sc_graphics\SC_Grid\**" />
+    <None Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <None Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <None Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <None Remove="_sc_object_messenger_dispatcher\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DWaveSoundClass1.cs" />
+    <Compile Remove="FastNoise.cs" />
+    <Compile Remove="SC_Console_VoRec.cs" />
+    <Compile Remove="sc_globals.cs" />
+    <Compile Remove="sc_globals_accessor.cs" />
+    <Compile Remove="sc_icomponent.cs" />
+    <Compile Remove="sc_message_object\scmessageobject.cs" />
+    <Compile Remove="sc_terrain\chunk.cs" />
+    <Compile Remove="sc_terrain\chunkTerrain.cs" />
+    <Compile Remove="sc_terrain\FastNoise.cs" />
+    <Compile Remove="sc_terrain\Noise.cs" />
+    <Compile Remove="sc_terrain\sccsplanetchunk-bullshit.cs" />
+    <Compile Remove="sc_terrain\sccsplanetchunk.cs" />
+    <Compile Remove="sc_terrain\sccsproceduralplanetbuilder - MC.cs" />
+    <Compile Remove="sc_terrain\sccsproceduralplanetbuilder.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - backup-instant.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - cant make dx11 work basic ab3dwrapper.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - new ik fail.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - NO SCREEN-2020-05-12.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\chunk.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\Marching.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\RoundedCube.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccsikvoxellimbs-forverttrigreducer - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccsikvoxellimbs.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccsikvoxellimbsolderversion.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccstrigvertbuilder.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccstrigvertbuilderreduced.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sccsvoxels.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_containment_grid.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_containment_grid_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_grid.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_grid_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_instancedChunk.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_instancedChunkPrim.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_instancedChunk_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_jitter_cloth.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_jitter_cloth_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup not working.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-fail again - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-failing.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_spectrum.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_spectrum_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_voxel.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_voxel_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_voxel_pchunk.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_voxel_pchunk_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_VR_IcoSphere.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_containment_grid_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_grid_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_instancedChunk_shader_final - 16August2021-nomesh.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_instancedChunk_shader_final - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_instancedChunk_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_instancedChunk_shader_finalold.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\SC_jitter_cloth_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\sc_spectrum_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\sc_voxel_pchunk_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\sc_voxel_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\_sc_obj_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager.cs" />
+    <Compile Remove="_sc_terrain\SimplexNoise.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="monkey.obj" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021-faillightmoveswithheadset.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021-lightissues.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 13august2021-00.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-00.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-01.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-02-success4bytes-exceptindex3.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-03-success4bytes1stinst.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-04-failatsimplecode.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-04-successFullWidthRow.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-06-successcleaned.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-02-successpaddinginstvalues-failtex.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-06-successcleanedAddingNormsNLights-FAIL.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-06-successcleanedAddingNormsNLights.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - wronglightbutcounterncolorsnfaces.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkVS - 16august2021-backup00.vs" />
+    <None Remove="_sc_instance_shader\Color.ps" />
+    <None Remove="_sc_instance_shader\Color.vs" />
+    <None Remove="_sc_instance_shader\HLSL.gs" />
+    <None Remove="_sc_instance_shader\InstancedTexture.ps" />
+    <None Remove="_sc_instance_shader\InstancedTexture.vs" />
+    <None Remove="_sc_instance_shader\red.ps" />
+    <None Remove="_sc_instance_shader\red.vs" />
+    <None Remove="_sc_instance_shader\texture - backup.ps" />
+    <None Remove="_sc_instance_shader\texture.ps" />
+    <None Remove="_sc_instance_shader\texture.vs" />
+    <None Remove="_sc_instance_shader\texture_voxel - junk.ps" />
+    <None Remove="_sc_instance_shader\texture_voxel.ps" />
+    <None Remove="_sc_instance_shader\texture_voxel.vs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="_sc_instance_shader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\red.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\red.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="sc_message_object\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\Jitter\Jitter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

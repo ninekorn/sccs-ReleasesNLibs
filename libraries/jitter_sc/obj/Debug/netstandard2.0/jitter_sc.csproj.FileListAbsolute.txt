@@ -1,0 +1,10 @@
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\bin\Debug\netstandard2.0\jitter_sc.deps.json
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\bin\Debug\netstandard2.0\jitter_sc.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\bin\Debug\netstandard2.0\jitter_sc.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.AssemblyInfoInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.AssemblyInfo.cs
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.csproj.CoreCompileInputs.cache
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.dll
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.pdb
+C:\Users\steve\Documents\GitHub\sccs\libraries\jitter_sc\obj\Debug\netstandard2.0\jitter_sc.csproj.AssemblyReference.cache

@@ -1,0 +1,120 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ab3d_oculus_wrapper\**" />
+    <Compile Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <Compile Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <Compile Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <EmbeddedResource Remove="ab3d_oculus_wrapper\**" />
+    <EmbeddedResource Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <None Remove="ab3d_oculus_wrapper\**" />
+    <None Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <None Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <None Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="SC_Console_VoRec.cs" />
+    <Compile Remove="SC_pathfind_assets\sc_pathfind.cs" />
+    <Compile Remove="sc_script_backup\chunk.cs" />
+    <Compile Remove="sc_script_backup\chunki.cs" />
+    <Compile Remove="sc_script_backup\chunk_pos.cs" />
+    <Compile Remove="sc_script_backup\Perceptron - BroLlof original.cs" />
+    <Compile Remove="sc_script_backup\SC_AI - SteveChassé Original.cs" />
+    <Compile Remove="sc_script_backup\SC_AI_Start - SteveChassé Original.cs" />
+    <Compile Remove="sc_script_backup\SC_VR_Chunk.cs" />
+    <Compile Remove="sc_script_backup\SC_VR_Chunk_Shader.cs" />
+    <Compile Remove="sc_script_backup\Trainer - SteveChassé Original.cs" />
+    <Compile Remove="_discarded\CreateIcoSphere.cs" />
+    <Compile Remove="_discarded\CreateSphere.cs" />
+    <Compile Remove="_discarded\_sc_icosphere.cs" />
+    <Compile Remove="_discarded\_sc_icosphere_instances.cs" />
+    <Compile Remove="_discarded\_sc_icosphere_shader_final.cs" />
+    <Compile Remove="_discarded\_sc_sphere.cs" />
+    <Compile Remove="_discarded\_sc_sphere_instances.cs" />
+    <Compile Remove="_discarded\_sc_sphere_shader_final.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - cant make dx11 work basic ab3dwrapper.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - new ik fail.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - new one fucked up.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - old one doesnt work.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup not working.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-fail again - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-failing.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_VR_IcoSphere.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\_sc_obj_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="SC_pathfind_assets\AIPathFind.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindCheckAllSides.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindInitGrid.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindUtilities.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Core_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_FWPB_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_FWP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_SFWPP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_SFWP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_Pathfind_Heap.js" />
+    <None Remove="SC_pathfind_assets\SC_Station_Tiles_Outpost_01.js" />
+    <None Remove="SC_pathfind_assets\SC_Utilities.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="sc_script_backup\" />
+    <Folder Include="_discarded\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

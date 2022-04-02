@@ -1,0 +1,389 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="heightmap\not working\**" />
+    <Compile Remove="heightmap\old\**" />
+    <Compile Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <Compile Remove="SteamVR\**" />
+    <EmbeddedResource Remove="heightmap\not working\**" />
+    <EmbeddedResource Remove="heightmap\old\**" />
+    <EmbeddedResource Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <EmbeddedResource Remove="SteamVR\**" />
+    <None Remove="heightmap\not working\**" />
+    <None Remove="heightmap\old\**" />
+    <None Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <None Remove="SteamVR\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="heightmap\DCPUClass1.cs" />
+    <Compile Remove="MainWindow - backup 28-april-2021.xaml.cs" />
+    <Compile Remove="MainWindow-backup.xaml.cs" />
+    <Compile Remove="MainWindow.xaml.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - backup 27 jan 2021.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - backup jan 24 2021.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - backup vec3 to vec2.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - backupagainfail2021jan24.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - incorp my unity3d perc fail.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI - otherbackupjan242021.cs" />
+    <Compile Remove="sc_brollof_perceptron\SC_AI_Start- backupagainfail2021jan24..cs" />
+    <Compile Remove="sc_console\SC_console_directx - 26august2021-00.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHIC - 2020-04-15.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHIC - BACKUP - 2020-04-14.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - backup working instances - cubes only - Copy.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - cubes only.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - current fail cloth.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - multiplayer rig - backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - old get direction.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - singleplayer rig - backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - whatever backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - _CURRENT_.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 04september2021-00-reverttosccsVD4EDsversion.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 04september2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 05august2021.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 06august2021failikbuffer.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 07august2021-backup.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 07august2021-NOVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 08august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 08august2021-failikleftleg.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 09august2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 11august2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 11august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests02.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests03.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests04.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests05-1instdig.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 12august2021-breakablebytelocationtests05-2instdig.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 13august2021-breakablecurrentfail00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 13august2021-breakablecurrentfail01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 15august2021-modding01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 15august2021-SUCCESSBEFOREMODS.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-05.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-beforeDestructByteSizeBrush00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-beforeDestructByteSizeBrush01fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-beforeDestructByteSizeBrush02fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-beforeDestructByteSizeBrush03fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 16august2021-beforeDestructByteSizeBrush04.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 18august2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 2020-04-15.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 20august2021-00-fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 20august2021-01-fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 21august2021-01fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 21august2021-02fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 21august2021-03fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 21august2021-04fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 22august2021-00-beforeremovingrotationonvoxels.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 22august2021-00-clean.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 22august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 23august2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 23august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 23august2021-02.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 23august2021-03.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 23august2021-04-cursed-cantfindtheissue.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-00-fail.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-02.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-03.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-04-bytelocationsuccessTranslationOnSubmeshes.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 24august2021-04-successfullbreakable.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 25august2021-00-bytetargetdestructioninverted.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 25august2021-01-bytetargetsokayon1submesh.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 25august2021-02-bytedestructionsuccessonsubmesh.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 25august2021-03.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 25august2021-04-before readding keyboard logic to keyboard mesh.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 26august2021-00.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 26august2021-01.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - backup 2020-jan-22.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - backup.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec-07august2021-WVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec-2021-jan-24.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec-fail attempt to try something-cant find the error. i give up.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec-original.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec-VD4ED.cs" />
+    <Compile Remove="sc_console\SC_Update - 2021-april-27-backup.cs" />
+    <Compile Remove="sc_console\SC_Update - original.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain - 04august2021-00-NONVERTTRIGReduced.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain - 04august2021-00-VERTTRIGReduced.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain - 11august2021-00-fail.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain - 11august2021-00-LINELISTCONTAINMENTGRID.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain-16augustdiscardedOnThe15th.cs" />
+    <Compile Remove="sc_graphics\_sc_models\chunkTerrain-current.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-00-junk.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-00.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-01-bodycreate.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-01.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-02-upperbodyik.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-02.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-03-bodycreate.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-04.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-05-fail.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 02september2021-05.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 04september2021-00-reverttosccsVD4EDsversion - Copy.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 04september2021-00-reverttosccsVD4EDsversion.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 04september2021-00-reverttov13.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 08august2021-00backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 09august2021-01backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 10august2021-00.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - 28august2021.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - backup08august2021.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - backup09august2021-01.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs - backup09august2021.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs -08august2021-01backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs-forverttrigreducer - Copy.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbs-forverttrigreducer.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbsolderversion.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsikvoxellimbsVD4ED.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels - 27august2021-allsides.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels - 27august2021-nooriginpos.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels - 28august2021.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels - 29august2021-00-noverttrigreducer.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels - 29august2021-00.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sccsvoxels -27august2021- addedoriginpos.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_containment_grid - backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_cube - New Fail Heightmaps.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk - 17august2021.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk - BACKUP.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk-17august2021-00.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk-17august2021-01.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk-17august2021-02.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk-17august2021-03.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk-18august2021-00.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunkold.cs" />
+    <Compile Remove="sc_graphics\_sc_models\SC_instancedChunk_instancesold.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel - backup.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel - fail1.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel - fail2.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel - fail3.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel - THISONE.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel -07august2021-NOVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel -07august2021-WITHVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel-27august2021notrigreducer.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel-fail0.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel-fail4.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel-latest.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_perko_voxel-ori.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_voxel - 04september2021-00-reverttosccsVD4EDsversion.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_voxel - 07august2021-NOVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_voxelVD4ED.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_voxel_pchunk - 07august2021-NOVERTTRIGREDUCER.cs" />
+    <Compile Remove="sc_graphics\_sc_shaders\SC_instancedChunk_shader_final - 16August2021-nomesh.cs" />
+    <Compile Remove="sc_graphics\_sc_shaders\SC_instancedChunk_shader_final - backup.cs" />
+    <Compile Remove="sc_graphics\_sc_shaders\SC_instancedChunk_shader_finalold.cs" />
+    <Compile Remove="SC_SharpDX_ScreenCapture - backup.cs" />
+    <Compile Remove="SC_SharpDX_ScreenCapture-backup31august2021-00.cs" />
+    <Compile Remove="SC_SharpDX_ScreenCapture.cs" />
+    <Compile Remove="sc_terrain\chunk.cs" />
+    <Compile Remove="sc_terrain\chunkTerrain.cs" />
+    <Compile Remove="sc_terrain\sccsplanetchunk-bullshit.cs" />
+    <Compile Remove="sc_terrain\sccsproceduralplanetbuilder - MC.cs" />
+    <Compile Remove="sc_terrain\SimplexNoise.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="1x1_pink_color.png" />
+    <None Remove="heightmap01.bmp" />
+    <None Remove="heightmap\heightmap01.bmp" />
+    <None Remove="heightmap\heightmap01Diffuse.bmp" />
+    <None Remove="MainWindow - backup 28-april-2021.xaml" />
+    <None Remove="MainWindow-backup.xaml" />
+    <None Remove="MainWindow.xaml" />
+    <None Remove="MainWindow.xaml.cs~RF72d7c7.TMP" />
+    <None Remove="sc not-instanced shader\font.ps" />
+    <None Remove="sc not-instanced shader\font.vs" />
+    <None Remove="sc_brollof_perceptron\work notes.txt" />
+    <None Remove="sc_console\SC_Console_GRAPHIC - FAIL 2020-04-14cs" />
+    <None Remove="sc_instance_shader\Color.ps" />
+    <None Remove="sc_instance_shader\Color.vs" />
+    <None Remove="sc_instance_shader\heightmapPS.ps" />
+    <None Remove="sc_instance_shader\heightmapVS.vs" />
+    <None Remove="sc_instance_shader\HLSL.gs" />
+    <None Remove="sc_instance_shader\InstancedTexture.ps" />
+    <None Remove="sc_instance_shader\InstancedTexture.vs" />
+    <None Remove="sc_instance_shader\red.ps" />
+    <None Remove="sc_instance_shader\red.vs" />
+    <None Remove="sc_instance_shader\texture - backup.ps" />
+    <None Remove="sc_instance_shader\texture.ps" />
+    <None Remove="sc_instance_shader\texture.vs" />
+    <None Remove="sc_instance_shader\textureHeightmapPS.ps" />
+    <None Remove="sc_instance_shader\textureHeightmapVS.vs" />
+    <None Remove="sc_instance_shader\texture_voxel - junk.ps" />
+    <None Remove="sc_instance_shader\texture_voxel.ps" />
+    <None Remove="sc_instance_shader\texture_voxel.vs" />
+    <None Remove="sc_instance_shader\texture_voxelPlanet.ps" />
+    <None Remove="sc_instance_shader\texture_voxelPlanet.vs" />
+    <None Remove="sc_terrain\HLSLchunkkeyboard.gs" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021-faillightmoveswithheadset.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021-lightissues.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 05august2021.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 13august2021-00.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-00.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-01.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-02-success4bytes-exceptindex3.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-03-success4bytes1stinst.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-04-failatsimplecode.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-04-successFullWidthRow.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 14august2021-06-successcleaned.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-02-successpaddinginstvalues-failtex.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-06-successcleanedAddingNormsNLights-FAIL.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - 15august2021-06-successcleanedAddingNormsNLights.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS - wronglightbutcounterncolorsnfaces.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkPS.ps" />
+    <None Remove="sc_terrain\sccsvertbindchunkVS - 16august2021-backup00.vs" />
+    <None Remove="sc_terrain\sccsvertbindchunkVS.vs" />
+    <None Remove="sc_terrain\sccsvertbindchunkVSMOD.vs" />
+    <None Remove="sc_terrain\sccsvertexshader.vs" />
+    <None Remove="sc_terrain\textureTrigChunkPS.ps" />
+    <None Remove="sc_terrain\textureTrigChunkVS.vs" />
+    <None Remove="sc_terrain\textureTrigChunkVSMOD.vs" />
+    <None Remove="terrainGrassDirt.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="1x1_pink_color.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="heightmap01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="heightmap\heightmap01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="heightmap\heightmap01Diffuse.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc not-instanced shader\font.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc not-instanced shader\font.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\HLSLchunkkeyboard.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\sccsvertbindchunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\sccsvertbindchunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\sccsvertbindchunkVSMOD.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\sccsvertexshader.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVSMOD.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
+    <PackageReference Include="System.Speech" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

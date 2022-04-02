@@ -1,0 +1,245 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ab3d_oculus_wrapper\**" />
+    <Compile Remove="Customizations\**" />
+    <Compile Remove="DeltaEngine\**" />
+    <Compile Remove="heightmap\not working\**" />
+    <Compile Remove="heightmap\old\**" />
+    <Compile Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <Compile Remove="sc_script_backup\**" />
+    <Compile Remove="_discarded\**" />
+    <Compile Remove="_dll_sc\**" />
+    <Compile Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <Compile Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <Compile Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <EmbeddedResource Remove="ab3d_oculus_wrapper\**" />
+    <EmbeddedResource Remove="Customizations\**" />
+    <EmbeddedResource Remove="DeltaEngine\**" />
+    <EmbeddedResource Remove="heightmap\not working\**" />
+    <EmbeddedResource Remove="heightmap\old\**" />
+    <EmbeddedResource Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <EmbeddedResource Remove="sc_script_backup\**" />
+    <EmbeddedResource Remove="_discarded\**" />
+    <EmbeddedResource Remove="_dll_sc\**" />
+    <EmbeddedResource Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <EmbeddedResource Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+    <None Remove="ab3d_oculus_wrapper\**" />
+    <None Remove="Customizations\**" />
+    <None Remove="DeltaEngine\**" />
+    <None Remove="heightmap\not working\**" />
+    <None Remove="heightmap\old\**" />
+    <None Remove="sc_graphics\_sc_models\Primitives3D\**" />
+    <None Remove="sc_script_backup\**" />
+    <None Remove="_discarded\**" />
+    <None Remove="_dll_sc\**" />
+    <None Remove="_sc_graphics\SC_visual_object_manager\**" />
+    <None Remove="_sc_graphics\_sc_models\human_rig\**" />
+    <None Remove="_sc_graphics\_sc_shaders\human_rig\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="heightmap\DCPUClass1.cs" />
+    <Compile Remove="SC_AI_Language.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHIC - 2020-04-15.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHIC - BACKUP - 2020-04-14.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - backup working instances - cubes only - Copy.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - cubes only.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - current fail cloth.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - multiplayer rig - backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - old get direction.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - singleplayer rig - backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - whatever backup.cs" />
+    <Compile Remove="sc_console\SC_Console_GRAPHICS - _CURRENT_.cs" />
+    <Compile Remove="sc_console\sc_graphics_sec - 2020-04-15.cs" />
+    <Compile Remove="sc_console\SC_Update - original.cs" />
+    <Compile Remove="SC_Console_VoRec.cs" />
+    <Compile Remove="sc_graphics\_sc_models\sc_containment_grid - backup.cs" />
+    <Compile Remove="sc_graphics\_sc_shaders\SC_instancedChunk_shader_final - backup.cs" />
+    <Compile Remove="sc_graphics\_sc_shaders\SC_instancedChunk_shader_final-old-version.cs" />
+    <Compile Remove="sc_graphics\_sc_shader_manager\SC_ShaderManagerClass - 05september2021-00.cs" />
+    <Compile Remove="SC_pathfind_assets\sc_pathfind.cs" />
+    <Compile Remove="sc_terrain\chunk-backup-oldversion.cs" />
+    <Compile Remove="sc_terrain\chunkTerrain-backup-oldversion.cs" />
+    <Compile Remove="sc_terrain\chunkTerrainr0.cs" />
+    <Compile Remove="sc_terrain\sccsplanetchunk-bullshit.cs" />
+    <Compile Remove="sc_terrain\sccsproceduralplanetbuilder - MC.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - bullshit.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - cant make dx11 work basic ab3dwrapper.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - Copy.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - new ik fail.cs" />
+    <Compile Remove="_sc_console\SC_Console_GRAPHICS - old one doesnt work.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup not working.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-fail again - Copy.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\sc_perko_voxel-failing.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\SC_VR_IcoSphere.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj.cs" />
+    <Compile Remove="_sc_graphics\_sc_models\_sc_obj_instances.cs" />
+    <Compile Remove="_sc_graphics\_sc_shaders\_sc_obj_shader_final.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager - backup.cs" />
+    <Compile Remove="_sc_graphics\_sc_shader_manager\_sc_shader_manager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="heightmap\heightmap01.bmp" />
+    <None Remove="heightmap\heightmap01Diffuse.bmp" />
+    <None Remove="sc not-instanced shader\font.ps" />
+    <None Remove="sc not-instanced shader\font.vs" />
+    <None Remove="sc_console\SC_Console_GRAPHIC - FAIL 2020-04-14cs" />
+    <None Remove="sc_instance_shader\Color.ps" />
+    <None Remove="sc_instance_shader\Color.vs" />
+    <None Remove="sc_instance_shader\heightmapPS.ps" />
+    <None Remove="sc_instance_shader\heightmapVS.vs" />
+    <None Remove="sc_instance_shader\HLSL.gs" />
+    <None Remove="sc_instance_shader\InstancedTexture.ps" />
+    <None Remove="sc_instance_shader\InstancedTexture.vs" />
+    <None Remove="sc_instance_shader\red.ps" />
+    <None Remove="sc_instance_shader\red.vs" />
+    <None Remove="sc_instance_shader\texture - backup.ps" />
+    <None Remove="sc_instance_shader\texture.ps" />
+    <None Remove="sc_instance_shader\texture.vs" />
+    <None Remove="sc_instance_shader\textureHeightmapPS.ps" />
+    <None Remove="sc_instance_shader\textureHeightmapVS.vs" />
+    <None Remove="sc_instance_shader\texture_voxel - junk.ps" />
+    <None Remove="sc_instance_shader\texture_voxel.ps" />
+    <None Remove="sc_instance_shader\texture_voxel.vs" />
+    <None Remove="sc_instance_shader\texture_voxelPlanet.ps" />
+    <None Remove="sc_instance_shader\texture_voxelPlanet.vs" />
+    <None Remove="SC_pathfind_assets\AIPathFind.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindCheckAllSides.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindInitGrid.js" />
+    <None Remove="SC_pathfind_assets\AIPathFindUtilities.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Core_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_FWPB_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_FWP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_SFWPP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_AI_Drone_Combat_cc_Rout_For_SFWP_1.js" />
+    <None Remove="SC_pathfind_assets\SC_Pathfind_Heap.js" />
+    <None Remove="SC_pathfind_assets\SC_Station_Tiles_Outpost_01.js" />
+    <None Remove="SC_pathfind_assets\SC_Utilities.js" />
+    <None Remove="sc_terrain\textureTrigChunkPS.ps" />
+    <None Remove="sc_terrain\textureTrigChunkVS.vs" />
+    <None Remove="sc_terrain\textureTrigChunkVSMOD.vs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="heightmap\heightmap01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="heightmap\heightmap01Diffuse.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc not-instanced shader\font.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc not-instanced shader\font.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\Color.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\heightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\HLSL.gs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\InstancedTexture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\red.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\textureHeightmapVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxel.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_instance_shader\texture_voxelPlanet.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkPS.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVS.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sc_terrain\textureTrigChunkVSMOD.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap">
+      <HintPath>..\..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="jitter_sc">
+      <HintPath>..\..\..\..\libraries\jitter_sc\bin\Release\netstandard2.0\jitter_sc.dll</HintPath>
+    </Reference>
+    <Reference Include="sc_message_object">
+      <HintPath>..\..\..\..\libraries\sc_message_object\bin\Release\netstandard2.0\sc_message_object.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsInput">
+      <HintPath>..\..\..\..\libraries\inputsimulator\WindowsInput\bin\Release\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
