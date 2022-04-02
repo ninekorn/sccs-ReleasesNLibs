@@ -41,7 +41,9 @@ sccsr13dotnet and sccsr13wpf - 4th version. breakable voxel virtual desktop (my 
 
 <img src="https://i.ibb.co/khpmr7g/sccoresystems-25august2021-04.png" alt="sccoresystems-25august2021-04" border="0">
 
-sccsr14forms - virtual desktop in vr with physical mesh voxel keyboard and keyboard keys changing color when pressed.
+sccsr14forms - virtual desktop in vr and without vr, with physical mesh voxel keyboard and keyboard keys changing color when pressed for VR only. Without VR there isn't a physical keyboard voxel mesh yet but i think i will add one in the future for using my software when streaming and for viewers of the stream to
+visually see where the user of my software clicks on the keyboard, when doing programming and editing tutorials this is a very good way to let viewers know
+what keys are being pressed when we are working fast to show them how we do things.
 <img src="https://i.ibb.co/dfn3KxZ/tablevoxeldesktop-2022-02-22-185240.png" alt="tablevoxeldesktop-2022-02-22-185240" border="0">
 <img src="https://i.ibb.co/d0qX8vr/Capture-d-cran-2022-04-02-171543.png" alt="Capture-d-cran-2022-04-02-171543" border="0">
 
