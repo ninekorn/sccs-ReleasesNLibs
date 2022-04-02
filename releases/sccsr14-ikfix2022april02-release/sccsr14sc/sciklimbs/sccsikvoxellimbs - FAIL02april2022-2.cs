@@ -5086,6 +5086,9 @@ namespace sccs
 
 
 
+
+
+                /*
                 //START OF RIGHT ARM IK
                 //START OF RIGHT ARM IK
                 //START OF RIGHT ARM IK
@@ -5101,279 +5104,41 @@ namespace sccs
                     someMatRight.M41 = handPoseLeft.Position.X + MOVINGPOINTER.X;
                     someMatRight.M42 = handPoseLeft.Position.Y + MOVINGPOINTER.Y;
                     someMatRight.M43 = handPoseLeft.Position.Z + MOVINGPOINTER.Z;
-                    diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
-                    diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
-                    diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
-
-                    MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
-                    MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
-
-                    MOVINGPOINTER.X += OFFSETPOS.X;
-                    MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    MOVINGPOINTER.Z += OFFSETPOS.Z;
                 }
                 else if (somechunkpriminstanceikarmvoxelindex == 1)
                 {
-                    /*
-                    someMatRight = extramatrix;
-                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
-                    */
-
-                    Vector3 someshoulderposition = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-
-                    var shoulderMatrix = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    Quaternion.RotationMatrix(ref shoulderMatrix, out otherQuat);
-                    var dirshoulderf = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
-                    var dirshoulderr = sc_maths._getDirection(Vector3.Right, otherQuat);
-                    var dirshoulderu = sc_maths._getDirection(Vector3.Up, otherQuat);
-                    //var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right, direction_head_up);
-                    //theheadrotmatrix.Invert();
-                    var somelengthOfshoulder = _player_rght_shldr[0][0]._total_torso_height;
-                    /*
-                    MOVINGPOINTER = (MOVINGPOINTER) + (-dirshoulderu * somelengthOfshoulder);
-                    MOVINGPOINTER = MOVINGPOINTER + (-dirshoulderu * lengthOfUpperArmRight);
-                    MOVINGPOINTER = MOVINGPOINTER + (-dirshoulderu * lengthOfLowerArmRight);
-                    */
-                    //MOVINGPOINTER = someshoulderposition;
-                    MOVINGPOINTER.X += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41;
-                    MOVINGPOINTER.Y += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    MOVINGPOINTER.Z += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43;
-
-                    ///posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                    //tempDir = posRHand - someshoulderposition;
-
-                    //posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
-                    //tempDir = posRHand - _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
-
-                    /*if (tempDir.Length() > (lengthOfLowerArmRight * 1.123f) + (lengthOfUpperArmRight * 1.123f) + (somelengthOfshoulder * 1.123f))
-                    {
-                        //Console.WriteLine("test");
-                        tempDir.Normalize();
-                        var somePosOfSHLDR = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                        Vector3 tempVect = someshoulderposition + (tempDir * ((lengthOfLowerArmRight * 1.123f) + (lengthOfUpperArmRight * 1.123f) + (somelengthOfshoulder * 1.123f)));
-                        MOVINGPOINTER.X = tempVect.X;
-                        MOVINGPOINTER.Y = tempVect.Y;
-                        MOVINGPOINTER.Z = tempVect.Z;
-                    }*/
-                    diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
-                    diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
-                    diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
-
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * ((somelengthOfshoulder + lengthOfUpperArmRight + lengthOfLowerArmRight)));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
-
-                    MOVINGPOINTER.X += OFFSETPOS.X;
-                    MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    MOVINGPOINTER.Z += OFFSETPOS.Z;
+                    //targetfootleft
+                    //targetfootright
 
                     someMatRight = extramatrix;
-                    someMatRight.M41 = MOVINGPOINTER.X;// _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = MOVINGPOINTER.Y;//_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = MOVINGPOINTER.Z;//_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
 
                 }
                 else if (somechunkpriminstanceikarmvoxelindex == 2)
                 {
-                    /*
+                    
                     someMatRight = extramatrix;
-                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
-                    */
-
-                    Vector3 someshoulderposition = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-
-                    var shoulderMatrix = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    Quaternion.RotationMatrix(ref shoulderMatrix, out otherQuat);
-                    var dirshoulderf = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
-                    var dirshoulderr = sc_maths._getDirection(Vector3.Right, otherQuat);
-                    var dirshoulderu = sc_maths._getDirection(Vector3.Up, otherQuat);
-                    //var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right, direction_head_up);
-                    //theheadrotmatrix.Invert();
-                    var somelengthOfshoulder = _player_rght_shldr[0][0]._total_torso_height;
-                    /*
-                    MOVINGPOINTER = (MOVINGPOINTER) + (-dirshoulderu * somelengthOfshoulder);
-                    MOVINGPOINTER = MOVINGPOINTER + (-dirshoulderu * lengthOfUpperArmRight);
-                    MOVINGPOINTER = MOVINGPOINTER + (-dirshoulderu * lengthOfLowerArmRight);
-                    */
-                    //MOVINGPOINTER = someshoulderposition;
-                    MOVINGPOINTER.X += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41;
-                    MOVINGPOINTER.Y += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    MOVINGPOINTER.Z += _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43;
-
-                    ///posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                    //tempDir = posRHand - someshoulderposition;
-
-                    //posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
-                    //tempDir = posRHand - _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
-
-                    /*if (tempDir.Length() > (lengthOfLowerArmRight * 1.123f) + (lengthOfUpperArmRight * 1.123f) + (somelengthOfshoulder * 1.123f))
-                    {
-                        //Console.WriteLine("test");
-                        tempDir.Normalize();
-                        var somePosOfSHLDR = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                        Vector3 tempVect = someshoulderposition + (tempDir * ((lengthOfLowerArmRight * 1.123f) + (lengthOfUpperArmRight * 1.123f) + (somelengthOfshoulder * 1.123f)));
-                        MOVINGPOINTER.X = tempVect.X;
-                        MOVINGPOINTER.Y = tempVect.Y;
-                        MOVINGPOINTER.Z = tempVect.Z;
-                    }*/
-                    diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
-                    diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
-                    diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
-
-                    MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * ((somelengthOfshoulder + lengthOfUpperArmRight + lengthOfLowerArmRight)));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
-
-                    MOVINGPOINTER.X += OFFSETPOS.X;
-                    MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    MOVINGPOINTER.Z += OFFSETPOS.Z;
-
-                    someMatRight = extramatrix;
-                    someMatRight.M41 = MOVINGPOINTER.X;// _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = MOVINGPOINTER.Y;//_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = MOVINGPOINTER.Z;//_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
                 }
                 else if (somechunkpriminstanceikarmvoxelindex == 3)
                 {
-
-
-
-                    someMatRight = _rightTouchMatrix;
-                    someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
-                    someMatRight.M42 = handPoseRight.Position.Y + MOVINGPOINTER.Y;
-                    someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
-                    diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
-                    diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
-                    diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
-
-                    MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
-                    MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
-                    MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
-
-                    MOVINGPOINTER.X += OFFSETPOS.X;
-                    MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    MOVINGPOINTER.Z += OFFSETPOS.Z;
-
-                }
-
-
-
-                /*Matrix someMatRight = Matrix.Identity;
-                if (somechunkpriminstanceikarmvoxelindex == 0)
-                {
-                    MOVINGPOINTER = new Vector3(_leftTouchMatrix.M41, _leftTouchMatrix.M42, _leftTouchMatrix.M43);
-
-                    someMatRight = _leftTouchMatrix;
-                    someMatRight.M41 = handPoseLeft.Position.X + MOVINGPOINTER.X;
-                    someMatRight.M42 = handPoseLeft.Position.Y + MOVINGPOINTER.Y;
-                    someMatRight.M43 = handPoseLeft.Position.Z + MOVINGPOINTER.Z;
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 1)
-                {
-                    someMatRight = extramatrix;
-                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 2)
-                {
-                    someMatRight = extramatrix;
-                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
-                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
-                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 3)
-                {
-                    MOVINGPOINTER = new Vector3(_rightTouchMatrix.M41, _rightTouchMatrix.M42, _rightTouchMatrix.M43);
                     someMatRight = _rightTouchMatrix;
                     someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
                     someMatRight.M42 = handPoseRight.Position.Y + MOVINGPOINTER.Y;
                     someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
 
-                }*/
-
-
-
-
-
-
-                /*
-                //////////////////
-                //RIGHT HAND
-                var rShldrPos = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                var dirToLowerArm = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - rShldrPos;
-                dirToLowerArm.Normalize();
-                var newpoint = rShldrPos + (dirToLowerArm * lengthOfUpperArmRight);
-                var somePosOfRightHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                newpoint = newpoint + (direction_feet_up_ori * (_player_rght_shldr[0][0]._total_torso_height * connectorOfLowerArmRightOffsetMul));
-                var newdir = somePosOfRightHand - newpoint;
-                newdir.Normalize();
-                //newpoint = newpoint + (newdir * lengthOfLowerArmRight * 0.5f);
-
-
-                if (somechunkpriminstanceikarmvoxelindex == 0)
-                {
-                    //_rotMatrixer = _leftTouchMatrix;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    newpoint = newpoint + (newdir * lengthOfLowerArmRight * lengthOfHandRight * 1);
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 1)
-                {
-                    newpoint = newpoint + (newdir * lengthOfLowerArmRight * lengthOfHandRight * 1);
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 2)
-                {
-                    newpoint = newpoint + (newdir * lengthOfLowerArmRight * lengthOfHandRight * 1);
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 3)
-                {
-                    //_rotMatrixer = _rightTouchMatrix;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    newpoint = newpoint + (newdir * lengthOfLowerArmRight * lengthOfHandRight * 1);
                 }
 
-                //currentPositionOfUPPERARMROTATION3DPOSITION = currentFINALPIVOTUPPERARM + (dirPivotUpperRIghtToElbowRight * 0.5f);
-         
-                Quaternion.RotationMatrix(ref _rotMatrixer, out forTest);
-                direction_feet_forward_ori = sc_maths._getDirection(Vector3.ForwardRH, forTest);
-                direction_feet_right_ori = sc_maths._getDirection(Vector3.Right, forTest);
-                direction_feet_up_ori = sc_maths._getDirection(Vector3.Up, forTest);
-                somePosOfRightHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                var somePosererDir = somePosOfRightHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
-                var someLowerRightArmPos = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION + (somePosererDir * 0.5f);
-                somePosererDir.Normalize();
-                var someCross0 = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWCROSSVEC;
-                Vector3 someCross1;
-                Vector3.Cross(ref somePosererDir, ref someCross0, out someCross1);
-                someCross1.Normalize();
-                var theLowerArmRotationMatrix = Matrix.LookAtRH(_player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION, _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION + someCross1, somePosererDir);
-                theLowerArmRotationMatrix.Invert();
-                matrixerer = theLowerArmRotationMatrix;
-                matrixerer.M41 = newpoint.X;
-                matrixerer.M42 = newpoint.Y;
-                matrixerer.M43 = newpoint.Z;
-                matrixerer.M44 = 1;
-                var _body_pos = matrixerer;
-                Quaternion _quat;
-                Quaternion.RotationMatrix(ref _body_pos, out _quat);
-                var _other_quat = new JQuaternion(_quat.X, _quat.Y, _quat.Z, _quat.W);
-                var matrixIn = JMatrix.CreateFromQuaternion(_other_quat);
-                //worldMatrix_instances_r_lowerarm[0][0][_iterator] = matrixerer;
-                //_player_rght_lower_arm[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-                worldMatrix_instances_r_hand[0][0][_iterator] = matrixerer;// _player_pelvis[0][0].current_pos;// translationMatrix;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION = matrixerer;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._REALCENTERPOSITION = matrixerer;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._TEMPPOSITION = matrixerer;
-                //END OF RIGHT ARM IK
-                //END OF RIGHT ARM IK
-                //END OF RIGHT ARM IK*/
 
-                /*diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
+
+
+
+
+                diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
                 diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
                 diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
 
@@ -5381,53 +5146,31 @@ namespace sccs
                 MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
                 MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
 
-                MOVINGPOINTER.X += OFFSETPOS.X;
-                MOVINGPOINTER.Y += OFFSETPOS.Y;
-                MOVINGPOINTER.Z += OFFSETPOS.Z;*/
 
                 Vector3 somegrabposition = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ * 0.5f));
 
+                MOVINGPOINTER.X += OFFSETPOS.X;
+                MOVINGPOINTER.Y += OFFSETPOS.Y;
+                MOVINGPOINTER.Z += OFFSETPOS.Z;
 
                 var posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
-                Vector3 tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                Vector3 tempDir = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - posRHand;
 
-
-
-                /*if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                if (tempDir.Length() > totalArmLengthRight * 1.00923f * 2.0f)
                 {
                     //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
                     //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
                     tempDir.Normalize();
                     var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                    Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                    Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.15f));
                     MOVINGPOINTER.X = tempVect.X;
                     MOVINGPOINTER.Y = tempVect.Y;
                     MOVINGPOINTER.Z = tempVect.Z;
                 }
-
-
-                if (somechunkpriminstanceikarmvoxelindex == 0)//right hand
-                {
-
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                else
                 {
 
                 }
-                else if (somechunkpriminstanceikarmvoxelindex == 2)
-                {
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 3)//lefthand
-                {
-
-                }*/
-
-
-
-
-
 
                 if (somechunkpriminstanceikarmvoxelindex == 0)
                 {
@@ -5446,26 +5189,727 @@ namespace sccs
                     matrixerer = someMatRight * finalRotationMatrix;
                 }
 
-                someMatRight.M41 += OFFSETPOS.X;
-                someMatRight.M42 += OFFSETPOS.Y;
-                someMatRight.M43 += OFFSETPOS.Z;
+  
+                matrixerer.M41 = MOVINGPOINTER.X;
+                matrixerer.M42 = MOVINGPOINTER.Y;
+                matrixerer.M43 = MOVINGPOINTER.Z;
+                matrixerer.M44 = 1;
+
+                worldMatrix_instances_r_hand[0][0][_iterator] = matrixerer;// _player_pelvis[0][0].current_pos;// translationMatrix;
+                _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
+               */
+
+
+                var someMatRight = Matrix.Identity;
+                /////////////////////////
+                //////HANDRIGHTGRAB//////
+                MOVINGPOINTER = new Vector3(ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                if (somechunkpriminstanceikarmvoxelindex == 0)
+                {
+                    someMatRight = _leftTouchMatrix;
+                    someMatRight.M41 = handPoseLeft.Position.X + MOVINGPOINTER.X;
+                    someMatRight.M42 = handPoseLeft.Position.Y + MOVINGPOINTER.Y;
+                    someMatRight.M43 = handPoseLeft.Position.Z + MOVINGPOINTER.Z;
+
+                    /*
+                    someMatRight = _leftTouchMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;*/
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+                    /*someMatRight = finalRotationMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    */
+                    someMatRight = extramatrix;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+                    /*someMatRight = finalRotationMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    */
+
+                    someMatRight = extramatrix;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    /*someMatRight = _rightTouchMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;*/
+
+                    someMatRight = _rightTouchMatrix;
+                    someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
+                    someMatRight.M42 = handPoseRight.Position.Y + MOVINGPOINTER.Y;
+                    someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
+                }
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                someMatRight = _rightTouchMatrix;
+                someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
+                someMatRight.M42 = handPoseRight.Position.Y; //+ MOVINGPOINTER.Y;
+                someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
+                **/
+
+                diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
+                diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
+                diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
+
+                MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
+                MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
+                MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
+
+
+
+
+
+                //MOVINGPOINTER = MOVINGPOINTER + (_player_r_hand_grab[0][0]._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
+               var posRHand = Vector3.Zero;
+               var tempDir = Vector3.Zero;
+
+                if (somechunkpriminstanceikarmvoxelindex == 0)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1.0f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1.0f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                    MOVINGPOINTER = tempVect;
+
+                    /*
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((lengthOfHandheight * 1.0923f)));
+                        tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+
+                    /*if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                        Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((lengthOfHandheight * 1.0923f)));
+                        tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+
+
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    //// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+
+
+
+
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandwidth = _player_rght_hnd[0][0]._total_torso_depth * 1f;
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                    tempVect = (tempVect) + (-direction_head_right0 * ((lengthOfHandwidth * 1.0923f)));
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+
+                MOVINGPOINTER.X += OFFSETPOS.X;
+                MOVINGPOINTER.Y += OFFSETPOS.Y;
+                MOVINGPOINTER.Z += OFFSETPOS.Z;
+
+
+
+
+                someMatRight = Matrix.Identity;
+                /////////////////////////
+                //////HANDRIGHTGRAB//////
+                MOVINGPOINTER = new Vector3(ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                if (somechunkpriminstanceikarmvoxelindex == 0)
+                {
+                    someMatRight = _leftTouchMatrix;
+                    someMatRight.M41 = handPoseLeft.Position.X + MOVINGPOINTER.X;
+                    someMatRight.M42 = handPoseLeft.Position.Y + MOVINGPOINTER.Y;
+                    someMatRight.M43 = handPoseLeft.Position.Z + MOVINGPOINTER.Z;
+
+                    /*
+                    someMatRight = _leftTouchMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;*/
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+                    /*someMatRight = finalRotationMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    */
+                    someMatRight = extramatrix;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+                    /*someMatRight = finalRotationMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+                    */
+
+                    someMatRight = extramatrix;
+                    someMatRight.M41 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;//_player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y;// + _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;
+
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    /*someMatRight = _rightTouchMatrix;
+                    someMatRight.M41 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41 + MOVINGPOINTER.X;
+                    someMatRight.M42 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42 + MOVINGPOINTER.Y + _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42;
+                    someMatRight.M43 = _player_rght_shldr[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43 + MOVINGPOINTER.Z;*/
+
+                    someMatRight = _rightTouchMatrix;
+                    someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
+                    someMatRight.M42 = handPoseRight.Position.Y + MOVINGPOINTER.Y;
+                    someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
+                }
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                someMatRight = _rightTouchMatrix;
+                someMatRight.M41 = handPoseRight.Position.X + MOVINGPOINTER.X;
+                someMatRight.M42 = handPoseRight.Position.Y; //+ MOVINGPOINTER.Y;
+                someMatRight.M43 = handPoseRight.Position.Z + MOVINGPOINTER.Z;
+                **/
+
+                diffNormPosX = (MOVINGPOINTER.X) - someMatRight.M41;
+                diffNormPosY = (MOVINGPOINTER.Y) - someMatRight.M42;
+                diffNormPosZ = (MOVINGPOINTER.Z) - someMatRight.M43;
+
+                MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].rightdirection * (diffNormPosX));
+                MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
+                MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
+
+
+
+
+
+                //MOVINGPOINTER = MOVINGPOINTER + (_player_r_hand_grab[0][0]._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
+                posRHand = Vector3.Zero;
+                tempDir = Vector3.Zero;
+
+                if (somechunkpriminstanceikarmvoxelindex == 0)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1.0f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1.0f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                    MOVINGPOINTER = tempVect;
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    //// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+
+
+
+
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    //realPosOfRS = realPosOfRS + (direction_feet_right_ori * (_player_rght_shldr[0][0]._total_torso_width * 8));
+                    //var shoulderMatrix = _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._SHOULDERROT;
+
+                    var somehandmatrix = someMatRight * finalRotationMatrix;
+                    Quaternion.RotationMatrix(ref somehandmatrix, out otherQuat);
+                    var direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    var direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    var direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    var theheadrotmatrix = Matrix.LookAtRH(pivotOfHead, pivotOfHead + direction_head_right0, direction_head_up0);
+                    theheadrotmatrix.Invert();
+
+                    Quaternion.RotationMatrix(ref theheadrotmatrix, out otherQuat);
+                    direction_head_forward0 = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
+                    direction_head_right0 = sc_maths._getDirection(Vector3.Right, otherQuat);
+                    direction_head_up0 = sc_maths._getDirection(Vector3.Up, otherQuat);
+
+                    posRHand = MOVINGPOINTER;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
+
+                    var lengthOfHandwidth = _player_rght_hnd[0][0]._total_torso_depth * 1f;
+                    var lengthOfHandheight = _player_rght_hnd[0][0]._total_torso_height * 1f;
+                    var lengthOfHandgrabheight = _player_r_hand_grab[0][0]._total_torso_height * 1f;
+
+                    Vector3 somevec0 = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                    Vector3 tempVect = (posRHand) + (direction_head_forward0 * ((-lengthOfHandheight * 1.0923f)));
+                    tempVect = (tempVect) + (direction_head_up0 * ((lengthOfHandgrabheight * 1.0923f)));
+                    tempVect = (tempVect) + (-direction_head_right0 * ((lengthOfHandwidth * 1.0923f)));
+
+                    //posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    //tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+                    MOVINGPOINTER = tempVect;// _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION - OFFSETPOS;// MOVINGPOINTER + (tempDir * 2);
+                }
+
+                MOVINGPOINTER.X += OFFSETPOS.X;
+                MOVINGPOINTER.Y += OFFSETPOS.Y;
+                MOVINGPOINTER.Z += OFFSETPOS.Z;
+
+
+
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+                if (somechunkpriminstanceikarmvoxelindex == 0)
+                {
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_lower_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }*/
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    /*posRHand = new Vector3(_player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_r_hand_grab[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }
+                    */
+                    /*posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION.M43);
+
+                    tempDir = posRHand - _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION;
+
+                    /*if (tempDir.Length() > lengthOfLowerArmRight * connectorOfHandOffsetMul && lengthOfLowerArmRight != 0)
+                    {
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * ((lengthOfLowerArmRight * 1.0923f) + (lengthOfUpperArmRight * 1.0923f)));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }
+                    
+                    tempDir.Normalize();
+                    var somePosOfSHLDR = realposhand0;// new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                    Vector3 tempVect = somePosOfSHLDR + (tempDir * 2 *lengthOfHandRight * 1.0923f);
+                    MOVINGPOINTER.X = tempVect.X;
+                    MOVINGPOINTER.Y = tempVect.Y;
+                    MOVINGPOINTER.Z = tempVect.Z;*/
+                }
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+                //TRYING TO MOVE IK OF HAND GRAB FAIL EXPERIMENT
+
+
+                Vector3 someshoulderpos = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+
+                posRHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                tempDir = posRHand - someshoulderpos;
+
+
+                if (somechunkpriminstanceikarmvoxelindex == 0 || somechunkpriminstanceikarmvoxelindex == 3)
+                {
+                    if (tempDir.Length() > totalArmLengthRight * 1.00923f)
+                    {
+                        //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
+                        //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.00923f));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    /*if (tempDir.Length() > totalArmLengthRight * 1.000923f)
+                    {
+                        //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
+                        //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
+                        tempDir.Normalize();
+                        var somePosOfSHLDR = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
+                        Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.000923f));
+                        MOVINGPOINTER.X = tempVect.X;
+                        MOVINGPOINTER.Y = tempVect.Y;
+                        MOVINGPOINTER.Z = tempVect.Z;
+                    }
+                    else
+                    {
+
+                    }*/
+                }
+
+
+
+
+                matrixerer = someMatRight;
 
                 matrixerer.M41 = MOVINGPOINTER.X;
                 matrixerer.M42 = MOVINGPOINTER.Y;
                 matrixerer.M43 = MOVINGPOINTER.Z;
                 matrixerer.M44 = 1;
 
-                Vector3 realposhand0 = MOVINGPOINTER;
-
                 worldMatrix_instances_r_hand[0][0][_iterator] = matrixerer;// _player_pelvis[0][0].current_pos;// translationMatrix;
                 _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITION = matrixerer;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._REALCENTERPOSITION = someMatRight;
-                _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._TEMPPOSITION = someMatRight;
-                //if (swtch_for_last_pos[0][0][_iterator] > 0)
-                //{
-                //    _player_rght_hnd[0][0]._arrayOfInstances[_iterator]._LASTPOSITIONFORPHYSICS = matrixerer;
-                //}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
