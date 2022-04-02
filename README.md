@@ -35,6 +35,7 @@ sccsv11 - 2nd version - decided to modify a couple of things compared to sccsv10
 
 sccsr12dotnet and sccsr12wpf - 3rd version. console dotnet directx virtual reality.
 <img src="https://i.ibb.co/chZnvY2/sccs-VD4-ED.png" alt="sccs-VD4-ED" border="0">
+sccsr12dotnet and sccsr12wpf - 3rd version. showing the instancing capabilities. but in this screenshot i wasn't done with the vr human ik so the above screenshot was my later revision of sccsr12dotnet.
 <img src="https://i.ibb.co/jkbRf86/sccs-humanvrikvoxelrig.webp" alt="sccs-humanvrikvoxelrig" border="0">
 
 sccsr13dotnet and sccsr13wpf - 4th version. breakable voxel virtual desktop (my normal iteration of the virtual desktop is interactive with the oculus touch but not my breakable virtual desktop iteration)
