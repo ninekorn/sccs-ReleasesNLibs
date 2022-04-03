@@ -46,9 +46,7 @@ sccsr14forms - virtual desktop in vr and without vr, with physical mesh voxel ke
 visually see where the user of my software clicks on the keyboard, when doing programming and editing tutorials this is a very good way to let viewers know
 what keys are being pressed when we are working fast to show them how we do things.
 <img src="https://i.ibb.co/dfn3KxZ/tablevoxeldesktop-2022-02-22-185240.png" alt="tablevoxeldesktop-2022-02-22-185240" border="0">
-<img src="https://i.ibb.co/d0qX8vr/Capture-d-cran-2022-04-02-171543.png" alt="Capture-d-cran-2022-04-02-171543" border="0">
-
-
+<img src="https://i.ibb.co/5WRHCMC/Capture-d-cran-2022-04-03-005256.png" alt="Capture-d-cran-2022-04-03-005256" border="0">
 
 --------------------------------------------------------------------------
 
