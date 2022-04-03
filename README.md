@@ -27,7 +27,7 @@ the username is "9" and the password is "std" for standard.
 
 List of programs:
 
-sccsv101 - 1st version - using instancing but i ended up discarding that program because there was some stuff that wasn't working as expected. I wanted to build some voxel covid19 cloth objects but they ended up looking a bit more like snowflakes/minesweeper/covid19cells.
+sccsv101 - 1st version - using instancing but i ended up discarding that program because there was some stuff that wasn't working as expected. I wanted to build some voxel covid19 cloth objects but they ended up looking a bit more like snowflakes/minesweeper/covid19cells. https://youtu.be/GKVrsqPHaMQ
 <img src="https://i.ibb.co/LJP0C2W/sccsv10.png" alt="sccsv10" border="0">
 
 sccsv11 - 2nd version - decided to modify a couple of things compared to sccsv101 but again, i thought my program architecture was lame.
@@ -35,14 +35,19 @@ sccsv11 - 2nd version - decided to modify a couple of things compared to sccsv10
 
 sccsr12dotnet and sccsr12wpf - 3rd version. console dotnet directx virtual reality.
 <img src="https://i.ibb.co/chZnvY2/sccs-VD4-ED.png" alt="sccs-VD4-ED" border="0">
+sccsr12dotnet and sccsr12wpf - 3rd version. showing the instancing capabilities. but in this screenshot i wasn't done with the vr human ik so the above screenshot was my later revision of sccsr12dotnet.
 <img src="https://i.ibb.co/jkbRf86/sccs-humanvrikvoxelrig.webp" alt="sccs-humanvrikvoxelrig" border="0">
 
 sccsr13dotnet and sccsr13wpf - 4th version. breakable voxel virtual desktop (my normal iteration of the virtual desktop is interactive with the oculus touch but not my breakable virtual desktop iteration)
 
 <img src="https://i.ibb.co/khpmr7g/sccoresystems-25august2021-04.png" alt="sccoresystems-25august2021-04" border="0">
 
-sccsr14forms - virtual desktop in vr with physical mesh voxel keyboard and keyboard keys changing color when pressed.
-<img src="https://i.ibb.co/T2PSStZ/Capture-d-cran-2022-04-02-043742.png" alt="Capture-d-cran-2022-04-02-043742" border="0">
+sccsr14forms - virtual desktop in vr and without vr, with physical mesh voxel keyboard and keyboard keys changing color when pressed for VR only. Without VR there isn't a physical keyboard voxel mesh yet but i think i will add one in the future for using my software when streaming and for viewers of the stream to
+visually see where the user of my software clicks on the keyboard, when doing programming and editing tutorials this is a very good way to let viewers know
+what keys are being pressed when we are working fast to show them how we do things.
+<img src="https://i.ibb.co/dfn3KxZ/tablevoxeldesktop-2022-02-22-185240.png" alt="tablevoxeldesktop-2022-02-22-185240" border="0">
+<img src="https://i.ibb.co/d0qX8vr/Capture-d-cran-2022-04-02-171543.png" alt="Capture-d-cran-2022-04-02-171543" border="0">
+
 
 
 --------------------------------------------------------------------------
