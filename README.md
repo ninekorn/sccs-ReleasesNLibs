@@ -46,8 +46,7 @@ sccsr14forms - virtual desktop in vr and without vr, with physical mesh voxel ke
 visually see where the user of my software clicks on the keyboard, when doing programming and editing tutorials this is a very good way to let viewers know
 what keys are being pressed when we are working fast to show them how we do things.
 <img src="https://i.ibb.co/dfn3KxZ/tablevoxeldesktop-2022-02-22-185240.png" alt="tablevoxeldesktop-2022-02-22-185240" border="0">
-<img src="https://i.ibb.co/5WRHCMC/Capture-d-cran-2022-04-03-005256.png" alt="Capture-d-cran-2022-04-03-005256" border="0">
-
+<img WIDTH = 500 src="https://i.ibb.co/5WRHCMC/Capture-d-cran-2022-04-03-005256.png" alt="Capture-d-cran-2022-04-03-005256" border="0"><img WIDTH = 500 src="https://i.ibb.co/Nn3cLmf/Capture-d-cran-2022-04-03-014034.png" alt="Capture-d-cran-2022-04-03-014034" border="0">
 --------------------------------------------------------------------------
 
 I have learned to create my own direct3D c# programs and the main help from being able to get out of unity3d and be independant from unity3D was to code my own programs in C#. It was a sad choice, but back in unity 2017, adding the framework in order to make a virtual desktop from sharpdx was a tough thing to do and i couldn't make it happen. i then chose to learn by myself.
