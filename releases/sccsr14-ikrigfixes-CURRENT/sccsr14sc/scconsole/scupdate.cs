@@ -4253,7 +4253,19 @@ namespace sccs.scgraphics
 
                                 if (exitthread1 == 0)
                                 {
-                                    Thread.Sleep(0);
+                                    if (sccsr14sc.Form1.someform.cursorlightoption != 3)
+                                    {
+
+                                        Thread.Sleep(0);
+                                    }
+                                    else //if (sccsr14sc.Form1.someform.cursorlightoption  3)
+                                    {
+
+                                        Thread.Sleep(1);
+                                    }
+
+
+
                                     goto _thread_looper;
 
                                 }
@@ -4354,6 +4366,62 @@ namespace sccs.scgraphics
 
                                         if (threadupdateswtc == 0 && exitthread1 == 0) //0
                                         {
+
+
+
+
+
+                                            if (threadupdateswtc == 0 && exitthread1 == 0) //0
+                                            {
+                                                if (scgraphicssecpackagemessage.scjittertasks != null)
+                                                {
+                                                    if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                                                    {
+                                                        if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 0)
+                                                        {
+
+                                                            // scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.scwritedirectiontobuffer(scgraphicssecpackagemessage.scjittertasks);
+
+                                                            scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.sccswriteikrigtobuffer(scgraphicssecpackagemessage);
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+
+                                            if (threadupdateswtc == 0 && exitthread1 == 0) //0
+                                            {
+                                                if (scgraphicssecpackagemessage.scjittertasks != null)
+                                                {
+                                                    if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                                                    {
+                                                        if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 1)
+                                                        {
+                                                            scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 2;
+                                                            //Thread.Sleep(0);
+                                                        }
+                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 2)
+                                                        {
+                                                            //Thread.Sleep(0);
+                                                        }
+                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 3)
+                                                        {
+                                                            scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 4;
+                                                            //Thread.Sleep(1);
+                                                        }
+                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 4)
+                                                        {
+                                                            //Thread.Sleep(1);
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+
+
+
+
                                             if (scgraphicssecpackagemessage.scjittertasks != null)
                                             {
 
@@ -4433,62 +4501,10 @@ namespace sccs.scgraphics
                                 renderthread = 1;
                             }
 
-
-
-
-
-
-
                             updatethreadupdateswtc0 = 1;
                         }
 
 
-                        if (threadupdateswtc == 0 && exitthread1 == 0) //0
-                        {
-                            if (scgraphicssecpackagemessage.scjittertasks != null)
-                            {
-                                if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                {
-                                    if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 0)
-                                    {
-
-                                        // scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.scwritedirectiontobuffer(scgraphicssecpackagemessage.scjittertasks);
-
-                                        scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.sccswriteikrigtobuffer(scgraphicssecpackagemessage);
-
-                                    }
-                                }
-                            }
-                        }
-
-
-                        if (threadupdateswtc == 0 && exitthread1 == 0) //0
-                        {
-                            if (scgraphicssecpackagemessage.scjittertasks != null)
-                            {
-                                if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                {
-                                    if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 1)
-                                    {
-                                        scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 2;
-                                        //Thread.Sleep(0);
-                                    }
-                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 2)
-                                    {
-                                        //Thread.Sleep(0);
-                                    }
-                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 3)
-                                    {
-                                        scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 4;
-                                        //Thread.Sleep(1);
-                                    }
-                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 4)
-                                    {
-                                        //Thread.Sleep(1);
-                                    }
-                                }
-                            }
-                        }
                         /*
                         scgraphicssecpackagemessage.viewMatrix = viewMatrix;
                         scgraphicssecpackagemessage.projectionMatrix = _projectionMatrix;
@@ -4747,35 +4763,6 @@ namespace sccs.scgraphics
 
 
                                
-
-
-
-
-
-
-
-                                if (scgraphicssecpackagemessage.scgraphicssec != null)
-                                {
-                                    if (scgraphicssecpackagemessage.scgraphicssec.hasinit == 1)
-                                    {
-                                        if (scgraphicssecpackagemessage.scjittertasks != null)
-                                        {
-                                            if (scgraphicssecpackagemessage.scjittertasks.Length > 0)
-                                            {
-                                                if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                                {
-                                                    //if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scjittertasks[0][0].hasinit == 1)
-                                                    {
-                                                        if (scgraphicssecpackagemessage.scgraphicssec.activatevoxelinstancedvirtualdesktop == 1)
-                                                        {
-                                                            //scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.workondrawmesh(scgraphicssecpackagemessage);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
 
 
 
