@@ -860,8 +860,9 @@ namespace sccs.scgraphics
                 {
                     speedRot = 0.45f;
                     speedPos = 0.025f;
+
                     RotationX = 0;
-                    RotationY = 0;
+                    RotationY = 180;
                     RotationZ = 0;
 
                     RotationX4Pelvis = 0;

@@ -2962,10 +2962,12 @@ namespace sccs.scgraphics
                                         {
 
 
+                                            /*
+                                            _human_inst_rig_x = 10;
+                                            _human_inst_rig_y = 1;
+                                            _human_inst_rig_z = 10;*/
 
-                                            //_human_inst_rig_x = 10;
-                                            //_human_inst_rig_y = 1;
-                                            //_human_inst_rig_z = 10;
+
 
                                             ikvoxelbody = new sccsikvoxellimbs[(somechunkpriminstancesikvoxelbodywidthR)];
 
@@ -16623,8 +16625,8 @@ namespace sccs.scgraphics
             if (Program._useOculusRift == 1)
             {
 
-                Matrix hmd_matrix_current = Matrix.Identity;
-                Matrix hmdmatrixcurrentforpelvis = Matrix.Identity;
+                hmd_matrix_current = Matrix.Identity;
+                hmdmatrixcurrentforpelvis = Matrix.Identity;
                 //HEADSET POSITION
                 displayMidpoint = sccs.scgraphics.scdirectx.D3D.OVR.GetPredictedDisplayTime(sccs.scgraphics.scdirectx.D3D.sessionPtr, 0);
                 trackingState = sccs.scgraphics.scdirectx.D3D.OVR.GetTrackingState(sccs.scgraphics.scdirectx.D3D.sessionPtr, displayMidpoint, true);
@@ -17689,8 +17691,8 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
             if (Program._useOculusRift == 1)
             {
 
-                Matrix hmd_matrix_current = Matrix.Identity;
-                Matrix hmdmatrixcurrentforpelvis = Matrix.Identity;
+                hmd_matrix_current = Matrix.Identity;
+                hmdmatrixcurrentforpelvis = Matrix.Identity;
                 //HEADSET POSITION
                 displayMidpoint = sccs.scgraphics.scdirectx.D3D.OVR.GetPredictedDisplayTime(sccs.scgraphics.scdirectx.D3D.sessionPtr, 0);
                 trackingState = sccs.scgraphics.scdirectx.D3D.OVR.GetTrackingState(sccs.scgraphics.scdirectx.D3D.sessionPtr, displayMidpoint, true);
@@ -18349,8 +18351,8 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
             if (Program._useOculusRift == 1)
             {
 
-                Matrix hmd_matrix_current = Matrix.Identity;
-                Matrix hmdmatrixcurrentforpelvis = Matrix.Identity;
+                hmd_matrix_current = Matrix.Identity;
+                hmdmatrixcurrentforpelvis = Matrix.Identity;
                 //HEADSET POSITION
                 displayMidpoint = sccs.scgraphics.scdirectx.D3D.OVR.GetPredictedDisplayTime(sccs.scgraphics.scdirectx.D3D.sessionPtr, 0);
                 trackingState = sccs.scgraphics.scdirectx.D3D.OVR.GetTrackingState(sccs.scgraphics.scdirectx.D3D.sessionPtr, displayMidpoint, true);
@@ -31038,10 +31040,10 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                         Quaternion currentRot;// = hmd_matrix_current;
                         Quaternion.RotationMatrix(ref hmd_matrix_current, out currentRot);
 
-                        hmd_matrix_current = hmd_matrix_current * OriginRot * RotatingMatrix * RotatingMatrixForPelvis * hmdmatrixRot_; //viewMatrix_;
+                        hmd_matrix_current = hmd_matrix_current * scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot; //viewMatrix_;
 
 
-                        hmdmatrixcurrentforpelvis = hmdmatrixcurrentforpelvis * OriginRot * RotatingMatrix * RotatingMatrixForPelvis * hmdmatrixRot_;
+                        hmdmatrixcurrentforpelvis = hmdmatrixcurrentforpelvis * scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot;
 
 
                         //RotatingMatrixForPelvis = hmdmatrixRot_ * RotatingMatrixForPelvis;
@@ -31094,8 +31096,8 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                         //var roll = (float)(0);
                         //var yaw = (float)(0);
 
-                        sccs.scgraphics.scupdate.RotationX4Pelvis = pitcher;
-                        sccs.scgraphics.scupdate.RotationY4Pelvis = 0;
+                        sccs.scgraphics.scupdate.RotationX4Pelvis = 0;
+                        sccs.scgraphics.scupdate.RotationY4Pelvis = yawer;
                         sccs.scgraphics.scupdate.RotationZ4Pelvis = 0;
 
                         sccs.scgraphics.scupdate.rotatingMatrixForPelvis = SharpDX.Matrix.RotationYawPitchRoll(pitcher, 0, 0);
@@ -31351,7 +31353,13 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                         Quaternion currentRot;// = hmd_matrix_current;
                         Quaternion.RotationMatrix(ref hmd_matrix_current, out currentRot);
 
-                        hmd_matrix_current = hmd_matrix_current * OriginRot * RotatingMatrix * RotatingMatrixForPelvis * hmdmatrixRot_; //viewMatrix_;
+                        //hmd_matrix_current = hmd_matrix_current * OriginRot * RotatingMatrix * RotatingMatrixForPelvis * hmdmatrixRot_; //viewMatrix_;
+
+
+                        hmd_matrix_current = hmd_matrix_current * scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot; //viewMatrix_;
+
+
+                        //hmdmatrixcurrentforpelvis = hmdmatrixcurrentforpelvis * scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot;
 
 
                         //Quaternion currentRotAfter;

@@ -322,8 +322,10 @@ namespace sccs.scgraphics
             deviceContext.UnmapSubresource(_cuber.InstanceRotationBufferUP, 0);
             mappedResource.Dispose();
 
+
             if (_switchOnce == 0)
             {
+              
                 try
                 {
                     deviceContext.MapSubresource(_constantLightBuffer, MapMode.WriteDiscard, SharpDX.Direct3D11.MapFlags.None, out mappedResource);
@@ -337,6 +339,28 @@ namespace sccs.scgraphics
                 }
                 //_switchOnce = 1;
             }
+
+            
+            //deviceContext.InputAssembler.SetVertexBuffers(0, new VertexBufferBinding(_cuber.VertexBuffer, Utilities.SizeOf<sc_voxel.DVertex>(), 0));
+            /*deviceContext.InputAssembler.SetVertexBuffers(1, new[]
+            {
+                new VertexBufferBinding(_cuber.InstanceBuffer, Marshal.SizeOf(typeof(sc_voxel.DInstanceType)),0),
+            });
+            deviceContext.InputAssembler.SetVertexBuffers(2, new[]
+            {
+                new VertexBufferBinding(_cuber.InstanceRotationBuffer, Marshal.SizeOf(typeof(sc_voxel.DInstanceData)),0),
+            });
+            deviceContext.InputAssembler.SetVertexBuffers(3, new[]
+            {
+                new VertexBufferBinding(_cuber.InstanceRotationBufferRIGHT, Marshal.SizeOf(typeof(sc_voxel.DInstanceData)),0),
+            });
+            deviceContext.InputAssembler.SetVertexBuffers(4, new[]
+            {
+                new VertexBufferBinding(_cuber.InstanceRotationBufferUP, Marshal.SizeOf(typeof(sc_voxel.DInstanceData)),0),
+            });
+            //deviceContext.InputAssembler.SetIndexBuffer(_cuber.IndexBuffer, SharpDX.DXGI.Format.R32_UInt, 0);
+            deviceContext.InputAssembler.PrimitiveTopology =SharpDX.Direct3D.PrimitiveTopology.TriangleList;
+            */
 
             deviceContext.InputAssembler.InputLayout = Layout;
             deviceContext.VertexShader.Set(VertexShader);

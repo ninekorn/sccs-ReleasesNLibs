@@ -720,16 +720,14 @@ namespace sccs.scgraphics
 
 
 
-
-
                 for (int x = 0; x < instX; x++)
                 {
                     for (int y = 0; y < instY; y++)
                     {
                         for (int z = 0; z < instZ; z++)
                         {
-                            // Vector3 position = new Vector3(x * offsetPosX, y * offsetPosY, z * offsetPosZ);
-                            Vector3 position = chunkpos;
+                            Vector3 position = new Vector3(x * offsetPosX, y * offsetPosY, z * offsetPosZ);
+                            //Vector3 position = chunkpos;
 
 
                             Matrix _tempMatrix = matroxer;

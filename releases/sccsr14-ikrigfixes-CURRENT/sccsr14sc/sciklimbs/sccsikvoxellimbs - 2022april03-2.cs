@@ -473,7 +473,7 @@ namespace sccs
             int _inst_p_pelvis_z = _human_inst_rig_z;
 
             Matrix WorldMatrix = Matrix.Identity;
-            float _dist_between = 0.25f;
+            float _dist_between = 1;
             int tempIndex = 0;
             bool is_static = true;
             int _addToWorld = 0;
@@ -1900,7 +1900,7 @@ namespace sccs
 
 
             var WorldMatrix = Matrix.Identity;
-            float _dist_between = 0.25f;
+            float _dist_between = 1;
             int _addToWorld = 0;
 
             int voxel_type = 2;
@@ -2178,7 +2178,6 @@ namespace sccs
             //vertoffsety = -40 * voxel_general_size ;
             //vertoffsetz = -13 * voxel_general_size;
 
-
             minx = 7;
             miny = 7;
             minz = 7;
@@ -2191,19 +2190,20 @@ namespace sccs
             diagminy = 7;
             diagminz = 7;
 
-            chunkwidthl = 7;
-            chunkwidthr = 6;
+            chunkwidthl = 5;
+            chunkwidthr = 4;
 
-            chunkheightl = 7;
-            chunkheightr = 6;
+            chunkheightl = 5;
+            chunkheightr = 4;
 
-            chunkdepthl = 31;
-            chunkdepthr = 30;
+            chunkdepthl = 29;
+            chunkdepthr = 28;
             distance = 63;
 
-            sizelowerax = (chunkwidthl + chunkwidthr) * voxeliknewsize;
-            sizeloweray = (chunkheightl + chunkheightr) * voxeliknewsize;
-            sizeloweraz = (chunkdepthl + chunkdepthr) * voxeliknewsize;
+             sizelowerax = (chunkwidthl + chunkwidthr) * voxeliknewsize;
+             sizeloweray = (chunkheightl + chunkheightr) * voxeliknewsize;
+             sizeloweraz = (chunkdepthl + chunkdepthr) * voxeliknewsize;
+
 
             _type_of_cube = 2;
             _player_rght_lower_arm[0][0] = new sc_voxel();//0.035f, 0.1055f, 0.035f
@@ -2330,32 +2330,7 @@ namespace sccs
 
 
 
-            minx = 7;
-            miny = 7;
-            minz = 7;
 
-            diagmaxx = 7;
-            diagmaxy = 7;
-            diagmaxz = 7;
-
-            diagminx = 7;
-            diagminy = 7;
-            diagminz = 7;
-
-            chunkwidthl = 1;
-            chunkwidthr = 0;
-
-            chunkheightl = 1;
-            chunkheightr = 0;
-
-            chunkdepthl = 1;
-            chunkdepthr = 0;
-            distance = 5;
-
-
-            sizelowerax = (chunkwidthl + chunkwidthr) * voxeliknewsize;
-            sizeloweray = (chunkheightl + chunkheightr) * voxeliknewsize;
-            sizeloweraz = (chunkdepthl + chunkdepthr) * voxeliknewsize;
 
             vertoffsetx = 0;
             vertoffsety = 0;
@@ -2385,11 +2360,7 @@ namespace sccs
             //voxel_type = 0;
             _type_of_cube = 2;
             _player_rght_elbow_target[0][0] = new sc_voxel();
-            _player_rght_elbow_target[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight,
-                0, 1, 1, 1, sizelowerax, sizeloweray, sizeloweraz, new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle,
-                _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ, _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTarget,
-                      minx, miny, minz, diagmaxx, diagmaxy, diagmaxz, diagminx, diagminy, diagminz, chunkwidthl, chunkwidthr, chunkheightl, chunkheightr, chunkdepthl, chunkdepthr, 
-                      voxel_general_size, Vector3.Zero, 25, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
+            _player_rght_elbow_target[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight, 0, 1, 1, 1, 0.05f, 0.05f, 0.05f, new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle, _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ, _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTarget, 2, 2, 2, 2, 2, 2, 9, 9, 9, 10, 9, 10, 9, 10, 9, voxel_general_size, Vector3.Zero, 25, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
             worldMatrix_instances_r_elbow_target[0][0] = new Matrix[_inst_p_r_hand_x * _inst_p_r_hand_y * _inst_p_r_hand_z];
             for (int i = 0; i < worldMatrix_instances_r_elbow_target[0][0].Length; i++)
             {
@@ -2401,32 +2372,6 @@ namespace sccs
 
 
 
-            minx = 7;
-            miny = 7;
-            minz = 7;
-
-            diagmaxx = 7;
-            diagmaxy = 7;
-            diagmaxz = 7;
-
-            diagminx = 7;
-            diagminy = 7;
-            diagminz = 7;
-
-            chunkwidthl = 1;
-            chunkwidthr = 0;
-
-            chunkheightl = 1;
-            chunkheightr = 0;
-
-            chunkdepthl = 1;
-            chunkdepthr = 0;
-            distance = 5;
-
-
-            sizelowerax = (chunkwidthl + chunkwidthr) * voxeliknewsize;
-            sizeloweray = (chunkheightl + chunkheightr) * voxeliknewsize;
-            sizeloweraz = (chunkdepthl + chunkdepthr) * voxeliknewsize;
 
 
             //RIGHT ELBOW TARGET TWO
@@ -2456,10 +2401,7 @@ namespace sccs
             //voxel_type = 0;
             _type_of_cube = 2;
             _player_rght_elbow_target_two[0][0] = new sc_voxel();
-            _player_rght_elbow_target_two[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight, 0, 1, 1, 1, sizelowerax, sizeloweray, sizeloweraz,
-                new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle, _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ,
-                _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTargettwo,
-                      minx, miny, minz, diagmaxx, diagmaxy, diagmaxz, diagminx, diagminy, diagminz, chunkwidthl, chunkwidthr, chunkheightl, chunkheightr, chunkdepthl, chunkdepthr, voxel_general_size, Vector3.Zero, 75, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
+            _player_rght_elbow_target_two[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight, 0, 1, 1, 1, 0.05f, 0.05f, 0.05f, new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle, _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ, _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTargettwo, 2, 2, 2, 2, 2, 2, 9, 9, 9, 10, 9, 10, 9, 10, 9, voxel_general_size, Vector3.Zero, 75, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
             worldMatrix_instances_r_elbow_target_two[0][0] = new Matrix[_inst_p_r_hand_x * _inst_p_r_hand_y * _inst_p_r_hand_z];
             for (int i = 0; i < worldMatrix_instances_r_elbow_target_two[0][0].Length; i++)
             {
@@ -2472,32 +2414,6 @@ namespace sccs
 
 
 
-            minx = 7;
-            miny = 7;
-            minz = 7;
-
-            diagmaxx = 7;
-            diagmaxy = 7;
-            diagmaxz = 7;
-
-            diagminx = 7;
-            diagminy = 7;
-            diagminz = 7;
-
-            chunkwidthl = 1;
-            chunkwidthr = 0;
-
-            chunkheightl = 1;
-            chunkheightr = 0;
-
-            chunkdepthl = 1;
-            chunkdepthr = 0;
-            distance = 5;
-
-
-            sizelowerax = (chunkwidthl + chunkwidthr) * voxeliknewsize;
-            sizeloweray = (chunkheightl + chunkheightr) * voxeliknewsize;
-            sizeloweraz = (chunkdepthl + chunkdepthr) * voxeliknewsize;
 
 
             //RIGHT ELBOW TARGET THREE
@@ -2527,11 +2443,7 @@ namespace sccs
             //voxel_type = 0;
             _type_of_cube = 2;
             _player_rght_elbow_target_three[0][0] = new sc_voxel();
-            _player_rght_elbow_target_three[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight, 0, 1, 1, 1, sizelowerax, sizeloweray, sizeloweraz, 
-                new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle, _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ, 
-                _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTargettwo,
-                minx, miny, minz, diagmaxx, diagmaxy, diagmaxz, diagminx, diagminy, diagminz, chunkwidthl, chunkwidthr, chunkheightl, chunkheightr, chunkdepthl, chunkdepthr,
-                voxel_general_size, Vector3.Zero, 75, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
+            _player_rght_elbow_target_three[0][0].Initialize(SC_console_directx.D3D, SC_console_directx.D3D.SurfaceWidth, SC_console_directx.D3D.SurfaceHeight, 0, 1, 1, 1, 0.05f, 0.05f, 0.05f, new Vector4(r, g, b, a), _inst_p_r_hand_x, _inst_p_r_hand_y, _inst_p_r_hand_z, Program.consoleHandle, _tempMatroxer, _type_of_cube, offsetPosX, offsetPosY, offsetPosZ, _thejitter_world, _mass, is_static, sccs.scgraphics.scdirectx.BodyTag.PlayerRightElbowTargettwo, 2, 2, 2, 2, 2, 2, 9, 9, 9, 10, 9, 10, 9, 10, 9, voxel_general_size, Vector3.Zero, 75, vertoffsetx, vertoffsety, vertoffsetz, 0, voxel_type); //, "terrainGrassDirt.bmp" //0.00035f
             worldMatrix_instances_r_elbow_target_three[0][0] = new Matrix[_inst_p_r_hand_x * _inst_p_r_hand_y * _inst_p_r_hand_z];
             for (int i = 0; i < worldMatrix_instances_r_elbow_target_three[0][0].Length; i++)
             {
@@ -3159,7 +3071,7 @@ namespace sccs
 
 
             var WorldMatrix = Matrix.Identity;
-            float _dist_between = 0.25f;
+            float _dist_between = 1;
             int _addToWorld = 0;
 
             int voxel_type = 2;
@@ -5099,9 +5011,9 @@ namespace sccs
                     MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
                     MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
 
-                    //MOVINGPOINTER.X += OFFSETPOS.X;
-                    //MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    //MOVINGPOINTER.Z += OFFSETPOS.Z;
+                    MOVINGPOINTER.X += OFFSETPOS.X;
+                    MOVINGPOINTER.Y += OFFSETPOS.Y;
+                    MOVINGPOINTER.Z += OFFSETPOS.Z;
 
                     //someMatRight.M41 += OFFSETPOS.X;
                     //someMatRight.M42 += OFFSETPOS.Y;
@@ -5212,7 +5124,7 @@ namespace sccs
                     matrixerer = thetorsorotation;
 
                     //realPosOfRS += tempOffset;
-                    posshoulder += OFFSETPOS;
+                    //realPosOfRS += OFFSETPOS;
 
                     //realPosOfRS = realPosOfRS + (current_rotation_of_torso_pivot_right * (_player_rght_shldr[0][0]._total_torso_width));
                     //realPosOfRS = realPosOfRS + (-current_rotation_of_torso_pivot_up * (_player_rght_shldr[0][0]._total_torso_height * 1));
@@ -5320,7 +5232,7 @@ namespace sccs
                     matrixerer = thetorsorotation;
 
                     //realPosOfRS += tempOffset;
-                    posshoulder += OFFSETPOS;
+                    //realPosOfRS += OFFSETPOS;
 
                     //realPosOfRS = realPosOfRS + (current_rotation_of_torso_pivot_right * (_player_rght_shldr[0][0]._total_torso_width));
                     //realPosOfRS = realPosOfRS + (-current_rotation_of_torso_pivot_up * (_player_rght_shldr[0][0]._total_torso_height * 1));
@@ -5349,9 +5261,9 @@ namespace sccs
                     MOVINGPOINTER = MOVINGPOINTER + -(mainarmparentmeshobject._arrayOfInstances[_iterator].updirection * (diffNormPosY));
                     MOVINGPOINTER = MOVINGPOINTER + (mainarmparentmeshobject._arrayOfInstances[_iterator].forwarddirection * (diffNormPosZ));
 
-                    //MOVINGPOINTER.X += OFFSETPOS.X;
-                    //MOVINGPOINTER.Y += OFFSETPOS.Y;
-                    //MOVINGPOINTER.Z += OFFSETPOS.Z;
+                    MOVINGPOINTER.X += OFFSETPOS.X;
+                    MOVINGPOINTER.Y += OFFSETPOS.Y;
+                    MOVINGPOINTER.Z += OFFSETPOS.Z;
 
 
                     matrixerer = someMatRight * finalRotationMatrix;
@@ -5374,52 +5286,20 @@ namespace sccs
 
 
 
-                if (somechunkpriminstanceikarmvoxelindex == 0)//right hand
+                if (tempDir.Length() > totalArmLengthRight*1.00923f)
                 {
-                    if (tempDir.Length() > totalArmLengthRight * 1.00923f)
-                    {
-                        //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
-                        //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
-                        tempDir.Normalize();
-                        Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.00923f));
-                        MOVINGPOINTER.X = tempVect.X;
-                        MOVINGPOINTER.Y = tempVect.Y;
-                        MOVINGPOINTER.Z = tempVect.Z;
+                    //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
+                    //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
+                    tempDir.Normalize();
+                    Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.00923f));
+                    MOVINGPOINTER.X = tempVect.X;
+                    MOVINGPOINTER.Y = tempVect.Y;
+                    MOVINGPOINTER.Z = tempVect.Z;
 
-                        matrixerer.M41 = MOVINGPOINTER.X;
-                        matrixerer.M42 = MOVINGPOINTER.Y;
-                        matrixerer.M43 = MOVINGPOINTER.Z;
-                        matrixerer.M44 = 1;
-                    }
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 1)
-                {
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 2)
-                {
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 3)//lefthand
-                {
-                    if (tempDir.Length() > totalArmLengthRight * 1.00923f)
-                    {
-                        //Console.WriteLine("> tempDir.Length " + somechunkpriminstanceikarmvoxelindex);
-                        //Program.MessageBox((IntPtr)0, "" + tempDir.Length(), "sc core systems message", 0);
-                        tempDir.Normalize();
-                        Vector3 tempVect = somePosOfSHLDR + (tempDir * (totalArmLengthRight * 1.00923f));
-                        MOVINGPOINTER.X = tempVect.X;
-                        MOVINGPOINTER.Y = tempVect.Y;
-                        MOVINGPOINTER.Z = tempVect.Z;
-
-                        matrixerer.M41 = MOVINGPOINTER.X;
-                        matrixerer.M42 = MOVINGPOINTER.Y;
-                        matrixerer.M43 = MOVINGPOINTER.Z;
-                        matrixerer.M44 = 1;
-                    }
-
-
-
+                    matrixerer.M41 = MOVINGPOINTER.X;
+                    matrixerer.M42 = MOVINGPOINTER.Y;
+                    matrixerer.M43 = MOVINGPOINTER.Z;
+                    matrixerer.M44 = 1;
                 }
 
 
@@ -5507,7 +5387,7 @@ namespace sccs
 
                 //Console.WriteLine("x:" + _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41 + " y:" + _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42 + " z:" + _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
 
-                
+
                 Vector3 shoulderposition = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
                 _rotMatrixer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
                 Quaternion.RotationMatrix(ref _rotMatrixer, out forTest);
@@ -5519,6 +5399,8 @@ namespace sccs
 
 
                 shoulderposition = shoulderposition + (-direction_feet_up_ori * _player_rght_shldr[0][0]._total_torso_height * 0.5f);
+
+
 
 
                 var somePosOfRightHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
@@ -5572,11 +5454,26 @@ namespace sccs
                 var direlbowtargetoneu = sc_maths._getDirection(Vector3.Up, forTest);
 
 
-                var targettwotoshoulder = shoulderposition - somePosOfUpperElbowTargetTwo;
-                var targetonetoshoulder = shoulderposition - somePosOfUpperElbowTargetOne;
-                Vector3 dirrightforelbowcross;
-                Vector3.Cross(ref targettwotoshoulder, ref targetonetoshoulder, out dirrightforelbowcross);
-                dirrightforelbowcross.Normalize();
+
+                Vector3 upvectorreferencetocreateothervec = Vector3.Zero;//
+
+                if (somechunkpriminstanceikarmvoxelindex == 0)//right hand
+                {
+                    upvectorreferencetocreateothervec = Vector3.Up;// 
+
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 1)
+                {
+                    upvectorreferencetocreateothervec = Vector3.ForwardRH;// 
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 2)
+                {
+                    upvectorreferencetocreateothervec = Vector3.ForwardRH;// 
+                }
+                else if (somechunkpriminstanceikarmvoxelindex == 3)//lefthand
+                {
+                    upvectorreferencetocreateothervec = Vector3.Up;// 
+                }
 
 
 
@@ -5585,16 +5482,16 @@ namespace sccs
                 //upvectorreferencetocreateothervec.X = elbowpositionrighttowardshandsolvingforxpoint.X;
                 //upvectorreferencetocreateothervec.Z = elbowpositionrighttowardshandsolvingforxpoint.Z;
 
-                //if (upvectorreferencetocreateothervec.X == dirshoulderpivottohand.X && upvectorreferencetocreateothervec.Y == dirshoulderpivottohand.Y && upvectorreferencetocreateothervec.Z == dirshoulderpivottohand.Z )
-                //{
-                //    upvectorreferencetocreateothervec = Vector3.Right;
-                //}
+                if (upvectorreferencetocreateothervec.X == dirshoulderpivottohand.X && upvectorreferencetocreateothervec.Y == dirshoulderpivottohand.Y && upvectorreferencetocreateothervec.Z == dirshoulderpivottohand.Z )
+                {
+                    upvectorreferencetocreateothervec = Vector3.Right;
+                }
 
-                //Vector3 crossforpointofreferencefortargettwodirright;
-                //Vector3.Cross(ref upvectorreferencetocreateothervec, ref dirshoulderpivottohand, out crossforpointofreferencefortargettwodirright);
-                //crossforpointofreferencefortargettwodirright.Normalize();
+                Vector3 crossforpointofreferencefortargettwodirright;
+                Vector3.Cross(ref upvectorreferencetocreateothervec, ref dirshoulderpivottohand, out crossforpointofreferencefortargettwodirright);
+                crossforpointofreferencefortargettwodirright.Normalize();
 
-                Vector3 targettwopointA = elbowpositionrighttowardshandsolvingforxpoint + (dirrightforelbowcross);
+                Vector3 targettwopointA = elbowpositionrighttowardshandsolvingforxpoint + (crossforpointofreferencefortargettwodirright);
 
                 Vector3 shouldertopointadir = targettwopointA - shoulderposition;
                 shouldertopointadir.Normalize();
@@ -5610,155 +5507,6 @@ namespace sccs
                 dirshoulderelbow.Normalize();
 
                 Vector3 realmiddlepivotupperarm = shoulderposition + (dirshoulderelbow * lengthOfUpperArmRight * 0.5f);    
-                //realmiddlepivotupperarm = realmiddlepivotupperarm + (-dirshoulderelbow * _player_rght_shldr[0][0]._total_torso_depth * 0.5f);
-
-                //Vector3 fakeoriginpointlowerarmduetowrongsizesofabove = realmiddlepivotupperarm + (dirshoulderelbow * _player_rght_upper_arm[0][0]._total_torso_depth * 0.5f);
-                Vector3 fakeelbowtohanddir = somePosOfRightHand - elbowposition;
-                fakeelbowtohanddir.Normalize();
-
-                Vector3 currentposlowerarm = elbowposition + (fakeelbowtohanddir * _player_rght_lower_arm[0][0]._total_torso_depth * 0.5f);// + (dirshoulderelbow * _player_rght_shldr[0][0]._total_torso_depth * 0.5f);
-                
-
-                _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWCROSSVEC = dirrightforelbowcross;
-                _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._ELBOWPOSITION = elbowposition;// fakeoriginpointlowerarmduetowrongsizesofabove;// elbowposition;
-
-                Vector3 otherpointrightofrealelbow = elbowposition + (dirrightforelbowcross);
-
-                Vector3 dirshouldertootherpointrightofelbow = otherpointrightofrealelbow - shoulderposition;
-                dirshouldertootherpointrightofelbow.Normalize();
-
-                Vector3 crosstogetupvectorofupperarm;
-                Vector3.Cross(ref dirshouldertootherpointrightofelbow, ref dirshoulderelbow, out crosstogetupvectorofupperarm);
-                crosstogetupvectorofupperarm.Normalize();
-
-                var shoulderRotationMatrixRight = Matrix.LookAtRH(shoulderposition, shoulderposition + dirshoulderelbow, crosstogetupvectorofupperarm);
-                shoulderRotationMatrixRight.Invert();
-                
-            
-                matrixerer = shoulderRotationMatrixRight;
-                matrixerer.M41 = realmiddlepivotupperarm.X;
-                matrixerer.M42 = realmiddlepivotupperarm.Y;
-                matrixerer.M43 = realmiddlepivotupperarm.Z;
-                matrixerer.M44 = 1;
-
-                worldMatrix_instances_r_upperarm[0][0][_iterator] = matrixerer;
-                _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-
-
-                matrixerer = Matrix.Identity;// _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                matrixerer.M41 = elbowposition.X;
-                matrixerer.M42 = elbowposition.Y;
-                matrixerer.M43 = elbowposition.Z;
-                matrixerer.M44 = 1;
-                worldMatrix_instances_r_elbow_target_three[0][0][_iterator] = matrixerer;
-                _player_rght_elbow_target_three[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-
-
-                
-
-
-
-
-
-
-
-
-                /*
-                //////////////////
-                //UPPER ARM RIGHT
-                Vector3 shoulderposition = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-
-                MOVINGPOINTER = new Vector3(ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M41, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M42, ikvoxelbody._player_torso[0][0]._arrayOfInstances[_iterator]._ORIGINPOSITION.M43);
-                TORSOPIVOT = MOVINGPOINTER;
-
-                _rotMatrixer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-
-                Quaternion.RotationMatrix(ref _rotMatrixer, out forTest);
-                direction_feet_forward_ori = sc_maths._getDirection(Vector3.ForwardRH, forTest);
-                direction_feet_right_ori = sc_maths._getDirection(Vector3.Right, forTest);
-                direction_feet_up_ori = sc_maths._getDirection(Vector3.Up, forTest);
-
-                var test = MOVINGPOINTER + OFFSETPOS;
-                Quaternion.RotationMatrix(ref finalRotationMatrix, out otherQuat);
-                direction_feet_forward = sc_maths._getDirection(Vector3.ForwardRH, otherQuat);
-                direction_feet_right = sc_maths._getDirection(Vector3.Right, otherQuat);
-                direction_feet_up = sc_maths._getDirection(Vector3.Up, otherQuat);
-                diffNormPosX = (test.X) - _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41;
-                diffNormPosY = (test.Y) - _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42;
-                diffNormPosZ = (test.Z) - _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43;
-                var realPIVOTOfUpperArm = MOVINGPOINTER;
-                var realPositionOfUpperArm = MOVINGPOINTER + -(direction_feet_right * (diffNormPosX));
-                realPositionOfUpperArm = realPositionOfUpperArm + -(direction_feet_up * (diffNormPosY));
-                realPositionOfUpperArm = realPositionOfUpperArm + -(direction_feet_forward * (diffNormPosZ));
-                realPIVOTOfUpperArm = realPIVOTOfUpperArm + -(direction_feet_right * (diffNormPosX));
-                realPIVOTOfUpperArm = realPIVOTOfUpperArm + -(direction_feet_up * (diffNormPosY));
-                realPIVOTOfUpperArm = realPIVOTOfUpperArm + -(direction_feet_forward * (diffNormPosZ));
-                realPIVOTOfUpperArm = realPIVOTOfUpperArm + (direction_feet_up_ori * (_player_rght_shldr[0][0]._total_torso_height * connectorOfUpperArmRightOffsetMul));
-
-                realPIVOTOfUpperArm.X = realPIVOTOfUpperArm.X + OFFSETPOS.X;
-                realPIVOTOfUpperArm.Y = realPIVOTOfUpperArm.Y + OFFSETPOS.Y;
-                realPIVOTOfUpperArm.Z = realPIVOTOfUpperArm.Z + OFFSETPOS.Z;
-                Vector3 currentFINALPIVOTUPPERARM = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43) + (direction_feet_up_ori * (_player_rght_shldr[0][0]._total_torso_height * connectorOfUpperArmRightOffsetMul));// realPIVOTOfUpperArm;
-                realPIVOTOfUpperArm = currentFINALPIVOTUPPERARM;
-                _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator]._UPPERPIVOT = currentFINALPIVOTUPPERARM;
-
-                //WAYPOINT
-                var somePosOfRightHand = new Vector3(_player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_hnd[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                var somePosOfUpperElbowTargetTwo = new Vector3(_player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                var somePosOfUpperElbowTargetOne = new Vector3(_player_rght_elbow_target[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_elbow_target[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_elbow_target[0][0]._arrayOfInstances[_iterator].current_pos.M43);
-                var someDirFromElbowTargetOneToTwo = somePosOfUpperElbowTargetTwo - somePosOfUpperElbowTargetOne;
-                var someDirFromElbowTargetOneToRghtHand = somePosOfRightHand - somePosOfUpperElbowTargetOne;
-                var targettwotoshoulder = shoulderposition - somePosOfUpperElbowTargetTwo;
-                var targetonetoshoulder = shoulderposition - somePosOfUpperElbowTargetOne;
-
-
-                Vector3 crossRes;
-                Vector3.Cross(ref targettwotoshoulder, ref targetonetoshoulder, out crossRes);
-                crossRes.Normalize();
-
-                var targettwopointA = realPIVOTOfUpperArm + (-crossRes);
-
-                var dirshoulderpivottohand = somePosOfRightHand - shoulderposition;
-                var lengthOfDirFromPivotUpperToHand = dirshoulderpivottohand.Length();
-                dirshoulderpivottohand.Normalize();
-
-                var upperEquationCirCirIntersect = (lengthOfDirFromPivotUpperToHand * lengthOfDirFromPivotUpperToHand) - (lengthOfLowerArmRight * lengthOfLowerArmRight) + (lengthOfUpperArmRight * lengthOfUpperArmRight);
-                var adjacentSolvingForX = upperEquationCirCirIntersect / (2 * lengthOfDirFromPivotUpperToHand);
-                adjacentSolvingForX = Math.Min(adjacentSolvingForX, lengthOfUpperArmRight - lengthOfUpperArmRight * 0.001f);
-                var resulter = Math.Pow(lengthOfUpperArmRight, 2) - Math.Pow(adjacentSolvingForX, 2);
-                if (resulter < 0)
-                {
-                    resulter *= -1;
-                }
-                var oppositeSolvingForHalfA = (float)Math.Sqrt(resulter);
-                oppositeSolvingForHalfA = Math.Min(oppositeSolvingForHalfA, lengthOfUpperArmRight - lengthOfUpperArmRight * 0.001f);
-                if (oppositeSolvingForHalfA < 0)
-                {
-                    oppositeSolvingForHalfA *= -1;
-                }
-
-                Vector3 crossforpointofreferencefortargettwodirright;
-                Vector3.Cross(ref crossRes, ref dirshoulderpivottohand, out crossforpointofreferencefortargettwodirright);
-                crossforpointofreferencefortargettwodirright.Normalize();
-
-                Vector3 elbowpositionrighttowardshandsolvingforxpoint = shoulderposition + (dirshoulderpivottohand * adjacentSolvingForX);
-
-                Vector3 shouldertopointadir = targettwopointA - shoulderposition;
-                shouldertopointadir.Normalize();
-
-                Vector3 crosstogetupvec;
-                Vector3.Cross(ref shouldertopointadir, ref dirshoulderpivottohand, out crosstogetupvec);
-                crosstogetupvec.Normalize();
-
-                Vector3 elbowposition = elbowpositionrighttowardshandsolvingforxpoint + (crosstogetupvec * oppositeSolvingForHalfA);
-
-
-                Vector3 dirshoulderelbow = elbowposition - shoulderposition;
-                dirshoulderelbow.Normalize();
-
-                Vector3 realmiddlepivotupperarm = shoulderposition + (dirshoulderelbow * lengthOfUpperArmRight * 0.5f);
                 //realmiddlepivotupperarm = realmiddlepivotupperarm + (-dirshoulderelbow * _player_rght_shldr[0][0]._total_torso_depth * 0.5f);
 
                 //Vector3 fakeoriginpointlowerarmduetowrongsizesofabove = realmiddlepivotupperarm + (dirshoulderelbow * _player_rght_upper_arm[0][0]._total_torso_depth * 0.5f);
@@ -5782,8 +5530,8 @@ namespace sccs
 
                 var shoulderRotationMatrixRight = Matrix.LookAtRH(shoulderposition, shoulderposition + dirshoulderelbow, crosstogetupvectorofupperarm);
                 shoulderRotationMatrixRight.Invert();
-
-
+                
+            
                 matrixerer = shoulderRotationMatrixRight;
                 matrixerer.M41 = realmiddlepivotupperarm.X;
                 matrixerer.M42 = realmiddlepivotupperarm.Y;
@@ -5792,25 +5540,12 @@ namespace sccs
 
                 worldMatrix_instances_r_upperarm[0][0][_iterator] = matrixerer;
                 _player_rght_upper_arm[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-                */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
                 //var rotationshouldertohand = Matrix.LookAtRH(shoulderposition, shoulderposition + dirshoulderpivottohand, crosstogetupvec);
                 //rotationshouldertohand.Invert();
+                //Vector3 shoulderposition = new Vector3(_player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M41, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M42, _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos.M43);
 
                 //_rotMatrixer = [0][0]._arrayOfInstances[_iterator].current_pos;
                 /*Quaternion.RotationMatrix(ref rotationshouldertohand, out forTest);
@@ -5818,21 +5553,21 @@ namespace sccs
                 var dirshouldertohandr = sc_maths._getDirection(Vector3.Right, forTest);
                 var dirshouldertohandu = sc_maths._getDirection(Vector3.Up, forTest);*/
 
-                var dirshouldertohand = somePosOfRightHand - shoulderposition;
+
 
                 if (somechunkpriminstanceikarmvoxelindex == 0)//right hand
                 {
                     //dirshoulderpivottohand.X *= -1;
-                    Vector3 elbowtargetonepos = shoulderposition - (dirshouldertohand * 0.25f);
-                    elbowtargetonepos = elbowtargetonepos - (direction_feet_forward_ori * 0.5f);
-                    /*Vector3 upvecmod = Vector3.Up;
+                    Vector3 elbowtargetonepos = shoulderposition - (dirshoulderpivottohand * 0.25f);
+
+                    Vector3 upvecmod = Vector3.Up;
                     upvecmod.X = elbowtargetonepos.X;
                     upvecmod.Y = upvecmod.Y * 0.25f;
                     upvecmod.Z = elbowtargetonepos.Z;
                     //upvecmod *= crosstogetupvec;
 
-                    elbowtargetonepos = elbowtargetonepos;// + (upvecmod);
-                    */
+                    elbowtargetonepos = elbowtargetonepos + (upvecmod);
+
 
 
                     //elbowtargetonepos = elbowtargetonepos - (dirshouldertohandr * 0.15f);
@@ -5852,15 +5587,15 @@ namespace sccs
                 else if (somechunkpriminstanceikarmvoxelindex == 1)
                 {
 
-                    Vector3 elbowtargetonepos = shoulderposition - (dirshouldertohand * 0.25f);
+                    Vector3 elbowtargetonepos = shoulderposition - (dirshoulderpivottohand * 0.25f);
 
-                    /*Vector3 upvecmod = Vector3.ForwardRH;
+                    Vector3 upvecmod = Vector3.ForwardRH;
                     upvecmod.X = elbowtargetonepos.X;
                     upvecmod.Y = elbowtargetonepos.Y;
                     upvecmod.Z = upvecmod.Z * 0.25f;
 
                     elbowtargetonepos = elbowtargetonepos + (upvecmod);
-                    */
+
 
 
                     //elbowtargetonepos = elbowtargetonepos - (dirshouldertohandr * 0.15f);
@@ -5878,15 +5613,15 @@ namespace sccs
                 }
                 else if (somechunkpriminstanceikarmvoxelindex == 2)
                 {
-                    Vector3 elbowtargetonepos = shoulderposition - (dirshouldertohand * 0.25f);
+                    Vector3 elbowtargetonepos = shoulderposition - (dirshoulderpivottohand * 0.25f);
 
-                    /*Vector3 upvecmod = Vector3.ForwardRH;
+                    Vector3 upvecmod = Vector3.ForwardRH;
                     upvecmod.X = elbowtargetonepos.X;
                     upvecmod.Y = elbowtargetonepos.Y;
                     upvecmod.Z = upvecmod.Z * 0.25f;
 
-                    elbowtargetonepos = elbowtargetonepos;// + (upvecmod);
-                    */
+                    elbowtargetonepos = elbowtargetonepos + (upvecmod);
+
 
 
                     //elbowtargetonepos = elbowtargetonepos - (dirshouldertohandr * 0.15f);
@@ -5904,18 +5639,16 @@ namespace sccs
                 }
                 else if (somechunkpriminstanceikarmvoxelindex == 3)//lefthand
                 {
-                    //dirshoulderpivottohand.X *= -1;
-                    Vector3 elbowtargetonepos = shoulderposition - (dirshouldertohand * 0.25f);
-                    elbowtargetonepos = elbowtargetonepos - (direction_feet_forward_ori * 0.5f);
+                    Vector3 elbowtargetonepos = shoulderposition - (dirshoulderpivottohand * 0.25f);
 
-                    /*Vector3 upvecmod = Vector3.Up;
+                    Vector3 upvecmod = Vector3.Up;
                     upvecmod.X = elbowtargetonepos.X;
                     upvecmod.Y = upvecmod.Y * 0.25f;
                     upvecmod.Z = elbowtargetonepos.Z;
-                    //upvecmod *= crosstogetupvec;
 
-                    elbowtargetonepos = elbowtargetonepos;// + (upvecmod);
-                    */
+                    elbowtargetonepos = elbowtargetonepos + (upvecmod);
+
+
 
                     //elbowtargetonepos = elbowtargetonepos - (dirshouldertohandr * 0.15f);
                     //elbowtargetonepos = elbowtargetonepos - (dirshouldertohandu * (lengthOfHandRight + lengthOfLowerArmRight + lengthOfUpperArmRight));
@@ -5938,95 +5671,29 @@ namespace sccs
 
 
 
-                if (somechunkpriminstanceikarmvoxelindex == 0)//right hand
-                {
-
-                    var elbowtargetonepos1 = somePosOfRightHand - (direction_feet_up_ori * 0.25f);
 
 
-                    //crosstogetupvectorofupperarm *= -1.5f;
-
-                    //Vector3 moreupdirtoelbow = elbowtargetonepos1 + (-crosstogetupvectorofupperarm);
-
-                    //otherpointrightofrealelbow.X += OFFSETPOS.X;
-                    //otherpointrightofrealelbow.Y += OFFSETPOS.Y;
-                    //otherpointrightofrealelbow.Z += OFFSETPOS.Z;
-
-                    matrixerer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    matrixerer.M41 = elbowtargetonepos1.X;// moreupdirtoelbow.X;
-                    matrixerer.M42 = elbowtargetonepos1.Y;// moreupdirtoelbow.Y;
-                    matrixerer.M43 = elbowtargetonepos1.Z;// moreupdirtoelbow.Z;
-                    matrixerer.M44 = 1;
-                    worldMatrix_instances_r_elbow_target_two[0][0][_iterator] = matrixerer;
-                    _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-                }
-                else  if (somechunkpriminstanceikarmvoxelindex == 1)//right hand
-                {
-                    var elbowtargetonepos1 = somePosOfRightHand + (direction_feet_forward_ori * 0.25f);
 
 
-                    //crosstogetupvectorofupperarm *= -1.5f;
+                //crosstogetupvectorofupperarm *= -1.5f;
 
-                    //Vector3 moreupdirtoelbow = elbowtargetonepos1 + (-crosstogetupvectorofupperarm);
+                Vector3 moreupdirtoelbow = otherpointrightofrealelbow + (-crosstogetupvectorofupperarm);
 
-                    //otherpointrightofrealelbow.X += OFFSETPOS.X;
-                    //otherpointrightofrealelbow.Y += OFFSETPOS.Y;
-                    //otherpointrightofrealelbow.Z += OFFSETPOS.Z;
+                //otherpointrightofrealelbow.X += OFFSETPOS.X;
+                //otherpointrightofrealelbow.Y += OFFSETPOS.Y;
+                //otherpointrightofrealelbow.Z += OFFSETPOS.Z;
 
-                    matrixerer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    matrixerer.M41 = elbowtargetonepos1.X;// moreupdirtoelbow.X;
-                    matrixerer.M42 = elbowtargetonepos1.Y;// moreupdirtoelbow.Y;
-                    matrixerer.M43 = elbowtargetonepos1.Z;// moreupdirtoelbow.Z;
-                    matrixerer.M44 = 1;
-                    worldMatrix_instances_r_elbow_target_two[0][0][_iterator] = matrixerer;
-                    _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 2)//right hand
-                {
-                    var elbowtargetonepos1 = somePosOfRightHand + (direction_feet_forward_ori * 0.25f);
+                matrixerer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
+                matrixerer.M41 = moreupdirtoelbow.X;// moreupdirtoelbow.X;
+                matrixerer.M42 = moreupdirtoelbow.Y;// moreupdirtoelbow.Y;
+                matrixerer.M43 = moreupdirtoelbow.Z;// moreupdirtoelbow.Z;
+                matrixerer.M44 = 1;
+                worldMatrix_instances_r_elbow_target_two[0][0][_iterator] = matrixerer;
+                _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
 
 
-                    //crosstogetupvectorofupperarm *= -1.5f;
-
-                    //Vector3 moreupdirtoelbow = elbowtargetonepos1 + (-crosstogetupvectorofupperarm);
-
-                    //otherpointrightofrealelbow.X += OFFSETPOS.X;
-                    //otherpointrightofrealelbow.Y += OFFSETPOS.Y;
-                    //otherpointrightofrealelbow.Z += OFFSETPOS.Z;
-
-                    matrixerer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    matrixerer.M41 = elbowtargetonepos1.X;// moreupdirtoelbow.X;
-                    matrixerer.M42 = elbowtargetonepos1.Y;// moreupdirtoelbow.Y;
-                    matrixerer.M43 = elbowtargetonepos1.Z;// moreupdirtoelbow.Z;
-                    matrixerer.M44 = 1;
-                    worldMatrix_instances_r_elbow_target_two[0][0][_iterator] = matrixerer;
-                    _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-                }
-                else if (somechunkpriminstanceikarmvoxelindex == 3)//right hand
-                {
-                    var elbowtargetonepos1 = somePosOfRightHand - (direction_feet_up_ori * 0.25f);
 
 
-                    //crosstogetupvectorofupperarm *= -1.5f;
-
-                    //Vector3 moreupdirtoelbow = elbowtargetonepos1 + (-crosstogetupvectorofupperarm);
-
-                    //otherpointrightofrealelbow.X += OFFSETPOS.X;
-                    //otherpointrightofrealelbow.Y += OFFSETPOS.Y;
-                    //otherpointrightofrealelbow.Z += OFFSETPOS.Z;
-
-                    matrixerer = _player_rght_shldr[0][0]._arrayOfInstances[_iterator].current_pos;
-                    matrixerer.M41 = elbowtargetonepos1.X;// moreupdirtoelbow.X;
-                    matrixerer.M42 = elbowtargetonepos1.Y;// moreupdirtoelbow.Y;
-                    matrixerer.M43 = elbowtargetonepos1.Z;// moreupdirtoelbow.Z;
-                    matrixerer.M44 = 1;
-                    worldMatrix_instances_r_elbow_target_two[0][0][_iterator] = matrixerer;
-                    _player_rght_elbow_target_two[0][0]._arrayOfInstances[_iterator].current_pos = matrixerer;
-
-                }
 
 
 
@@ -7447,9 +7114,6 @@ namespace sccs
             _cuber001.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_upper_arm(SC_console_directx.D3D.device.ImmediateContext, _cuber001.IndexCount, _cuber001.InstanceCount, _cuber001._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_upper_arm_BUFFER, _cuber001);
             //IK TARGETS UPPER BODY.
-
-
-            /*
             var _cuber01 = _player_rght_elbow_target[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
@@ -7457,14 +7121,16 @@ namespace sccs
             _cuber01 = _player_rght_elbow_target_two[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ_two(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
+
+
             _cuber01 = _player_r_hand_grab[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_hnd(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_r_hand_grab_BUFFER, _cuber01);
+
+
             _cuber01 = _player_rght_elbow_target_three[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ_two(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
-            */
-
 
             return _sc_jitter_tasks;
         }
@@ -7491,10 +7157,6 @@ namespace sccs
             _cuber001.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_upper_arm(SC_console_directx.D3D.device.ImmediateContext, _cuber001.IndexCount, _cuber001.InstanceCount, _cuber001._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_upper_arm_BUFFER, _cuber001);
             //IK TARGETS UPPER BODY.
-
-
-
-            /*
             var _cuber01 = _player_rght_elbow_target[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
@@ -7502,6 +7164,9 @@ namespace sccs
             _cuber01 = _player_rght_elbow_target_two[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ_two(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
+
+
+
             _cuber01 = _player_r_hand_grab[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_hnd(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_r_hand_grab_BUFFER, _cuber01);
@@ -7509,7 +7174,7 @@ namespace sccs
             _cuber01 = _player_rght_elbow_target_three[0][0];
             _cuber01.Render(SC_console_directx.D3D.device.ImmediateContext);
             scupdate._shaderManager._rend_rgt_elbow_targ_two(SC_console_directx.D3D.device.ImmediateContext, _cuber01.IndexCount, _cuber01.InstanceCount, _cuber01._POSITION, viewMatrix, projectionMatrix, null, _SC_modL_rght_hnd_BUFFER, _cuber01);
-            */
+
 
 
 
