@@ -22,6 +22,9 @@ namespace sccs
     public class SC_instancedChunk
     {
 
+        public int[] choosecolortype;
+
+
         public SC_instancedChunkPrim.DTessellationBufferType[] tessellationBuffer;
         //public SharpDX.Direct3D11.Buffer ConstantTessellationBuffer;
 
@@ -476,7 +479,7 @@ namespace sccs
             arrayofzeromeshinstances = new SC_instancedChunk_instances[numberOfInstancesPerObjectInWidth * numberOfInstancesPerObjectInHeight * numberOfInstancesPerObjectInDepth];
 
 
-
+            choosecolortype = new int[numberOfInstancesPerObjectInWidth * numberOfInstancesPerObjectInHeight * numberOfInstancesPerObjectInDepth];
 
             //instancesbytemaps = new DInstancesByteMap[numberOfInstancesPerObjectInWidth * numberOfInstancesPerObjectInHeight * numberOfInstancesPerObjectInDepth];
             //instancessccsbytemap = new DInstancesccsbytemapxyz[numberOfInstancesPerObjectInWidth * numberOfInstancesPerObjectInHeight * numberOfInstancesPerObjectInDepth];

@@ -90,7 +90,7 @@ namespace sccs
     /// <summary>
     ///   Screen capture of the desktop using DXGI OutputDuplication.
     /// </summary>
-    public unsafe class sccssharpdxscreencapture
+    public class sccssharpdxscreencapture //unsafe
     {
 
         int bitmapcounter = 0;
@@ -107,7 +107,7 @@ namespace sccs
         //readonly Output1 _output1;
         static Texture2D _texture2D;
         static Texture2D _texture2DFinal;
-        OutputDuplication _outputDuplication;
+        public OutputDuplication _outputDuplication;
         Texture2DDescription _textureDescription;
         public static Texture2DDescription _textureDescriptionFinal;
         Texture2DDescription _textureDescriptionFinalFrac;
@@ -395,8 +395,10 @@ namespace sccs
         }
 
 
+
+        
         [STAThread]
-        public sccsscreenframe ScreenCapture(int timeOut)
+        public sccsscreenframe ScreenCapture(int timeOut, out bool _hasAcquiredFrame)
         {
             _hasAcquiredFrame = false;
             try
@@ -404,6 +406,8 @@ namespace sccs
                 if (!acquireFrame(timeOut))
                 {
                     _hasAcquiredFrame = false;
+
+                    //Console.WriteLine("has NOT acquired frame");
 
 
                     return _frameCaptureData;
@@ -448,7 +452,12 @@ namespace sccs
             }
             try
             {
-                SharpDX.Result _result = _outputDuplication.TryAcquireNextFrame(timeOut, out _duplicateFrameInformation, out _screenResource);
+                if (_outputDuplication!= null)
+                {
+                    SharpDX.Result _result = _outputDuplication.TryAcquireNextFrame(timeOut, out _duplicateFrameInformation, out _screenResource);
+
+
+                }
             }
             catch (SharpDXException ex)
             {
@@ -464,6 +473,167 @@ namespace sccs
                 return false;
             }
         }
+
+
+
+        public void DisposeWithoutDevice()
+        {
+
+            //_device?.Dispose();
+            //_device = null;
+            _output1?.Dispose();
+            _output1 = null;
+            _texture2D?.Dispose();
+            _texture2D = null;
+
+            _outputDuplication?.Dispose();
+            _outputDuplication = null;
+            //_textureDescription.Dispose();
+            _bitmap?.Dispose();
+            _bitmap = null;
+
+            //_bitmapPlayerRect.Dispose();
+            if (_screenResource != null)
+            {
+                _screenResource.Dispose();
+                _screenResource = null;
+            }
+
+            //_frameCaptureData.Dispose();
+
+
+
+            if (_lastShaderResourceView != null)
+            {
+                _lastShaderResourceView.Dispose();
+                _lastShaderResourceView = null;
+            }
+
+            if (_texture2DFinal != null)
+            {
+                _texture2DFinal.Dispose();
+                _texture2DFinal = null;
+            }
+
+
+            if (_bitmap != null)
+            {
+                _bitmap.Dispose();
+                _bitmap = null;
+            }
+
+
+
+            if (arrayOfTexture2DFrac != null)
+            {
+                for (int i = 0; i < arrayOfTexture2DFrac.Length; i++)
+                {
+                    if (arrayOfTexture2DFrac[i] != null)
+                    {
+                        arrayOfTexture2DFrac[i].Dispose();
+                        arrayOfTexture2DFrac[i] = null;
+                    }
+                }
+            }
+
+
+
+            if (shaderRes != null)
+            {
+                shaderRes.Dispose();
+                shaderRes = null;
+            }
+
+
+
+            if (_adapter != null)
+            {
+                _adapter.Dispose();
+                _adapter = null;
+            }
+
+
+
+
+            /*
+            _duplicateFrameInformation = null;
+            _textureDescription = null;
+            _textureDescriptionFinal = null;
+            _textureDescriptionFinalFrac = null;
+            */
+
+
+            if (_frameCaptureData._texture2DFinal != null)
+            {
+                _frameCaptureData._texture2DFinal.Dispose();
+                _frameCaptureData._texture2DFinal = null;
+            }
+
+
+
+            if (_frameCaptureData.ShaderResource != null)
+            {
+                _frameCaptureData.ShaderResource.Dispose();
+                _frameCaptureData.ShaderResource = null;
+            }
+
+
+
+            if (_frameCaptureData.ShaderResourceArray != null)
+            {
+                if (_frameCaptureData.ShaderResourceArray.Length > 0)
+                {
+                    for (int i = 0; i < _frameCaptureData.ShaderResourceArray.Length; i++)
+                    {
+                        if (_frameCaptureData.ShaderResourceArray[i] != null)
+                        {
+                            _frameCaptureData.ShaderResourceArray[i].Dispose();
+                            _frameCaptureData.ShaderResourceArray[i] = null;
+                        }
+                    }
+                }
+            }
+
+            if (_frameCaptureData.arrayOfFRACSCREENSPECTRUMBytes != null)
+            {
+                _frameCaptureData.arrayOfFRACSCREENSPECTRUMBytes = null;
+            }
+
+            if (_frameCaptureData.somebitmapforarduino != null)
+            {
+                _frameCaptureData.somebitmapforarduino.Dispose();
+                _frameCaptureData.somebitmapforarduino = null;
+            }
+
+            if (_frameCaptureData.bitmapByteArray != null)
+            {
+                _frameCaptureData.somebitmapforarduino = null;
+            }
+
+
+            if (_frameCaptureData.bitmapEmptyByteArray != null)
+            {
+                _frameCaptureData.bitmapEmptyByteArray = null;
+            }
+
+
+            if (_frameCaptureData.frameByteArray != null)
+            {
+                _frameCaptureData.frameByteArray = null;
+            }
+
+            if (_frameCaptureData.screencapturearrayofbytes != null)
+            {
+                _frameCaptureData.screencapturearrayofbytes = null;
+            }
+
+
+
+            _textureByteArray = null;
+            arrayOfBytes = null;
+            GC.Collect();
+        }
+
 
 
 
@@ -1661,41 +1831,65 @@ namespace sccs
 
        public bool releaseFrame()
         {
-            //_texture2D.Dispose(); // lags like fucking hell
-            for (int i = 0; i < 2; i++)
+            try
             {
-                releasedFrame = true;
-                try
+                //_texture2D.Dispose(); // lags like fucking hell
+                for (int i = 0; i < 2; i++)
                 {
-                    if (_outputDuplication!= null)
+                    releasedFrame = true;
+                    try
                     {
-                        _outputDuplication.ReleaseFrame();
-                    }
-                    else
-                    {
-                        releasedFrame = true;
-                    }
-                }
-                catch (SharpDXException ex)
-                {
-                    releasedFrame = false;
-                    Console.WriteLine(ex.ToString());
-                }
+                        if (_outputDuplication != null)
+                        {
+                            _outputDuplication.ReleaseFrame();
+                        }
+                        else
+                        {
+                            releasedFrame = true;
 
+                        }
+                    }
+                    catch (SharpDXException ex)
+                    {
+
+                        releasedFrame = false;
+                        Console.WriteLine(ex.ToString());
+
+                        //sccs.scgraphics.scupdate.theupdatescriptinstance.sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, this._device);
+
+                    }
+
+                    if (releasedFrame)
+                    {
+                        break;
+                    }
+                }
                 if (releasedFrame)
                 {
-                    break;
+                    return true;
+                }
+                else
+                {
+                    //Console.WriteLine("release frame fail0");
+                    //sccs.scgraphics.scupdate.theupdatescriptinstance.sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, this._device);
+
+                    //sccs.scgraphics.scupdate.sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, this._device); // not that good but let's leave it at that.
+                    return false;
                 }
             }
-            if (releasedFrame)
+            catch (SharpDXException ex)
             {
-                return true;
+
+                releasedFrame = false;
+                Console.WriteLine(ex.ToString());
+
+                //sccs.scgraphics.scupdate.theupdatescriptinstance.sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, this._device);
+
             }
-            else
-            {
-                //sccs.scgraphics.scupdate.sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, this._device); // not that good but let's leave it at that.
-                return false;
-            }
+
+           // Console.WriteLine("release frame fail1");
+            return false;
+
         }
 
         public static void Copy(Device device, Texture2D source, Texture2D target)

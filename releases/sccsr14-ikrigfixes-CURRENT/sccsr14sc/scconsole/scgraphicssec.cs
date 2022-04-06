@@ -60,6 +60,7 @@ namespace sccs.scgraphics
 {
     public class scgraphicssec : IDisposable//: sccs.scgraphics.scupdate//SC_Intermediate_Update
     {
+        int somecolortype = 0;
         Stopwatch keyboardclickstopwatch = new Stopwatch();
         ~scgraphicssec()
         {
@@ -2820,7 +2821,7 @@ namespace sccs.scgraphics
 
                                                     float offsetinstances = 2.0f;
                                                     int typeofvoxelmesh = 1;
-                                                    int fullface = 0;
+                                                    int fullface = 1;
                                                     //benchmarking and instancing chunked virtual desktops.
                                                     //benchmarking and instancing chunked virtual desktops.
                                                     //benchmarking and instancing chunked virtual desktops.
@@ -2956,18 +2957,12 @@ namespace sccs.scgraphics
 
                                     if (createikrig == 1)
                                     {
-
-
                                         try
                                         {
-
-
                                             /*
-                                            _human_inst_rig_x = 10;
-                                            _human_inst_rig_y = 1;
-                                            _human_inst_rig_z = 10;*/
-
-
+                                           _human_inst_rig_x = 30;
+                                           _human_inst_rig_y = 1;
+                                           _human_inst_rig_z = 30;*/
 
                                             ikvoxelbody = new sccsikvoxellimbs[(somechunkpriminstancesikvoxelbodywidthR)];
 
@@ -3018,11 +3013,12 @@ namespace sccs.scgraphics
                                                 somechunkpriminstanceikvoxelbodypos = ((new Vector3(posX, posY, posZ)) + originpositionikvoxelbody);
 
                                                 ikvoxelbody[somechunkpriminstanceikvoxelbodyindex] = new sccsikvoxellimbs();
-                                                _sc_jitter_tasks = ikvoxelbody[somechunkpriminstanceikvoxelbodyindex].createikbody(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikvoxelbodypos, null, worldmatofobj, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem);
 
 
+                                                Matrix finalRotationMatrix = scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot;
+
+                                                _sc_jitter_tasks = ikvoxelbody[somechunkpriminstanceikvoxelbodyindex].createikbody(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikvoxelbodypos, null, worldmatofobj, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem, finalRotationMatrix);
                                             }
-
 
 
 
@@ -3031,8 +3027,6 @@ namespace sccs.scgraphics
                                             grabtargetitem = 0;
                                             ikarmvoxel = new sccsikvoxellimbs[(somechunkpriminstancesikarmvoxelwidthR) + (somechunkpriminstancesikarmvoxelheightR)];
                                             ikfingervoxel = new sccsikvoxellimbs[(somechunkpriminstancesikarmvoxelwidthR) + (somechunkpriminstancesikarmvoxelheightR)][];
-
-
 
                                             Vector3 originpositionikarmvoxel = new Vector3(0, 0, 0);
 
@@ -3046,8 +3040,6 @@ namespace sccs.scgraphics
                                             {
                                                 for (int yyy = 0; yyy < somechunkpriminstancesikarmvoxelheightR; yyy++)
                                                 {
-
-
                                                     float posX = (xxx);
                                                     float posY = (yyy);
                                                     float posZ = (0);
@@ -3103,12 +3095,10 @@ namespace sccs.scgraphics
                                                     }
 
                                                     //somechunkpriminstanceikarmvoxelpos = ((new Vector3(posX, posY, posZ)) + originpositionikarmvoxel);
+                                                    Matrix finalRotationMatrix = scupdate.originRot * scupdate.rotatingMatrix * scupdate.rotatingMatrixForPelvis * scupdate.hmdmatrixRot;
 
                                                     ikarmvoxel[somechunkpriminstanceikarmvoxelindex] = new sccsikvoxellimbs();
-                                                    _sc_jitter_tasks = ikarmvoxel[somechunkpriminstanceikarmvoxelindex].createikarm(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikarmvoxelpos, ikvoxelbody[0], somechunkpriminstanceikarmvoxelindex, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem, 0, null);
-
-
-
+                                                    _sc_jitter_tasks = ikarmvoxel[somechunkpriminstanceikarmvoxelindex].createikarm(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikarmvoxelpos, ikvoxelbody[0], somechunkpriminstanceikarmvoxelindex, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem, 0, null, finalRotationMatrix);
 
                                                     grabtargetitem = 0;
                                                     ikfingervoxel[somechunkpriminstanceikarmvoxelindex] = new sccsikvoxellimbs[(somechunkpriminstancesikfingervoxelwidthR) + (somechunkpriminstancesikfingervoxelheightR)];
@@ -3125,8 +3115,6 @@ namespace sccs.scgraphics
                                                     {
                                                         for (int yyyy = 0; yyyy < somechunkpriminstancesikfingervoxelheightR; yyyy++)
                                                         {
-
-
                                                             float posXx = (xxxx);
                                                             float posYy = (yyyy);
                                                             float posZz = (0);
@@ -3184,7 +3172,7 @@ namespace sccs.scgraphics
                                                             //somechunkpriminstanceikfingervoxelpos = ((new Vector3(posX, posY, posZ)) + originpositionikfingervoxel);
 
                                                             ikfingervoxel[somechunkpriminstanceikarmvoxelindex][somechunkpriminstanceikfingervoxelindex] = new sccsikvoxellimbs();
-                                                            _sc_jitter_tasks = ikfingervoxel[somechunkpriminstanceikarmvoxelindex][somechunkpriminstanceikfingervoxelindex].createikfingers(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikfingervoxelpos, ikvoxelbody[0], somechunkpriminstanceikfingervoxelindex, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem, 1, ikarmvoxel[somechunkpriminstanceikarmvoxelindex]);
+                                                            _sc_jitter_tasks = ikfingervoxel[somechunkpriminstanceikarmvoxelindex][somechunkpriminstanceikfingervoxelindex].createikfingers(_sc_jitter_tasks, tempMultiInstancePhysicsTotal, somechunkpriminstanceikfingervoxelpos, ikvoxelbody[0], somechunkpriminstanceikarmvoxelindex, _human_inst_rig_x, _human_inst_rig_y, _human_inst_rig_z, grabtargetitem, 1, ikarmvoxel[somechunkpriminstanceikarmvoxelindex], somechunkpriminstanceikfingervoxelindex);
 
                                                             /*for (int zzz = -somechunkpriminstancesikfingervoxeldepthL; zzz <= somechunkpriminstancesikfingervoxeldepthR; zzz++)
                                                             {
@@ -3192,18 +3180,6 @@ namespace sccs.scgraphics
                                                             }*/
                                                         }
                                                     }
-
-
-
-
-
-
-
-
-
-
-
-
 
                                                     /*
                                                     for (int zzz = -somechunkpriminstancesikarmvoxeldepthL; zzz <= somechunkpriminstancesikarmvoxeldepthR; zzz++)
@@ -13796,22 +13772,22 @@ namespace sccs.scgraphics
 
 
                                                             //if ((int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M41 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M41 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M42 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M42 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M43 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M43 / planeSize))
-
-                                                            if ((int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M41 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M41 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M42 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M42 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M43 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M43 / planeSize))
+                                                            if (indexofmainobject >= 0 && indexofmainobject < somevoxelkeyboardw * somevoxelkeyboardh * somevoxelkeyboardd)
                                                             {
-                                                                indexofbyte = (indexbytex) + (somevoxelkeyboardglobals.tinyChunkWidth) * ((indexbytey) + (somevoxelkeyboardglobals.tinyChunkHeight) * (indexbytez));
-
-
-
-
-
-
-                                                                if (indexofmainobject >= 0 && indexofmainobject < somevoxelkeyboardw * somevoxelkeyboardh * somevoxelkeyboardd)
+                                                                if (indexofmeshzero >= 0 && indexofmeshzero < somevoxelkeyboardglobals.numberOfObjectInWidth * somevoxelkeyboardglobals.numberOfObjectInHeight * somevoxelkeyboardglobals.numberOfObjectInDepth)
                                                                 {
-                                                                    if (indexofmeshzero >= 0 && indexofmeshzero < somevoxelkeyboardglobals.numberOfObjectInWidth * somevoxelkeyboardglobals.numberOfObjectInHeight * somevoxelkeyboardglobals.numberOfObjectInDepth)
+                                                                    if (indexofmeshinst >= 0 && indexofmeshinst < somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth)
                                                                     {
-                                                                        if (indexofmeshinst >= 0 && indexofmeshinst < somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth)
+
+                                                                        if ((int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M41 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M41 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M42 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M42 / planeSize) && (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][0].M43 / planeSize) == (int)Math.Round(worldMatrixinstancesdestroybytes[0][0][4].M43 / planeSize))
                                                                         {
+                                                                            indexofbyte = (indexbytex) + (somevoxelkeyboardglobals.tinyChunkWidth) * ((indexbytey) + (somevoxelkeyboardglobals.tinyChunkHeight) * (indexbytez));
+
+
+
+
+
+
                                                                             int somebyte = somevoxelkeyboard[0].arrayofindexzeromesh[0].somechunk[indexofmeshinst].GetByte(indexbytex, indexbytey, indexbytez);
                                                                             //&& Math.Round(tempPoint.X / someglobalschunkkeyboard.planeSize) == someflooredvaluebytex && Math.Round(tempPoint.Y / someglobalschunkkeyboard.planeSize) == someflooredvaluebytey && Math.Round(tempPoint.Z / someglobalschunkkeyboard.planeSize) == someflooredvaluebytez
 
@@ -13825,7 +13801,7 @@ namespace sccs.scgraphics
                                                                             //
 
                                                                             //if (somebyte == 1 && (int)Math.Round(worldMatrixinstancesvoxelcube[0][0][].M41 / planeSize) == (int)Math.Round(pickaxetippoint.X / planeSize) && (int)Math.Round(worldMatrixinstancesvoxelcube[0][0][0].M42 / planeSize) == (int)Math.Round(pickaxetippoint.Y / planeSize) && (int)Math.Round(worldMatrixinstancesvoxelcube[0][0][0].M43 / planeSize) == (int)Math.Round(pickaxetippoint.Z / planeSize))
-                                                                            if (somebyte == 1)
+                                                                            if (somebyte == 0 || somebyte == 1)
                                                                             //if (somebyte == 1 && worldMatrixinstancesvoxelcube[0][0][0].M41 == worldMatrixinstancesvoxelcube[0][0][4].M41 && worldMatrixinstancesvoxelcube[0][0][0].M42 == worldMatrixinstancesvoxelcube[0][0][4].M42 && worldMatrixinstancesvoxelcube[0][0][0].M43 == worldMatrixinstancesvoxelcube[0][0][4].M43)
                                                                             //if (somebyte == 1 )
                                                                             {
@@ -15332,7 +15308,14 @@ namespace sccs.scgraphics
 
 
 
-
+                                                                                if (somebyte == 0)
+                                                                                {
+                                                                                    somebyte = 1;
+                                                                                }
+                                                                                else if (somebyte == 1)
+                                                                                {
+                                                                                    somebyte = 0;
+                                                                                }
 
 
 
@@ -15341,11 +15324,11 @@ namespace sccs.scgraphics
                                                                                 //Program.MessageBox((IntPtr)0, "/map:" + currentMapData + "/currentByteother:" + currentByteother + "/double_result:" + double_result, "sccs message 1", 0);
                                                                                 //Program.MessageBox((IntPtr)0, "/map:" + currentMapData + "/someotherbyte:" + arrayOfDigits[someOtherIndex] + "/arrayOfDigits[someotherindex1]:" + arrayOfDigits[someotherindex1] + "/double_result:" + double_result, "sccs message 1", 0);
                                                                                 // Program.MessageBox((IntPtr)0, "trying to break byte " + "/map4:" + currentMapData + "/bufferbyte:" + currentByte + "/classmemorybyte:" + somebyte + " ", "sccs message 1", 0);
-                                                                                int voxelchunkinvertoption = Program.usetypeofvoxel;
+                                                                                int voxelchunkinvertoption = 0;// Program.usetypeofvoxel;
 
                                                                                 //resetvoxelladdercounter
 
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].SetByte(indexbytex, indexbytey, indexbytez, 0, Vector3.Zero);
+                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].SetByte(indexbytex, indexbytey, indexbytez, somebyte, Vector3.Zero);
 
                                                                                 somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].setnewmap(out m11, out m12, out m13, out m14, out m21, out m22, out m23, out m24, out m31, out m32, out m33, out m34, out m41, out m42, out m43, out m44, chosenmap, voxelchunkinvertoption
                                                                                     , out m11b, out m12b, out m13b, out m14b, out m21b, out m22b, out m23b, out m24b, out m31b, out m32b, out m33b, out m34b, out m41b, out m42b, out m43b, out m44b,
@@ -15494,210 +15477,353 @@ namespace sccs.scgraphics
 
 
 
+
+                                                                                if (somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst] >= 5)
+                                                                                {
+                                                                                    somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst] = 0;
+                                                                                }
+
+                                                                                float somecolortypedec = somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst] * 0.1f;
+
+
+
+
                                                                                 switch (somecountermul)
                                                                                 {
                                                                                     case 0:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11+ somecolortypedec;
                                                                                         break;
                                                                                     case 1:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12 + somecolortypedec;
                                                                                         break;
                                                                                     case 2:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13 + somecolortypedec;
                                                                                         break;
                                                                                     case 3:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14 + somecolortypedec;
                                                                                         break;
                                                                                     case 4:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21 + somecolortypedec;
                                                                                         break;
                                                                                     case 5:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22 + somecolortypedec;
                                                                                         break;
                                                                                     case 6:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23 + somecolortypedec;
                                                                                         break;
                                                                                     case 7:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24 + somecolortypedec;
                                                                                         break;
                                                                                     case 8:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31 + somecolortypedec;
                                                                                         break;
                                                                                     case 9:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32 + somecolortypedec;
                                                                                         break;
                                                                                     case 10:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33 + somecolortypedec;
                                                                                         break;
                                                                                     case 11:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34 + somecolortypedec;
                                                                                         break;
                                                                                     case 12:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41 + somecolortypedec;
                                                                                         break;
                                                                                     case 13:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42 + somecolortypedec;
                                                                                         break;
                                                                                     case 14:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43 + somecolortypedec;
                                                                                         break;
                                                                                     case 15:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44 + somecolortypedec;
                                                                                         break;
 
 
 
 
                                                                                     case 16:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b + somecolortypedec;
                                                                                         break;
                                                                                     case 17:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b + somecolortypedec;
                                                                                         break;
                                                                                     case 18:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b + somecolortypedec;
                                                                                         break;
                                                                                     case 19:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b + somecolortypedec;
                                                                                         break;
                                                                                     case 20:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b + somecolortypedec;
                                                                                         break;
                                                                                     case 21:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b + somecolortypedec;
                                                                                         break;
                                                                                     case 22:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b + somecolortypedec;
                                                                                         break;
                                                                                     case 23:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b + somecolortypedec;
                                                                                         break;
                                                                                     case 24:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b + somecolortypedec;
                                                                                         break;
                                                                                     case 25:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b + somecolortypedec;
                                                                                         break;
                                                                                     case 26:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b + somecolortypedec;
                                                                                         break;
                                                                                     case 27:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b + somecolortypedec;
                                                                                         break;
                                                                                     case 28:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b + somecolortypedec;
                                                                                         break;
                                                                                     case 29:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b + somecolortypedec;
                                                                                         break;
                                                                                     case 30:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b + somecolortypedec;
                                                                                         break;
                                                                                     case 31:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b + somecolortypedec;
                                                                                         break;
 
 
 
                                                                                     case 32:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c + somecolortypedec;
                                                                                         break;
                                                                                     case 33:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c + somecolortypedec;
                                                                                         break;
                                                                                     case 34:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c + somecolortypedec;
                                                                                         break;
                                                                                     case 35:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c + somecolortypedec;
                                                                                         break;
                                                                                     case 36:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c + somecolortypedec;
                                                                                         break;
                                                                                     case 37:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c + somecolortypedec;
                                                                                         break;
                                                                                     case 38:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c + somecolortypedec;
                                                                                         break;
                                                                                     case 39:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c + somecolortypedec;
                                                                                         break;
                                                                                     case 40:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c + somecolortypedec;
                                                                                         break;
                                                                                     case 41:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c + somecolortypedec;
                                                                                         break;
                                                                                     case 42:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c + somecolortypedec;
                                                                                         break;
                                                                                     case 43:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c + somecolortypedec;
                                                                                         break;
                                                                                     case 44:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c + somecolortypedec;
                                                                                         break;
                                                                                     case 45:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c + somecolortypedec;
                                                                                         break;
                                                                                     case 46:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c + somecolortypedec;
                                                                                         break;
                                                                                     case 47:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c + somecolortypedec;
                                                                                         break;
 
 
 
 
                                                                                     case 48:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d + somecolortypedec;
                                                                                         break;
                                                                                     case 49:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d + somecolortypedec;
                                                                                         break;
                                                                                     case 50:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d + somecolortypedec;
                                                                                         break;
                                                                                     case 51:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d + somecolortypedec;
                                                                                         break;
                                                                                     case 52:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d + somecolortypedec;
                                                                                         break;
                                                                                     case 53:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d + somecolortypedec;
                                                                                         break;
                                                                                     case 54:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d + somecolortypedec;
                                                                                         break;
                                                                                     case 55:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d + somecolortypedec;
                                                                                         break;
                                                                                     case 56:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d + somecolortypedec;
                                                                                         break;
                                                                                     case 57:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d + somecolortypedec;
                                                                                         break;
                                                                                     case 58:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d + somecolortypedec;
                                                                                         break;
                                                                                     case 59:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d + somecolortypedec;
                                                                                         break;
                                                                                     case 60:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d + somecolortypedec;
                                                                                         break;
                                                                                     case 61:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d + somecolortypedec;
                                                                                         break;
                                                                                     case 62:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d + somecolortypedec;
                                                                                         break;
                                                                                     case 63:
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
+
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d + somecolortypedec;
                                                                                         break;
                                                                                 };
 
@@ -15706,6 +15832,9 @@ namespace sccs.scgraphics
                                                                                 //somevoxelkeyboard[somevoxelkeyboardgridindex].arrayOfChunkData[c].switchForRender = 1;
 
                                                                                 somevoxelkeyboard[indexofmainobject].arrayOfChunkData[indexofmeshzero].copytobuffer = 1;
+
+
+
 
                                                                                 /*
                                                                                 double selectablevectordouble = 0;
@@ -15954,599 +16083,600 @@ namespace sccs.scgraphics
                                                                                         break;
                                                                                 };*/
                                                                             }
+                                                                            else if (somebyte == -1)
+                                                                            {
+
+                                                                                //Console.WriteLine("test");
+
+                                                                                //if (Program.usetypeofvoxel == 3)
+                                                                                {
+                                                                                    int voxelchunkinvertoption = Program.usetypeofvoxel;
+
+                                                                                    somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].SetByte(indexbytex, indexbytey, indexbytez, 1, Vector3.Zero);
+
+                                                                                    somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].setnewmap(out m11, out m12, out m13, out m14, out m21, out m22, out m23, out m24, out m31, out m32, out m33, out m34, out m41, out m42, out m43, out m44, chosenmap, voxelchunkinvertoption
+                                                                                        , out m11b, out m12b, out m13b, out m14b, out m21b, out m22b, out m23b, out m24b, out m31b, out m32b, out m33b, out m34b, out m41b, out m42b, out m43b, out m44b,
+                                                                                        out m11c, out m12c, out m13c, out m14c, out m21c, out m22c, out m23c, out m24c, out m31c, out m32c, out m33c, out m34c, out m41c, out m42c, out m43c, out m44c,
+                                                                                        out m11d, out m12d, out m13d, out m14d, out m21d, out m22d, out m23d, out m24d, out m31d, out m32d, out m33d, out m34d, out m41d, out m42d, out m43d, out m44d); //
+
+
+                                                                                    //somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].setnewmap(out m11, out m12, out m13, out m14, out m21, out m22, out m23, out m24, out m31, out m32, out m33, out m34, out m41, out m42, out m43, out m44, chosenmap, voxelchunkinvertoption); //
+
+
+                                                                                    /*
+                                                                                    if (currentIndex >= 0 && currentIndex <= 63)
+                                                                                    {
+                                                                                        if (currentIndex >= 0 && currentIndex <= 3)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
+                                                                                        }
+                                                                                        else if (currentIndex >= 4 && currentIndex <= 7)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
+                                                                                        }
+                                                                                        else if (currentIndex >= 8 && currentIndex <= 11)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
+                                                                                        }
+                                                                                        else if (currentIndex >= 12 && currentIndex <= 15)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
+                                                                                        }
+                                                                                        else if (currentIndex >= 16 && currentIndex <= 19)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
+                                                                                        }
+                                                                                        else if (currentIndex >= 20 && currentIndex <= 23)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
+                                                                                        }
+                                                                                        else if (currentIndex >= 24 && currentIndex <= 27)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
+                                                                                        }
+                                                                                        else if (currentIndex >= 28 && currentIndex <= 31)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
+                                                                                        }
+                                                                                        else if (currentIndex >= 32 && currentIndex <= 35)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
+                                                                                        }
+                                                                                        else if (currentIndex >= 36 && currentIndex <= 39)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
+                                                                                        }
+                                                                                        else if (currentIndex >= 40 && currentIndex <= 43)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
+                                                                                        }
+                                                                                        else if (currentIndex >= 44 && currentIndex <= 47)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
+                                                                                        }
+                                                                                        else if (currentIndex >= 48 && currentIndex <= 51)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
+                                                                                        }
+                                                                                        else if (currentIndex >= 52 && currentIndex <= 55)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
+                                                                                        }
+                                                                                        else if (currentIndex >= 56 && currentIndex <= 59)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
+                                                                                        }
+                                                                                        else if (currentIndex >= 60 && currentIndex <= 63)
+                                                                                        {
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
+                                                                                        }
+                                                                                    }*/
+
+
+
+                                                                                    double selectablevectordouble = 0;
+                                                                                    //currentIndex = indexofbyte;
+                                                                                    int maxv = somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.tinyChunkDepth;
+
+                                                                                    int somemaxvecdigit = somevoxelkeyboardglobals.tinyChunkWidth;
+                                                                                    int somecountermul = 0;
+                                                                                    int somec = 0;
+
+                                                                                    //3 
+
+                                                                                    for (int t = 0; t <= currentIndex; t++) // index == 45 == 11 
+                                                                                    {
+                                                                                        if (somec == somemaxvecdigit)
+                                                                                        {
+                                                                                            somecountermul++;
+                                                                                            somec = 0;
+                                                                                        }
+                                                                                        somec++;
+                                                                                    }
+
+
+
+
+                                                                                    //int somediv = index % 16;
+                                                                                    /*
+                                                                                    if (somebytecounter == 0)
+                                                                                    {
+                                                                                        byte1st = currentByte;
+                                                                                    }
+                                                                                    else if (somebytecounter == 1)
+                                                                                    {
+                                                                                        byte2nd = currentByte;
+                                                                                    }
+                                                                                    else if (somebytecounter == 2)
+                                                                                    {
+                                                                                        byte3rd = currentByte;
+                                                                                    }*/
+
+
+
+
+                                                                                    switch (somecountermul)
+                                                                                    {
+                                                                                        case 0:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
+                                                                                            break;
+                                                                                        case 1:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
+                                                                                            break;
+                                                                                        case 2:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
+                                                                                            break;
+                                                                                        case 3:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
+                                                                                            break;
+                                                                                        case 4:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
+                                                                                            break;
+                                                                                        case 5:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
+                                                                                            break;
+                                                                                        case 6:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
+                                                                                            break;
+                                                                                        case 7:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
+                                                                                            break;
+                                                                                        case 8:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
+                                                                                            break;
+                                                                                        case 9:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
+                                                                                            break;
+                                                                                        case 10:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
+                                                                                            break;
+                                                                                        case 11:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
+                                                                                            break;
+                                                                                        case 12:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
+                                                                                            break;
+                                                                                        case 13:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
+                                                                                            break;
+                                                                                        case 14:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
+                                                                                            break;
+                                                                                        case 15:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
+                                                                                            break;
+
+
+
+
+                                                                                        case 16:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b;
+                                                                                            break;
+                                                                                        case 17:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b;
+                                                                                            break;
+                                                                                        case 18:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b;
+                                                                                            break;
+                                                                                        case 19:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b;
+                                                                                            break;
+                                                                                        case 20:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b;
+                                                                                            break;
+                                                                                        case 21:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b;
+                                                                                            break;
+                                                                                        case 22:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b;
+                                                                                            break;
+                                                                                        case 23:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b;
+                                                                                            break;
+                                                                                        case 24:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b;
+                                                                                            break;
+                                                                                        case 25:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b;
+                                                                                            break;
+                                                                                        case 26:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b;
+                                                                                            break;
+                                                                                        case 27:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b;
+                                                                                            break;
+                                                                                        case 28:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b;
+                                                                                            break;
+                                                                                        case 29:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b;
+                                                                                            break;
+                                                                                        case 30:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b;
+                                                                                            break;
+                                                                                        case 31:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b;
+                                                                                            break;
+
+
+
+                                                                                        case 32:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c;
+                                                                                            break;
+                                                                                        case 33:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c;
+                                                                                            break;
+                                                                                        case 34:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c;
+                                                                                            break;
+                                                                                        case 35:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c;
+                                                                                            break;
+                                                                                        case 36:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c;
+                                                                                            break;
+                                                                                        case 37:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c;
+                                                                                            break;
+                                                                                        case 38:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c;
+                                                                                            break;
+                                                                                        case 39:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c;
+                                                                                            break;
+                                                                                        case 40:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c;
+                                                                                            break;
+                                                                                        case 41:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c;
+                                                                                            break;
+                                                                                        case 42:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c;
+                                                                                            break;
+                                                                                        case 43:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c;
+                                                                                            break;
+                                                                                        case 44:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c;
+                                                                                            break;
+                                                                                        case 45:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c;
+                                                                                            break;
+                                                                                        case 46:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c;
+                                                                                            break;
+                                                                                        case 47:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c;
+                                                                                            break;
+
+
+
+
+                                                                                        case 48:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d;
+                                                                                            break;
+                                                                                        case 49:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d;
+                                                                                            break;
+                                                                                        case 50:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d;
+                                                                                            break;
+                                                                                        case 51:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d;
+                                                                                            break;
+                                                                                        case 52:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d;
+                                                                                            break;
+                                                                                        case 53:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d;
+                                                                                            break;
+                                                                                        case 54:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d;
+                                                                                            break;
+                                                                                        case 55:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d;
+                                                                                            break;
+                                                                                        case 56:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d;
+                                                                                            break;
+                                                                                        case 57:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d;
+                                                                                            break;
+                                                                                        case 58:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d;
+                                                                                            break;
+                                                                                        case 59:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d;
+                                                                                            break;
+                                                                                        case 60:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d;
+                                                                                            break;
+                                                                                        case 61:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d;
+                                                                                            break;
+                                                                                        case 62:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d;
+                                                                                            break;
+                                                                                        case 63:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d;
+                                                                                            break;
+                                                                                    };
+
+                                                                                    /*
+                                                                                    double selectablevectordouble = 0;
+                                                                                    currentIndex = indexofbyte;
+                                                                                    int maxv = somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.tinyChunkDepth;
+                                                                                    int somemaxvecdigit = 16;
+                                                                                    int somecountermul = 0;
+                                                                                    int somec = 0;
+
+                                                                                    for (int t = 0; t < currentIndex; t++)
+                                                                                    {
+                                                                                        if (somec == somemaxvecdigit)
+                                                                                        {
+                                                                                            somecountermul++;
+                                                                                            somec = 0;
+                                                                                        }
+                                                                                        somec++;
+                                                                                    }
+                                                                                    */
+
+
+
+
+                                                                                    //int somediv = index % 16;
+                                                                                    /*
+                                                                                    if (somebytecounter == 0)
+                                                                                    {
+                                                                                        byte1st = currentByte;
+                                                                                    }
+                                                                                    else if (somebytecounter == 1)
+                                                                                    {
+                                                                                        byte2nd = currentByte;
+                                                                                    }
+                                                                                    else if (somebytecounter == 2)
+                                                                                    {
+                                                                                        byte3rd = currentByte;
+                                                                                    }*/
+
+
+
+                                                                                    /*
+                                                                                    switch (somecountermul)
+                                                                                    {
+                                                                                        case 0:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
+                                                                                            break;
+                                                                                        case 1:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
+                                                                                            break;
+                                                                                        case 2:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
+                                                                                            break;
+                                                                                        case 3:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
+                                                                                            break;
+                                                                                        case 4:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
+                                                                                            break;
+                                                                                        case 5:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
+                                                                                            break;
+                                                                                        case 6:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
+                                                                                            break;
+                                                                                        case 7:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
+                                                                                            break;
+                                                                                        case 8:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
+                                                                                            break;
+                                                                                        case 9:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
+                                                                                            break;
+                                                                                        case 10:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
+                                                                                            break;
+                                                                                        case 11:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
+                                                                                            break;
+                                                                                        case 12:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
+                                                                                            break;
+                                                                                        case 13:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
+                                                                                            break;
+                                                                                        case 14:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
+                                                                                            break;
+                                                                                        case 15:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
+                                                                                            break;
+
+
+
+
+                                                                                        case 16:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b;
+                                                                                            break;
+                                                                                        case 17:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b;
+                                                                                            break;
+                                                                                        case 18:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b;
+                                                                                            break;
+                                                                                        case 19:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b;
+                                                                                            break;
+                                                                                        case 20:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b;
+                                                                                            break;
+                                                                                        case 21:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b;
+                                                                                            break;
+                                                                                        case 22:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b;
+                                                                                            break;
+                                                                                        case 23:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b;
+                                                                                            break;
+                                                                                        case 24:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b;
+                                                                                            break;
+                                                                                        case 25:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b;
+                                                                                            break;
+                                                                                        case 26:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b;
+                                                                                            break;
+                                                                                        case 27:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b;
+                                                                                            break;
+                                                                                        case 28:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b;
+                                                                                            break;
+                                                                                        case 29:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b;
+                                                                                            break;
+                                                                                        case 30:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b;
+                                                                                            break;
+                                                                                        case 31:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b;
+                                                                                            break;
+
+
+
+                                                                                        case 32:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c;
+                                                                                            break;
+                                                                                        case 33:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c;
+                                                                                            break;
+                                                                                        case 34:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c;
+                                                                                            break;
+                                                                                        case 35:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c;
+                                                                                            break;
+                                                                                        case 36:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c;
+                                                                                            break;
+                                                                                        case 37:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c;
+                                                                                            break;
+                                                                                        case 38:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c;
+                                                                                            break;
+                                                                                        case 39:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c;
+                                                                                            break;
+                                                                                        case 40:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c;
+                                                                                            break;
+                                                                                        case 41:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c;
+                                                                                            break;
+                                                                                        case 42:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c;
+                                                                                            break;
+                                                                                        case 43:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c;
+                                                                                            break;
+                                                                                        case 44:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c;
+                                                                                            break;
+                                                                                        case 45:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c;
+                                                                                            break;
+                                                                                        case 46:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c;
+                                                                                            break;
+                                                                                        case 47:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c;
+                                                                                            break;
+
+
+
+
+                                                                                        case 48:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d;
+                                                                                            break;
+                                                                                        case 49:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d;
+                                                                                            break;
+                                                                                        case 50:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d;
+                                                                                            break;
+                                                                                        case 51:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d;
+                                                                                            break;
+                                                                                        case 52:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d;
+                                                                                            break;
+                                                                                        case 53:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d;
+                                                                                            break;
+                                                                                        case 54:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d;
+                                                                                            break;
+                                                                                        case 55:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d;
+                                                                                            break;
+                                                                                        case 56:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d;
+                                                                                            break;
+                                                                                        case 57:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d;
+                                                                                            break;
+                                                                                        case 58:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d;
+                                                                                            break;
+                                                                                        case 59:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d;
+                                                                                            break;
+                                                                                        case 60:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d;
+                                                                                            break;
+                                                                                        case 61:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d;
+                                                                                            break;
+                                                                                        case 62:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d;
+                                                                                            break;
+                                                                                        case 63:
+                                                                                            somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d;
+                                                                                            break;
+                                                                                    };*/
+
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
                                                                 else
                                                                 {
-                                                                    if (Program.usetypeofvoxel == 3)
-                                                                    {
-                                                                        int voxelchunkinvertoption = Program.usetypeofvoxel;
-
-                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].SetByte(indexbytex, indexbytey, indexbytez, 1, Vector3.Zero);
-
-                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].setnewmap(out m11, out m12, out m13, out m14, out m21, out m22, out m23, out m24, out m31, out m32, out m33, out m34, out m41, out m42, out m43, out m44, chosenmap, voxelchunkinvertoption
-                                                                            , out m11b, out m12b, out m13b, out m14b, out m21b, out m22b, out m23b, out m24b, out m31b, out m32b, out m33b, out m34b, out m41b, out m42b, out m43b, out m44b,
-                                                                            out m11c, out m12c, out m13c, out m14c, out m21c, out m22c, out m23c, out m24c, out m31c, out m32c, out m33c, out m34c, out m41c, out m42c, out m43c, out m44c,
-                                                                            out m11d, out m12d, out m13d, out m14d, out m21d, out m22d, out m23d, out m24d, out m31d, out m32d, out m33d, out m34d, out m41d, out m42d, out m43d, out m44d); //
-
-
-                                                                        //somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].somechunk[indexofmeshinst].setnewmap(out m11, out m12, out m13, out m14, out m21, out m22, out m23, out m24, out m31, out m32, out m33, out m34, out m41, out m42, out m43, out m44, chosenmap, voxelchunkinvertoption); //
-
-
-                                                                        /*
-                                                                        if (currentIndex >= 0 && currentIndex <= 63)
-                                                                        {
-                                                                            if (currentIndex >= 0 && currentIndex <= 3)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
-                                                                            }
-                                                                            else if (currentIndex >= 4 && currentIndex <= 7)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
-                                                                            }
-                                                                            else if (currentIndex >= 8 && currentIndex <= 11)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
-                                                                            }
-                                                                            else if (currentIndex >= 12 && currentIndex <= 15)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
-                                                                            }
-                                                                            else if (currentIndex >= 16 && currentIndex <= 19)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
-                                                                            }
-                                                                            else if (currentIndex >= 20 && currentIndex <= 23)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
-                                                                            }
-                                                                            else if (currentIndex >= 24 && currentIndex <= 27)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
-                                                                            }
-                                                                            else if (currentIndex >= 28 && currentIndex <= 31)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
-                                                                            }
-                                                                            else if (currentIndex >= 32 && currentIndex <= 35)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
-                                                                            }
-                                                                            else if (currentIndex >= 36 && currentIndex <= 39)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
-                                                                            }
-                                                                            else if (currentIndex >= 40 && currentIndex <= 43)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
-                                                                            }
-                                                                            else if (currentIndex >= 44 && currentIndex <= 47)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
-                                                                            }
-                                                                            else if (currentIndex >= 48 && currentIndex <= 51)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
-                                                                            }
-                                                                            else if (currentIndex >= 52 && currentIndex <= 55)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
-                                                                            }
-                                                                            else if (currentIndex >= 56 && currentIndex <= 59)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
-                                                                            }
-                                                                            else if (currentIndex >= 60 && currentIndex <= 63)
-                                                                            {
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
-                                                                            }
-                                                                        }*/
-
-
-
-                                                                        double selectablevectordouble = 0;
-                                                                        //currentIndex = indexofbyte;
-                                                                        int maxv = somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.tinyChunkDepth;
-
-                                                                        int somemaxvecdigit = somevoxelkeyboardglobals.tinyChunkWidth;
-                                                                        int somecountermul = 0;
-                                                                        int somec = 0;
-
-                                                                        //3 
-
-                                                                        for (int t = 0; t <= currentIndex; t++) // index == 45 == 11 
-                                                                        {
-                                                                            if (somec == somemaxvecdigit)
-                                                                            {
-                                                                                somecountermul++;
-                                                                                somec = 0;
-                                                                            }
-                                                                            somec++;
-                                                                        }
-
-
-
-
-                                                                        //int somediv = index % 16;
-                                                                        /*
-                                                                        if (somebytecounter == 0)
-                                                                        {
-                                                                            byte1st = currentByte;
-                                                                        }
-                                                                        else if (somebytecounter == 1)
-                                                                        {
-                                                                            byte2nd = currentByte;
-                                                                        }
-                                                                        else if (somebytecounter == 2)
-                                                                        {
-                                                                            byte3rd = currentByte;
-                                                                        }*/
-
-
-
-
-                                                                        switch (somecountermul)
-                                                                        {
-                                                                            case 0:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
-                                                                                break;
-                                                                            case 1:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
-                                                                                break;
-                                                                            case 2:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
-                                                                                break;
-                                                                            case 3:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
-                                                                                break;
-                                                                            case 4:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
-                                                                                break;
-                                                                            case 5:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
-                                                                                break;
-                                                                            case 6:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
-                                                                                break;
-                                                                            case 7:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
-                                                                                break;
-                                                                            case 8:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
-                                                                                break;
-                                                                            case 9:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
-                                                                                break;
-                                                                            case 10:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
-                                                                                break;
-                                                                            case 11:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
-                                                                                break;
-                                                                            case 12:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
-                                                                                break;
-                                                                            case 13:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
-                                                                                break;
-                                                                            case 14:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
-                                                                                break;
-                                                                            case 15:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
-                                                                                break;
-
-
-
-
-                                                                            case 16:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b;
-                                                                                break;
-                                                                            case 17:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b;
-                                                                                break;
-                                                                            case 18:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b;
-                                                                                break;
-                                                                            case 19:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b;
-                                                                                break;
-                                                                            case 20:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b;
-                                                                                break;
-                                                                            case 21:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b;
-                                                                                break;
-                                                                            case 22:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b;
-                                                                                break;
-                                                                            case 23:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b;
-                                                                                break;
-                                                                            case 24:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b;
-                                                                                break;
-                                                                            case 25:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b;
-                                                                                break;
-                                                                            case 26:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b;
-                                                                                break;
-                                                                            case 27:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b;
-                                                                                break;
-                                                                            case 28:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b;
-                                                                                break;
-                                                                            case 29:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b;
-                                                                                break;
-                                                                            case 30:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b;
-                                                                                break;
-                                                                            case 31:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b;
-                                                                                break;
-
-
-
-                                                                            case 32:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c;
-                                                                                break;
-                                                                            case 33:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c;
-                                                                                break;
-                                                                            case 34:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c;
-                                                                                break;
-                                                                            case 35:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c;
-                                                                                break;
-                                                                            case 36:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c;
-                                                                                break;
-                                                                            case 37:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c;
-                                                                                break;
-                                                                            case 38:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c;
-                                                                                break;
-                                                                            case 39:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c;
-                                                                                break;
-                                                                            case 40:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c;
-                                                                                break;
-                                                                            case 41:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c;
-                                                                                break;
-                                                                            case 42:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c;
-                                                                                break;
-                                                                            case 43:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c;
-                                                                                break;
-                                                                            case 44:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c;
-                                                                                break;
-                                                                            case 45:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c;
-                                                                                break;
-                                                                            case 46:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c;
-                                                                                break;
-                                                                            case 47:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c;
-                                                                                break;
-
-
-
-
-                                                                            case 48:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d;
-                                                                                break;
-                                                                            case 49:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d;
-                                                                                break;
-                                                                            case 50:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d;
-                                                                                break;
-                                                                            case 51:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d;
-                                                                                break;
-                                                                            case 52:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d;
-                                                                                break;
-                                                                            case 53:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d;
-                                                                                break;
-                                                                            case 54:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d;
-                                                                                break;
-                                                                            case 55:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d;
-                                                                                break;
-                                                                            case 56:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d;
-                                                                                break;
-                                                                            case 57:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d;
-                                                                                break;
-                                                                            case 58:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d;
-                                                                                break;
-                                                                            case 59:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d;
-                                                                                break;
-                                                                            case 60:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d;
-                                                                                break;
-                                                                            case 61:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d;
-                                                                                break;
-                                                                            case 62:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d;
-                                                                                break;
-                                                                            case 63:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d;
-                                                                                break;
-                                                                        };
-
-                                                                        /*
-                                                                        double selectablevectordouble = 0;
-                                                                        currentIndex = indexofbyte;
-                                                                        int maxv = somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.tinyChunkDepth;
-                                                                        int somemaxvecdigit = 16;
-                                                                        int somecountermul = 0;
-                                                                        int somec = 0;
-
-                                                                        for (int t = 0; t < currentIndex; t++)
-                                                                        {
-                                                                            if (somec == somemaxvecdigit)
-                                                                            {
-                                                                                somecountermul++;
-                                                                                somec = 0;
-                                                                            }
-                                                                            somec++;
-                                                                        }
-                                                                        */
-
-
-
-
-                                                                        //int somediv = index % 16;
-                                                                        /*
-                                                                        if (somebytecounter == 0)
-                                                                        {
-                                                                            byte1st = currentByte;
-                                                                        }
-                                                                        else if (somebytecounter == 1)
-                                                                        {
-                                                                            byte2nd = currentByte;
-                                                                        }
-                                                                        else if (somebytecounter == 2)
-                                                                        {
-                                                                            byte3rd = currentByte;
-                                                                        }*/
-
-
-
-                                                                        /*
-                                                                        switch (somecountermul)
-                                                                        {
-                                                                            case 0:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11;
-                                                                                break;
-                                                                            case 1:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M12 = (float)m12;
-                                                                                break;
-                                                                            case 2:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M13 = (float)m13;
-                                                                                break;
-                                                                            case 3:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M14 = (float)m14;
-                                                                                break;
-                                                                            case 4:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M21 = (float)m21;
-                                                                                break;
-                                                                            case 5:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M22 = (float)m22;
-                                                                                break;
-                                                                            case 6:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M23 = (float)m23;
-                                                                                break;
-                                                                            case 7:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M24 = (float)m24;
-                                                                                break;
-                                                                            case 8:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M31 = (float)m31;
-                                                                                break;
-                                                                            case 9:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M32 = (float)m32;
-                                                                                break;
-                                                                            case 10:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M33 = (float)m33;
-                                                                                break;
-                                                                            case 11:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M34 = (float)m34;
-                                                                                break;
-                                                                            case 12:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M41 = (float)m41;
-                                                                                break;
-                                                                            case 13:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M42 = (float)m42;
-                                                                                break;
-                                                                            case 14:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M43 = (float)m43;
-                                                                                break;
-                                                                            case 15:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M44 = (float)m44;
-                                                                                break;
-
-
-
-
-                                                                            case 16:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M11 = (float)m11b;
-                                                                                break;
-                                                                            case 17:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M12 = (float)m12b;
-                                                                                break;
-                                                                            case 18:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M13 = (float)m13b;
-                                                                                break;
-                                                                            case 19:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M14 = (float)m14b;
-                                                                                break;
-                                                                            case 20:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M21 = (float)m21b;
-                                                                                break;
-                                                                            case 21:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M22 = (float)m22b;
-                                                                                break;
-                                                                            case 22:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M23 = (float)m23b;
-                                                                                break;
-                                                                            case 23:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M24 = (float)m24b;
-                                                                                break;
-                                                                            case 24:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M31 = (float)m31b;
-                                                                                break;
-                                                                            case 25:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M32 = (float)m32b;
-                                                                                break;
-                                                                            case 26:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M33 = (float)m33b;
-                                                                                break;
-                                                                            case 27:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M34 = (float)m34b;
-                                                                                break;
-                                                                            case 28:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M41 = (float)m41b;
-                                                                                break;
-                                                                            case 29:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M42 = (float)m42b;
-                                                                                break;
-                                                                            case 30:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M43 = (float)m43b;
-                                                                                break;
-                                                                            case 31:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixb[indexofmeshinst].instancematrix.M44 = (float)m44b;
-                                                                                break;
-
-
-
-                                                                            case 32:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M11 = (float)m11c;
-                                                                                break;
-                                                                            case 33:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M12 = (float)m12c;
-                                                                                break;
-                                                                            case 34:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M13 = (float)m13c;
-                                                                                break;
-                                                                            case 35:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M14 = (float)m14c;
-                                                                                break;
-                                                                            case 36:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M21 = (float)m21c;
-                                                                                break;
-                                                                            case 37:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M22 = (float)m22c;
-                                                                                break;
-                                                                            case 38:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M23 = (float)m23c;
-                                                                                break;
-                                                                            case 39:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M24 = (float)m24c;
-                                                                                break;
-                                                                            case 40:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M31 = (float)m31c;
-                                                                                break;
-                                                                            case 41:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M32 = (float)m32c;
-                                                                                break;
-                                                                            case 42:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M33 = (float)m33c;
-                                                                                break;
-                                                                            case 43:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M34 = (float)m34c;
-                                                                                break;
-                                                                            case 44:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M41 = (float)m41c;
-                                                                                break;
-                                                                            case 45:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M42 = (float)m42c;
-                                                                                break;
-                                                                            case 46:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M43 = (float)m43c;
-                                                                                break;
-                                                                            case 47:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixc[indexofmeshinst].instancematrix.M44 = (float)m44c;
-                                                                                break;
-
-
-
-
-                                                                            case 48:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M11 = (float)m11d;
-                                                                                break;
-                                                                            case 49:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M12 = (float)m12d;
-                                                                                break;
-                                                                            case 50:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M13 = (float)m13d;
-                                                                                break;
-                                                                            case 51:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M14 = (float)m14d;
-                                                                                break;
-                                                                            case 52:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M21 = (float)m21d;
-                                                                                break;
-                                                                            case 53:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M22 = (float)m22d;
-                                                                                break;
-                                                                            case 54:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M23 = (float)m23d;
-                                                                                break;
-                                                                            case 55:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M24 = (float)m24d;
-                                                                                break;
-                                                                            case 56:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M31 = (float)m31d;
-                                                                                break;
-                                                                            case 57:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M32 = (float)m32d;
-                                                                                break;
-                                                                            case 58:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M33 = (float)m33d;
-                                                                                break;
-                                                                            case 59:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M34 = (float)m34d;
-                                                                                break;
-                                                                            case 60:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M41 = (float)m41d;
-                                                                                break;
-                                                                            case 61:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M42 = (float)m42d;
-                                                                                break;
-                                                                            case 62:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M43 = (float)m43d;
-                                                                                break;
-                                                                            case 63:
-                                                                                somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrixd[indexofmeshinst].instancematrix.M44 = (float)m44d;
-                                                                                break;
-                                                                        };*/
-
-
-
-
-
-
-
-                                                                    }
+                                                                   
                                                                 }
                                                             }
                                                         }

@@ -27,18 +27,22 @@ struct VertexInputType
 	float4 instanceRadRotFORWARD : POSITION3;
 	float4 instanceRadRotRIGHT : POSITION4;
 	float4 instanceRadRotUP : POSITION5;
+
 	float4 mapmatrix0 : POSITION6;
 	float4 mapmatrix1 : POSITION7;
 	float4 mapmatrix2 : POSITION8;
 	float4 mapmatrix3 : POSITION9;
+
 	float4 mapmatrix4 : POSITION10;
 	float4 mapmatrix5 : POSITION11;
 	float4 mapmatrix6 : POSITION12;
 	float4 mapmatrix7 : POSITION13;
+
 	float4 mapmatrix8 : POSITION14;
 	float4 mapmatrix9 : POSITION15;
 	float4 mapmatrix10 : POSITION16;
 	float4 mapmatrix11 : POSITION17;
+
 	float4 mapmatrix12 : POSITION18;
 	float4 mapmatrix13 : POSITION19;
 	float4 mapmatrix14 : POSITION20;
@@ -74,6 +78,7 @@ struct PixelInputType
 	float4 mapmatrix9 : POSITION15;
 	float4 mapmatrix10 : POSITION16;
 	float4 mapmatrix11 : POSITION17;
+
 	float4 mapmatrix12 : POSITION18;
 	float4 mapmatrix13 : POSITION19;
 	float4 mapmatrix14 : POSITION20;
@@ -145,6 +150,8 @@ static float diffZ;
 //    }
 //}
 
+static const int arrayOfColorTypesmax = 64; //4 // 8 
+static int arrayOfColorTypes[arrayOfColorTypesmax];
 
 
 
@@ -164,7 +171,7 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
 	int facetype = int(input.indexPos.w);
 
-	int currentMapData;
+	float currentMapData;
 	
 	//4*4*4 = 64 voxels per chunk max
 	//8*8*8 = 512 voxels per chunk max
@@ -889,6 +896,14 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
 
 
+
+
+
+
+
+
+
+
 	
 	if(tinyChunkWidth == 8) // && tinyChunkHeight == 8 && tinyChunkDepth == 8
 	{
@@ -902,13 +917,10 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		{
 
 			float someval0 = (float)(int)(currentMapData / 10); // 511111111 / 10 = 51111111.1
-			//float someval1 = round(currentMapData / 10); 
+			//float someval1 = round((int)currentMapData / 10); 
 			float someval2 = (someval0 * 10); //// 511111111 / 10 = 51111111.1
-
-
-			//WORKS
-			
-			if(someval2 + 1 == currentMapData)
+			//WORKS			
+			if(someval2 + 1 == (int)currentMapData)
 			{
 				arrayOfDigits[0] = 1.0;
 			}
@@ -918,10 +930,33 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			}
 
 
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f); 
+				//11111111.0 * 0.1f = 1111111.1 		
+				float somevalue = tempsomemap - (round(somemap) * 10.0f);
+				//=> 1111111.0 - 1111110.0 = 1.0
+				arrayOfDigits[i] = somevalue;
+			}*/
+
+
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
+
+
 		}
 		else if(someOtherIndex == 1)
 		{
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 4;i++)
 			{
@@ -932,18 +967,27 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
+
 		}
 		else if(someOtherIndex == 2) // problem gotta use a different approach for the index 0 and 2
 		{	
 		
 			float someval0 = (float)(int)(currentMapData / 100); // 511111111 / 10 = 51111111.1
-			//float someval1 = round(currentMapData / 100); 
+			//float someval1 = round((int)currentMapData / 100); 
 			float someval2 = (someval0 * 100); //// 511111111 / 10 = 51111111.1
-
 
 			//WORKS
 			
-			if(someval2 + 11 == currentMapData || someval2 + 10 == currentMapData)
+			if(someval2 + 11 == (int)currentMapData || someval2 + 10 == (int)currentMapData)
 			{
 				arrayOfDigits[2] = 1.0;
 			}
@@ -952,10 +996,19 @@ PixelInputType TextureVertexShader(VertexInputType input)
 				arrayOfDigits[2] = 0.0;
 			}
 
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
+
 		}
 		else if(someOtherIndex == 3)
 		{
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 5;i++)
 			{
@@ -966,10 +1019,20 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
+
 		}
 		else if(someOtherIndex == 4)
 		{
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 2;i++)
 			{
@@ -980,10 +1043,20 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
+
 		}
 		else if(someOtherIndex == 5 )
 		{
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 6;i++)
 			{
@@ -994,10 +1067,19 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
 		}
 		else if(someOtherIndex == 6)
 		{
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 3;i++)
 			{
@@ -1008,11 +1090,20 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
 		}
 		else if(someOtherIndex == 7)
 		{
 			//7-5-3-1-6-4-2-0
-			float someData0 = currentMapData;
+			float someData0 = (int)currentMapData;
 		
 			for(int i = 0;i < 7;i++)
 			{
@@ -1023,6 +1114,15 @@ PixelInputType TextureVertexShader(VertexInputType input)
 			testera = before0 >> 1 << 1;
 			theByte = before0 - testera;
 			arrayOfDigits[someOtherIndex] = theByte;
+
+			/*for (int i = 0; i < maxfloatbytemaparraylength; i++)
+			{
+				tempsomemap = somemap;
+				somemap = (somemap * 0.1f);
+				float somevalue = floor((float)(int)((somemap - (int)somemap) * someothermul0)) * someothermul1;
+				somevalue = somevalue - (floor(somevalue * 0.1f) * 10.0f);
+				arrayOfDigits[i] = somevalue;
+			}*/
 		}
 
 	}
@@ -1459,6 +1559,10 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
 	float somedesiredbyte = 0;*/
 
+
+
+
+
 	//5 full chunk cube all 1s for byte breaking when 1s becomes 0s (and for byte adding when byte 0s become 1s WIP)
 	//4 full chunk cube all 0s for path tracing with path traced with bytes becoming 1s when the player moves around the invisible chunk.
 	//3 full chunk cube all 0s for a way to visualize spatial location of objects in a 3d scene. // not working entirely i think. float checking soon
@@ -1488,23 +1592,14 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
     somedesiredbyte = 1.0;
 
- 
-
 	//someOtherIndex = 7 - someOtherIndex;
-	//theByte == int(somedesiredbyte)) // 
-
-
-
+	//theByte == int(somedesiredbyte))
 	
+
+
 	//currentMapData == 511111111.0) //
 	if(round(arrayOfDigits[someOtherIndex]) == somedesiredbyte) //1.0 // 0.0 //someOtherIndex >= 0 && someOtherIndex <= 7 ) // //theByte == somedesiredbyte) //  //round(theByte) == round(somedesiredbyte)) // 
 	{
-
-
-
-
-
-
 		input.position.w = 1.0f;
 
 		//input.position.x = input.position.x * -1;
@@ -1516,21 +1611,15 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		mod_input_vertex_pos.z += input.instancePosition.z;
 		mod_input_vertex_pos.w = 1.0f;
 
-
 		forwardDir = float3(input.instanceRadRotFORWARD.x, input.instanceRadRotFORWARD.y, input.instanceRadRotFORWARD.z);
 		rightDir = float3(input.instanceRadRotRIGHT.x, input.instanceRadRotRIGHT.y, input.instanceRadRotRIGHT.z); 
 		upDir = float3(input.instanceRadRotUP.x, input.instanceRadRotUP.y, input.instanceRadRotUP.z);
 
-
 		//float2 noise = (frac(sin(dot(float2(input.position.x,input.position.z) ,float2(12.9898,78.233)*2.0)) * 43758.5453));
 		//float test = abs(noise.x + noise.y) * 0.5 * 0.001;
 		//input.color = float4(input.color.x + (input.position.x*0.1),input.color.y+ (input.position.y*0.1),input.color.z+ (input.position.z*0.1),input.color.w);
-   
-		
-
-
-		MOVINGPOINT = float3(input.instancePosition.x, input.instancePosition.y, input.instancePosition.z);
-		
+	
+		MOVINGPOINT = float3(input.instancePosition.x, input.instancePosition.y, input.instancePosition.z);		
 
 		vertPos = float3(mod_input_vertex_pos.x, mod_input_vertex_pos.y, mod_input_vertex_pos.z);	
 
@@ -1541,22 +1630,14 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		//diffX = ((input.instancePosition.x) - vertPos.x);
 		//diffY = ((input.instancePosition.y) - vertPos.y);
 		//diffZ = ((input.instancePosition.z) - vertPos.z);
-		
-
 
 		MOVINGPOINT = MOVINGPOINT + (-rightDir * diffX);
 		MOVINGPOINT = MOVINGPOINT + (upDir * diffY);
 		MOVINGPOINT = MOVINGPOINT + (forwardDir * diffZ);
 
-
-		
-
-
-
 		input.position.x = MOVINGPOINT.x;
 		input.position.y = MOVINGPOINT.y;
 		input.position.z = MOVINGPOINT.z;
-
 
 		//output.position = mul(mod_input_vertex_pos, world);
 		output.position = mul(input.position, world);
@@ -1566,6 +1647,8 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		output.instancePosition.x = input.instancePosition.x;
 		output.instancePosition.y = input.instancePosition.y;
 		output.instancePosition.z = input.instancePosition.z;
+
+
 
 		/*output.instanceRadRotFORWARD.x = input.instanceRadRotFORWARD.x;
 		output.instanceRadRotFORWARD.y = input.instanceRadRotFORWARD.y;
@@ -1579,13 +1662,15 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		output.instanceRadRotUP.y = input.instanceRadRotUP.y;
 		output.instanceRadRotUP.z = input.instanceRadRotUP.z;*/
 
+
+
 		output.color = input.color;
 	}
 	else
 	{
 
-
 		
+
 		input.position.w = 1.0f;
 
 		//input.position.x = input.position.x * -1;
@@ -1597,21 +1682,15 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		mod_input_vertex_pos.z += input.instancePosition.z;
 		mod_input_vertex_pos.w = 1.0f;
 
-
 		forwardDir = float3(input.instanceRadRotFORWARD.x, input.instanceRadRotFORWARD.y, input.instanceRadRotFORWARD.z);
 		rightDir = float3(input.instanceRadRotRIGHT.x, input.instanceRadRotRIGHT.y, input.instanceRadRotRIGHT.z); 
 		upDir = float3(input.instanceRadRotUP.x, input.instanceRadRotUP.y, input.instanceRadRotUP.z);
-
 
 		//float2 noise = (frac(sin(dot(float2(input.position.x,input.position.z) ,float2(12.9898,78.233)*2.0)) * 43758.5453));
 		//float test = abs(noise.x + noise.y) * 0.5 * 0.001;
 		//input.color = float4(input.color.x + (input.position.x*0.1),input.color.y+ (input.position.y*0.1),input.color.z+ (input.position.z*0.1),input.color.w);
    
-		
-
-
-		MOVINGPOINT = float3(input.instancePosition.x, input.instancePosition.y, input.instancePosition.z);
-		
+		MOVINGPOINT = float3(input.instancePosition.x, input.instancePosition.y, input.instancePosition.z);		
 
 		vertPos = float3(mod_input_vertex_pos.x, mod_input_vertex_pos.y, mod_input_vertex_pos.z);	
 
@@ -1623,21 +1702,13 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		//diffY = ((input.instancePosition.y) - vertPos.y);
 		//diffZ = ((input.instancePosition.z) - vertPos.z);
 		
-
-
 		MOVINGPOINT = MOVINGPOINT + (-rightDir * diffX);
 		MOVINGPOINT = MOVINGPOINT + (upDir * diffY);
 		MOVINGPOINT = MOVINGPOINT + (forwardDir * diffZ);
 
-
-		
-
-
-
 		input.position.x = MOVINGPOINT.x;
 		input.position.y = MOVINGPOINT.y;
 		input.position.z = MOVINGPOINT.z;
-
 
 		//output.position = mul(mod_input_vertex_pos, world);
 		output.position = mul(input.position, world);
@@ -1653,17 +1724,15 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		//output.instanceRadRotFORWARD.z = input.instanceRadRotFORWARD.z;
 
 		//output.instanceRadRotRIGHT.x = input.instanceRadRotRIGHT.x;
-		///output.instanceRadRotRIGHT.y = input.instanceRadRotRIGHT.y;
+		//output.instanceRadRotRIGHT.y = input.instanceRadRotRIGHT.y;
 		//output.instanceRadRotRIGHT.z = input.instanceRadRotRIGHT.z;
 
 		//output.instanceRadRotUP.x = input.instanceRadRotUP.x;
 		//output.instanceRadRotUP.y = input.instanceRadRotUP.y;
-		//output.instanceRadRotUP.z = input.instanceRadRotUP.z;
+		//output.instanceRadRotUP.z = input.instanceRadRotUP.z;	
+		
 
 		output.color = float4(0.15f,0.95f,0.15f,1.0f);
-		
-		
-
 
 
 
@@ -1679,6 +1748,9 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		output.color = float4(0.5f,0.5f,0.5f,1);
 
 		output.color = input.color;*/
+
+
+		
 	}
 	
 

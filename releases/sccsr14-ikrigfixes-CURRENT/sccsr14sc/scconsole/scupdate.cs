@@ -395,11 +395,12 @@ namespace sccs.scgraphics
         //public scupdate() : base(new GraphicsCapture())
         {
             captureMethod = captureMethod_;
+            theupdatescriptinstance = this;
         }
         //override
 
 
-
+        public static scupdate theupdatescriptinstance;
         public void ShutDownGraphics()
         {
 
@@ -819,6 +820,10 @@ namespace sccs.scgraphics
 
         }
 
+        int counterscreencapture = 0;
+        int counterscreencaptureswtc = 0;
+        bool counterscreencapturebool = false;
+
 
 
 
@@ -890,6 +895,19 @@ namespace sccs.scgraphics
 
 
                     rotatingMatrixForPelvis = SharpDX.Matrix.RotationYawPitchRoll(yaw, pitch, roll);
+
+
+
+                    RotationOriginX = 0;
+                    RotationOriginY = 0;
+                    RotationOriginZ = 0;
+
+                    pitch = (float)(Math.PI * (RotationOriginX) / 180.0f);
+                    yaw = (float)(Math.PI * (RotationOriginY) / 180.0f);
+                    roll = (float)(Math.PI * (RotationOriginZ) / 180.0f);
+
+
+                    originRot = SharpDX.Matrix.RotationYawPitchRoll(yaw, pitch, roll);
                 }
 
 
@@ -1093,53 +1111,79 @@ namespace sccs.scgraphics
                     {
                         // Program.MessageBox((IntPtr)0, "test0", "sccsmsg", 0);
 
-
-
-                        for (int i = 0; i < 1;)
+                        if (sharpdxscreencapture._outputDuplication != null)
                         {
-                            screencaptureresultswtc = 0;
-                            try
+                            for (int i = 0; i < 1;)
                             {
-                                screencaptureframe = sharpdxscreencapture.ScreenCapture(3);
-
-
-
-
-                                if (scgraphicssecpackagemessage.scjittertasks != null)
+                                screencaptureresultswtc = 0;
+                                try
                                 {
-                                    if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                    {
-                                        if (scgraphicssecpackagemessage.scjittertasks[0].Length > 0)
-                                        {
-                                            scgraphicssecpackagemessage.scjittertasks[0][0].frameByteArray = screencaptureframe.frameByteArray;
-                                            scgraphicssecpackagemessage.scjittertasks[0][0].shaderresource = screencaptureframe.ShaderResource;
+                                  
+                                    screencaptureframe = sharpdxscreencapture.ScreenCapture(3, out counterscreencapturebool);
 
-                                            //Program.MessageBox((IntPtr)0, "test2", "sccsmsg", 0);
+                                    if (counterscreencapturebool)
+                                    {
+                                        counterscreencapture = 0;
+                                        counterscreencaptureswtc = 0;
+                                    }
+                                    else
+                                    {
+                                        if (counterscreencapture >= 10)
+                                        {
+                                            sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, device);
+                                            counterscreencapture = 0;
+                                        }
+                                        counterscreencapture++;
+                                    }
+
+
+                                    if (scgraphicssecpackagemessage.scjittertasks != null)
+                                    {
+                                        if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                                        {
+                                            if (scgraphicssecpackagemessage.scjittertasks[0].Length > 0)
+                                            {
+                                                scgraphicssecpackagemessage.scjittertasks[0][0].frameByteArray = screencaptureframe.frameByteArray;
+                                                scgraphicssecpackagemessage.scjittertasks[0][0].shaderresource = screencaptureframe.ShaderResource;
+
+                                                //Program.MessageBox((IntPtr)0, "test2", "sccsmsg", 0);
+                                            }
                                         }
                                     }
+
+
                                 }
+                                catch (Exception ex)
+                                {
+                                    sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, device);
+                                    screencaptureresultswtc = 1;
+                                }
+                                i++;
+                                if (screencaptureresultswtc == 0)
+                                {
+                                    break;
+                                }
+                            }
+
+                            if (sharpdxscreencapture.hasinit == 2)
+                            {
+
+                                //Program.MessageBox((IntPtr)0, "test1", "sccsmsg", 0);
 
 
-                            }
-                            catch (Exception ex)
-                            {
-                                sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, device);
-                                screencaptureresultswtc = 1;
-                            }
-                            i++;
-                            if (screencaptureresultswtc == 0)
-                            {
-                                break;
                             }
                         }
-
-                        if (sharpdxscreencapture.hasinit == 2)
+                        else
                         {
-
-                            //Program.MessageBox((IntPtr)0, "test1", "sccsmsg", 0);
-
-
+                            sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, device);
+                            Console.WriteLine("screencapture null0");
                         }
+
+                         
+                    }
+                    else
+                    {
+                        Console.WriteLine("screencapture null1");
                     }
                 }
 
@@ -4039,9 +4083,23 @@ namespace sccs.scgraphics
                             screencaptureresultswtc = 0;
                             try
                             {
-                                screencaptureframe = sharpdxscreencapture.ScreenCapture(3);
+                                screencaptureframe = sharpdxscreencapture.ScreenCapture(3, out counterscreencapturebool);
 
-
+                                if (counterscreencapturebool)
+                                {
+                                    counterscreencapture = 0;
+                                    counterscreencaptureswtc = 0;
+                                }
+                                else
+                                {
+                                    if (counterscreencapture >= 10)
+                                    {
+                                        sharpdxscreencapture.DisposeWithoutDevice();
+                                        sharpdxscreencapture = new sccssharpdxscreencapture(0, 0, device);
+                                        counterscreencapture = 0;
+                                    }
+                                    counterscreencapture++;
+                                }
 
 
                                 if (scgraphicssecpackagemessage.scjittertasks != null)
@@ -4243,8 +4301,6 @@ namespace sccs.scgraphics
                                             }
                                         }
                                     }
-
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -4371,52 +4427,6 @@ namespace sccs.scgraphics
 
 
 
-                                            if (threadupdateswtc == 0 && exitthread1 == 0) //0
-                                            {
-                                                if (scgraphicssecpackagemessage.scjittertasks != null)
-                                                {
-                                                    if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                                    {
-                                                        if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 0)
-                                                        {
-
-                                                            // scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.scwritedirectiontobuffer(scgraphicssecpackagemessage.scjittertasks);
-
-                                                            scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.sccswriteikrigtobuffer(scgraphicssecpackagemessage);
-
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-
-                                            if (threadupdateswtc == 0 && exitthread1 == 0) //0
-                                            {
-                                                if (scgraphicssecpackagemessage.scjittertasks != null)
-                                                {
-                                                    if (scgraphicssecpackagemessage.scjittertasks[0] != null)
-                                                    {
-                                                        if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 1)
-                                                        {
-                                                            scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 2;
-                                                            //Thread.Sleep(0);
-                                                        }
-                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 2)
-                                                        {
-                                                            //Thread.Sleep(0);
-                                                        }
-                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 3)
-                                                        {
-                                                            scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 4;
-                                                            //Thread.Sleep(1);
-                                                        }
-                                                        else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 4)
-                                                        {
-                                                            //Thread.Sleep(1);
-                                                        }
-                                                    }
-                                                }
-                                            }
 
 
 
@@ -4431,7 +4441,7 @@ namespace sccs.scgraphics
                                                     if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scgraphicssec.activatevoxelinstancedvirtualdesktop == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet1 == 0)
                                                     {
 
-                                                        scgraphicssecpackagemessage.scgraphicssec.scwritetobufferkeyboard(scgraphicssecpackagemessage.scjittertasks, out hasfinishedframe1);
+                                                        //scgraphicssecpackagemessage.scgraphicssec.scwritetobufferkeyboard(scgraphicssecpackagemessage.scjittertasks, out hasfinishedframe1);
                                                         scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.workondestroyingkeyboardbytes(scgraphicssecpackagemessage);
 
                                                         scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.sccswritescreenassetstobuffer(scgraphicssecpackagemessage.scjittertasks);
@@ -4503,6 +4513,95 @@ namespace sccs.scgraphics
 
                             updatethreadupdateswtc0 = 1;
                         }
+
+
+
+
+
+
+                        if (scgraphicssecpackagemessage.scjittertasks != null)
+                        {
+
+                            if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                            {
+
+                                if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scgraphicssec.activatevoxelinstancedvirtualdesktop == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet1 == 0)
+                                {
+
+                                    scgraphicssecpackagemessage.scgraphicssec.scwritetobufferkeyboard(scgraphicssecpackagemessage.scjittertasks, out hasfinishedframe1);
+
+                                    if (sccsr14sc.Form1.someform.cursorlightoption == 3)
+                                    {
+                                        //if (scgraphicssecpackagemessage.scgraphicssec.activatevoxelinstancedvirtualdesktop == 1)
+                                        //{
+                                        //scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.workOnDestroyingBytes(scgraphicssecpackagemessage);
+
+
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                        }
+
+
+
+
+
+
+
+
+
+
+                        if (threadupdateswtc == 0 && exitthread1 == 0) //0
+                        {
+                            if (scgraphicssecpackagemessage.scjittertasks != null)
+                            {
+                                if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                                {
+                                    if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 0)
+                                    {
+
+                                        // scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.scwritedirectiontobuffer(scgraphicssecpackagemessage.scjittertasks);
+
+                                        scgraphicssecpackagemessage.scjittertasks = scgraphicssecpackagemessage.scgraphicssec.sccswriteikrigtobuffer(scgraphicssecpackagemessage);
+
+                                    }
+                                }
+                            }
+                        }
+
+
+                        if (threadupdateswtc == 0 && exitthread1 == 0) //0
+                        {
+                            if (scgraphicssecpackagemessage.scjittertasks != null)
+                            {
+                                if (scgraphicssecpackagemessage.scjittertasks[0] != null)
+                                {
+                                    if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 1)
+                                    {
+                                        scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 2;
+                                        //Thread.Sleep(0);
+                                    }
+                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 2)
+                                    {
+                                        //Thread.Sleep(0);
+                                    }
+                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 3)
+                                    {
+                                        scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 = 4;
+                                        //Thread.Sleep(1);
+                                    }
+                                    else if (scgraphicssecpackagemessage.scgraphicssec != null && scgraphicssecpackagemessage.scgraphicssec.hasinit == 1 && scgraphicssecpackagemessage.scjittertasks[0][0].swtcvirtualdesktoptypet0 == 4)
+                                    {
+                                        //Thread.Sleep(1);
+                                    }
+                                }
+                            }
+                        }
+
 
 
                         /*
