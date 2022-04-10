@@ -1,4 +1,7 @@
-[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-ReleasesNLibs/total.svg)]() <== added icon 04thapril2022
+[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs/total.svg)]() <== added icon 04thapril2022
+
+[![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs)]()
+
 
 # sccs-ReleasesNLibs
 same as repo sccs but only releases and libs and tests
