@@ -1,0 +1,9 @@
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\sccsr14wpf.csproj.AssemblyReference.cache
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\sccsr14wpf.csproj.SuggestedBindingRedirects.cache
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\mikasc\WindowPicker.baml
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\MainWindow.g.cs
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\mikasc\WindowPicker.g.cs
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\App.g.cs
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\sccsr14wpf_Content.g.cs
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\sccsr14wpf_MarkupCompile.cache
+C:\Users\steve\Documents\GitHub\sccs\tests\sccsr14-breakables-CURRENT\sccsr14wpf\obj\Release\net48\sccsr14wpf_MarkupCompile.lref

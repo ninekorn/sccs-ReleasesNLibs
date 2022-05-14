@@ -1,0 +1,342 @@
+
+/////////////////////
+////   GLOBALS
+//////////////////////
+
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+SamplerState textureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+/*cbuffer LightBuffer
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding;
+};*/
+
+cbuffer LightBuffer
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding0;
+	float3 lightPosition;
+	float padding1;
+};
+
+
+//////////////////////
+////   TYPES
+//////////////////////
+struct PixelInputType
+{
+	/*float4 position : SV_POSITION;
+	float4 color : COLOR0;
+	float3 normal : NORMAL0;
+	float2 tex : TEXCOORD0;*/
+
+	float4 position : POSITION0;
+	float4 indexPos : POSITION1;
+	float4 color : COLOR0;
+	float3 normal : NORMAL0;
+	float2 tex : TEXCOORD0;
+	int one : PSIZE0;	
+	int two : PSIZE1;	
+	int three : PSIZE2;	
+	int four : PSIZE3;	
+	int oneTwo : PSIZE4;	
+	int twoTwo : PSIZE5;	
+	int threeTwo : PSIZE6;	
+	int fourTwo : PSIZE7;	
+	float4 instancePosition1 : POSITION2;
+	float4 instanceRadRotFORWARD : POSITION3;
+	float4 instanceRadRotRIGHT : POSITION4;
+	float4 instanceRadRotUP : POSITION5;
+	int xindex : PSIZE8;
+	int yindex : PSIZE9;
+	//float4 instanceRadRotFORWARD : POSITION3;
+	//float4 instanceRadRotRIGHT : POSITION4;
+	//float4 instanceRadRotUP : POSITION5;
+};
+
+
+
+
+
+
+
+//float _lastDOTProdAngleWithHypAndOpp = -1;
+static const float PI = 3.1415926535897932384626433832795f;
+static const float3 world_forward = float3(0,0,1);
+static const float3 world_backward = float3(0,0,-1);
+static const float3 world_right = float3(1,0,0);
+static const float3 world_left = float3(-1,0,0);
+static const float3 world_up = float3(0,1,0);
+static const float3 world_down = float3(0,-1,0);
+
+
+static float dstX= 0;
+static float dstY= 0;
+static float dstZ = 0;
+static float dstX_vs_dstZ = 0;
+static float dstX_vs_dstY = 0;
+static float dstY_vs_dstZ = 0;
+
+
+//steve chassé's notes: 2021-jan-21
+//SEBASTIEN LAGUE 2D BLUEPRINT FOR NODE DIAGONAL. It works in void expanse too. i am so jealous of those youtubers and how good their tutorials are on youtube and i am barely even to make a decent one. i am barely even able to remove what can be portrayed as despicable comments
+//in my scripts but that is just my inner anger of not being able to have a 3d blueprint of how to do the same thing. But i think i was able to solve the problem for my planet chunk script. it's really cool but it still lags.
+    
+//MODIFIED 2D TO 3D VERSION OF SEBASTIEN LAGUE WITH SOME MODS SIMPLY FOR VISUALLY BEING ABLE TO MODIFY TO ELLIPSOID AND OTHER GEOMETRY FORMS - it kinda works but ive got a hard time getting a perfect sphere. im not a mathematician
+//and i am a lazy programmer.
+float sc_check_distance_node_3d(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float diagmaxx, float diagmaxy, float diagmaxz, float diagminx, float diagminy, float diagminz) // i was thinking about using the index instead and then was like well i need the distance man.
+{
+    //var pointFrontX = (1 * cos(radToDeg * Math.PI / 180));
+    //var pointFrontY = (1 * sin(radToDeg * Math.PI / 180));
+
+	//var dstX = Math.Abs((nodeA.X) - (nodeB.X));
+    //var dstZ = Math.Abs((nodeA.Y) - (nodeB.Y));
+    //if (dstX > dstZ)
+    //{
+    //    return 14 * dstZ + 10 * (dstX - dstZ);
+    //}
+    //return 14 * dstX + 10 * (dstZ - dstX);
+
+
+    float dstX = abs((nodeA.x) - (nodeB.x));
+    float dstY = abs((nodeA.y) - (nodeB.y));
+    float dstZ = abs((nodeA.z) - (nodeB.z));
+
+    float dstX_vs_dstZ = 0;
+    float dstX_vs_dstY = 0;
+    float dstY_vs_dstZ = 0;
+
+    if (dstX > dstZ)
+    {
+        dstX_vs_dstZ = diagmaxx * dstZ + minx * (dstX - dstZ);
+    }
+    else
+    {
+        dstX_vs_dstZ = diagminx * dstX + minx * (dstZ - dstX);
+    }
+
+    if (dstX > dstY)
+    {
+        dstX_vs_dstY = diagmaxy * dstY + miny * (dstX - dstY);
+    }
+    else
+    {
+        dstX_vs_dstY = diagminy * dstX + miny * (dstY - dstX);
+    }
+
+    if (dstY > dstZ)
+    {
+        dstY_vs_dstZ = diagmaxz * dstZ + minz * (dstY - dstZ);
+    }
+    else
+    {
+        dstY_vs_dstZ = diagminz * dstY + minz * (dstZ - dstY);
+    }
+
+    return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+float sc_check_distance_node_3d_geometry(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float maxx, float maxy, float maxz) 
+{
+	//STEVE CHASSÉ 3D blueprint for sphere type and a ton more. based on 2d version of Sebastian Lague. but my version is not perfect. i don't know yet what else to put in there.
+
+
+	dstX = abs((nodeA.x) - (nodeB.x));
+	dstY = abs((nodeA.y) - (nodeB.y));
+	dstZ = abs((nodeA.z) - (nodeB.z));
+
+	dstX_vs_dstZ = 0;
+	dstX_vs_dstY = 0;
+	dstY_vs_dstZ = 0;
+
+	if (dstX > dstZ)
+	{
+		dstX_vs_dstZ = maxx * dstZ + minx * (dstX - dstZ);
+	}
+	else
+	{
+		dstX_vs_dstZ = maxx * dstX + minx * (dstZ - dstX);
+	}
+
+	if (dstX > dstY)
+	{
+		dstX_vs_dstY = maxy * dstY + miny * (dstX - dstY);
+	}
+	else
+	{
+		dstX_vs_dstY = maxy * dstX + miny * (dstY - dstX);
+	}
+
+	if (dstY > dstZ)
+	{
+		dstY_vs_dstZ = maxz * dstZ + minz * (dstY - dstZ);
+	}
+	else
+	{
+		dstY_vs_dstZ = maxz * dstY + minz * (dstZ - dstY);
+	}
+	return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+float4 the_color = float4(0.65,0.65,0.65,1);
+
+//////////////////////
+////   Pixel Shader
+/////////////////////
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+	/*float4 textureColor;
+
+	float2 test = input.tex;
+	test = (test/ float2(10,10));
+
+	float2 testY = input.tex;
+
+	int x = input.indexPos.x;
+	int y = input.indexPos.y;
+	int z = input.indexPos.z;
+
+	test.x = (test.x + (0.1 * (input.xindex)));
+	test.y = (test.y + (0.1 * (input.yindex)));
+
+	//test.x* =-1;
+	//test.y* =-1;
+
+	test.y = 1 - test.y;
+
+	//test.x = (test.x + (0.1 * x));
+	//test.y = (test.y + (0.1 * y));
+
+	if(input.position.x != input.instancePosition1.x &&
+		 input.position.y != input.instancePosition1.y && 
+		 input.position.z != input.instancePosition1.z)
+	{
+
+	}
+	else
+	{
+		input.tex = test;
+		textureColor = shaderTexture.Sample(SampleType, input.tex);
+	}*/
+
+
+
+
+	//input.tex = test;
+	//textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+	//return textureColor;
+
+
+
+
+
+
+
+
+
+	/*float4 textureColor;
+	float3 lightDir;
+	float lightIntensity;
+	float4 color;
+
+	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+	//textureColor = shaderTexture.Sample(textureSampler, input.tex);
+
+	// Set the default output color to the ambient light value for all pixels.
+	color = ambientColor;
+
+	// Invert the light direction for calculations.
+	lightDir = - lightDirection;
+
+	// Calculate the amount of the light on this pixel.
+	lightIntensity = saturate(dot(input.normal, lightDir));
+
+	if(lightIntensity > 0.0f)
+	{
+		// Determine the final diffuse color based on the diffuse color and the amount of light intensity.
+		color += (diffuseColor * lightIntensity);
+	}
+
+	color += (diffuseColor * lightIntensity);
+
+	// Saturate the final light color.
+	color = saturate(color);
+
+	// Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+	// EX 2: for seeing only the lighting effect.
+	color = color;// * textureColor;
+	input.color = color * input.color;
+	return input.color;*/
+
+
+
+
+	
+
+
+	//float x = dot(input.normal, float3(1, 0.45, 0.65));	
+	//x = x * 0.5 - 0.5;
+	//float3 color = lerp(float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), float3(input.color.x*1.5, input.color.y*1.5, input.color.z*1.5), x);
+	//input.color.xyz = color;
+	//input.color.w = 1.0;
+	//input.color = input.color;
+	//float3 color = lerp(float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), float3(input.color.x*0.95, input.color.y*0.95, input.color.z*0.95), x);
+	//input.Pos = input[i].Pos;
+	//input.tex = input[i].tex;
+	
+
+
+
+
+
+	float3 lightDir;
+	float lightIntensity;
+	float4 colorer;
+
+	colorer = ambientColor;
+
+	lightDir = -lightDirection;
+
+	float3 inputPos = input.instancePosition1.xyz;
+	//float distTot = sqrt(((lightPosition.x - inputPos.x)*(lightPosition.x - inputPos.x)) + ((lightPosition.y - inputPos.y)*(lightPosition.y - inputPos.y)) + ((lightPosition.z - inputPos.z)*(lightPosition.z - inputPos.z)));
+	//float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 128, 128, 128, 128, 128, 128);
+	float distTot = sc_check_distance_node_3d(lightPosition, inputPos,2,2,2, 2, 2, 2, 2, 2, 2);
+	
+
+	float3 dirLightToFace = lightPosition - inputPos;
+	dirLightToFace /= distTot;
+
+	float someOtherDot = dot(dirLightToFace, lightDir);
+
+	//float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, lightDir));
+
+	float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+	someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+	
+	float someTester = padding1 - distTot;
+	float distMod = someTester;
+	distMod *= 0.1f; //0.01f
+	float4 modColor = colorer;
+
+	modColor += (diffuseColor * (someOtherDot)) * distMod;
+	modColor = saturate(modColor);
+	
+	input.color = input.color * modColor * 0.75f;
+
+	return input.color;
+}
+
