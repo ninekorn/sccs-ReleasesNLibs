@@ -54,6 +54,11 @@ sccsr14forms - 5th revision - virtual desktop in vr and without vr, with physica
 
 <img WIDTH=500 src="https://i.ibb.co/dfn3KxZ/tablevoxeldesktop-2022-02-22-185240.png" alt="tablevoxeldesktop-2022-02-22-185240" border="0">
 <img WIDTH = 500 src="https://i.ibb.co/5WRHCMC/Capture-d-cran-2022-04-03-005256.png" alt="Capture-d-cran-2022-04-03-005256" border="0"><img WIDTH = 500 src="https://i.ibb.co/Nn3cLmf/Capture-d-cran-2022-04-03-014034.png" alt="Capture-d-cran-2022-04-03-014034" border="0"><img WIDTH=500 src="https://i.ibb.co/cK925KF/Capture-d-cran-2022-04-06-200255.png" alt="Capture-d-cran-2022-04-06-200255" border="0">
+
+May 2022 release - I have developped a better version of my level generator with enclosed walls and using my vertex/triangle reducer technique. I have attempted to use inverse kinematics with floor collision using byte index location but it isn't working that great yet. I am not using physics yet either. Also the voxels are not breakable currently but it is my plan for the future. This is a demo. 
+
+<img WIDTH=500 src="https://i.ibb.co/CKBRYPp/Capture-d-cran-2022-05-13-222134.png" alt="Capture-d-cran-2022-05-13-222134" border="0">
+
 --------------------------------------------------------------------------
 
 I have learned to create my own direct3D c# programs and the main help from being able to get out of unity3d and be independant from unity3D was to code my own programs in C#. It was a sad choice, but back in unity 2017, adding the framework in order to make a virtual desktop from sharpdx was a tough thing to do and i couldn't make it happen. i then chose to learn by myself.
