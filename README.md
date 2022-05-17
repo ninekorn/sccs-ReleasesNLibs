@@ -58,6 +58,8 @@ sccsr14forms - 5th revision - virtual desktop in vr and without vr, with physica
 May 2022 release - I have developped a better version of my level generator with enclosed walls and using my vertex/triangle reducer technique. I have attempted to use inverse kinematics with floor collision using byte index location but it isn't working that great yet. I am not using physics yet either. Also the voxels are not breakable currently but it is my plan for the future. This is a demo. 
 
 <img WIDTH=500 src="https://i.ibb.co/CKBRYPp/Capture-d-cran-2022-05-13-222134.png" alt="Capture-d-cran-2022-05-13-222134" border="0">
+<img WIDTH=500 src="https://i.ibb.co/x5jKk9P/Capture-d-cran-2022-05-17-002056.png" alt="Capture-d-cran-2022-05-17-002056" border="0">
+<img WIDTH=500 src="https://i.ibb.co/BgBKp4G/Capture-d-cran-2022-05-17-002233.png" alt="Capture-d-cran-2022-05-17-002233" border="0">
 
 --------------------------------------------------------------------------
 
