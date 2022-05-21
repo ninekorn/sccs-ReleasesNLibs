@@ -29,6 +29,7 @@ using SharpDX.D3DCompiler;
 
 using System.Xml;
 
+using System.IO;
 
 namespace sccs
 {
@@ -526,6 +527,15 @@ namespace sccs
 
 
 
+            string pathofrelease = Directory.GetCurrentDirectory();
+            //Console.WriteLine(pathofrelease);
+            string pathofchunkmap = pathofrelease + @"\chunkmaps\";
+
+            if (!Directory.Exists(pathofchunkmap))
+            {
+                //Console.WriteLine("created directory");
+                Directory.CreateDirectory(pathofchunkmap);
+            }
 
             //unLOADING CHUNK to XML
             //unLOADING CHUNK to XML
@@ -537,7 +547,7 @@ namespace sccs
                 customCulture.NumberFormat.NumberDecimalSeparator = ".";
                 System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-                var path = @"C:\Users\steve\Desktop\#chunkmaps\" + "chunkmap" + writetofilecounter + ".xml";
+                var path = pathofchunkmap + @"\chunkmap" + writetofilecounter + ".xml";
               
                 var writer = new XmlTextWriter(path, System.Text.Encoding.UTF8);
                 

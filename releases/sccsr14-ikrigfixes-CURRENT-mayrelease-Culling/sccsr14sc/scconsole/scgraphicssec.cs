@@ -1994,7 +1994,7 @@ namespace sccs.scgraphics
 
                 LevelGenerator4 levelgen = new LevelGenerator4();
 
-                levelgen.tileAmount = 2500; //10500 //15000lag
+                levelgen.tileAmount = 50; //10500 //15000lag
                 levelgen.chunkwidth = 1;
                 levelgen.chunkheight = 1;
                 levelgen.chunkdepth = 1;
