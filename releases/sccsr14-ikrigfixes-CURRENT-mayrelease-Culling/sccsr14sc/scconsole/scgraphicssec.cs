@@ -341,7 +341,7 @@ namespace sccs.scgraphics
 
 
 
-        public  sccsikvoxellimbs[] ikvoxelbody;
+        public sccsikvoxellimbs[] ikvoxelbody;
         // Matrix[][][][] worldMatrix_instances_ikvoxelbody;
         int somechunkpriminstancesikvoxelbodywidthR = 1;
         int somechunkpriminstancesikvoxelbodyheightR = 0;
@@ -725,7 +725,7 @@ namespace sccs.scgraphics
                     }
                 }
             }
-            
+
 
 
 
@@ -1994,7 +1994,12 @@ namespace sccs.scgraphics
 
                 LevelGenerator4 levelgen = new LevelGenerator4();
 
-                levelgen.tileAmount = 50; //10500 //15000lag
+                //adding more tiles means the level will be bigger
+                levelgen.tileAmount = 1500; //10500 //15000lag
+                //15000lag => my computer specs 960gtx 2gb + Amd Ryzen 2600 + 8gb ram 
+
+
+
                 levelgen.chunkwidth = 1;
                 levelgen.chunkheight = 1;
                 levelgen.chunkdepth = 1;
@@ -2509,9 +2514,9 @@ namespace sccs.scgraphics
                                         //yawer = oriRotationScreenY0 * 0.0174532925f;
                                         //roller = oriRotationScreenZ0 * 0.0174532925f;
                                         pitcher0 = (float)(Math.PI * (RotationInstScreenx) / 180.0f);
-                                         yawer0 = (float)(Math.PI * (RotationInstScreeny) / 180.0f);
-                                         roller0 = (float)(Math.PI * (RotationInstScreenz) / 180.0f);
-                                         somematrixroter = SharpDX.Matrix.RotationYawPitchRoll(yawer0, pitcher0, roller0);
+                                        yawer0 = (float)(Math.PI * (RotationInstScreeny) / 180.0f);
+                                        roller0 = (float)(Math.PI * (RotationInstScreenz) / 180.0f);
+                                        somematrixroter = SharpDX.Matrix.RotationYawPitchRoll(yawer0, pitcher0, roller0);
 
 
 
@@ -2536,19 +2541,19 @@ namespace sccs.scgraphics
                                         //Vector3 originvirtualdesktoppos = new Vector3(0, 0.5f, 15);
                                         //Vector3 originsomechunksceneposition = new Vector3(0, 0, 0);
 
-                                         pitch = (float)(Math.PI * (45) / 180.0f); //25 //5
-                                         yaw = (float)(Math.PI * (0) / 180.0f);
-                                         roll = (float)(Math.PI * (0) / 180.0f);
+                                        pitch = (float)(Math.PI * (45) / 180.0f); //25 //5
+                                        yaw = (float)(Math.PI * (0) / 180.0f);
+                                        roll = (float)(Math.PI * (0) / 180.0f);
 
-                                         somematrixrot = SharpDX.Matrix.RotationYawPitchRoll(yaw, pitch, roll);
+                                        somematrixrot = SharpDX.Matrix.RotationYawPitchRoll(yaw, pitch, roll);
 
-                                         somematrixrotfake = SharpDX.Matrix.RotationYawPitchRoll(0, 0, 0);
+                                        somematrixrotfake = SharpDX.Matrix.RotationYawPitchRoll(0, 0, 0);
                                         //somematrixrot = Matrix.Identity;
 
                                         //Vector3 originvirtualdesktoppos = new Vector3(0, 0.5f, 15);
 
-                                         posoffsetx = somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.planeSize * 0.5f;
-                                         posoffsety = somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.planeSize * 0.5f;
+                                        posoffsetx = somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboardglobals.planeSize * 0.5f;
+                                        posoffsety = somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboardglobals.planeSize * 0.5f;
 
                                         originvirtualdesktoppos = new Vector3(-posoffsetx, -posoffsety, 0);
                                         //Vector3 originvirtualdesktoppos = new Vector3(0, 0, 0);
@@ -2694,7 +2699,7 @@ namespace sccs.scgraphics
                                                     }
 
 
-                                               
+
                                                     int swtcsetneighboors = 1;
                                                     float offsetinstances = 2.0f;
                                                     int typeofvoxelmesh = 1;
@@ -3136,10 +3141,10 @@ namespace sccs.scgraphics
                                     {
                                         try
                                         {
-                                            
-                                           _human_inst_rig_x = 1; //30 //10
-                                           _human_inst_rig_y = 1; 
-                                           _human_inst_rig_z = 1; //30 //10
+
+                                            _human_inst_rig_x = 1; //30 //10
+                                            _human_inst_rig_y = 1;
+                                            _human_inst_rig_z = 1; //30 //10
 
                                             ikvoxelbody = new sccsikvoxellimbs[(somechunkpriminstancesikvoxelbodywidthR)];
 
@@ -3601,7 +3606,7 @@ namespace sccs.scgraphics
 
 
 
-                
+
 
 
 
@@ -3614,7 +3619,7 @@ namespace sccs.scgraphics
                     worldMatrixinstancesdestroybytes[0][0][i] = Matrix.Identity;
                 }
 
-                
+
 
             }
             else
@@ -7569,7 +7574,7 @@ namespace sccs.scgraphics
                 }
                 else if (playerusebrush == 1) ///////////////////////////BRUSH/////////////////////////////////////
                 {
-                    
+
                 }
             }
             catch (Exception ex)
@@ -8903,19 +8908,19 @@ namespace sccs.scgraphics
 
 
                                                 somechunkbyteposition1 += (dirInstanceRight1 * ((somevoxelkeyboardglobals.numberOfObjectInWidth) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth) * (somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjectx * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceRight1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * (somevoxelkeyboardglobals.tinyChunkWidth* somevoxelkeyboard[0].moffsetinstance))) * indexmeshzerox * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth* somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstx * somemulsize1)) ;
-                                                somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth* somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytex)) * indexbytex * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceRight1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * (somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzerox * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstx * somemulsize1));
+                                                somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytex)) * indexbytex * somemulsize1);
 
                                                 somechunkbyteposition1 += (dirInstanceUp1 * ((somevoxelkeyboardglobals.numberOfObjectInHeight) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight) * (somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjecty * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceUp1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * (somevoxelkeyboardglobals.tinyChunkHeight* somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroy * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight* somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinsty * somemulsize1));
-                                                somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight* somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytey)) * indexbytey * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceUp1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * (somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroy * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinsty * somemulsize1));
+                                                somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytey)) * indexbytey * somemulsize1);
 
                                                 somechunkbyteposition1 += (dirInstanceForward1 * ((somevoxelkeyboardglobals.numberOfObjectInDepth) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth) * (somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjectz * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceForward1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth * (somevoxelkeyboardglobals.tinyChunkDepth* somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroz * somemulsize1);
-                                                somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth* somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstz * somemulsize1)) ;
-                                                somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth* somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytez)) * indexbytez * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceForward1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth * (somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroz * somemulsize1);
+                                                somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstz * somemulsize1));
+                                                somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytez)) * indexbytez * somemulsize1);
 
 
                                                 Vector3 mainmeshpos = new Vector3(somevoxelkeyboard[0].currentWorldMatrix.M41, somevoxelkeyboard[0].currentWorldMatrix.M42, somevoxelkeyboard[0].currentWorldMatrix.M43);
@@ -11951,7 +11956,7 @@ namespace sccs.scgraphics
                                     direction_feet_forward_ori = sc_maths._getDirection(Vector3.ForwardRH, somequat);
                                     direction_feet_right_ori = sc_maths._getDirection(Vector3.Right, somequat);
                                     direction_feet_up_ori = sc_maths._getDirection(Vector3.Up, somequat);
-                                    
+
                                     //diffNormPosX = (MOVINGPOINTER.X) - temppickaxetiplocation.X;// ikarmvoxel[3]._player_r_hand_grab[0][0]._arrayOfInstances[insti].current_pos.M41;
                                     //diffNormPosY = (MOVINGPOINTER.Y) - temppickaxetiplocation.Y;//ikarmvoxel[3]._player_r_hand_grab[0][0]._arrayOfInstances[insti].current_pos.M42;
                                     //diffNormPosZ = (MOVINGPOINTER.Z) - temppickaxetiplocation.Z;//ikarmvoxel[3]._player_r_hand_grab[0][0]._arrayOfInstances[insti].current_pos.M43;
@@ -11981,7 +11986,7 @@ namespace sccs.scgraphics
 
 
 
-                                    pickaxetippoint = MOVINGPOINTER1 + (direction_feet_up_ori * ((-temppickaxetiplocation.Y * somevoxelkeyboardglobals.planeSize) +(bry * planeSize))); // ikarmvoxel[3].voxel_general_size
+                                    pickaxetippoint = MOVINGPOINTER1 + (direction_feet_up_ori * ((-temppickaxetiplocation.Y * somevoxelkeyboardglobals.planeSize) + (bry * planeSize))); // ikarmvoxel[3].voxel_general_size
                                     pickaxetippoint = pickaxetippoint + (direction_feet_forward_ori * ((-temppickaxetiplocation.Z * somevoxelkeyboardglobals.planeSize) + (brz * planeSize))); //ikarmvoxel[3].voxel_general_size
                                     //pickaxetippoint = pickaxetippoint + (direction_feet_right_ori * ((-temppickaxetiplocation.X * somevoxelkeyboardglobals.planeSize) + (brx * planeSize))); //ikarmvoxel[3].voxel_general_size
 
@@ -12403,7 +12408,7 @@ namespace sccs.scgraphics
                                         //int indexmainobjectz = ((somefz - (totalTimesz * theNumberz)));
                                         int indexmainobjectx = totalTimesx;// ((somefx - (totalTimesx * theNumberx)));
                                         int indexmainobjecty = totalTimesy;// ((somefy - (totalTimesy * theNumbery)));
-                                        int indexmainobjectz =  totalTimesz;// ((somefz - (totalTimesz * theNumberz)));
+                                        int indexmainobjectz = totalTimesz;// ((somefz - (totalTimesz * theNumberz)));
 
                                         int indexmainobjectzalt = (totalTimesz);
 
@@ -13015,25 +13020,25 @@ namespace sccs.scgraphics
 
 
 
-                                                            
+
                                                             somechunkbyteposition1 += (dirInstanceRight1 * ((somevoxelkeyboardglobals.numberOfObjectInWidth) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth) * (somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjectx * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceRight1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInWidth * (somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzerox * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstx * somemulsize1));
                                                             somechunkbyteposition1 += (dirInstanceRight1 * (((somevoxelkeyboardglobals.tinyChunkWidth * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytex)) * indexbytex * somemulsize1);
-                                                         
+
 
                                                             somechunkbyteposition1 += (dirInstanceUp1 * ((somevoxelkeyboardglobals.numberOfObjectInHeight) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight) * (somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjecty * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceUp1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInHeight * (somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroy * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinsty * somemulsize1));
                                                             somechunkbyteposition1 += (dirInstanceUp1 * (((somevoxelkeyboardglobals.tinyChunkHeight * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytey)) * indexbytey * somemulsize1);
 
-                                                           
+
                                                             somechunkbyteposition1 += (dirInstanceForward1 * ((somevoxelkeyboardglobals.numberOfObjectInDepth) * (somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth) * (somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance)) * indexmainobjectz * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceForward1 * ((somevoxelkeyboardglobals.numberOfInstancesPerObjectInDepth * (somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance))) * indexmeshzeroz * somemulsize1);
                                                             somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance)) * indexofmeshinstz * somemulsize1));
                                                             somechunkbyteposition1 += (dirInstanceForward1 * (((somevoxelkeyboardglobals.tinyChunkDepth * somevoxelkeyboard[0].moffsetinstance) * somemulsizemainsubmeshinstbytez)) * indexbytez * somemulsize1);
 
-                                                            
+
 
 
 
@@ -13181,11 +13186,11 @@ namespace sccs.scgraphics
                                                             pickaxetippoint = pickaxetippoint + (direction_feet_right_ori * ((-temppickaxetiplocation.X * somevoxelkeyboardglobals.planeSize) + (brx * planeSize))); //ikarmvoxel[3].voxel_general_size
                                                             */
 
-                                                            
+
                                                             worldMatrixinstancesdestroybytes[0][0][0].M41 = pickaxetippoint.X;
                                                             worldMatrixinstancesdestroybytes[0][0][0].M42 = pickaxetippoint.Y;
                                                             worldMatrixinstancesdestroybytes[0][0][0].M43 = pickaxetippoint.Z;
-                                                            
+
 
 
 
@@ -15093,7 +15098,7 @@ namespace sccs.scgraphics
                                                                                     case 0:
                                                                                         somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
 
-                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11+ somecolortypedec;
+                                                                                        somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].instancesmatrix[indexofmeshinst].instancematrix.M11 = (float)m11 + somecolortypedec;
                                                                                         break;
                                                                                     case 1:
                                                                                         somevoxelkeyboard[indexofmainobject].arrayofindexzeromesh[indexofmeshzero].choosecolortype[indexofmeshinst]++;
@@ -16276,7 +16281,7 @@ namespace sccs.scgraphics
                                                                 }
                                                                 else
                                                                 {
-                                                                   
+
                                                                 }
                                                             }
                                                         }
@@ -16939,7 +16944,7 @@ namespace sccs.scgraphics
                         sccs.scgraphics.scupdate._shaderManager.RenderInstancedObject(sccs.scgraphics.scdirectx.D3D.device.ImmediateContext, worlddestroybytesassets[0][0].IndexCount, worlddestroybytesassets[0][0].InstanceCount, worlddestroybytesassets[0][0]._POSITION, viewMatrix, projectionMatrix, null, _DLightBuffer_cube, worlddestroybytesassets[0][0], 20, worlddestroybytesassets[0][0].indexofshader);
                         //END OF
 
-                        
+
 
 
                     }
@@ -17472,162 +17477,162 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
             try
             {
 
-          
-            if (activatevoxelinstancedvirtualdesktop == 1)
-            {
 
-
-                if (setoncevrdesktop == 0) /// && Program._useOculusRift == 1 && Program._useOculusRift == 1
+                if (activatevoxelinstancedvirtualdesktop == 1)
                 {
 
-                    //VOXEL VIRTUAL DESKTOP
-                    //VOXEL VIRTUAL DESKTOP
-                    //VOXEL VIRTUAL DESKTOP
-                    for (int xxxx = 0; xxxx < somevoxelvirtualdesktopw; xxxx++)
+
+                    if (setoncevrdesktop == 0) /// && Program._useOculusRift == 1 && Program._useOculusRift == 1
                     {
-                        for (int yyyy = 0; yyyy < somevoxelvirtualdesktoph; yyyy++)
+
+                        //VOXEL VIRTUAL DESKTOP
+                        //VOXEL VIRTUAL DESKTOP
+                        //VOXEL VIRTUAL DESKTOP
+                        for (int xxxx = 0; xxxx < somevoxelvirtualdesktopw; xxxx++)
                         {
-                            for (int zzzz = 0; zzzz < somevoxelvirtualdesktopd; zzzz++)
+                            for (int yyyy = 0; yyyy < somevoxelvirtualdesktoph; yyyy++)
                             {
-                                var somevoxelvirtualdesktopindex = xxxx + somevoxelvirtualdesktopw * (yyyy + somevoxelvirtualdesktoph * zzzz);
-
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].world = _worldMatrix;
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].view = _viewMatrix;
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].proj = _projectionMatrix;
-
-                                /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0] = new SC_instancedChunkPrim.DMatrixBuffer()
+                                for (int zzzz = 0; zzzz < somevoxelvirtualdesktopd; zzzz++)
                                 {
-                                    world = _worldMatrix,
-                                    view = _viewMatrix,
-                                    proj = _projectionMatrix,
-                                };*/
+                                    var somevoxelvirtualdesktopindex = xxxx + somevoxelvirtualdesktopw * (yyyy + somevoxelvirtualdesktoph * zzzz);
 
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].world = _worldMatrix;
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].view = _viewMatrix;
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].proj = _projectionMatrix;
 
-                                /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0] = new SC_instancedChunkPrim.DLightBufferEr()
-                                {
-                                    ambientColor = ambientColor,
-                                    diffuseColor = diffuseColour,
-                                    lightDirection = rayDirFrontInstancesChunks,
-                                    padding0 = 0,
-                                    lightPosition = centerPosRighthandposRR,
-                                    padding1 = 100
-                                };*/
-
-
-                                //lightpos.X = sccs.scgraphics.scupdate._rightTouchMatrix.M41;
-                                //lightpos.Y = sccs.scgraphics.scupdate._rightTouchMatrix.M42;
-                                //lightpos.Z = sccs.scgraphics.scupdate._rightTouchMatrix.M43;
-
-
-                                Quaternion somerighttouchquat;
-                                Matrix somemat = sccs.scgraphics.scupdate._rightTouchMatrix;
-                                Quaternion.RotationMatrix(ref somemat, out somerighttouchquat);
-
-                                Vector3 forwarddir = sc_maths._getDirection(Vector3.ForwardRH, somerighttouchquat);
-
-                                ambientColor = new Vector4(0.45f, 0.45f, 0.45f, 1.0f);
-                                //ambientColor = new Vector4(0.75f, 0.75f, 0.75f, 1.0f);
-
-                                diffuseColour = new Vector4(1, 1, 1, 1);
-                                //lightDirection = new Vector3(0, -1, -1);
-                                lightpos = new Vector3(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z);  //new Vector3(0, 100, 0);
-
-                                //lightpos.Y = 10.0f;
-
-                                //lightpos.Z = somevoxelvirtualdesktop[0].worldmatofobj.M43 + (screenNormalForward.Z * 0.1f);
-                                //lightpos.X = positionOfMousereducedx;
-                                //lightpos.Y = positionOfMousereducedy;
-
-                                /*
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightDirection = dirlight;// forwarddir;
-                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightDirection = -Vector3.Up;// forwarddir;
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightPosition = lightpos;
-
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].ambientColor = ambientColor;
-                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].diffuseColor = diffuseColour;
-                                */
-
-                                for (int x = 0; x < somevoxelvirtualdesktopglobals.numberOfObjectInWidth; x++)
-                                {
-                                    for (int y = 0; y < somevoxelvirtualdesktopglobals.numberOfObjectInHeight; y++)
+                                    /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0] = new SC_instancedChunkPrim.DMatrixBuffer()
                                     {
-                                        for (int z = 0; z < somevoxelvirtualdesktopglobals.numberOfObjectInDepth; z++)
+                                        world = _worldMatrix,
+                                        view = _viewMatrix,
+                                        proj = _projectionMatrix,
+                                    };*/
+
+
+                                    /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0] = new SC_instancedChunkPrim.DLightBufferEr()
+                                    {
+                                        ambientColor = ambientColor,
+                                        diffuseColor = diffuseColour,
+                                        lightDirection = rayDirFrontInstancesChunks,
+                                        padding0 = 0,
+                                        lightPosition = centerPosRighthandposRR,
+                                        padding1 = 100
+                                    };*/
+
+
+                                    //lightpos.X = sccs.scgraphics.scupdate._rightTouchMatrix.M41;
+                                    //lightpos.Y = sccs.scgraphics.scupdate._rightTouchMatrix.M42;
+                                    //lightpos.Z = sccs.scgraphics.scupdate._rightTouchMatrix.M43;
+
+
+                                    Quaternion somerighttouchquat;
+                                    Matrix somemat = sccs.scgraphics.scupdate._rightTouchMatrix;
+                                    Quaternion.RotationMatrix(ref somemat, out somerighttouchquat);
+
+                                    Vector3 forwarddir = sc_maths._getDirection(Vector3.ForwardRH, somerighttouchquat);
+
+                                    ambientColor = new Vector4(0.45f, 0.45f, 0.45f, 1.0f);
+                                    //ambientColor = new Vector4(0.75f, 0.75f, 0.75f, 1.0f);
+
+                                    diffuseColour = new Vector4(1, 1, 1, 1);
+                                    //lightDirection = new Vector3(0, -1, -1);
+                                    lightpos = new Vector3(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z);  //new Vector3(0, 100, 0);
+
+                                    //lightpos.Y = 10.0f;
+
+                                    //lightpos.Z = somevoxelvirtualdesktop[0].worldmatofobj.M43 + (screenNormalForward.Z * 0.1f);
+                                    //lightpos.X = positionOfMousereducedx;
+                                    //lightpos.Y = positionOfMousereducedy;
+
+                                    /*
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightDirection = dirlight;// forwarddir;
+                                    //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightDirection = -Vector3.Up;// forwarddir;
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].lightPosition = lightpos;
+
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].ambientColor = ambientColor;
+                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk[0].diffuseColor = diffuseColour;
+                                    */
+
+                                    for (int x = 0; x < somevoxelvirtualdesktopglobals.numberOfObjectInWidth; x++)
+                                    {
+                                        for (int y = 0; y < somevoxelvirtualdesktopglobals.numberOfObjectInHeight; y++)
                                         {
-                                            int c = x + somevoxelvirtualdesktopglobals.numberOfObjectInWidth * (y + somevoxelvirtualdesktopglobals.numberOfObjectInHeight * z);
-
-
-                                            /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos =
-                                                new Vector4(sccs.scgraphics.scupdate._hmdPoser.X, sccs.scgraphics.scupdate._hmdPoser.Y, sccs.scgraphics.scupdate._hmdPoser.Z, 1)
-                                                + new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
-                                            //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos = new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
-
-
-                                            //Console.WriteLine(new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1));
-                                            //Vector3 cursorpos = new Vector3(worldMatrix_instances_screen_assets[0][0][19].M41, worldMatrix_instances_screen_assets[0][0][19].M42, worldMatrix_instances_screen_assets[0][0][19].M43);
-
-                                            somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirf = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceForward0;
-                                            somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirr = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceRight0;
-                                            somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdiru = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceUp0;
-                                            */
-
-
-
-
-
-
-                                            if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].switchForRender == 1)
+                                            for (int z = 0; z < somevoxelvirtualdesktopglobals.numberOfObjectInDepth; z++)
                                             {
+                                                int c = x + somevoxelvirtualdesktopglobals.numberOfObjectInWidth * (y + somevoxelvirtualdesktopglobals.numberOfObjectInHeight * z);
 
 
-                                                /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightDirection = dirlight;//
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightPosition = cursorpos;
-                                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightDirection = -Vector3.Up;// dirlight;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].ambientColor = ambientColor;
+                                                /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos =
+                                                    new Vector4(sccs.scgraphics.scupdate._hmdPoser.X, sccs.scgraphics.scupdate._hmdPoser.Y, sccs.scgraphics.scupdate._hmdPoser.Z, 1)
+                                                    + new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
+                                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos = new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].diffuseColor = diffuseColour;
 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].padding0 = 75;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].padding1 = 100;
-                                                //specularPower
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].specularcolor = new Vector4(1, 1, 1, 1);
+                                                //Console.WriteLine(new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1));
+                                                //Vector3 cursorpos = new Vector3(worldMatrix_instances_screen_assets[0][0][19].M41, worldMatrix_instances_screen_assets[0][0][19].M42, worldMatrix_instances_screen_assets[0][0][19].M43);
+
+                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirf = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceForward0;
+                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirr = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceRight0;
+                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdiru = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceUp0;
                                                 */
 
-                                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer;
-                                                //RENDERING THE INSTANCED CHUNK 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].matrixBuffer = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff;
 
-                                                var matrixBufferDescriptionVertex00 = new BufferDescription()
+
+
+
+
+                                                if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].switchForRender == 1)
                                                 {
-                                                    Usage = ResourceUsage.Dynamic,
-                                                    SizeInBytes = Marshal.SizeOf(typeof(SC_instancedChunk.DInstanceType)) * somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].instances.Length,
-                                                    BindFlags = BindFlags.VertexBuffer,
-                                                    CpuAccessFlags = CpuAccessFlags.Write,
-                                                    OptionFlags = ResourceOptionFlags.None,
-                                                    StructureByteStride = 0
-                                                };
 
-                                                var InstanceBuffer = new SharpDX.Direct3D11.Buffer(sccs.scgraphics.scdirectx.D3D.device, matrixBufferDescriptionVertex00);
 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].SC_instancedChunk_Instances = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instances;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].worldMatrix = _worldMatrix;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].viewMatrix = _viewMatrix;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].projectionMatrix = _projectionMatrix;
+                                                    /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightDirection = dirlight;//
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightPosition = cursorpos;
+                                                    //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].lightDirection = -Vector3.Up;// dirlight;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].ambientColor = ambientColor;
 
-                                                //arrayOfChunkData[c].worldMatrix += arrayOfMatrixBuff[0].world;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].diffuseColor = diffuseColour;
 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].matrixBuffer = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].padding0 = 75;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].padding1 = 100;
+                                                    //specularPower
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].specularcolor = new Vector4(1, 1, 1, 1);
+                                                    */
 
-                                                //arrayOfChunkData[c].lightBuffer = lightBufferInstChunk;
+                                                    //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].lightBufferInstChunk = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer;
+                                                    //RENDERING THE INSTANCED CHUNK 
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].matrixBuffer = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff;
 
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].instanceBuffer = InstanceBuffer;
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].arrayOfSomeMap = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].arrayOfSomeMap;
+                                                    var matrixBufferDescriptionVertex00 = new BufferDescription()
+                                                    {
+                                                        Usage = ResourceUsage.Dynamic,
+                                                        SizeInBytes = Marshal.SizeOf(typeof(SC_instancedChunk.DInstanceType)) * somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].instances.Length,
+                                                        BindFlags = BindFlags.VertexBuffer,
+                                                        CpuAccessFlags = CpuAccessFlags.Write,
+                                                        OptionFlags = ResourceOptionFlags.None,
+                                                        StructureByteStride = 0
+                                                    };
 
-                                                //arrayOfChunkData[c] = shaderOfChunk.Renderer(arrayOfChunkData[c], c);
-                                                //Console.WriteLine("test");
-                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].switchForRender = 2;
-                                            }
-                                            else
-                                            {
+                                                    var InstanceBuffer = new SharpDX.Direct3D11.Buffer(sccs.scgraphics.scdirectx.D3D.device, matrixBufferDescriptionVertex00);
+
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].SC_instancedChunk_Instances = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instances;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].worldMatrix = _worldMatrix;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].viewMatrix = _viewMatrix;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].projectionMatrix = _projectionMatrix;
+
+                                                    //arrayOfChunkData[c].worldMatrix += arrayOfMatrixBuff[0].world;
+
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].matrixBuffer = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff;
+
+                                                    //arrayOfChunkData[c].lightBuffer = lightBufferInstChunk;
+
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].instanceBuffer = InstanceBuffer;
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].arrayOfSomeMap = somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].arrayOfSomeMap;
+
+                                                    //arrayOfChunkData[c] = shaderOfChunk.Renderer(arrayOfChunkData[c], c);
+                                                    //Console.WriteLine("test");
+                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].switchForRender = 2;
+                                                }
+                                                else
+                                                {
 
 
 
@@ -17688,16 +17693,16 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
 
 
                                             }
+                                        }
                                     }
                                 }
                             }
                         }
+                        //VOXEL VIRTUAL DESKTOP
+                        //VOXEL VIRTUAL DESKTOP
+                        //VOXEL VIRTUAL DESKTOP
                     }
-                    //VOXEL VIRTUAL DESKTOP
-                    //VOXEL VIRTUAL DESKTOP
-                    //VOXEL VIRTUAL DESKTOP
                 }
-            }
             }
             catch (Exception ex)
             {
@@ -22097,9 +22102,9 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
             //pitch and yaw
             //yaw and roll doesnt work.
             //
-            
-            
-            
+
+
+
             worldMatrix_instances_screen_assets[0][0][6] = somematrixroterrollchange1;// somevoxelvirtualdesktop[0].worldmatofobj;
             worldMatrix_instances_screen_assets[0][0][6].M41 = (float)realcamcursormemoryposonvd.X;
             worldMatrix_instances_screen_assets[0][0][6].M42 = (float)realcamcursormemoryposonvd.Y;
@@ -22109,7 +22114,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
             worldMatrix_instances_screen_assets[0][0][20].M41 = (float)camcursormemoryposon.X;
             worldMatrix_instances_screen_assets[0][0][20].M42 = (float)camcursormemoryposon.Y;
             worldMatrix_instances_screen_assets[0][0][20].M43 = (float)camcursormemoryposon.Z;
-            
+
 
             /*Matrix somemulmatrix = rotatedDroneMatrix * rotatedDroneMatrix2; // rotatedDroneMatrix * 
               worldMatrix_instances_screen_assets[0][0][6] = somemulmatrix;// somevoxelvirtualdesktop[0].worldmatofobj;
@@ -31431,7 +31436,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
 
                                     if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].copytobuffer == 1)
                                     {
-                                        
+
 
 
                                         //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].copytobuffer = 0;
@@ -31852,7 +31857,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
 
                                     if (somevoxelkeyboard[somevoxelkeyboardindex].arrayOfChunkData[c].copytobuffer == 1)
                                     {
-                                       
+
 
                                         //somevoxelkeyboard[somevoxelkeyboardindex].arrayOfChunkData[c].copytobuffer = 0;
                                     }
