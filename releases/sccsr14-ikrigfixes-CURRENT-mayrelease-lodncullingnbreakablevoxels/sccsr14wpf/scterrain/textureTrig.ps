@@ -1,0 +1,285 @@
+
+/////////////////////
+////   GLOBALS
+//////////////////////
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+cbuffer LightBuffer
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float padding;
+};
+
+//////////////////////
+////   TYPES
+//////////////////////
+struct PixelInputType
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+	float3 normal : NORMAL;
+	float2 tex : TEXCOORD0;
+	float3 instancePosition : POSITION1;
+};
+
+//float _lastDOTProdAngleWithHypAndOpp = -1;
+static const float PI = 3.1415926535897932384626433832795f;
+static const float3 world_forward = float3(0,0,1);
+static const float3 world_backward = float3(0,0,-1);
+static const float3 world_right = float3(1,0,0);
+static const float3 world_left = float3(-1,0,0);
+static const float3 world_up = float3(0,1,0);
+static const float3 world_down = float3(0,-1,0);
+
+
+static float dstX= 0;
+static float dstY= 0;
+static float dstZ = 0;
+static float dstX_vs_dstZ = 0;
+static float dstX_vs_dstY = 0;
+static float dstY_vs_dstZ = 0;
+
+float sc_check_distance_node_3d_geometry(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float maxx, float maxy, float maxz) 
+{
+	//STEVE CHASSÉ 3D blueprint for sphere type and a ton more. based on 2d version of Sebastian Lague. but my version is not perfect. i don't know yet what else to put in there.
+	//the solution was easier than i thought and it came to me quite fast after fearing for months i'd never be able to quickly get this function written. This function is also a
+	//main part of the upgrade that i want to implement to the Jitter physics engine for spatial awareness. In the jitter physics engine, it seems as if every frame that the objects
+	//are enabled and non-static, jitter checks ALL bounding boxes for collisions between all of them. So of course at some point, the more objects in the scene, the more bounding
+	//boxes it has to check for each individual objects. for instance, lets say there is 1000 objects in the scene, so index 0 to index 999, if object 0 checks against ALL other
+	//998 objects, it's a huge waste of performance. But there are collision "islands" in the jitter physics engine but those i believe are chosen only when bounding boxes are 
+	//officially declared as colliding. so i want to see if i can use a fast distance checker (which i didnt test yet against Math.Sqrt or the very fast quake sqrt). But all of
+	//the things i learned in doing chunks are also going to be needed for when im going to start developing things around and inside of the Jitter Physics Engine. So prior upgrading the physics
+	//engine jitter for my engine sccoresystems, i can only have 4000 max objects and it would lag the scene. but the tests are not carved on rock yet because, 
+	//1. im not loading the dll how i should maybe
+	//2. maybe because multiple instances of the physics engine like i am loading them isn't the proper way to do it? in monogame, to load different scene instances, they use 
+	//   Activator.CreateInstance and i was unable to use that anywhere back then. I might try again at some point... But right now i am using an interface. In sccsv10
+	//
+
+
+	dstX = abs((nodeA.x) - (nodeB.x));
+	dstY = abs((nodeA.y) - (nodeB.y));
+	dstZ = abs((nodeA.z) - (nodeB.z));
+
+	dstX_vs_dstZ = 0;
+	dstX_vs_dstY = 0;
+	dstY_vs_dstZ = 0;
+
+	if (dstX > dstZ)
+	{
+		dstX_vs_dstZ = maxx * dstZ + minx * (dstX - dstZ);
+	}
+	else
+	{
+		dstX_vs_dstZ = maxx * dstX + minx * (dstZ - dstX);
+	}
+
+	if (dstX > dstY)
+	{
+		dstX_vs_dstY = maxy * dstY + miny * (dstX - dstY);
+	}
+	else
+	{
+		dstX_vs_dstY = maxy * dstX + miny * (dstY - dstX);
+	}
+
+	if (dstY > dstZ)
+	{
+		dstY_vs_dstZ = maxz * dstZ + minz * (dstY - dstZ);
+	}
+	else
+	{
+		dstY_vs_dstZ = maxz * dstY + minz * (dstZ - dstY);
+	}
+	return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+
+
+//////////////////////
+////   Pixel Shader
+/////////////////////
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+	float4 textureColor;
+	float3 lightDir;
+	float lightIntensity;
+	float4 color;
+
+	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+	//textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+	// Set the default output color to the ambient light value for all pixels.
+	color = ambientColor;
+
+	// Invert the light direction for calculations.
+	lightDir = - lightDirection;
+
+	// Calculate the amount of the light on this pixel.
+	lightIntensity = saturate(dot(input.normal, lightDir));
+
+	if(lightIntensity > 0.0f)
+	{
+		// Determine the final diffuse color based on the diffuse color and the amount of light intensity.
+		color += (diffuseColor * lightIntensity);
+	}
+
+	// Saturate the final light color.
+	color = saturate(color);
+
+	// Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+	// EX 2: for seeing only the lighting effect.
+	color = color;// * textureColor;
+	input.color = color;
+
+
+
+
+
+
+	float4 lightPosition = float4(0,3,0,1);
+
+	float4 somemoddedinputcolor = input.color;
+	float3 inputPos;
+	inputPos.x = input.position.x + input.instancePosition.x + somemoddedinputcolor.x;
+	inputPos.y = input.position.y + input.instancePosition.y + somemoddedinputcolor.y;
+	inputPos.z = input.position.z + input.instancePosition.z + somemoddedinputcolor.z;
+
+
+
+
+	float4 colorer;
+	colorer = ambientColor;
+	float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, lightDir));
+
+	//someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+
+	float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 3, 3, 3, 3, 3, 3);
+
+
+	float someTester = 5 - distTot;
+	float distMod = someTester;
+	distMod *= 0.1f;	 //0.01f
+	float4 modColor = colorer;
+
+	modColor += (diffuseColor * (DOTProdAngleWithHypAndOpp)) * distMod;
+	modColor = saturate(modColor);
+
+	//DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+
+	somemoddedinputcolor = DOTProdAngleWithHypAndOpp * modColor;// * modColor * 0.75f;
+
+	somemoddedinputcolor = float4(input.normal,1);
+
+
+
+
+	if(input.normal.x == 1.0)
+	{
+		somemoddedinputcolor *= 0.555f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.x == -1.0)
+	{
+		somemoddedinputcolor *=  0.145f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == 1.0)
+	{
+		somemoddedinputcolor*=  0.475f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == -1.0)
+	{
+		somemoddedinputcolor*=  0.135f;//float4(0.15,0.95,0.15,1);
+	}
+	if(input.normal.z == 1.0)
+	{
+		somemoddedinputcolor *=  0.765f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.z == -1.0)
+	{
+		somemoddedinputcolor *=  0.35f;//float4(0.15,0.95,0.15,1);
+	}
+
+
+	/*float x = dot(input.normal, float3(1, 0.4, 0.25));	
+	x = x * 0.5 - 0.5;
+	color.xyz = lerp(float3(input.color.x*0.75, input.color.y*0.75, input.color.z*0.75), float3(input.color.x*0.85, input.color.y*0.85, input.color.z*0.85), x);
+	input.color.xyz = color;
+	input.color.w = 1.0;*/
+
+
+
+
+	//float2 noise = (frac(sin(dot(float2(input.position.x,input.position.z) ,float2(12.9898,78.233)*2.0)) * 43758.5453));
+    //float test = abs(noise.x + noise.y) * 0.5;
+    //input.color = float4(input.color.x + (input.position.x*0.1),input.color.y+ (input.position.y*0.1),input.color.z+ (input.position.z*0.1),input.color.w);
+
+	return somemoddedinputcolor * input.color;
+}
+
+
+
+
+
+
+
+
+/*/////////////
+// GLOBALS //
+/////////////
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+
+//////////////
+// TYPEDEFS //
+//////////////
+struct PixelInputType
+{
+    //float4 position : SV_POSITION;
+	//float4 color : COLOR;
+	//float3 normal : NORMAL;
+    //float2 tex : TEXCOORD;
+
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+	float3 normal : NORMAL;
+	float2 texcoord : TEXCOORD;
+	float3 lightDirection:LIGHT;
+	float3 viewDirection:VIEW;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Pixel Shader
+////////////////////////////////////////////////////////////////////////////////
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+	//float4 textureColor;
+    // Sample the pixel color from the texture using the sampler at this texture coordinate location.
+    //float4 textureColor = shaderTexture.Sample(SampleType, input.color);// * input.tex; 
+    //return textureColor;
+	//return  input.color;//float4(0.1,0.1,0.1,1);// input.color; //float4(0.1,0.1,0.1,1);
+
+	//float2 parallax=input.viewDirection.xy * normalMap.Sample( textureSampler, input.texcoord).a*bias;
+	//float4 D=textureMap.Sample( textureSampler, input.texcoord +parallax);
+	//float4 N=normalMap.Sample( textureSampler, input.texcoord +parallax)*2.0f-1.0f;	
+	//return saturate(dot(N,input.lightDirection))*D+0.2F;
+	return  input.color;
+}*/
+
+
+
+
+/*float4 PS( PS_IN input ) : SV_Target
+{
+	float2 parallax=input.viewDirection.xy * normalMap.Sample( textureSampler, input.texcoord).a*bias;
+	float4 D=textureMap.Sample( textureSampler, input.texcoord +parallax);
+	float4 N=normalMap.Sample( textureSampler, input.texcoord +parallax)*2.0f-1.0f;	
+	return saturate(dot(N,input.lightDirection))*D+0.2F;
+}*/

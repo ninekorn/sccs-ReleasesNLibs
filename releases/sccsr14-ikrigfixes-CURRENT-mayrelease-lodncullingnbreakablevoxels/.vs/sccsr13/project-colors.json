@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d41add7e-1f7a-4087-a03d-b34af4997118": {
+      "ProjectGuid": "d41add7e-1f7a-4087-a03d-b34af4997118",
+      "DisplayName": "sccsr14form",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "11ab87cb-3b83-4b81-92c4-abf5c7935a3f": {
+      "ProjectGuid": "11ab87cb-3b83-4b81-92c4-abf5c7935a3f",
+      "DisplayName": "Ab3d.OculusWrap",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

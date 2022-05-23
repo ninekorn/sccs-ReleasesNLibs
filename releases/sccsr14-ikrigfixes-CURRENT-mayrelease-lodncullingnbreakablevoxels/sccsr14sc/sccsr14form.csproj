@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D41ADD7E-1F7A-4087-A03D-B34AF4997118}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>sccsr14sc</RootNamespace>
+    <AssemblyName>sccsr14sc</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <LangVersion>10.0</LangVersion>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ab3d.OculusWrap, Version=1.18.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\bin\Release\Ab3d.OculusWrap.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ab3d_dxengine_vr\EyeTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\MirrorTexture.cs" />
+    <Compile Include="ab3d_dxengine_vr\SharpDXHelpers.cs" />
+    <Compile Include="ab3d_dxengine_vr\TextureSwapChain.cs" />
+    <Compile Include="Forces\Buoyancy.cs" />
+    <Compile Include="Forces\ForceGenerator.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frustrum\DFrustumClass1.cs" />
+    <Compile Include="frustrum\sccsfrustrum.cs" />
+    <Compile Include="mikasc\DwmSharedSurface.cs" />
+    <Compile Include="mikasc\GraphicsCapture.cs" />
+    <Compile Include="mikasc\Interfaces\ICaptureMethod.cs" />
+    <Compile Include="mikasc\Interop\ComObjects.cs" />
+    <Compile Include="mikasc\Interop\NativeMethods.cs" />
+    <Compile Include="mikasc\Interop\NativeMethodsgc.cs" />
+    <Compile Include="mikasc\Interop\NativeMethodsother.cs" />
+    <Compile Include="mikasc\WindowPicker.xaml.cs">
+      <DependentUpon>WindowPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="scconsole\DInputClass2.cs" />
+    <Compile Include="scconsole\keyboardinput.cs" />
+    <Compile Include="scconsole\scconsolecore.cs" />
+    <Compile Include="scconsole\scdirectx.cs" />
+    <Compile Include="scconsole\scgraphicssec.cs" />
+    <Compile Include="scconsole\scupdate.cs" />
+    <Compile Include="scconsole_menu\sc_console_menu_00.cs" />
+    <Compile Include="scconsole_menu\sc_console_menu_01.cs" />
+    <Compile Include="sccore\scglobals.cs" />
+    <Compile Include="sccore\scglobalsaccessor.cs" />
+    <Compile Include="sccore\scicomponent.cs" />
+    <Compile Include="sccore\scinterface.cs" />
+    <Compile Include="sccore\scsystemconfiguration.cs" />
+    <Compile Include="sccore\scsysteminfo.cs" />
+    <Compile Include="sccsnewlevelgen\LevelGenerator4.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenclasscore.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenvert.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenmaps.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenglobals.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenclass.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenclassPrim.cs" />
+    <Compile Include="sccsnewlevelgen\sclevelgenclassshader.cs" />
+    <Compile Include="sccsscreenframe.cs" />
+    <Compile Include="sccssharpdxscreencapture.cs" />
+    <Compile Include="scgraphics\_sc_camera\_sc_camera.cs" />
+    <Compile Include="scgraphics\_sc_shader_manager\scshadermanager.cs" />
+    <Compile Include="sciklimbs\Noise.cs" />
+    <Compile Include="sciklimbs\sccsikvoxellimbs.cs" />
+    <Compile Include="sciklimbs\sccsvoxels.cs" />
+    <Compile Include="sciklimbs\scvoxelverttrigreduced.cs" />
+    <Compile Include="sciklimbs\SC_cube.cs" />
+    <Compile Include="sciklimbs\SC_cube_instances.cs" />
+    <Compile Include="sciklimbs\SC_cube_shader_final.cs" />
+    <Compile Include="sciklimbs\sc_voxel.cs" />
+    <Compile Include="sciklimbs\sc_voxel_instances.cs" />
+    <Compile Include="sciklimbs\sc_voxel_shader_final.cs" />
+    <Compile Include="scjitter\Conversion.cs" />
+    <Compile Include="scjitter\IComponent.cs" />
+    <Compile Include="scjitter\ITransform.cs" />
+    <Compile Include="scmessage_object\scmessageobject.cs" />
+    <Compile Include="scterrain\chunkTerrain.cs" />
+    <Compile Include="scterrain\sccstrigvertbuilderreduced.cs" />
+    <Compile Include="scterrain\SC_VR_Chunk.cs" />
+    <Compile Include="scterrain\SC_VR_Chunk_Shader.cs" />
+    <Compile Include="scterrain\SimplexNoise.cs" />
+    <Compile Include="scvoxelscreen\chunkpermesh.cs" />
+    <Compile Include="scvoxelscreen\chunkscreen.cs" />
+    <Compile Include="scvoxelscreen\chunkmesh.cs" />
+    <Compile Include="scvoxelscreen\FastNoise.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreen.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreenmorescreens.cs" />
+    <Compile Include="scvoxelscreen\sccstrigvertbuilderscreenreduced.cs" />
+    <Compile Include="scvoxelscreen\SC_Globals.cs" />
+    <Compile Include="scvoxelscreen\SC_GlobalsVoxelInstancing.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunkPrim.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk_instances.cs" />
+    <Compile Include="scvoxelscreen\SC_instancedChunk_shader_final.cs" />
+    <Compile Include="sc_brollof_perceptron\Perceptron.cs" />
+    <Compile Include="sc_brollof_perceptron\SC_AI.cs" />
+    <Compile Include="sc_brollof_perceptron\SC_AI_Start.cs" />
+    <Compile Include="sc_brollof_perceptron\Trainer.cs" />
+    <Compile Include="sc_maths.cs" />
+    <Compile Include="SoundPlayer.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="sciklimbs\texture.ps" />
+    <None Include="sciklimbs\texture.vs" />
+    <None Include="sciklimbs\texturePS.ps" />
+    <None Include="sciklimbs\texturePSassets.ps" />
+    <None Include="sciklimbs\textureVS.vs" />
+    <None Include="sciklimbs\textureVSassets.vs" />
+    <None Include="sciklimbs\texture_voxel.ps" />
+    <None Include="sciklimbs\texture_voxel.vs" />
+    <None Include="sciklimbs\texture_voxelPS.ps" />
+    <None Include="sciklimbs\texture_voxelVS.vs" />
+    <None Include="scterrain\geometryshader.gs" />
+    <None Include="scterrain\textureTrigPS - backup2022mars12-1.ps" />
+    <None Include="scterrain\textureTrigPS.ps" />
+    <None Include="scterrain\textureTrigVS.vs" />
+    <None Include="sccsnewlevelgen\geometryshaderLevel.gs" />
+    <None Include="sccsnewlevelgen\textureTrigLevelPS.ps" />
+    <None Include="sccsnewlevelgen\textureTrigLevelVS.vs" />
+    <None Include="scvoxelscreen\colordom.ds" />
+    <None Include="scvoxelscreen\colorhull.hs" />
+    <None Include="sciklimbs\geoshaderikrig.gs" />
+    <None Include="scvoxelscreen\HLSL.gs" />
+    <None Include="scvoxelscreen\HLSLchunkkeyboard.gs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPS.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeight.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkterrainPSeightbreakvr.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeightbreakvr.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeightbreakdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSsixteendx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapPSeightdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVS.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSdx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeight.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkterrainVSeightbreakvr.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeightbreakvr.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeightbreakdx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSsixteendx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkheightmapVSeightdx.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkPS.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkPSdx.ps" />
+    <None Include="scvoxelscreen\sccsvertbindchunkVS.vs" />
+    <None Include="scvoxelscreen\sccsvertbindchunkVSdx.vs" />
+    <None Include="scvoxelscreen\textureTrigChunkPS.ps" />
+    <None Include="scvoxelscreen\textureTrigChunkPSdx.ps" />
+    <None Include="scvoxelscreen\textureTrigChunkVS.vs" />
+    <None Include="scvoxelscreen\textureTrigChunkVSdx.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon1.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icon2.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\cursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Icon3.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="sc_brollof_perceptron\work notes.txt" />
+    <Content Include="Shader.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="terrainGrassDirt.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.13</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.22000.196</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.D3DCompiler">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Desktop">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Direct2D1">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.Direct3D11">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.DirectInput">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.DirectSound">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.MediaFoundation">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.RawInput">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.XAudio2">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.XInput">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.WindowsRuntime">
+      <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
+      <Version>4.7.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="mikasc\WindowPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\inputsimulator\WindowsInput\WindowsInput.csproj">
+      <Project>{3549cd6f-80f8-450f-b99e-cf0a736b1f2a}</Project>
+      <Name>WindowsInput</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\libraries\jitter_sc\jitter_sc.csproj">
+      <Project>{15fced70-dfdf-4a9f-b703-2e112a0cde51}</Project>
+      <Name>jitter_sc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\libraries\sc_message_object\sc_message_object.csproj">
+      <Project>{eb2f84ee-155a-45d6-94c4-834bff4ddf0b}</Project>
+      <Name>sc_message_object</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
