@@ -5510,7 +5510,7 @@ namespace sccs.scgraphics
                 int someremainsy = 0;
                 int someremainsz = 0;
 
-                if (MOVINGPOINTER1.X >= 0)
+                if (pickaxetippoint.X >= 0)
                 {
                     someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
                     totalTimesx = (int)(someposfootx - someremainsx);
@@ -5522,7 +5522,7 @@ namespace sccs.scgraphics
                     totalTimesx *= -1;
                 }
 
-                if (MOVINGPOINTER1.Y >= 0)
+                if (pickaxetippoint.Y >= 0)
                 {
                     someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
                     totalTimesy = (int)(someposfooty - someremainsy);
@@ -5534,7 +5534,7 @@ namespace sccs.scgraphics
                     totalTimesy *= -1;
                 }
 
-                if (MOVINGPOINTER1.Z >= 0)
+                if (pickaxetippoint.Z >= 0)
                 {
                     someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
                     totalTimesz = (int)(someposfootz - someremainsz);
@@ -5569,11 +5569,11 @@ namespace sccs.scgraphics
                     {
                         if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
                         {
-
                             //Console.WriteLine("byte:" + somechunk.map[someindexmap]);
 
                             if (somechunk.map[someindexmap] == 1)
                             {
+
                                 somechunk.map[someindexmap] = 0;
 
 
@@ -5591,78 +5591,105 @@ namespace sccs.scgraphics
 
                                 somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].IndicesBuffer.Dispose();
                                 somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                            }
+                            somechunk.cleararrays();
+                        }
+                    }
+                }
 
 
 
 
-                                //int indexx = totalTimesx;
-                                //int indexy = totalTimesy;
-                                //int indexz = totalTimesz;
 
-                                //int sometotaltimesx = someremainsx / 10;// totalTimesx;
-                                //int sometotaltimesy = someremainsy / 10;//totalTimesy;
-                                //int sometotaltimesz = someremainsz / 10;//totalTimesz;
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                if (totalTimesx < 0.0f)
+                {
+                    totalTimesx *= -1;
+                }
+                if (totalTimesy < 0.0f)
+                {
+                    totalTimesy *= -1;
+                }
+                if (totalTimesz < 0.0f)
+                {
+                    totalTimesz *= -1;
+                }
 
 
-                                 totalTimesx = 0;
-                                 totalTimesy = 0;
-                                 totalTimesz = 0;
+                //indexx = totalTimesx;
+                //indexy = totalTimesy;
+                //indexz = totalTimesz;
 
-                                 someremainsx = 0;
-                                 someremainsy = 0;
-                                 someremainsz = 0;
+                someindexmap = totalTimesx + 5 * ((totalTimesy) + 5 * totalTimesz);
 
-                                if (MOVINGPOINTER1.X >= 0)
+                somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
+
+                if (somechunk != null && somearrayindex >= 0)
+                {
+                    if (somechunk.map != null)
+                    {
+                        if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                        {
+                            //Console.WriteLine("byte:" + somechunk.map[someindexmap]);
+
+                            if (somechunk.map[someindexmap] == 1)
+                            {
+
+                                somechunk.map[someindexmap] = 0;
+                                somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
+                                somechunk.sccsSetMap();
+                                somechunk.Regenerate();
+                                if (somechunk.vertexlist.Count > 0)
                                 {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = (int)(someposfootx - someremainsx);
-                                }
-                                else
-                                {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                    totalTimesx *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Y >= 0)
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = (int)(someposfooty - someremainsy);
-                                }
-                                else
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                    totalTimesy *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Z >= 0)
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = (int)(someposfootz - someremainsz);
-                                }
-                                else
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                    totalTimesz *= -1;
-                                }
-
-                                 indexx = totalTimesx;
-                                 indexy = totalTimesy;
-                                 indexz = totalTimesz;
-
-                                someindexmap = indexx + 5 * ((indexy) + 5 * indexz);
-                                if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                {
-                                    //Console.WriteLine("destroying chunk 5x5x5");
-                                    somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                    //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                    //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                    somechunk.sccsSetMap();
-                                    somechunk.Regenerate();
-
                                     somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
                                     somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
 
@@ -5672,69 +5699,106 @@ namespace sccs.scgraphics
                                     somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
                                     somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
                                 }
+                                somechunk.cleararrays();
+                            }
+                        }
+                    }
+                }
 
 
 
 
-                                totalTimesx = 0;
-                                totalTimesy = 0;
-                                totalTimesz = 0;
 
-                                someremainsx = 0;
-                                someremainsy = 0;
-                                someremainsz = 0;
 
-                                if (MOVINGPOINTER1.X >= 0)
+                
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+                if (totalTimesx < 0.0f)
+                {
+                    totalTimesx *= -1;
+                }
+                if (totalTimesy < 0.0f)
+                {
+                    totalTimesy *= -1;
+                }
+                if (totalTimesz < 0.0f)
+                {
+                    totalTimesz *= -1;
+                }
+                //indexx = totalTimesx;
+                //indexy = totalTimesy;
+                //indexz = totalTimesz;
+
+                someindexmap = totalTimesx + 3 * ((totalTimesy) + 3 * totalTimesz);
+
+                //Console.WriteLine(someindexmap);
+
+                somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                if (somechunk != null && somearrayindex >= 0)
+                {
+                    if (somechunk.map != null)
+                    {
+                        if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                        {
+                            if (somechunk.map[someindexmap] == 1)
+                            {
+                                //Console.WriteLine("destroying chunk 3x3x3");
+                                // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+                                somechunk.map[someindexmap] = 0;
+                                somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                somechunk.sccsSetMap();
+                                somechunk.Regenerate();
+                                if (somechunk.vertexlist.Count > 0)
                                 {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = (int)(someposfootx - someremainsx);
-                                }
-                                else
-                                {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                    totalTimesx *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Y >= 0)
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = (int)(someposfooty - someremainsy);
-                                }
-                                else
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                    totalTimesy *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Z >= 0)
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = (int)(someposfootz - someremainsz);
-                                }
-                                else
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                    totalTimesz *= -1;
-                                }
-
-                                indexx = totalTimesx;
-                                indexy = totalTimesy;
-                                indexz = totalTimesz;
-
-                                someindexmap = indexx + 3 * ((indexy) + 3 * indexz);
-
-                                if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                {
-                                    //Console.WriteLine("destroying chunk 3x3x3");
-                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                    somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                    somechunk.sccsSetMap();
-                                    somechunk.Regenerate();
-
                                     somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
                                     somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
 
@@ -5744,69 +5808,102 @@ namespace sccs.scgraphics
                                     somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
                                     somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
                                 }
+                                somechunk.cleararrays();
+                            }
+                        }
+                    }
+                }
 
 
+                
 
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
 
-                                totalTimesx = 0;
-                                totalTimesy = 0;
-                                totalTimesz = 0;
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
 
-                                someremainsx = 0;
-                                someremainsy = 0;
-                                someremainsz = 0;
+                if (pickaxetippoint.X >= 0)
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
 
-                                if (MOVINGPOINTER1.X >= 0)
+                }
+                else
+                {
+                    //someremainsx = indexx;
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    //someremainsy = indexy;
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    //someremainsz = indexz;
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                //indexx = totalTimesx;
+                //indexy = totalTimesy;
+                //indexz = totalTimesz;
+                if (totalTimesx < 0.0f)
+                {
+                    totalTimesx *= -1;
+                }
+                if (totalTimesy < 0.0f)
+                {
+                    totalTimesy *= -1;
+                }
+                if (totalTimesz < 0.0f)
+                {
+                    totalTimesz *= -1;
+                }
+
+                someindexmap = totalTimesx + 2 * ((totalTimesy) + 2 * totalTimesz);
+
+                somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                if (somechunk != null && somearrayindex >= 0)
+                {
+                    if (somechunk.map != null)
+                    {
+                        if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                        {
+                            if (somechunk.map[someindexmap] == 1)
+                            {
+                               
+                                somechunk.map[someindexmap] = 0;
+                                somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunk.map;
+
+                                somechunk.sccsSetMap();
+                                somechunk.Regenerate();
+
+                                if (somechunk.vertexlist.Count > 0)
                                 {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = (int)(someposfootx - someremainsx);
-                                }
-                                else
-                                {
-                                    someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                    totalTimesx *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Y >= 0)
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = (int)(someposfooty - someremainsy);
-                                }
-                                else
-                                {
-                                    someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                    totalTimesy *= -1;
-                                }
-
-                                if (MOVINGPOINTER1.Z >= 0)
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = (int)(someposfootz - someremainsz);
-                                }
-                                else
-                                {
-                                    someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                    totalTimesz *= -1;
-                                }
-
-                                indexx = totalTimesx;
-                                indexy = totalTimesy;
-                                indexz = totalTimesz;
-
-                                someindexmap = indexx + 2 * ((indexy) + 2 * indexz);
-
-                                if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                {
-                                    //Console.WriteLine("destroying chunk 3x3x3");
-                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                    somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                    somechunk.sccsSetMap();
-                                    somechunk.Regenerate();
-
                                     somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
                                     somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
 
@@ -5815,1696 +5912,2019 @@ namespace sccs.scgraphics
 
                                     somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
                                     somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+
                                 }
-
-
-                                /*
-                                somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunk.map;*/
-
-
-
-
-                                var somewidth = 10 - 1;
-                                var someheight = 10 - 1;
-                                var somedepth = 10 - 1;
-
-                                if (indexx == 0)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (somewidth) + 10 * ((indexy) + 10 * indexz);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 5 - 1;
-                                                    someheight = 5 - 1;
-                                                    somedepth = 5 - 1;
-
-
-                                                    someindexmap = somewidth + 5 * ((indexy) + 5 * indexz);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 3 - 1;
-                                                    someheight = 3 - 1;
-                                                    somedepth = 3 - 1;
-
-                                                    someindexmap = somewidth + 3 * ((indexy) + 3 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 2 - 1;
-                                                    someheight = 2 - 1;
-                                                    somedepth = 2 - 1;
-                                                    someindexmap = somewidth + 2 * ((indexy) + 2 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (indexx == somewidth)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (0) + 10 * ((indexy) + 10 * indexz);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 0;
-                                                    someheight = 5 - 1;
-                                                    somedepth = 5 - 1;
-
-
-                                                    someindexmap = somewidth + 5 * ((indexy) + 5 * indexz);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 0;
-                                                    someheight = 3 - 1;
-                                                    somedepth = 3 - 1;
-
-                                                    someindexmap = somewidth + 3 * ((indexy) + 3 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 0;
-                                                    someheight = 2 - 1;
-                                                    somedepth = 2 - 1;
-                                                    someindexmap = somewidth + 2 * ((indexy) + 2 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx +1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-
-
-
-
-                                if (indexz == 0)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (indexx) + 10 * ((indexy) + 10 * somedepth);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 5 - 1;
-                                                    someheight = 5 - 1;
-                                                    somedepth = 5 - 1;
-
-
-                                                    someindexmap = indexx + 5 * ((indexy) + 5 * somedepth);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 3 - 1;
-                                                    someheight = 3 - 1;
-                                                    somedepth = 3 - 1;
-
-                                                    someindexmap = indexx + 3 * ((indexy) + 3 * somedepth);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 2 - 1;
-                                                    someheight = 2 - 1;
-                                                    somedepth = 2 - 1;
-                                                    someindexmap = indexx + 2 * ((indexy) + 2 * somedepth);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (indexz == somedepth)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (indexx) + 10 * ((indexy) + 10 * 0);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 5 - 1;
-                                                    someheight = 5 - 1;
-                                                    somedepth = 0;
-
-
-                                                    someindexmap = indexx + 5 * ((indexy) + 5 * somedepth);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 3 - 1;
-                                                    someheight = 3 - 1;
-                                                    somedepth = 0;
-
-                                                    someindexmap = indexx + 3 * ((indexy) + 3 * somedepth);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 2 - 1;
-                                                    someheight = 2 - 1;
-                                                    somedepth = 0;
-                                                    someindexmap = indexx + 2 * ((indexy) + 2 * somedepth);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-
-
-
-
-                                if (indexy == 0)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz , out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (indexx) + 10 * ((someheight) + 10 * indexz);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 5 - 1;
-                                                    someheight = 5 - 1;
-                                                    somedepth = 5 - 1;
-
-
-                                                    someindexmap = indexx + 5 * ((someheight) + 5 * indexz);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 3 - 1;
-                                                    someheight = 3 - 1;
-                                                    somedepth = 3 - 1;
-
-                                                    someindexmap = indexx + 3 * ((someheight) + 3 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 2 - 1;
-                                                    someheight = 2 - 1;
-                                                    somedepth = 2 - 1;
-                                                    someindexmap = indexx + 2 * ((someheight) + 2 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-
-
-
-
-
-
-                                if (indexy == someheight)
-                                {
-                                    int somearrayindexadjacent;
-                                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy  + 1.0f, sometotaltimesz, out somearrayindexadjacent);
-                                    if (somechunkadjacent != null)
-                                    {
-                                        if (somechunkadjacent.map != null)
-                                        {
-                                            someindexmap = (indexx) + 10 * ((0) + 10 * indexz);
-
-                                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
-                                            {
-                                                if (somechunkadjacent.map[someindexmap] == 1)
-                                                {
-                                                    somechunkadjacent.sccsSetMap();
-                                                    somechunkadjacent.Regenerate();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
-
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
-                                                    somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-
-                                                    somewidth = 5 - 1;
-                                                    someheight = 0;
-                                                    somedepth = 5 - 1;
-
-
-                                                    someindexmap = indexx + 5 * ((someheight) + 5 * indexz);
-                                                    if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 5x5x5");
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy +1.0f, sometotaltimesz, out somearrayindex);
-                                                        //somelevelgenprim[0].arrayofchunkslod0[somearrayindex].map = somechunk.map;
-                                                        //somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunk.map;
-                                                        somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 3 - 1;
-                                                    someheight = 0;
-                                                    somedepth = 3 - 1;
-
-                                                    someindexmap = indexx + 3 * ((someheight) + 3 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-
-
-                                                    totalTimesx = 0;
-                                                    totalTimesy = 0;
-                                                    totalTimesz = 0;
-
-                                                    someremainsx = 0;
-                                                    someremainsy = 0;
-                                                    someremainsz = 0;
-
-                                                    if (MOVINGPOINTER1.X >= 0)
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = (int)(someposfootx - someremainsx);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsx = (int)Math.Floor((someposfootx / 10.0f)) * 10;
-                                                        totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
-                                                        totalTimesx *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Y >= 0)
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = (int)(someposfooty - someremainsy);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsy = (int)Math.Floor((someposfooty / 10.0f)) * 10;
-                                                        totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
-                                                        totalTimesy *= -1;
-                                                    }
-
-                                                    if (MOVINGPOINTER1.Z >= 0)
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = (int)(someposfootz - someremainsz);
-                                                    }
-                                                    else
-                                                    {
-                                                        someremainsz = (int)Math.Floor((someposfootz / 10.0f)) * 10;
-                                                        totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
-                                                        totalTimesz *= -1;
-                                                    }
-
-                                                    indexx = totalTimesx;
-                                                    indexy = totalTimesy;
-                                                    indexz = totalTimesz;
-                                                    somewidth = 2 - 1;
-                                                    someheight = 0;
-                                                    somedepth = 2 - 1;
-                                                    someindexmap = indexx + 2 * ((someheight) + 2 * indexz);
-
-                                                    if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
-                                                    {
-                                                        //Console.WriteLine("destroying chunk 3x3x3");
-                                                        // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
-                                                        somechunk = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindex);
-                                                        somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map[someindexmap] = 0;
-                                                        somechunk.sccsSetMap();
-                                                        somechunk.Regenerate();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunk.vertexlist.ToArray();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunk.listOfTriangleIndices.ToArray();
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
-
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
-                                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
-                                                    }
-
-
-                                                    //somelevelgenprim[0].arrayofchunkslod3[somearrayindexadjacent].map = somechunkadjacent.map;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                /*
-                                for (int v = 0; v < somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts.Length; v++)
-                                {
-                                    somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts[v].position.X += somechunk.chunkPos.X * (10 * levelgenplanesize);
-                                    somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts[v].position.Y += somechunk.chunkPos.Y * (10 * levelgenplanesize);
-                                    somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts[v].position.Z += somechunk.chunkPos.Z * (10 * levelgenplanesize);
-                                }*/
-
-
-
-
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].vertexBuffer.Dispose();
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].IndicesBuffer.Dispose();
-
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].someswitches = 0;
-
-                                //somelevelgenprim[0].arrayofchunks[somearrayindex] = somechunk;
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].startOnce = 0;
-
-                                //Console.WriteLine("v:"  + somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts.Length + "/t:" + somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofindices.Length);
-
-
-
-                                /*var matrixBufferDescriptionVertex = new BufferDescription()
-                                {
-                                    Usage = ResourceUsage.Dynamic,
-                                    SizeInBytes = Marshal.SizeOf(typeof(sclevelgenclass.DVertex)) * somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts.Length,
-                                    BindFlags = BindFlags.VertexBuffer,
-                                    CpuAccessFlags = CpuAccessFlags.Write,
-                                    OptionFlags = ResourceOptionFlags.None,
-                                    StructureByteStride = 0
-                                };
-
-                                var VertexBuffer = new SharpDX.Direct3D11.Buffer(scgraphics.scdirectx.D3D.device, matrixBufferDescriptionVertex);
-                                */
-                                //var VertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts);
-                                //var IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofindices);
-
-
-
-                                /*matrixBufferDescriptionVertex = new BufferDescription()
-                                {
-                                    Usage = ResourceUsage.Dynamic,
-                                    SizeInBytes = Marshal.SizeOf(typeof(int)) * somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofindices.Length,
-                                    BindFlags = BindFlags.IndexBuffer,
-                                    CpuAccessFlags = CpuAccessFlags.Write,
-                                    OptionFlags = ResourceOptionFlags.None,
-                                    StructureByteStride = 0
-                                };
-                                var IndicesBuffer = new SharpDX.Direct3D11.Buffer(scgraphics.scdirectx.D3D.device, matrixBufferDescriptionVertex);
-                                */
-
-
-
-
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].switchForRender = 1;
-
-                                //somelevelgenprim[0].arrayOfChunkData[somearrayindex].shaderOfChunk = new sclevelgenclassshader(scgraphics.scdirectx.D3D.device);
-
-
-
-
-                                /*
-                                DataStream mappedResource0;
-                                scgraphics.scdirectx.D3D.device.ImmediateContext.MapSubresource(somelevelgenprim[0].arrayOfChunkData[somearrayindex].vertexBuffer, MapMode.WriteDiscard, SharpDX.Direct3D11.MapFlags.None, out mappedResource0);
-                                mappedResource0.WriteRange(somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts, 0, somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofverts.Length);
-                                //mappedResource0.Write(chunkdat.dVertexData[t]);
-                                scgraphics.scdirectx.D3D.device.ImmediateContext.UnmapSubresource(somelevelgenprim[0].arrayOfChunkData[somearrayindex].vertexBuffer, 0);
-                                mappedResource0.Dispose();
-
-                                scgraphics.scdirectx.D3D.device.ImmediateContext.MapSubresource(somelevelgenprim[0].arrayOfChunkData[somearrayindex].IndicesBuffer, MapMode.WriteDiscard, SharpDX.Direct3D11.MapFlags.None, out mappedResource0);
-                                mappedResource0.WriteRange(somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofindices, 0, somelevelgenprim[0].arrayOfChunkData[somearrayindex].arrayofindices.Length);
-                                scgraphics.scdirectx.D3D.device.ImmediateContext.UnmapSubresource(somelevelgenprim[0].arrayOfChunkData[somearrayindex].IndicesBuffer, 0);
-                                mappedResource0.Dispose();*/
-
-
-
-
-
-
+                                somechunk.cleararrays();
                             }
                         }
                     }
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                //////////////////////ADJACENT CHUNK LOD 0 
+                //////////////////////ADJACENT CHUNK LOD 0 
+                //////////////////////ADJACENT CHUNK LOD 0 
+
+                var somewidth = 10 - 1;
+                var someheight = 10 - 1;
+                var somedepth = 10 - 1;
+
+                if (indexx == 0)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (somewidth) + 10 * ((indexy) + 10 * indexz);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (indexx == somewidth)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (0) + 10 * ((indexy) + 10 * indexz);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+                if (indexz == 0)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (indexx) + 10 * ((indexy) + 10 * somedepth);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+         
+                if (indexz == somedepth)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (indexx) + 10 * ((indexy) + 10 * 0);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (indexy == 0)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (indexx) + 10 * ((someheight) + 10 * indexz);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (indexy == someheight)
+                {
+                    int somearrayindexadjacent;
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod0(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindexadjacent);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+                            someindexmap = (indexx) + 10 * ((0) + 10 * indexz);
+
+                            if (someindexmap >= 0 && someindexmap < 10 * 10 * 10)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindexadjacent].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod0[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //////////////////////ADJACENT CHUNK LOD 0 
+                //////////////////////ADJACENT CHUNK LOD 0 
+                //////////////////////ADJACENT CHUNK LOD 0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //LOD CHUNKS + 1.0X
+                //LOD CHUNKS + 1.0X
+                //LOD CHUNKS + 1.0X
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
                 else
                 {
-                    //Console.WriteLine("null chunk");
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
                 }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5-1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = 0 + 5 * ((indexy) + 5 * indexz);
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx /3.0f)) *3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx /3.0f)) *3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty /3.0f)) *3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty /3.0f)) *3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz /3.0f)) *3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz /3.0f)) *3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3-1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = 0 + 3 * ((indexy) + 3 * indexz);
+
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2-1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = 0 + 2 * ((indexy) + 2 * indexz);
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx + 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //LOD CHUNKS + 1.0X
+                //LOD CHUNKS + 1.0X
+                //LOD CHUNKS + 1.0X
+
+
+
+
+                //LOD CHUNKS - 1.0X
+                //LOD CHUNKS - 1.0X
+                //LOD CHUNKS - 1.0X
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5 - 1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = somewidth + 5 * ((indexy) + 5 * indexz);
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3 - 1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = somewidth + 3 * ((indexy) + 3 * indexz);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2 - 1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = somewidth + 2 * ((indexy) + 2 * indexz);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx - 1.0f, sometotaltimesy, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //LOD CHUNKS - 1.0X
+                //LOD CHUNKS - 1.0X
+                //LOD CHUNKS - 1.0X
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //LOD CHUNKS + 1.0y
+                //LOD CHUNKS + 1.0y
+                //LOD CHUNKS + 1.0y
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5 - 1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = indexx + 5 * ((0) + 5 * indexz);
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3 - 1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = indexx + 3 * ((0) + 3 * indexz);
+
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2 - 1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = indexx + 2 * ((0) + 2 * indexz);
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx, sometotaltimesy + 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //LOD CHUNKS + 1.0y
+                //LOD CHUNKS + 1.0y
+                //LOD CHUNKS + 1.0y
+
+
+
+
+                //LOD CHUNKS - 1.0y
+                //LOD CHUNKS - 1.0y
+                //LOD CHUNKS - 1.0y
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5 - 1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = indexx + 5 * ((someheight) + 5 * indexz);
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) *3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) *3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) *3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) *3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) *3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) *3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3 - 1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = indexx + 3 * ((someheight) + 3 * indexz);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) *2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) *2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) *2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) *2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) *2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) *2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2 - 1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = indexx + 2 * ((someheight) + 2 * indexz);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx, sometotaltimesy - 1.0f, sometotaltimesz, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //LOD CHUNKS - 1.0y
+                //LOD CHUNKS - 1.0y
+                //LOD CHUNKS - 1.0y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //LOD CHUNKS + 1.0z
+                //LOD CHUNKS + 1.0z
+                //LOD CHUNKS + 1.0z
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) * 5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) * 5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) * 5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5 - 1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = indexx + 5 * ((indexy) + 5 * 0);
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx/ 3.0f)) * 3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx/ 3.0f)) * 3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty/ 3.0f)) * 3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty/ 3.0f)) * 3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz/ 3.0f)) * 3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz/ 3.0f)) * 3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3 - 1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = indexx + 3 * ((indexy) + 3 * 0);
+
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2 - 1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = indexx + 2 * ((indexy) + 2 * 0);
+
+                if (indexx == 0)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+                //LOD CHUNKS + 1.0z
+                //LOD CHUNKS + 1.0z
+                //LOD CHUNKS + 1.0z
+
+
+
+
+                //LOD CHUNKS - 1.0z
+                //LOD CHUNKS - 1.0z
+                //LOD CHUNKS - 1.0z
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) *5;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 5.0f)) *5;
+                    totalTimesx = -5 + (int)(someremainsx - someposfootx) + 5;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) *5;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 5.0f)) *5;
+                    totalTimesy = -5 + (int)(someremainsy - someposfooty) + 5;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) *5;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 5.0f)) *5;
+                    totalTimesz = -5 + (int)(someremainsz - someposfootz) + 5;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+
+                somewidth = 5 - 1;
+                someheight = 5 - 1;
+                somedepth = 5 - 1;
+
+
+                someindexmap = indexx + 5 * ((indexy) + 5 * somedepth);
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod1(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 5 * 5 * 5)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod1[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod1[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 3.0f)) * 3;
+                    totalTimesx = -3 + (int)(someremainsx - someposfootx) + 3;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 3.0f)) * 3;
+                    totalTimesy = -3 + (int)(someremainsy - someposfooty) + 3;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 3.0f)) * 3;
+                    totalTimesz = -3 + (int)(someremainsz - someposfootz) + 3;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 3 - 1;
+                someheight = 3 - 1;
+                somedepth = 3 - 1;
+
+                someindexmap = indexx + 3 * ((indexy) + 3 * somedepth);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod2(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 3 * 3 * 3)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunkadjacent.map;
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                totalTimesx = 0;
+                totalTimesy = 0;
+                totalTimesz = 0;
+
+                someremainsx = 0;
+                someremainsy = 0;
+                someremainsz = 0;
+
+                if (pickaxetippoint.X >= 0)
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = (int)(someposfootx - someremainsx);
+                }
+                else
+                {
+                    someremainsx = (int)Math.Floor((someposfootx / 2.0f)) * 2;
+                    totalTimesx = -2 + (int)(someremainsx - someposfootx) + 2;
+                    totalTimesx *= -1;
+                }
+
+                if (pickaxetippoint.Y >= 0)
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = (int)(someposfooty - someremainsy);
+                }
+                else
+                {
+                    someremainsy = (int)Math.Floor((someposfooty / 2.0f)) * 2;
+                    totalTimesy = -2 + (int)(someremainsy - someposfooty) + 2;
+                    totalTimesy *= -1;
+                }
+
+                if (pickaxetippoint.Z >= 0)
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = (int)(someposfootz - someremainsz);
+                }
+                else
+                {
+                    someremainsz = (int)Math.Floor((someposfootz / 2.0f)) * 2;
+                    totalTimesz = -2 + (int)(someremainsz - someposfootz) + 2;
+                    totalTimesz *= -1;
+                }
+
+                indexx = totalTimesx;
+                indexy = totalTimesy;
+                indexz = totalTimesz;
+                somewidth = 2 - 1;
+                someheight = 2 - 1;
+                somedepth = 2 - 1;
+                someindexmap = indexx + 2 * ((indexy) + 2 * somedepth);
+
+                if (indexx == somewidth)
+                {
+                    var somechunkadjacent = (sclevelgenvert)somelevelgenprim[0].getChunklod3(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1.0f, out somearrayindex);
+                    if (somechunkadjacent != null)
+                    {
+                        if (somechunkadjacent.map != null)
+                        {
+
+                            if (someindexmap >= 0 && someindexmap < 2 * 2 * 2)
+                            {
+                                if (somechunkadjacent.map[someindexmap] == 1)
+                                {
+                                    //Console.WriteLine("destroying chunk 3x3x3");
+                                    // somelevelgenprim[0].arrayofchunkslod2[somearrayindex].map = somechunk.map;
+
+                                    somechunkadjacent.map[someindexmap] = 0;
+                                    somelevelgenprim[0].arrayofchunkslod3[somearrayindex].map = somechunkadjacent.map;
+
+                                    somechunkadjacent.sccsSetMap();
+                                    somechunkadjacent.Regenerate();
+                                    
+
+                                    if (somechunkadjacent.vertexlist.Count > 0)
+                                    {
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts = somechunkadjacent.vertexlist.ToArray();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices = somechunkadjacent.listOfTriangleIndices.ToArray();
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].vertexBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.VertexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofverts);
+
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer.Dispose();
+                                        somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].IndicesBuffer = SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod3[somearrayindex].arrayofindices);// SharpDX.Direct3D11.Buffer.Create(scgraphics.scdirectx.D3D.device, BindFlags.IndexBuffer, somelevelgenprim[0].arrayOfChunkDatalod2[somearrayindex].arrayOfInstanceIndices[somearrayindex]);
+                                    
+                                    }
+                                    somechunkadjacent.cleararrays();
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+
+
+
 
 
                 //SET THE BYTE LOCATOR OBJECT TO THE LOCATION OF THE BYTE ON THE PICKAXE TIP IN ORDER TO HAVE A VISUAL ON WHERE THE ROUNDED BYTE LOCATOR IS

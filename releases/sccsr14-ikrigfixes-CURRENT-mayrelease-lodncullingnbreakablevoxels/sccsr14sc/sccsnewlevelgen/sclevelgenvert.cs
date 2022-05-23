@@ -244,6 +244,12 @@ namespace sccs
             levelofdetail = levelofdetail_;
 
 
+
+            //levelofdetail = 
+
+
+
+
             if (levelofdetail == 3)
             {
                 levelofdetailmul = 1.15f;
@@ -614,7 +620,35 @@ namespace sccs
             return map_;
         }
 
+        public void cleararrays()
+        {
 
+            _tempChunkArrayBottomFace = null;// new int[width * height * depth];
+            _tempChunkArrayBackFace = null;// new int[width * height * depth];
+            _tempChunkArrayFrontFace = null;// new int[width * height * depth];
+            _tempChunkArrayLeftFace = null;//new int[width * height * depth];
+            _tempChunkArrayRightFace = null;//new int[width * height * depth];
+            _tempChunkArray = null;// new int[width * height * depth];
+
+            _chunkArray = null;//new int[width * height * depth];
+
+            _chunkVertexArray0 = null;// new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _chunkVertexArray1 = null;// new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _chunkVertexArray2 = null;// new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _chunkVertexArray3 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _chunkVertexArray4 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _chunkVertexArray5 = null;// new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+
+            _testVertexArray0 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _testVertexArray1 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _testVertexArray2 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _testVertexArray3 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _testVertexArray4 = null;//new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+            _testVertexArray5 = null;// new int[vertexlistWidth * vertexlistHeight * vertexlistDepth];
+
+            vertexlist = null;
+            listOfTriangleIndices = null;
+        }
 
 
 

@@ -239,6 +239,73 @@ namespace sccs
         }
 
 
+        public sclevelgenvert getChunklod3(float x, float y, float z, out int arrayindex) //, Vector3 chunkPos
+        {
+
+            //var somevalueindict = arrayofchunks.Where(xi => xi.chunkPos == new Vector3(x, y, z)).Select().ToArray();
+
+            /*var query = arrayofchunks.Where(xi => xi.chunkPos == new Vector3(x, y, z)).Select((somevar, index) => new { index});
+
+
+            if (query != null)
+            {
+                var someenum = query.GetEnumerator();
+
+                while (someenum.MoveNext())
+                {
+                    var tls0 = someenum.Current;
+                    return arrayofchunks[tls0.index];
+
+                }
+                return null;
+            }
+            return null;*/
+
+
+
+
+            float x0 = (float)(Math.Round(x * 10.0f) / 10.0f);
+            float y0 = (float)(Math.Round(y * 10.0f) / 10.0f);
+            float z0 = (float)(Math.Round(z * 10.0f) / 10.0f);
+
+            //var enumerator0 = sclevelgenchunk.arrayofchunkslod0.GetEnumerator();
+            for (int i = 0; i < arrayofchunkslod3.Length; i++)
+            {
+
+                float x1 = (float)(Math.Round(arrayofchunkslod3[i].chunkPos.X * 10.0f) / 10.0f);
+                float y1 = (float)(Math.Round(arrayofchunkslod3[i].chunkPos.Y * 10.0f) / 10.0f);
+                float z1 = (float)(Math.Round(arrayofchunkslod3[i].chunkPos.Z * 10.0f) / 10.0f);
+
+
+                if (x0 == x1 && y0 == y1 && z0 == z1)
+                {
+                    arrayindex = i;
+                    return arrayofchunkslod3[i];
+                }
+
+                //if (x >= 0 && y >= 0 && z >= 0 && x < mapWidth && y < mapHeight && z < mapDepth)
+                //{
+                //    
+                //}
+
+            }
+
+            arrayindex = -1;
+            return null;
+
+            /*while (enumerator0.MoveNext())
+            {
+                var tls0 = enumerator0.Current;
+
+                if ((x < tls0.Value.X) || y < tls0.Value.Y || (z < tls0.Value.Z) || (x >= (tls0.Value.X) + 10) || (y >= (tls0.Value.Y) + 10) || (z >= tls0.Value.Z + 10))
+                {
+                    continue;
+                }
+                return tls0.Key;
+            }
+            return null;*/
+        }
+
         InputElement[] inputElements;
 
         public SharpDX.Direct3D11.Buffer ConstantTessellationBuffer;
@@ -2534,7 +2601,7 @@ namespace sccs
                         arrayOfChunkDatalod3[ichunkleveltile].constantMatrixPosBuffer = contantBuffer;
                         arrayOfChunkDatalod3[ichunkleveltile].lightBuffer = lightBufferInstChunk;
                         arrayOfChunkDatalod3[ichunkleveltile].worldMatrix = worldmatofobj; //mainObjectInstance1stCubeMatrix
-                        arrayOfChunkDatalod3[ichunkleveltile].shaderOfChunk = new sclevelgenclassshader(D3D.device);
+                        //arrayOfChunkDatalod3[ichunkleveltile].shaderOfChunk = new sclevelgenclassshader(D3D.device);
                     }
 
 

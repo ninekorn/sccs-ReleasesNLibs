@@ -211,6 +211,12 @@ namespace sccs
 
 
 
+
+
+
+
+
+
             xChunkPos = _chunkPos.X;
             yChunkPos = _chunkPos.Y;
             zChunkPos = _chunkPos.Z;
