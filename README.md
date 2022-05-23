@@ -2,6 +2,7 @@
 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs)]()
 
+Discord channel invite: https://discord.gg/jVhSa3tt
 
 # sccs-ReleasesNLibs
 same as repo sccs but only releases and libs and tests
