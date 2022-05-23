@@ -62,6 +62,12 @@ May 2022 release - I have developped a better version of my level generator with
 <img WIDTH=500 src="https://i.ibb.co/x5jKk9P/Capture-d-cran-2022-05-17-002056.png" alt="Capture-d-cran-2022-05-17-002056" border="0">
 <img WIDTH=500 src="https://i.ibb.co/BgBKp4G/Capture-d-cran-2022-05-17-002233.png" alt="Capture-d-cran-2022-05-17-002233" border="0">
 
+<img WIDTH=500 src="https://i.ibb.co/jDfwXL0/Photo-GIF-5-22-2022-9-41-11-PM.gif" alt="Photo-GIF-5-22-2022-9-41-11-PM" border="0">
+<img WIDTH=500 src="https://i.ibb.co/109dL2f/Photo-GIF-5-22-2022-9-45-35-PM.gif" alt="Photo-GIF-5-22-2022-9-45-35-PM" border="0">
+<img WIDTH=500 src="https://i.ibb.co/BwC9SNh/Photo-GIF-5-21-2022-3-03-54-AM.gif" alt="Photo-GIF-5-21-2022-3-03-54-AM" border="0">
+<img WIDTH=500 src="https://i.ibb.co/B27Sy5X/Photo-GIF-5-22-2022-9-26-35-PM.gif" alt="Photo-GIF-5-22-2022-9-26-35-PM" border="0">
+<img WIDTH=500 src="https://i.ibb.co/vhkgGpQ/Photo-GIF-5-22-2022-9-28-36-PM.gif" alt="Photo-GIF-5-22-2022-9-28-36-PM" border="0">
+
 --------------------------------------------------------------------------
 
 I have learned to create my own direct3D c# programs and the main help from being able to get out of unity3d and be independant from unity3D was to code my own programs in C#. It was a sad choice, but back in unity 2017, adding the framework in order to make a virtual desktop from sharpdx was a tough thing to do and i couldn't make it happen. i then chose to learn by myself.
