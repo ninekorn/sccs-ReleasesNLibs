@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10.0</LangVersion>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="deferredrenderingsharpdx.cs" />
+    <Compile Remove="directx1buffer.cs" />
+    <Compile Remove="directx2buffers.cs" />
+    <Compile Remove="Program - fail.cs" />
+    <Compile Remove="Program - fail1.cs" />
+    <Compile Remove="tutorialcube1buffer.cs" />
+    <Compile Remove="tutorialcube2buffers.cs" />
+    <Compile Remove="updateSec - backup.cs" />
+    <Compile Remove="updateSec - fail0.cs" />
+    <Compile Remove="updateSec - fail1.cs" />
+    <Compile Remove="updateSec - fail2.cs" />
+    <Compile Remove="updateSec - fail3.cs" />
+    <Compile Remove="updateSec - fail4.cs" />
+    <Compile Remove="updateSec - successish5.cs" />
+    <Compile Remove="updateSec1buffer.cs" />
+    <Compile Remove="updateSec2buffers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="MultiCube.fx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MultiCube.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.RawInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+  </ItemGroup>
+
+</Project>
