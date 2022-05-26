@@ -1,0 +1,16 @@
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\sccsr15forms.exe
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\sccsr15forms.deps.json
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\sccsr15forms.runtimeconfig.json
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\sccsr15forms.dll
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\ref\sccsr15forms.dll
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\bin\Release\net6.0-windows\sccsr15forms.pdb
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.Form1.resources
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.csproj.GenerateResource.cache
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.AssemblyInfoInputs.cache
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.AssemblyInfo.cs
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.csproj.CoreCompileInputs.cache
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.dll
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\ref\sccsr15forms.dll
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.pdb
+C:\Users\steve\source\repos\sccsr15forms\sccsr15forms\obj\Release\net6.0-windows\sccsr15forms.genruntimeconfig.cache

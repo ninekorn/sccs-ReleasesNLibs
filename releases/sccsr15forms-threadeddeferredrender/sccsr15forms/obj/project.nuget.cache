@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "c5eYoTDrku07TeAvCvAa6RQl2ZUSclYu84REE9aWkBFMkDRsqt5cFy+PljIkT+NuBZmZn0s4G37pGlUT6dn5SA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\steve\\Documents\\GitHub\\sccs\\tests\\sccsr15forms\\sccsr15forms\\sccsr15forms.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx\\4.2.0\\sharpdx.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.d3dcompiler\\4.2.0\\sharpdx.d3dcompiler.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.desktop\\4.2.0\\sharpdx.desktop.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct2d1\\4.2.0\\sharpdx.direct2d1.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct3d11\\4.2.0\\sharpdx.direct3d11.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.direct3d9\\4.2.0\\sharpdx.direct3d9.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.directinput\\4.2.0\\sharpdx.directinput.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.directsound\\4.2.0\\sharpdx.directsound.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.dxgi\\4.2.0\\sharpdx.dxgi.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.mathematics\\4.2.0\\sharpdx.mathematics.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.mediafoundation\\4.2.0\\sharpdx.mediafoundation.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.rawinput\\4.2.0\\sharpdx.rawinput.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.xaudio2\\4.2.0\\sharpdx.xaudio2.4.2.0.nupkg.sha512",
+    "C:\\Users\\steve\\.nuget\\packages\\sharpdx.xinput\\4.2.0\\sharpdx.xinput.4.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}
