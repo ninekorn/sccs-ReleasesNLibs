@@ -1,0 +1,80 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////YOUTUBE VIDEO SHORT TRANSCRIPTION///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Episode 1: https://www.youtube.com/watch?v=h-CVpWmYRx8&t=3s&ab_channel=GucioDevs
+
+GucioDev: Hello guys, and welcome to this new series. This series, i will be teaching you how to create random level generation for your game.
+
+Episode 5: https://www.youtube.com/watch?v=viY9fLjY1zw
+
+GucioDev-start: Hello guys, welcome to part 5 of the level generation tutorial.
+GucioDev-end: For your information, i have created a new website at guciodev.com, and i will be creating a written version of this tutorial series... 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////YOUTUBE VIDEO SHORT TRANSCRIPTION///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+My Notes:
+
+The website http://guciodevs.duckdns.org/ isn't working anymore, so there are no ways to see if there is a specific license or not. But, the youtuber GucioDev is saying,
+that his Level Generation series is a tutorial he is making for his viewers to make their own game. The series is a tutorial series on how to make a walker level generator.
+I, Steve Chassé, didn't follow the entire series as i stopped after the functions GenerateLevel/CreateTile/CallmoveGen/MoveGen since i wasn't building a 2D level generator,
+but a 3D level generator and i had to invent my own way of figuring out diagonal tiles/corner tiles.  
+
+I learned how to code the function GenerateLevel/CreateTile/CallMoveGen/MoveGen in unity3d from the tutorial of GucioDev. The rest of my script, i had to learn it by myself since it wasn't working what
+i was trying with referencing code from learning the tutorial of GucioDev since it was a 2D tutorial and not a 3D voxel level generator tutorial. So i used the pathfind adjacent Node CheckNeighboors 
+function of the youtuber Sebastian Lague in order to find adjacent tiles to every spawned tiles while at the same time creating possible wall tiles for all of those adjacent found tiles. And then i sort those adjacent tiles
+determining with conditional statements which type of wall they are front/back/left/right/diagonalinsidecorners/diagonaloutsidecorners. Sebastian Lague released his pathfind tutorial under the MIT license. 
+The neighbooring function of Sebastian Lague is using diagonal tiles, and i resorted to using that and the rest of the tutorial of GucioDev wasn't working for me. It is out of respect
+for the teacher youtuber GucioDev that i am writing this here as notes, so that it is understood where his teachings started and where they ended for me. As i respect all who provide
+opensourced softwares, and those that teach to others on youtube or elsewhere on the internet, in order for us to make our own games, i wanted to say thank you to GucioDev
+for sharing his tutorial on youtube. But I have still kindly asked GucioDev if there were any specific license on his tutorial here https://www.youtube.com/watch?v=h-CVpWmYRx8&t=3s&ab_channel=GucioDevs
+by contacting him on twitter using my account stevechassé@ninekorn and will be waiting for a response. The only thing i regret by learning the tutorial from GucioDev, is for me to not have
+changed right away the function names GenerateLevel/CreateTile/CallMoveGen/MoveGen/Finish to a different name... And realizing years later, 5 years to be exact, that it is said many
+times in his LevelGenerator Walker series that the tutorial series is made for viewers to make their own games, but that there are no licenses showing on his videos. 
+
+There is information on youtube tutorials on stackoverflow but that information is very limited and with short answers that don't cover every aspect of what teaching and learning is and what brain memory and brain photographic memory are:
+
+https://opensource.stackexchange.com/questions/12634/if-i-made-a-program-from-following-a-youtube-tutorial-that-does-not-specify-a-li
+https://law.stackexchange.com/questions/44787/license-of-a-code-resulting-from-following-a-youtube-tutorial
+
+In regards to my own "testimony/opinion/comments" on what a tutorial is and what the words "i will be teaching you how to create a random level generation", means for me that i read the code on screen and it goes into my brain for processing.
+Normally to process things faster, i type it on my side to check how it works. It is a very similar process like what a student learns from a teacher math/physics/language/economy/biology/geography/mecanics/robotics/computersupport/programmer/ in school,
+that asks you to take notes on your notepads, or they don't mention you to take notes, because they don't need to, as every student knows the capacity of their own brain memories, but i do take notes in order to learn what is being taught to me, 
+because a brain memory is not always a photographic memory. Taking notes and reading them later as a memory life saver is normally what i've always done at school back then. When a teacher teaches you, you don't write on paper synonyms
+of what is said, i write what is said so that i know what to write in an exam.
+
+Naming my functions differently GenerateLevel/CreateTile/CallMoveGen/MoveGen/Finish from the start of watching and following and learning and noting the tutorial of GucioDevs, is what i maybe should've done but, it wouldn't change the fact, that
+if i wouldn't have contacted GucioDev, and kept it for myself i could've lied about where i learned since there are so many tutorials everywhere now of a walker type of level generator on the internet. just like many people are named
+Steve of Michael or Frank or John, programmers often write function names in the same way. But changing the function names and variable names to something else, and i wouldn't have had to write this long ass note for myself in order to protect 
+myself from copyright infringement if the case would arise. I'm not even building 2D games so i wouldn't be competing directly with the levelgenerator tutorial of GucioDev. I build Virtual Reality 3D voxel virtual desktop games in barebone C# 
+and outside of unity3D. But my goal is to maybe bring my inventions inside of unity3D also. My new level generator is not using lists of vectors, but using integer arrays for storage of tiles and i named the functions differently compared to the
+GucioDev tutorial and i am now calculating adjacent tiles in a very different way than i had coded back then. I would understand though, if the youtuber GucioDev would want me to remove my levelgenerator scripts from Github, to which, i 
+would replace my old scripts with my new levelgenerator or i would change the names of the functions and variable names one after the other. I hadn't changed the name of my level generation for a very long time, and named it LevelGenerator4, 
+so it would be easy for me, to unzip all of my coding challenges, remove the LevelGenerator4 script, OR simply rewrite different function names to represent what it is that i am doing and how much different my code is from his. 
+
+I will wait for a response from GucioDev, but the tutorials on youtube, that don't show a license, ends up in the viewer facing a situation like this, where all parties have to decide on something, and it's annoying especially when
+it happens years later that we notice we've been naming the functions the same thing even though 10-20 lines of code ends up being 100++ lines of code of modifications and enhancements on the viewers side years later. That's why i normally 
+always get MIT licenses libraries or Creative Commons licenses libraries or OpenSourced libraries in my own projects, so that copyright issues don't have a chance to happen. 
+
+This note is not an arrogant explanation or to be considered an insult or disrespecful, and if it is seen as such, then the reader read it wrong. I am simply stating my point of view
+on what a tutorial is, and a lot of us went to school. I am wishing the best for creators and programmers and teachers that share tutorials for viewers/students/learners to learn to make their
+own games. Just like i do share my own projects MIT license for others to also profit from what i learned from them without copyright issues, i thank others who do like me. This note is for every users of my
+programs that will want to download my softwares for those users to understand where i learned from. Although, as i stated, i am waiting for a response from GucioDev, and if a request,
+is made for me to remove my scripts LevelGenerator4.cs because of 5 function names that are named identical GenerateLevel/CreateTile/CallMoveGen/MoveGen/Finish but that are different
+from the code that is written within, i will study with lawyers the necessity or not to do so before taking such an action, since the names of the functions are the same, but
+the code inside is different. 
+
+But to be respectful to the youtuber GucioDev, the steps of changing the function names for my new scripts, i have already done that this week, while creating my new voxel level generator from scratch naming my new level generator sccslevelgen.cs instead of 
+LevelGenerator4.cs that i developed and wrote with my own two hands. Some of my repositories still contain my LevelGenerator4.cs scripts.
+
+Regards,
+Steve Chassé
+
+
+
+
+
+
+
+
+
