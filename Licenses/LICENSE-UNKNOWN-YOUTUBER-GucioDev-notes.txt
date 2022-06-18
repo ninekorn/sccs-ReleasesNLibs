@@ -66,7 +66,8 @@ the code inside is different.
 
 Also, to be honest, i thought that the original tutorial was generating a level too slow for my taste. So immediately i had jumped on the opportunity to try and increase the performance, using
 coroutines in unity3d. I have evolved and now i am creating multiple walkers that start at zero and sending them in random directions and not using lists of vectors, but integers that i insert in a map flat 3d array, maps of bytes (integers in my case)
-that i learned to use in voxel chunks creation, by watching the youtube tutorial of Craig Perko that was under the Creative Commons License (reuse allowed) about in 2017 also.
+that i learned to use in voxel chunks creation, by watching the youtube tutorial of Craig Perko that was under the Creative Commons License (reuse allowed) about in 2017 also. I still
+use the function names that Craig Perko was using too IsTransparent/Regenerate/CreateFace, but i am not using 3D arrays instead using 3D flat arrays for performance.
 
 But to be respectful to the youtuber GucioDev, the steps of changing the function names for my new scripts, i have already done that this week, while creating my new voxel level generator from scratch naming my new level generator sccslevelgen.cs instead of 
 LevelGenerator4.cs that i developed and wrote with my own two hands. Some of my repositories still contain my LevelGenerator4.cs scripts.
