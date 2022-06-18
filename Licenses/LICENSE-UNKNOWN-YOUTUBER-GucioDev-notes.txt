@@ -17,10 +17,10 @@ My Notes:
 
 The website http://guciodevs.duckdns.org/ isn't working anymore, so there are no ways to see if there is a specific license or not. But, the youtuber GucioDev is saying,
 that his Level Generation series is a tutorial he is making for his viewers to make their own game. The series is a tutorial series on how to make a walker level generator.
-I, Steve Chassé, didn't follow the entire series as i stopped after the functions GenerateLevel/CreateTile/CallmoveGen/MoveGen since i wasn't building a 2D level generator,
+I, Steve Chassé, didn't follow the entire series as i stopped after the functions GenerateLevel/CreateTile/CallMoveGen/MoveGen/Finish since i wasn't building a 2D level generator,
 but a 3D level generator and i had to invent my own way of figuring out diagonal tiles/corner tiles.  
 
-I learned how to code the function GenerateLevel/CreateTile/CallMoveGen/MoveGen in unity3d from the tutorial of GucioDev. The rest of my script, i had to learn it by myself since it wasn't working what
+I learned how to code the function GenerateLevel/CreateTile/CallMoveGen/MoveGen/Finish in unity3d from the tutorial of GucioDev. The rest of my script, i had to learn it by myself since it wasn't working what
 i was trying with referencing code from learning the tutorial of GucioDev since it was a 2D tutorial and not a 3D voxel level generator tutorial. So i used the pathfind adjacent Node CheckNeighboors 
 function of the youtuber Sebastian Lague in order to find adjacent tiles to every spawned tiles while at the same time creating possible wall tiles for all of those adjacent found tiles. And then i sort those adjacent tiles
 determining with conditional statements which type of wall they are front/back/left/right/diagonalinsidecorners/diagonaloutsidecorners. Sebastian Lague released his pathfind tutorial under the MIT license. 
@@ -69,11 +69,142 @@ coroutines in unity3d. I have evolved and now i am creating multiple walkers tha
 that i learned to use in voxel chunks creation, by watching the youtube tutorial of Craig Perko that was under the Creative Commons License (reuse allowed) about in 2017 also. I still
 use the function names that Craig Perko was using too IsTransparent/Regenerate/CreateFace, but i am not using 3D arrays instead using 3D flat arrays for performance.
 
-But to be respectful to the youtuber GucioDev, the steps of changing the function names for my new scripts, i have already done that this week, while creating my new voxel level generator from scratch naming my new level generator sccslevelgen.cs instead of 
-LevelGenerator4.cs that i developed and wrote with my own two hands. Some of my repositories still contain my LevelGenerator4.cs scripts.
+In more details, i wrote below GucioDev's script that i learned from end to finish of what i had grasped until i figured this wouldn't work in 3D due to corner tiles so i started developing my own things:
+
+///////////////////////////////////////////////////////////////
+///////////GUCIODEV LevelGenerator.cs TUTORIAL 1 TO 4 only/////
+///////////////////////////////////////////////////////////////
+public class LevelGenerator: MonoBehavior
+{
+
+public GameObject[] tiles:
+public List<Vector3 createdtiles;
+
+public int tileAmount = 50;
+public int tileOffset = 16;
+
+public float waitTime = 0.5f;
+
+public float chanceUp = 0.3f;
+public float chanceRight = 0.5f;
+public float chanceDown = 0.7f;
+
+public float minY = 9999999;
+public float maxY = 0;
+public float minX = 9999999;
+public float maxX = 0;
+
+public Start()
+{
+	StartCoroutine(GenerateLevel());
+}
+
+IEnumerator GenerateLevel()
+{
+	for(int i = 0; i tileAmount;i++)
+	{
+		int dir = Random.Range(0,3);
+		int tile = Random.Range(0, tiles.Length);
+		CreateTile(tile);
+		CallMoveGen(dir);
+	}
+	yield return new WaitForSeconds(waitTime);
+}
+
+
+void CallMoveGen(float ranDir)
+{
+	if (ranDir chanceUp)
+	{
+		MoveGen(0);
+	}
+	else if (ranDir chanceRight)
+	{
+		MoveGen(1);
+	}
+	else if (ranDir chanceDown)
+	{
+		MoveGen(2);
+	}
+	else
+	{
+		MoveGen(3);
+	}
+}
+
+
+void MoveGen(int dir)
+{
+	switch(dir)
+	{
+		case 0:
+			transform.position = new Vector3(transform.position.x,transform.position.y+tilesize,0);
+		break;
+		case 1:
+			transform.position = new Vector3(transform.position.x+tilesize,transform.position.y,0);
+		break;
+
+		case 2:
+			transform.position = new Vector3(transform.position.x,transform.position.y-tilesize,0);
+		break;
+
+		case 3:
+			transform.position = new Vector3(transform.position.x-tilesize,transform.position.y,0);
+		break;
+		
+	}	
+}
+
+void CreateTile(int tileIndex)
+{
+	if(!createdTiles.Contains(transform.position))
+	{
+		GameObject tileObject;
+		tileObject = Instantiate(tiles[tileIndex], transform.position, transform.rotation) as GameObject;
+		createTiles.Add(tileObject);
+	}
+	else
+	{
+		tileAmount++;
+	}
+	
+}
+///////////////////////////////////////////////////////////////
+///////////GUCIODEV LevelGenerator.cs TUTORIAL 1 TO 4 only/////
+///////////////////////////////////////////////////////////////
+
+I couldn't move forward in the tutorial series after that, because i wasn't building a 2D level Generator, instead i was building a 3d voxel level generator and 2d corner tiles just don't work in a 3d voxel level generator. There has
+to be logic incorporated for calculating/sorting through inner/outer corners for a level to be properly generated with perlin noise.
+What i changed going from there, is that i'm using the x axis and z axis for floor generation since i don't build a 2d level generator but a 3d voxel level generator and my level generator is built around having a floor on 
+the x and z axis and walls that go up on the y axis. And i wasn't interested in doing a Minecraft Unit sized tiles of about 1.0f or 0.1f in 3D, so i a variable tileSize/planeSize in order to have smaller distances between chunks
+that would be spawned with a smaller tileSize/planeSize than 1.0f or 0.1f, for instance 0.005f or 0.001f. I also had to have my 3D LevelGenerator script to discover inside and outside corner neighbooring tiles/adjacent tiles since
+spawning 3D chunks was making the perlin noise inside/outside corners not fit the rest of the walls segments. The logic to build my chunks is coming from what i learned from Craig Perko's first/second minecraft tutorial on youtube
+(IsTransparent/Regenerate/CreateFace) that is licensed under the Creative Commons license (reuse) and the logic to get neighbooring tiles is coming from Sebastian Lague's Pathfinding tutorial on youtube (CheckAllSides function) that
+is used to find pathfind neighbooring nodes in all direction diagonals included. But that wasn't the end of my problems, as finding corner inside tiles and outside tiles was not an easy feat, so i had to develop my own logic of
+sorting through the tiles and using conditional statements to check which type of corner it was, a leftfrontinside/leftbackinside/rightfrontinside/rightbackinside or leftfrontoutside/leftbackoutside/rightfrontoutside/rightbackoutside
+corners. But last week, i ended up discarding my old LevelGenerator4 as there was issues in the corner tiles with some conditional statements missing and since a level generation is done randomly, i hadn't noticed that it wasn't working
+perfectly until this year with errors in the generation with missing corners on specific cases. So i rebuilt my LevelGenerator4.cs script to make it more performant and not use Dictionaries/Lists but to use byte maps (int maps in my case)
+and fetching the indexes directly to check a tile type, instead of enumerating/iterating through dictionaries and lists to see for existing tiles.
+
+To be respectful to the youtuber GucioDev, the steps of changing the function names for my new scripts, i have already done that this week, while creating my new voxel level generator from scratch naming my new level generator sccslevelgen.cs instead of 
+LevelGenerator4.cs that i developed and wrote both with my own two hands. Some of my repositories still contain my LevelGenerator4.cs scripts which has the same function names as the tutorial 
 
 Regards,
 Steve Chassé
+
+In the meantime that we receive or not a response from GucioDev's regarding my question, for the users of my program, if you are interested in following a walker level generator
+tutorial licensed under MIT/OpenSourced/FreeUnityAssets, you can get that here:
+
+MIT - GDQuest tutorial here https://github.com/GDQuest/godot-procedural-generation/tree/master/start-project/RandomWalker/Levels
+MIT - uheartbeast - https://github.com/uheartbeast/walker-level-gen
+MIT - OndrejNepozitek - https://github.com/OndrejNepozitek/Edgar-Unity
+UnityFreeAssets - https://assetstore.unity.com/packages/tools/level-design/level-generator-2d-68279#description
+UnityFreeAssets - https://assetstore.unity.com/packages/tools/ai/procedural-level-generator-136626#publisher
+
+
+
+
+
 
 
 
