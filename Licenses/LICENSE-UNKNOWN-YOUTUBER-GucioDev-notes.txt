@@ -37,6 +37,14 @@ There is information on youtube tutorials on stackoverflow but that information 
 https://opensource.stackexchange.com/questions/12634/if-i-made-a-program-from-following-a-youtube-tutorial-that-does-not-specify-a-li
 https://law.stackexchange.com/questions/44787/license-of-a-code-resulting-from-following-a-youtube-tutorial
 
+On wikipedia, a tutorial is:
+A tutorial, in education, is a method of transferring knowledge and may be used as a part of a learning process. More interactive and specific than a book or a lecture, a tutorial seeks to teach by example and supply the information
+to complete a certain task.
+
+There was never any intent on my part to steal the credit of how to create a walker LevelGenerator after seeing the tutorial of GucioDev. The credit for the tutorial is to GucioDev and where he learned to do it. My idea though, of how
+to create a walker LevelGenerator for a 3D Voxel level including perlin noise and calculations of inner/outer corners and sorting through them is my own idea. I didn't learn that from anyone and i achieved it by trial and error like most
+of the things that i develop myself. 
+
 In regards to my own "testimony/opinion/comments" on what a tutorial is and what the words "i will be teaching you how to create a random level generation", means for me that i read the code on screen and it goes into my brain for processing.
 Normally to process things faster, i type it on my side to check how it works. It is a very similar process like what a student learns from a teacher math/physics/language/economy/biology/geography/mecanics/robotics/computersupport/programmer/ in school,
 that asks you to take notes on your notepads, or they don't mention you to take notes, because they don't need to, as every student knows the capacity of their own brain memories, but i do take notes in order to learn what is being taught to me, 
