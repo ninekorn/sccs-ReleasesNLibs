@@ -1,4 +1,4 @@
-[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs/total.svg)]() <== added icon 04thapril2022
+[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs/total.svg)]() <== added icon 04thapril2022 and it doesn't work yet. But it will work when i make a proper release. This year, this repository generated approx 3000++ clones. and about 3000 of those in two/three weeks around the time that i uploaded my virtual desktop voxel heightmap directx solution.
 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs)]()
 
