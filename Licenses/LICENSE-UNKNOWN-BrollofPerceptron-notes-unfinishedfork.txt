@@ -1,0 +1,203 @@
+Notes:
+
+There are no licenses inside of the scripts of Brollof's SimplePerceptron and neither on the main page of Brollof's simple perceptron page here https://github.com/Brollof/SimplePerceptron#readme . 
+
+So i decided to learn how Brollof was doing the logic for his perceptron. Although i have been using the same function names for a lot of things, there are many things that i changed from within the functions. Below are 4 segments
+of Brollof's perceptron. But i couldn't directly use this in my project, as Brollofs perceptron is deciding is point left or right of line when i had to build a perceptron that was deciding to turn left and rotate or turn right and
+rotate and turn up/down and rotate and turn front/back and rotate. I have found Sebastian Lagues perceptron (MIT license) Activate function to be an alternative Activate function for my project although in the end, i am completely
+unsure if my perceptron logic works because i tried to debug the weights in unity and built a graph to display values but it wouldn't work i thought and maybe it really doesn't work my perceptron. Also, the logic of my perceptron was
+for building a 3D Compass/Gimball instead of a brain decision is point left or right, although the core logic of yes/no decision is quite similar. I decided to use a random range of -3 to 3 as per explained by Sebastian Lague in his 
+MIT licensed youtube tutorial, and had to change the train function to calculate the error, since i have 3 possible results yes/no/sameaslast. Also, contrary to the perceptron of Brollof, i had to make sure that i wasn't resetting the 
+program to restart training, but instead do a continuous training per frame so that my object would rotate per frame until pointed in the right direction. Also i developed code to make weights based on Angles that can be decimals 
+from 0 to 360 degrees and can divide each units of 1 by a custom amount. So my perceptron had to learn to turn left/right/up/down/front/back but it wouldn't work all in one... So i decided to create logic to make 3 classes of 
+perceptron, one that would calculate the logic of left/right and one perceptron class for the logic of up/down and one perceptron for the logic of front/back. But i am still having issues with using the 3D dot product for the 
+perceptron to take decisions. So my perceptron class is checking for the dot product and based on negative or positive or where the Dot product targets 0 or 0.50f or 0.99++ to take a decision to turn. But my perceptron is so supervised
+that it doesn't make a single bad decision from the start and if it does it is corrected so in the end it won't make a bad decision and weights will be adjusted accordingly... hence why i am wondering in the end if my perceptron even
+works since i never really used a graph to show me the data, except in unity where the spike of successful decisions was looking like an identity function f(x) = y = x or something like that. Also, i didn't want to use graphics.draw
+because i had no intentions of using that from the start. But out of respect for Brollof's SimplePerceptron software, i decided to write this note here to show users of my program where i learned from and that unfortunately i couldn't
+just use Brollof's own creation out of the box as it wouldn't work for me and had to modify every functions and incorporate my own logic to fit my needs. I regret not having changed the function names to something else while 
+creating my own perceptron. I do not know how to contact Github users that don't have enabled internal messaging so i cannot contact Brollof to know which type of license if any that he was attributing to his code. I leave the note here
+that in any case that Brollof sees my note, it would be appreciated that he adds a license to his SimplePerceptron code on github for the simple reason that it leaves anyone wanting to learn a simplePerceptron to be worried about
+copyright issues in the case we develop our own perceptron based on learning from someone else. In any case that Brollof wouldn't be interested in adding a license to his code, then i will decide to go learn from someone else that has
+an MIT license or Creative Commons license or Other Open Source license, in order to eliminate possible copyright issues and i will remove the work i have done based on the Brollof's SimplePerceptron to reflect my own logic creations/inventions without referencing
+Brollof's code at all, because currently and in the past, i made sure to reference Brollof's SimplePerceptron to indicate where i learned from. For the sake of respect for Brollof's creation, i never lied about where i learned from and also decided to
+create my folder in my own project named Brollof's Perceptron when i was using perceptrons and was mentioning it also in my streams that Brollof's perceptron is where i had learned from. But in anycase that Brollof wants me to release
+my perceptron logic for 3dgimball/3dcompass on github by forking his repository to make sure that there is a visible fork applied on the code i am referencing from what i learned from him even though that would be adding 200-300 lines of code
+logic that makes the perceptron project an entirely different project in it's pure form, i would still gladly fork his project because it's where i learned from, since my goal never was to steal an invention or creation or credit, but to learn 
+from it and give credits to the owners of such softwares where source code is visible and in compiled/uncompiled form and that i can use in my own projects without stealing credit. I had to learn somewhere the yes/no decision of a perceptron
+and i learned it from Brollof's C# SimplePerceptron and from Sebastian Lagues Python perceptron. For future reference, my goal always was to fork Brollof's perceptron from github but i never did propose a change because Brollof's
+SimplePerceptron is fine the way it is, my perceptron is different and my perceptron is a different idea and my idea based on the fork principle.
+
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+Github's Fork information:
+Use someone else's project as a starting point for your own idea.
+Open source software is based on the idea that by sharing code, we can make better, more reliable software. For more information, see the "About the Open Source Initiative" on the Open Source Initiative.
+For more information about applying open source principles to your organization's development work on GitHub.com, see GitHub's white paper "An introduction to innersource."
+When creating your public repository from a fork of someone's project, make sure to include a license file that determines how you want your project to be shared with others. For more information, see "Choose an open source license" 
+at choosealicense.com.
+For more information on open source, specifically how to create and grow an open source project, we've created Open Source Guides that will help you foster a healthy open source community by recommending best practices for creating 
+and maintaining repositories for your open source project. You can also take a free GitHub Skills course on maintaining open source communities.
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+The line that says "When creating your public repository from a fork of someone's project, make sure to include a license file that determines how you want your project to be shared with others." is the line that is appropriate to my
+own perceptron idea based on the fork that i still want to do from Brollof's SimplePerceptron, but i didn't take the time to complete a standalone project to demonstrate my idea except in Unity3D and i uploaded my idea on github
+here https://github.com/ninekorn/SCCSCompass by making sure that i left the notes below to reference/fork the work of Brollof on the SimplePerceptron:
+
+using Brollof's Simple Perceptron found here https://github.com/Brollof/SimplePerceptron , i have made a compass. You can divide the circumference of the 2d Circle to half angles or quarter angles and so on.
+
+Also, in my unity project of my repository SCCSCompass, i had made sure to put the name of Brollof directly on my perceptron script so that it would be visible that i had forked his work to develop my own idea.
+
+/////////////////////////////////////////////////////////
+//START OF BROLLOF's SimplePerceptron////////////////////
+//START OF BROLLOF's SimplePerceptron////////////////////
+//START OF BROLLOF's SimplePerceptron////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+////////////Brollof's Perceptron.cs//////////////////////
+/////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Perceptron
+{
+    class Perceptron
+    {
+        float[] weights;
+        public float learningRate;
+        static public Random r = new Random();
+
+        public Perceptron(int n, float rate)
+        {
+            this.learningRate = rate;
+
+            this.weights = new float[n];
+            // Start with random weights
+            for(int i=0; i<n; i++)
+            {
+               this.weights[i] = (float)r.NextDouble() * 2 - 1; // range <-1:1>
+            }
+
+        }
+
+        public void Train(float[] inputs, int desired)
+        {
+            int guess = this.Guess(inputs);
+            float error = desired - guess;
+
+            for(int i=0; i<weights.Length; i++)
+            {
+                weights[i] += inputs[i] * this.learningRate * error;
+            }
+        }
+
+        public int Guess(float[] inputs)
+        {
+            float sum = 0;
+            for(int i = 0; i<weights.Length; i++)
+            {
+                sum += inputs[i] * weights[i];
+            }
+            return this.Activate(sum);
+        }
+
+        private int Activate(float sum)
+        {
+            if(sum>0)
+                return 1;
+            else
+                return -1;
+        }
+
+        public float[] GetWeights()
+        {
+            return this.weights;
+        }
+    }
+}
+/////////////////////////////////////////////////////////
+////////////Brollof's Perceptron.cs//////////////////////
+/////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////
+////////////Brollof's Trainer.cs//////////////////////
+/////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Perceptron
+{
+    class Trainer
+    {
+        public float[] inputs;
+        public int answer;
+
+        public Trainer(float x, float y, int a)
+        {
+            inputs = new float[3];
+            inputs[0] = x;
+            inputs[1] = y;
+            inputs[2] = 1;
+            answer = a;
+        }
+    }
+}
+/////////////////////////////////////////////////////////
+////////////Brollof's Trainer.cs/////////////////////////
+/////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////
+////////////Brollof's initialize perceptron//////////////
+/////////////////////////////////////////////////////////
+perc = new Perceptron(3, (float)0.0001);
+for (int i = 0; i < training.Length; i++)
+{
+	float x = Perceptron.r.Next((int)xmin, (int)xmax);
+	float y = Perceptron.r.Next((int)ymin, (int)ymax);
+	int answer = 1;
+	if (y < f(x)) answer = -1;
+	training[i] = new Trainer(x, y, answer);
+}
+/////////////////////////////////////////////////////////
+////////////Brollof's initialize perceptron//////////////
+/////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////
+////////////Brollof's train/update perceptron////////////
+/////////////////////////////////////////////////////////
+perc.Train(training[count].inputs, training[count].answer);
+count = (count + 1) % training.Length;
+// Draw all the points based on what the Perceptron would "guess"
+// Does not use the "known" correct answer
+for (int i = 0; i < count; i++)
+{
+	int guess = perc.Guess(training[i].inputs);
+	Point p = CartesianToDefault(training[i].inputs[0], training[i].inputs[1]);
+	if (guess > 0) g.DrawEllipse(Pens.Blue, p.X, p.Y, 8, 8);
+	else g.FillEllipse(Brushes.Blue, p.X, p.Y, 8, 8);
+}
+/////////////////////////////////////////////////////////
+////////////Brollof's train/update perceptron////////////
+/////////////////////////////////////////////////////////
+//END OF BROLLOF's SimplePerceptron//////////////////////
+//END OF BROLLOF's SimplePerceptron//////////////////////
+//END OF BROLLOF's SimplePerceptron//////////////////////
+/////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
