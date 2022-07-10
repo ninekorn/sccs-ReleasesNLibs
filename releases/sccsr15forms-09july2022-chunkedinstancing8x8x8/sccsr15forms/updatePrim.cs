@@ -74,6 +74,8 @@ namespace sccsr15forms
 {
     public class updatePrim : IDisposable
     {
+        tutorialchunkcubemap somechunk;
+        updatePrim.worldviewprobuffer worldViewProjbuffer = new updatePrim.worldviewprobuffer();
         Matrix[][][] matrixchangelevelgenbytes;
         SC_cube[][] worldlevelgenbytesassets;
         SC_cube.DLightBuffer[] _DLightBuffer_cube = new SC_cube.DLightBuffer[1];
@@ -680,13 +682,13 @@ namespace sccsr15forms
 
 
 
-            sccslevelgen.minw = 20;
+            sccslevelgen.minw = 30;
             sccslevelgen.minh = 8;
-            sccslevelgen.mind = 20;
+            sccslevelgen.mind = 30;
             
-            sccslevelgen.maxw = 20;
+            sccslevelgen.maxw = 30;
             sccslevelgen.maxh = 8;
-            sccslevelgen.maxd = 20;
+            sccslevelgen.maxd = 30;
 
             sccslevelgen.createlevel();
 
@@ -706,9 +708,20 @@ namespace sccsr15forms
             //4x1x4 == 16 x 64 meshes = 1024 classes of instanced meshes... compared to 1 x 64 = 64 class of instanced meshes == 3.4gb ram approx - 45 fps
             //4x2x4 == 32 * 64 meshes = 2048 classes of instanced meshes... 
 
-            divx = 5;
+
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+            divx = 2;
             divy = 2; //sccsl5evelgen.wallheightsize
-            divz = 5;
+            divz = 2;
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+            //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
+
+
+
+
 
             incrementsdivx = sccslevelgen.somewidth / divx;
             incrementsdivy = sccslevelgen.someheight / divy;
@@ -842,7 +855,7 @@ namespace sccsr15forms
                         mainchunkdivtop[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounter, out somemaincounter_);
                         somemaincounter = somemaincounter_;
 
-
+                       
                         facetype = 1;
                         mainchunkdivleft[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterl, out somemaincounter_l);
                         somemaincounterl = somemaincounter_l;
@@ -850,7 +863,9 @@ namespace sccsr15forms
                         facetype = 2;
                         mainchunkdivright[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterr, out somemaincounter_r);
                         somemaincounterr = somemaincounter_r;
-
+                        
+                        
+                        
                         facetype = 3;
                         mainchunkdivfront[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterf, out somemaincounter_f);
                         somemaincounterf = somemaincounter_f;
@@ -858,10 +873,12 @@ namespace sccsr15forms
                         facetype = 4;
                         mainchunkdivback[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterba, out somemaincounter_ba);
                         somemaincounterba = somemaincounter_ba;
-
+                        
                         facetype = 5;
                         mainchunkdivbottom[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterbo, out somemaincounter_bo);
                         somemaincounterbo = somemaincounter_bo;
+
+
                     }
                 }
             }
@@ -951,7 +968,7 @@ namespace sccsr15forms
 
                         int novalue;
 
-
+                        
                         int facetype = 0;
                         mainchunkdivtop[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounter, out someseccounter_);
                         someseccounter = someseccounter_;
@@ -964,7 +981,8 @@ namespace sccsr15forms
                         mainchunkdivleft[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterl, out someseccounter_l);
                         mainchunkdivleft[someindexmain].createinstances(facetype,0, out novalue);
                         someseccounterl = someseccounter_l;
-                       
+                      
+                        
                         facetype = 2;
                         mainchunkdivright[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterr, out someseccounter_r);
                         mainchunkdivright[someindexmain].createinstances(facetype, 0, out novalue);
@@ -2192,6 +2210,7 @@ namespace sccsr15forms
                 writevoxelstobuffer();
                 writecubestobuffer();
 
+                
                 if (hasgeneratedmeshes == 1)
                 {
                     workonLevelGenChangeBytes();
@@ -2228,18 +2247,36 @@ namespace sccsr15forms
                                 zz = zz + (sccslevelgen.maxz - 1);
                             }
 
+
                             int posmainx = x / incrementsdivx;
                             int posmainy = y / incrementsdivy;
                             int posmainz = z / incrementsdivz;
+
+                            if (posmainx < 0)
+                            {
+                                posmainx *= -1;
+                                posmainx = posmainx + ((divx / 2) - 1);
+                            }
+
+                            if (posmainy < 0)
+                            {
+                                posmainy *= -1;
+                                posmainy = posmainy + ((divy / 2) - 1);
+                            }
+                            if (posmainz < 0)
+                            {
+                                posmainz *= -1;
+                                posmainz = posmainz + ((divz / 2) - 1);
+                            }
+
 
                             int somemainx = xe;
                             int somemainy = ye;
                             int somemainz = ze;
 
-                            var someindexmain = somemainx + (divx) * (somemainy + (divy) * somemainz);
+                            int someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
 
 
-                            
                             for (int i = 0; i < mainchunkdivtop[someindexmain].somefacemeshlisttodraw.Count; i++)
                             {
                                 //Console.WriteLine("topface");
@@ -2478,13 +2515,13 @@ namespace sccsr15forms
                 scgraphicssecpackagemessage.handPoseRight = handPoseRight;
                 scgraphicssecpackagemessage.handPoseLeft = handPoseLeft;
 
-                sccswriteikrigtobuffer(scgraphicssecpackagemessage);
+               sccswriteikrigtobuffer(scgraphicssecpackagemessage);
 
 
 
                 writevoxelstobuffer();
                 writecubestobuffer();
-
+                
                 if (hasgeneratedmeshes == 1)
                 {
                     workonLevelGenChangeBytes();
@@ -2638,7 +2675,7 @@ namespace sccsr15forms
 
 
 
-                        if (Program.createikrig == 1)
+                       if (Program.createikrig == 1)
                         {
 
 
@@ -2667,14 +2704,14 @@ namespace sccsr15forms
                             workonikshaders(scgraphicssecpackagemessage);
                         }
 
+                        
 
 
 
 
 
 
-
-                        updatePrim.worldviewprobuffer worldViewProjbuffer = new updatePrim.worldviewprobuffer();
+                        worldViewProjbuffer = new updatePrim.worldviewprobuffer();
                         worldViewProjbuffer.worldmatrix = D3D.WorldMatrix;
                         worldViewProjbuffer.viewmatrix = viewMatrix;
                         worldViewProjbuffer.projectionmatrix = _projectionMatrix;
@@ -2723,18 +2760,38 @@ namespace sccsr15forms
                                             zz = zz + (sccslevelgen.maxz - 1);
                                         }
 
+
+
                                         int posmainx = x / incrementsdivx;
                                         int posmainy = y / incrementsdivy;
                                         int posmainz = z / incrementsdivz;
+
+                                        if (posmainx < 0)
+                                        {
+                                            posmainx *= -1;
+                                            posmainx = posmainx + ((divx / 2) - 1);
+                                        }
+
+                                        if (posmainy < 0)
+                                        {
+                                            posmainy *= -1;
+                                            posmainy = posmainy + ((divy / 2) - 1);
+                                        }
+                                        if (posmainz < 0)
+                                        {
+                                            posmainz *= -1;
+                                            posmainz = posmainz + ((divz / 2) - 1);
+                                        }
+
 
                                         int somemainx = xe;
                                         int somemainy = ye;
                                         int somemainz = ze;
 
-                                        var someindexmain = somemainx + (divx) * (somemainy + (divy) * somemainz);
+                                        int someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
 
 
-                                        
+                                        //Console.WriteLine("mainindex:" + someindexmain);
                                         for (int i = 0; i < mainchunkdivtop[someindexmain].somefacemeshlisttodraw.Count; i++)
                                         {
                                             //Console.WriteLine("topface");
@@ -2816,7 +2873,7 @@ namespace sccsr15forms
 
             if (cancleararrays == 0)
             {
-                //clearsomearrays();
+                clearsomearrays();
                 cancleararrays = 1;
             }
         }
@@ -3511,14 +3568,30 @@ namespace sccsr15forms
                             int posmainy = y / incrementsdivy;
                             int posmainz = z / incrementsdivz;
 
+                            if (posmainx < 0)
+                            {
+                                posmainx *= -1;
+                                posmainx = posmainx + ((divx / 2) - 1);
+                            }
+
+                            if (posmainy < 0)
+                            {
+                                posmainy *= -1;
+                                posmainy = posmainy + ((divy / 2) - 1);
+                            }
+                            if (posmainz < 0)
+                            {
+                                posmainz *= -1;
+                                posmainz = posmainz + ((divz / 2) - 1);
+                            }
+
+
                             int somemainx = xe;
                             int somemainy = ye;
                             int somemainz = ze;
 
-                            var someindexmain = somemainx + (divx) * (somemainy + (divy) * somemainz);
+                            int someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
 
-
-                            
                             for (int i = 0; i < mainchunkdivtop[someindexmain].somefacemeshlisttodraw.Count; i++)
                             {
                                 //Console.WriteLine("topface");
@@ -4863,23 +4936,26 @@ namespace sccsr15forms
                     if (someindexchunkpart1 < sccslevelgen.somewidth* sccslevelgen.someheight * sccslevelgen.somedepth)
                     {
 
-                        var somechunk = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap);
+
+                        somechunk = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap );
 
                         if (somechunk != null)
                         {
 
-
+                            
 
                             if (somechunk.map != null)
                             {
-                                //Console.WriteLine("found chunk");
-                                //if (somechunk.chunkPos[0] == totaltimesforonepartschunksx && somechunk.chunkPos[1] == totaltimesforonepartschunksy && somechunk.chunkPos[2] == totaltimesforonepartschunksz)
+                                //Console.WriteLine("x:" + totaltimesforonepartschunksx + "/y:" + totaltimesforonepartschunksy + ":z/" + totaltimesforonepartschunksz + "/xpos:" + sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] + "/ypos:" + sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] + "/zpos:" + sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2]);
+                                //Console.WriteLine("!found chunk");
+                                if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
                                 {
+                                    //Console.WriteLine("found chunk");
                                     if (someindexmap >= 0 && someindexmap < 8 * 8 * 8)
                                     {
                                         if (somechunk.map[someindexmap] == 1)
                                         {
-                                            Console.WriteLine(somechunk.map[someindexmap]);
+                                            //Console.WriteLine(somechunk.map[someindexmap]);
                                             somechunk.map[someindexmap] = 0;
 
                                             int realindexofchunkinbundle = arrayindexmap;
@@ -5148,7 +5224,7 @@ namespace sccsr15forms
 
 
                 
-
+                
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
@@ -5278,6 +5354,7 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx-1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx-1 && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
 
@@ -5679,6 +5756,8 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx + 1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
+
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx+1 && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
@@ -6074,6 +6153,9 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
+
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz-1)
+
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz -1)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
@@ -6477,6 +6559,9 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
+
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz+1)
+
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz + 1)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
@@ -6881,7 +6966,9 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
-                           // if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy -1&& somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
+
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy-1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
+                            // if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy -1&& somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
                                 someindexmap = (indexx) + 8 * ((someheight) + 8 * indexz);
@@ -7284,6 +7371,8 @@ namespace sccsr15forms
                     {
                         if (somechunkadjacent.map != null)
                         {
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy + 1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
+
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy + 1 && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
@@ -7552,1488 +7641,16 @@ namespace sccsr15forms
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                /*
-                //BREAKING ADJACENT CHUNKS TOP FACE
-                //BREAKING ADJACENT CHUNKS TOP FACE
-                //BREAKING ADJACENT CHUNKS TOP FACE
-                var somewidth = 4 - 1;
-                var someheight = 4 - 1;
-                var somedepth = 4 - 1;
-
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinsttop.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(0);
-                                        somechunkadjacent.setvertex(0);
-
-                                        somecubeaschunkinsttop.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 0, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertstop.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinsttop.insertdatainbufferstructs(arrayindexmap, 0);
-                                            somecubeaschunkinsttop.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertstop.Length, 0);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS TOP FACE
-                //BREAKING ADJACENT CHUNKS TOP FACE
-                //BREAKING ADJACENT CHUNKS TOP FACE
-
-                */
-
-
-
-
-                /*
                 
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-                 somewidth = 4 - 1;
-                 someheight = 4 - 1;
-                 somedepth = 4 - 1;
 
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
 
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
 
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
 
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
 
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
 
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
 
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
 
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
 
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
-
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
-
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
-
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstleft.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(1);
-                                        somechunkadjacent.setvertex(1);
-
-                                        somecubeaschunkinstleft.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 1, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsleft.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstleft.insertdatainbufferstructs(arrayindexmap, 1);
-                                            somecubeaschunkinstleft.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsleft.Length, 1);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-                //BREAKING ADJACENT CHUNKS LEFT FACE
-
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-                 somewidth = 4 - 1;
-                 someheight = 4 - 1;
-                 somedepth = 4 - 1;
-
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstright.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(2);
-                                        somechunkadjacent.setvertex(2);
-
-                                        somecubeaschunkinstright.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 2, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsright.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstright.insertdatainbufferstructs(arrayindexmap, 2);
-                                            somecubeaschunkinstright.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsright.Length, 2);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-                //BREAKING ADJACENT CHUNKS RIGHT FACE
-
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-                 somewidth = 4 - 1;
-                 someheight = 4 - 1;
-                 somedepth = 4 - 1;
-
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstfront.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(3);
-                                        somechunkadjacent.setvertex(3);
-
-                                        somecubeaschunkinstfront.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 3, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsfront.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstfront.insertdatainbufferstructs(arrayindexmap, 3);
-                                            somecubeaschunkinstfront.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsfront.Length, 3);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-                //BREAKING ADJACENT CHUNKS FRONT FACE
-
-                //BREAKING ADJACENT CHUNKS BACK FACE
-                //BREAKING ADJACENT CHUNKS BACK FACE
-                //BREAKING ADJACENT CHUNKS BACK FACE
-                 somewidth = 4 - 1;
-                 someheight = 4 - 1;
-                 somedepth = 4 - 1;
-
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstback.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(4);
-                                        somechunkadjacent.setvertex(4);
-
-                                        somecubeaschunkinstback.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 4, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsback.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstback.insertdatainbufferstructs(arrayindexmap, 4);
-                                            somecubeaschunkinstback.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsback.Length, 4);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS BACK FACE
-                //BREAKING ADJACENT CHUNKS BACK FACE
-                //BREAKING ADJACENT CHUNKS BACK FACE
-
-
-
-
-
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                somewidth = 4 - 1;
-                 someheight = 4 - 1;
-                 somedepth = 4 - 1;
-
-                if (indexx == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx - 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx - 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (somewidth) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexx == somewidth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx + 1, sometotaltimesy, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx + 1 && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (0) + 4 * ((indexy) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                if (indexz == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz - 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz - 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * somedepth);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexz == somedepth)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy, sometotaltimesz + 1, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy && somechunkadjacent.chunkPos[2] == sometotaltimesz + 1)
-                            {
-                                someindexmap = (indexx) + 4 * ((indexy) + 4 * 0);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == 0)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy - 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy - 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((someheight) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (indexy == someheight)
-                {
-                    int somearrayindexadjacent;
-                    var somechunkadjacent = somecubeaschunkinstbottom.getchunkinlevelgenmap(sometotaltimesx, sometotaltimesy + 1, sometotaltimesz, 1, out arrayindexmap); ;
-
-                    if (somechunkadjacent != null)
-                    {
-                        if (somechunkadjacent.map != null)
-                        {
-                            if (somechunkadjacent.chunkPos[0] == sometotaltimesx && somechunkadjacent.chunkPos[1] == sometotaltimesy + 1 && somechunkadjacent.chunkPos[2] == sometotaltimesz)
-                            {
-                                someindexmap = (indexx) + 4 * ((0) + 4 * indexz);
-                                if (somechunkadjacent.map != null)
-                                {
-                                    if (somechunkadjacent.map[someindexmap] == 1)
-                                    {
-                                        //somechunkadjacent.map[someindexmap] = 0;
-                                        int whatsthecurrentvertexcount = somechunkadjacent.vertexcountermemory;
-
-                                        somechunkadjacent.sccsSetMap();
-                                        somechunkadjacent.Regenerate(5);
-                                        somechunkadjacent.setvertex(5);
-
-                                        somecubeaschunkinstbottom.removefromarray(somechunkadjacent.indexinmainarray, whatsthecurrentvertexcount, 5, somechunkadjacent, arrayindexmap);
-
-                                        if (somechunkadjacent.arrayofvertsbottom.Length > 0)
-                                        {
-                                            int vertexlength = somecubeaschunkinstbottom.insertdatainbufferstructs(arrayindexmap, 5);
-                                            somecubeaschunkinstbottom.findinstancemeshtoinsertinto(arrayindexmap, somechunkadjacent.arrayofvertsbottom.Length, 5);
-                                            somechunkadjacent.cleararrays();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                //BREAKING ADJACENT CHUNKS BOTTOM FACE
-                */
 
 
 

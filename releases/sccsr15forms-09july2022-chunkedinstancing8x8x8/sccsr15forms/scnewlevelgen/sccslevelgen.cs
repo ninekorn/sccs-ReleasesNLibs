@@ -81,10 +81,12 @@ namespace sccsr15forms
 
                             if (arraychunkdatalod0[0][indexinarray].arraychunkvertslod0 != null)
                             {
+                                //somechunkinst = arraychunkdatalod0[0][indexinarray];
                                 return arraychunkdatalod0[0][indexinarray].arraychunkvertslod0;
                             }
                             else
                             {
+                                //somechunkinst = null;
                                 indexinarray = -1;
                                 return null;
                             }
@@ -110,6 +112,7 @@ namespace sccsr15forms
                     }
                 }
             }
+            //somechunkinst = null;
             indexinarray = -1;
             return null;
         }

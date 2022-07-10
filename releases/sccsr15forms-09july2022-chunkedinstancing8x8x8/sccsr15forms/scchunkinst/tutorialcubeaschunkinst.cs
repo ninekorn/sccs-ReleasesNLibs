@@ -119,7 +119,7 @@ namespace sccsr15forms
         //public Buffer verticesbuffer;
         //public Vector4[] vertices;
 
-        public List<tutorialfacemesh> somefacemeshlisttodraw;
+        public List<tutorialfacemesh> somefacemeshlisttodraw = new List<tutorialfacemesh>();
 
         public static tutorialcubeaschunkinst currenttutorialcubeaschunkinst;
 
@@ -381,7 +381,7 @@ namespace sccsr15forms
 
 
 
-            Console.WriteLine("minx:" + mainminx + "/miny:" + mainminy + "/minz:" + mainminz + "/maxx:" + mainmaxx + "/maxy:" + mainmaxy + "/maxz:" + mainmaxz);
+            Console.WriteLine("generatingmaps " + "/minx:" + mainminx + "/miny:" + mainminy + "/minz:" + mainminz + "/maxx:" + mainmaxx + "/maxy:" + mainmaxy + "/maxz:" + mainmaxz);
 
             //float someresult = somevertdata - (int)Math.Floor(somevertdata);
             //int somedepth = (int)Math.Floor(someresult * 10.0f);
@@ -766,7 +766,7 @@ namespace sccsr15forms
 
 
 
-
+           
 
             int totaltilescounter = 0;
 
@@ -908,7 +908,6 @@ namespace sccsr15forms
             int someiyy = 0;
             int someizz = 0;
 
-            somefacemeshlisttodraw = new List<tutorialfacemesh>();
 
             for (int i = 0; i < sometotalinarray; i++)
             {
@@ -1135,7 +1134,13 @@ namespace sccsr15forms
                     }
                 }
             }
+
+
+
+            
             somemaincounter_ = somemaincounter;
+
+
         }
 
         //int somemaincounter_ = 0;
@@ -1151,7 +1156,12 @@ namespace sccsr15forms
 
         public void createthechunks(int mainminx, int mainminy, int mainminz, int mainmaxx, int mainmaxy, int mainmaxz, int facetype, int someseccounter, out int someseccounter_)
         {
+            //arrayofchunkvertsinst = new Dictionary<int, int>();
 
+            Console.WriteLine("createthechunks" + "minx:" + mainminx + "/miny:" + mainminy + "/minz:" + mainminz + "/maxx:" + mainmaxx + "/maxy:" + mainmaxy + "/maxz:" + mainmaxz);
+
+
+            //arrayofchunkvertsinst = new Dictionary<int, int>();
             //staticContantBuffer = new SharpDX.Direct3D11.Buffer(device, Utilities.SizeOf<Matrix>(), ResourceUsage.Default, BindFlags.ConstantBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, 0);
             //dynamicConstantBuffer = new SharpDX.Direct3D11.Buffer(device, Utilities.SizeOf<Matrix>(), ResourceUsage.Dynamic, BindFlags.ConstantBuffer, CpuAccessFlags.Write, ResourceOptionFlags.None, 0);
 
@@ -1261,7 +1271,7 @@ namespace sccsr15forms
 
                                             }
 
-
+                                            //Console.WriteLine(thefirstbundlechunkindex);
 
                                             //whatever was set is now unset... by regenerating at everychunk.
 
@@ -1277,18 +1287,40 @@ namespace sccsr15forms
                                             sccslevelgen.arraychunkdatalod0[facetype][someseccounter].vertexcount = sccslevelgen.arraychunkdatalod0[0][thefirstbundlechunkindex].arraychunkvertslod0.arrayofvertstop.Length;
 
 
-                                           
-                                            if (sccslevelgen.arraychunkdatalod0[0][thefirstbundlechunkindex].arraychunkvertslod0.arrayofvertstop.Length > 0)
+                                            if (sccslevelgen.arraychunkdatalod0[0][thefirstbundlechunkindex].arraychunkvertslod0.arrayofvertstop != null)
                                             {
-                                                cango = 1;
+                                                if (sccslevelgen.arraychunkdatalod0[0][thefirstbundlechunkindex].arraychunkvertslod0.arrayofvertstop.Length > 0)
+                                                {
+                                                    cango = 1;
+                                                }
                                             }
+                                           
 
                                             ////Console.WriteLine(sccslevelgen.arraychunkdatalod0[facetype][someseccounter].arraychunkvertslod0.chunkPos);
                                             if (cango == 1)
                                             {
+
+                                                /*if (arrayofchunkvertsinst == null)
+                                                {
+                                                    Console.WriteLine("dictionary == null");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("dictionary != null");
+                                                }*/
+                                                
                                                 //arrayofchunkvertsinst.Add(somenewcounter, sccslevelgen.arraychunkdatalod0[facetype][someseccounter].arraychunkvertslod0.arrayofvertstop.Length);
                                                 arrayofchunkvertsinst.Add(someseccounter, sccslevelgen.arraychunkdatalod0[0][thefirstbundlechunkindex].arraychunkvertslod0.arrayofvertstop.Length);
+                                                
 
+
+
+
+
+
+
+                                                
+                                                
                                                 double m11a = 0;
                                                 double m12a = 0;
                                                 double m13a = 0;
@@ -1429,10 +1461,9 @@ namespace sccsr15forms
                                                 sccslevelgen.arraychunkdatalod0[facetype][someseccounter].instanceintmap = new scinstanceintmaps()
                                                 {
                                                     instanceintmap = somechunkmap,
-                                                };
-                                                */
+                                                };*/
                                                 
-
+                                               
 
                                                 m11a = 0;
                                                 m12a = 0;
@@ -1553,7 +1584,7 @@ namespace sccsr15forms
 
 
 
-            Console.WriteLine("generated vertices for face dimensions and locations " + facetype);
+            //Console.WriteLine("generated vertices for face dimensions and locations " + facetype);
 
 
 
@@ -1677,7 +1708,7 @@ namespace sccsr15forms
             //dynamicConstantBuffer = new Buffer(device, Utilities.SizeOf<Matrix>(), ResourceUsage.Dynamic, BindFlags.ConstantBuffer, CpuAccessFlags.Write, ResourceOptionFlags.None, 0);
 
 
-
+           
             someseccounter_ = someseccounter;
 
         }
@@ -1689,6 +1720,7 @@ namespace sccsr15forms
         public void createinstances(int facetype, int sometiercounter, out int sometiercounter_)
         {
 
+            
 
 
             //each type of map can have an identical number of vertex. and we need to spawn a certain number of instances per mesh.
