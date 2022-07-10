@@ -1,0 +1,5282 @@
+﻿//DEVELOPED BY STEVE CHASSÉ AKA NINEKORN AKA NINE AKA 9
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Xml;
+using SharpDX;
+using System.Collections;
+
+namespace sccsr15forms
+{
+    public class sclevelgen
+    {
+       public levelgenstruct somelevelgentypeoftiles = new levelgenstruct();
+
+        public struct levelgenstruct
+        {
+            //public List<Vector3> walllayer = new List<Vector3>();
+            public List<Dictionary<Vector3, int>> tilestypeof = new List<Dictionary<Vector3, int>>();
+            //public Dictionary<Vector3, int> floortiles = new Dictionary<Vector3, int>();
+        }
+
+        public List<Vector3> adjacentWall = new List<Vector3>();
+        public Dictionary<Vector3, int> forsortingtiles = new Dictionary<Vector3, int>();
+
+        public List<Vector3> listoftiles = new List<Vector3>();
+        public List<int> listoftilesvalues = new List<int>();
+
+        int istypeofl = -2;
+        int istypeofr = -2;
+        int istypeoft = -2;
+        int istypeofb = -2;
+        //int istile = -1;
+
+        int istypeoflt = -2;
+        int istypeofrt = -2;
+        int istypeoflb = -2;
+        int istypeofrb = -2;
+
+        public int somewidth;
+        public int someheight;
+        public int somedepth;
+
+        public int somerw;
+        public int somerh;
+        public int somerd;
+
+        public int[] levelmap;
+
+        public int[][] levelmapfloor;
+
+        public int maxtileamount = 750;
+
+
+        //List<Vector3> floortileslist = new List<Vector3>();
+
+        public int maxx;
+        public int maxy;
+        public int maxz;
+
+        public static int wallheightsize = 10;
+
+        public List<Vector3> leftWall = new List<Vector3>();
+        public List<Vector3> rightWall = new List<Vector3>();
+        public List<Vector3> frontWall = new List<Vector3>();
+        public List<Vector3> backWall = new List<Vector3>();
+        List<Vector3> toRemove = new List<Vector3>();
+        List<Vector3> listofremainingwalls = new List<Vector3>();
+        public List<Vector3> builtLeftFrontInsideCorner = new List<Vector3>();
+        public List<Vector3> builtRightFrontInsideCorner = new List<Vector3>();
+        public List<Vector3> builtLeftBackInsideCorner = new List<Vector3>();
+        public List<Vector3> builtRightBackInsideCorner = new List<Vector3>();
+        public List<Vector3> builtLeftFrontOutsideCorner = new List<Vector3>();
+        public List<Vector3> builtRightFrontOutsideCorner = new List<Vector3>();
+        public List<Vector3> builtLeftBackOutsideCorner = new List<Vector3>();
+        public List<Vector3> builtRightBackOutsideCorner = new List<Vector3>();
+        public List<Vector3> leftFrontCornerOutside = new List<Vector3>();
+        public List<Vector3> rightFrontCornerOutside = new List<Vector3>();
+        public List<Vector3> leftBackCornerOutside = new List<Vector3>();
+        public List<Vector3> rightBackCornerOutside = new List<Vector3>();
+        public List<Vector3> builtLeftWall = new List<Vector3>();
+        public List<Vector3> builtRightWall = new List<Vector3>();
+        public List<Vector3> builtFrontWall = new List<Vector3>();
+        public List<Vector3> builtBackWall = new List<Vector3>();
+        public List<Vector3> leftFrontCornerInside = new List<Vector3>();
+        public List<Vector3> rightFrontCornerInside = new List<Vector3>();
+        public List<Vector3> leftBackCornerInside = new List<Vector3>();
+        public List<Vector3> rightBackCornerInside = new List<Vector3>();
+
+        int minx = 0;
+        int miny = 0;
+        int minz = 0;
+
+
+        public void StartGeneratingVoxelLevel()
+        {
+            try
+            {
+
+                int minw = 15;
+                int minh = 9;
+                int mind = 15;
+
+                int maxw = 20;
+                int maxh = 12;
+                int maxd = 20;
+
+
+
+
+                somerw = (int)sc_maths.getSomeRandNumThousandDecimal(minw, maxw, 1, 0, 1);
+                somerh = (int)sc_maths.getSomeRandNumThousandDecimal(minh, maxh, 1, 0, 1);
+                somerd = (int)sc_maths.getSomeRandNumThousandDecimal(mind, maxd, 1, 0, 1);
+
+                var minx = (int)sc_maths.getSomeRandNumThousandDecimal(5, 10, 1, 2, 1);
+                var miny = 0;// (int)sc_maths.getSomeRandNumThousandDecimal(9, 13, 1, 2, 1);
+                var minz = (int)sc_maths.getSomeRandNumThousandDecimal(5, 10, 1, 2, 1);
+
+
+
+
+                maxx = minx + somerw;
+                maxy = miny + somerh;
+                maxz = minz + somerd;
+
+                /*
+                minx = -6;
+                miny = -6;
+                minz = -6;
+
+                maxx = 6;
+                maxy = 6;
+                maxz = 6;
+                */
+
+                //wallheightsize = maxy-1;
+                wallheightsize = 10;// maxy - 1;
+
+                int typeoftilesinlevelgen = 14;
+                somelevelgentypeoftiles.tilestypeof = new List<Dictionary<Vector3, int>>();
+
+                for (int i = 0; i < typeoftilesinlevelgen; i++)
+                {            
+                    somelevelgentypeoftiles.tilestypeof.Add(new Dictionary<Vector3, int>());
+                }
+
+                
+                //somelevelgentypeoftiles.tilestypeof = new List<Dictionary<Vector3, int>>(wallheightsize);
+                Console.WriteLine("main list count:" + somelevelgentypeoftiles.tilestypeof.Count);
+                /*for (int i = 0;i < somelevelgentypeoftiles.tilestypeof.Count;i++)
+                {
+                    somelevelgentypeoftiles.tilestypeof[i] = new Dictionary<Vector3, int>();
+                }*/
+
+
+
+
+
+                //somewidth = 12; //(int)(maxx - minx);
+                //someheight = 12;// (int)(maxy - miny);
+                //somedepth = 12;// (int)(maxz - minz);
+
+                somewidth = (int)(maxx - minx) ;
+                someheight = (int)(maxy - miny) ;
+                somedepth = (int)(maxz - minz);
+
+
+
+                if (somewidth < 0)
+                {
+                    somewidth *= -1;
+                }
+                if (someheight < 0)
+                {
+                    someheight *= -1;
+                }
+                if (somedepth < 0)
+                {
+                    somedepth *= -1;
+                }
+
+
+                somewidth += 3;
+                someheight += 3;
+                somedepth += 3;
+
+                maxtileamount = (somewidth * somedepth);
+                //maxtileamount = 6 * 6 * 6;
+
+
+
+
+
+
+
+                Console.WriteLine("mw:" + minx + "/mh:" + miny + "/md:" + minz + "/mxw:" + maxx + "/mxh:" + maxy + "/mxd:" + maxz);
+
+
+
+                /*for (var x = minx; x < maxx; x++)
+                {
+                    for (var y = miny; y < maxy; y++)
+                    {
+                        for (var z = minz; z < maxz; z++)
+                        {
+                            int xx = x;
+                            int yy = y;
+                            int zz = z;
+
+                            if (xx < 0)
+                            {
+                                xx *= -1;
+                                xx = xx + (maxx - 1);
+                            }
+
+                            if (yy < 0)
+                            {
+                                yy *= -1;
+                                yy = yy + (maxy - 1);
+                            }
+                            if (zz < 0)
+                            {
+                                zz *= -1;
+                                zz = zz + (maxz - 1);
+                            }
+
+                            int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                            if (indexinarray < somewidth * someheight * somedepth)
+                            {
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("OUT OF RANGE");
+                            }
+                        }
+                    }
+                }*/
+
+
+
+                levelmap = new int[somewidth * someheight * somedepth];
+
+
+                /*
+                levelmapfloor = new int[somewidth][];
+
+                for (int x = 0; x < somewidth; x++)
+                {
+                    levelmapfloor[x] = new int[somedepth];
+
+                    /*for (int z = 0; z < somedepth; z++)
+                    {
+                        //if (x == 0 && z == 0)
+                        //{
+                        //    levelmapfloor[x][z] = 1;
+                        //}
+
+                        //var tilefloorornot = (int)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 1);
+
+                        //levelmapfloor[x][z] = tilefloorornot;
+
+                        //Console.WriteLine(tilefloorornot);
+                    }
+                }*/
+
+
+
+                List<int[]> listoftileloc = new List<int[]>();
+
+                int somepointermax = maxtileamount / 10; //maxtileamount / 10
+
+                for (int x = 0; x < somepointermax; x++)
+                {
+                    /*float randx = (float)sc_maths.getSomeRandNumThousandDecimal(2, somewidth - 2, 1, 0, 0);
+                    float randy = (float)sc_maths.getSomeRandNumThousandDecimal(2, someheight - 2, 1, 0, 0);
+                    float randz = (float)sc_maths.getSomeRandNumThousandDecimal(2, somedepth - 2, 1, 0, 0);
+
+                    float posx = minx + randx;
+                    float posy = miny + randy;
+                    float posz = minz + randz;
+
+                    listoftileloc.Add(new Vector3(posx, posy, posz));*/
+
+                    int[] somepos = new int[3];
+                    somepos[0] = 0;
+                    somepos[1] = 0;
+                    somepos[2] = 0;
+
+                    listoftileloc.Add(somepos);
+
+
+
+
+                    //Console.WriteLine("rx:" + randx + "/ry:" + randy + "/rz:" + randz);
+                    //Console.WriteLine("px:" + posx + "/py:" + posy + "/pz:" + posz);
+
+                }
+
+
+
+
+
+
+
+                int neighbooraddx = 3;
+                int neighbooraddz = 3;
+
+                int outofrange = 0;
+                int startingtileindex = 0;
+                //levelmap[0] = 999;
+                int countingtiletries = 0;
+                
+
+                for (var x = minx; x < maxx; x++)
+                {
+                    for (var y = miny; y < maxy; y++)
+                    {
+                        for (var z = minz; z < maxz; z++)
+                        {
+                            int xx = x;
+                            int yy = y;
+                            int zz = z;
+
+                            if (xx < 0)
+                            {
+                                xx *= -1;
+                                xx = xx + (maxx - 1);
+                            }
+
+                            if (yy < 0)
+                            {
+                                yy *= -1;
+                                yy = yy + (maxy - 1);
+                            }
+                            if (zz < 0)
+                            {
+                                zz *= -1;
+                                zz = zz + (maxz - 1);
+                            }
+
+                            int indexinlevelarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+
+                            for (int p = 0; p < somepointermax; p++)
+                            {
+
+                                /*int neighboorx = (int)Math.Round(((listoftileloc[p].X)));
+                                int neighboorz = (int)Math.Round(((listoftileloc[p].Z)));
+
+                                Vector3 tilepos = new Vector3(neighboorx, 0, neighboorz);
+
+                                int countofarray = typeoftiles.Count;
+                                if (!typeoftiles.ContainsKey(tilepos))
+                                {
+                                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                                    if (indexinarray < somewidth * someheight * somedepth)
+                                    {
+                                        if (countofarray == 0)
+                                        {
+                                            Console.WriteLine("found starting tile");
+                                            //levelmap[indexinarray] = 999;
+                                            startingtile = countofarray;
+                                            //Console.WriteLine(countofarray);
+                                        }
+                                        else
+                                        {
+                                            //levelmap[indexinarray] = countofarray;
+                                        }
+                                        //levelmap[indexinarray] = 0;
+
+                                        //levelmapfloor[xi][zi] = 1;
+                                        typeoftiles.Add(tilepos, 0);
+                                        forsortingtiles.Add(tilepos, 0);
+                                        countingtiletries++;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("OUT OF RANGE");
+                                        outofrange = 1;
+                                    }
+                                }*/
+                                
+                                outofrange = 0;
+                                for (int xi = -neighbooraddx; xi <= neighbooraddx; xi++)
+                                {
+                                    for (int zi = -neighbooraddz; zi <= neighbooraddz; zi++)
+                                    {
+                                        int neighboorx = listoftileloc[p][0] + xi;// (int)Math.Round(listoftileloc[p].X) + xi;
+                                        int neighboorz = listoftileloc[p][2] + zi;// (int)Math.Round(listoftileloc[p].Z) + zi;
+
+                                        Vector3 tilepos = new Vector3(neighboorx, 0, neighboorz);
+
+                                        int xxi = neighboorx;// (int)Math.Round(tilepos.X);
+                                        int yyi = 0;// (int)Math.Round(tilepos.Y);
+                                        int zzi = neighboorz;//(int)Math.Round(tilepos.Z);
+
+                                        if (xxi < 0)
+                                        {
+                                            xxi *= -1;
+                                            xxi = xxi + (maxx - 1);
+                                        }
+
+                                        if (yyi < 0)
+                                        {
+                                            yyi *= -1;
+                                            yyi = yyi + (maxy - 1);
+                                        }
+                                        if (zzi < 0)
+                                        {
+                                            zzi *= -1;
+                                            zzi = zzi + (maxz - 1);
+                                        }
+
+                                        int indexinarray = xxi + somewidth * (yyi + someheight * zzi); //y is always 0 on floor tiles
+
+                                        if (indexinarray < somewidth * someheight * somedepth)
+                                        {
+                                            int countofarray = somelevelgentypeoftiles.tilestypeof[0].Count;
+                                            if (!somelevelgentypeoftiles.tilestypeof[0].ContainsKey(tilepos))
+                                            {
+
+                                                if (countofarray == 0)
+                                                {
+                                                    levelmap[indexinarray] = 999;
+                                                    startingtileindex = indexinarray;
+                                                }
+                                                //levelmap[indexinarray] = countofarray;
+
+                                                //levelmap[indexinarray] = 0;
+
+                                                //levelmapfloor[xi][zi] = 1;
+                                                somelevelgentypeoftiles.tilestypeof[0].Add(tilepos, 0);
+                                                forsortingtiles.Add(tilepos, 0);
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            //Console.WriteLine("OUT OF RANGE");
+                                            outofrange = 1;
+                                        }
+                                    }
+                                }
+
+
+                                if (outofrange == 0)
+                                {
+                                    float dirlr = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+                                    float dirfb = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+                                    //float dirldrd = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 0.1f, 0, 0);
+                                    //float dirfdbd = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 0.1f, 0, 0);
+
+                                    float decidedir = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+
+                                    if (decidedir == 0)
+                                    {
+                                        if (dirlr == 0)
+                                        {
+
+
+                                            int[] somevec = listoftileloc[p];
+                                            somevec[0] -= 1;
+                                            if (somevec[0] > minx)
+                                            {
+                                                listoftileloc[p] = somevec;
+                                            }
+                                            else
+                                            {
+                                                somevec = new int[3];
+                                                somevec[0] = 0;
+                                                somevec[1] = 0;
+                                                somevec[2] = 0;
+
+                                                listoftileloc[p] = somevec;// Vector3.Zero;
+                                            }
+                                        }
+                                        else if (dirlr == 1)
+                                        {
+
+                                            int[] somevec = listoftileloc[p];
+                                            somevec[0] += 1;
+                                            if (somevec[0] < maxx)
+                                            {
+                                                listoftileloc[p] = somevec;
+                                            }
+                                            else
+                                            {
+                                                somevec = new int[3];
+                                                somevec[0] = 0;
+                                                somevec[1] = 0;
+                                                somevec[2] = 0;
+
+                                                listoftileloc[p] = somevec;// Vector3.Zero;
+                                            }
+                                        }
+                                    }
+                                    else if (decidedir == 1)
+                                    {
+                                        if (dirfb == 0)
+                                        {
+                                            int[] somevec = listoftileloc[p];
+                                            somevec[2] -= 1;
+                                            if (somevec[2] > minz)
+                                            {
+                                                listoftileloc[p] = somevec;
+                                            }
+                                            else
+                                            {
+                                                somevec = new int[3];
+                                                somevec[0] = 0;
+                                                somevec[1] = 0;
+                                                somevec[2] = 0;
+
+                                                listoftileloc[p] = somevec;// Vector3.Zero;
+                                            }
+                                        }
+                                        else if (dirfb == 1)
+                                        {
+                                            int[] somevec = listoftileloc[p];
+                                            somevec[2] += 1;
+                                            if (somevec[2] > maxz)
+                                            {
+                                                listoftileloc[p] = somevec;
+                                            }
+                                            else
+                                            {
+                                                somevec = new int[3];
+                                                somevec[0] = 0;
+                                                somevec[1] = 0;
+                                                somevec[2] = 0;
+
+                                                listoftileloc[p] = somevec;// Vector3.Zero;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    int[] somevec = new int[3];
+                                    somevec[0] = 0;
+                                    somevec[1] = 0;
+                                    somevec[2] = 0;
+
+                                    listoftileloc[p] = somevec;// Vector3.Zero;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+     
+
+
+                
+                var enumerator0 = somelevelgentypeoftiles.tilestypeof[0].GetEnumerator();
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    var currentTile = currentTuile.Key;
+                    checkAllSides(currentTile);
+                }
+                //Console.WriteLine("NOT OUT OF RANGE1");
+
+                createfinal();
+
+                Console.WriteLine("main floor count:" + somelevelgentypeoftiles.tilestypeof[0].Count);
+
+
+                /* Console.WriteLine("total tiles:" + somelevelgentypeoftiles.floortiles.Count);
+
+                 for (int i = 0; i < levelmap.Length; i++)
+                 {
+                     if (levelmap[i] == 0)
+                     {
+                         levelmap[i] = -1;
+                     }
+                 }
+
+
+                 levelmap[startingtileindex] = 0;*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*else if (decidedir == 2)
+                {
+
+                    if (dirldrd == 0)
+                    {
+                        Vector3 somevec = listoftileloc[p];
+                        somevec.X -= 1;
+                        somevec.Z -= 1;
+                        listoftileloc[p] = somevec;
+                    }
+                    else if (dirldrd == 1)
+                    {
+                        Vector3 somevec = listoftileloc[p];
+                        somevec.X -= 1;
+                        somevec.Z += 1;
+                        listoftileloc[p] = somevec;
+                    }
+                }
+                else if (decidedir == 3)
+                {
+                    if (dirfdbd == 0)
+                    {
+                        Vector3 somevec = listoftileloc[p];
+                        somevec.X += 1;
+                        somevec.Z -= 1;
+                        listoftileloc[p] = somevec;
+                    }
+                    else if (dirfdbd == 1)
+                    {
+                        Vector3 somevec = listoftileloc[p];
+                        somevec.X += 1;
+                        somevec.Z += 1;
+                        listoftileloc[p] = somevec;
+                    }
+                }
+            }
+                }
+            }
+        }
+
+        levelmap[0] = 0;
+
+
+
+
+
+
+
+
+
+        /*
+        List<Vector3> listoftileloc = new List<Vector3>();
+
+        int somepointermax = maxtileamount / 10;
+
+        for (int t = 0; t < somepointermax; t++)
+        {
+            listoftileloc.Add(curpos0);
+        }*/
+
+                /*int neighbooraddx = 3;
+                int neighbooraddz = 3;
+
+                int outofrange = 0;
+                int startingtile = 0;
+
+                for (int t = 0; t < maxtileamount; t++)
+                {
+
+                    for (int p = 0; p < somepointermax; p++)
+                    {
+
+                        int neighboorx = (int)Math.Round(((listoftileloc[p].X)));
+                        int neighboorz = (int)Math.Round(((listoftileloc[p].Z)));
+
+                        Vector3 tilepos = new Vector3(neighboorx, 0, neighboorz);
+
+                        int countofarray = typeoftiles.Count;
+                        if (!typeoftiles.ContainsKey(tilepos))
+                        {
+                            int xx = (int)Math.Round(tilepos.X);
+                            int yy = 0;// (int)Math.Round(tilepos.Y);
+                            int zz = (int)Math.Round(tilepos.Z);
+
+                            if (xx < 0)
+                            {
+                                xx *= -1;
+                                xx = xx + (maxx - 1);
+                            }
+
+                            if (yy < 0)
+                            {
+                                yy *= -1;
+                                yy = yy + (maxy - 1);
+                            }
+                            if (zz < 0)
+                            {
+                                zz *= -1;
+                                zz = zz + (maxz - 1);
+                            }
+
+                            int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                            if (indexinarray < somewidth * someheight * somedepth)
+                            {
+                                if (countofarray == 0)
+                                {
+                                    Console.WriteLine("found starting tile");
+                                    //levelmap[indexinarray] = 999;
+                                    startingtile = countofarray;
+                                    //Console.WriteLine(countofarray);
+                                }
+                                else
+                                {
+                                    //levelmap[indexinarray] = countofarray;
+                                }
+                                //levelmap[indexinarray] = 0;
+
+                                //levelmapfloor[xi][zi] = 1;
+                                typeoftiles.Add(tilepos, 0);
+                                forsortingtiles.Add(tilepos, 0);
+                            }
+                            else
+                            {
+                                Console.WriteLine("OUT OF RANGE");
+                                outofrange = 1;
+                            }
+                        }
+
+
+                        /*
+                        outofrange = 0;
+                        for (int x = -neighbooraddx; x <= neighbooraddx; x++)
+                        {
+                            for (int z = -neighbooraddz; z <= neighbooraddz; z++)
+                            {
+                                int neighboorx = (int)Math.Round(((listoftileloc[p].X + x)));
+                                int neighboorz = (int)Math.Round(((listoftileloc[p].Z + z)));
+
+                                Vector3 tilepos = new Vector3(neighboorx, 0, neighboorz);
+
+                                int countofarray = typeoftiles.Count;
+                                if (!typeoftiles.ContainsKey(tilepos))
+                                {
+                                    int xx = (int)Math.Round(tilepos.X);
+                                    int yy = 0;// (int)Math.Round(tilepos.Y);
+                                    int zz = (int)Math.Round(tilepos.Z);
+
+                                    if (xx < 0)
+                                    {
+                                        xx *= -1;
+                                        xx = xx + (maxx - 1);
+                                    }
+
+                                    if (yy < 0)
+                                    {
+                                        yy *= -1;
+                                        yy = yy + (maxy - 1);
+                                    }
+                                    if (zz < 0)
+                                    {
+                                        zz *= -1;
+                                        zz = zz + (maxz - 1);
+                                    }
+
+                                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                                    if (indexinarray < somewidth * someheight * somedepth)
+                                    {
+
+
+
+                                        if (countofarray == 0)
+                                        {
+                                            Console.WriteLine("found starting tile");
+                                            levelmap[indexinarray] = 999;
+                                            startingtile = countofarray;
+                                        }
+                                        else
+                                        {
+                                            //levelmap[indexinarray] = countofarray;
+                                        }
+
+
+                                        //levelmap[indexinarray] = 0;
+
+                                        //levelmapfloor[xi][zi] = 1;
+                                        typeoftiles.Add(tilepos, 0);
+                                        forsortingtiles.Add(tilepos, 0);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("OUT OF RANGE");
+                                        outofrange = 1;
+                                    }
+                                }
+
+                            }
+                        }
+
+
+                        if (outofrange == 0)
+                        {
+                            float dirlr = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+                            float dirfb = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+                            //float dirldrd = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 0.1f, 0, 0);
+                            //float dirfdbd = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 0.1f, 0, 0);
+
+                            float decidedir = (float)sc_maths.getSomeRandNumThousandDecimal(0, 2, 1, 0, 0);
+
+                            if (decidedir == 0)
+                            {
+                                if (dirlr == 0)
+                                {
+                                    Vector3 somevec = listoftileloc[p];
+                                    somevec.X -= 1;
+                                    if (somevec.X > minx)
+                                    {
+                                        listoftileloc[p] = somevec;
+                                    }
+                                    else
+                                    {
+                                        listoftileloc[p] = Vector3.Zero;
+                                    }
+                                }
+                                else if (dirlr == 1)
+                                {
+
+                                    Vector3 somevec = listoftileloc[p];
+                                    somevec.X += 1;
+                                    if (somevec.X < maxx)
+                                    {
+                                        listoftileloc[p] = somevec;
+                                    }
+                                    else
+                                    {
+                                        listoftileloc[p] = Vector3.Zero;
+                                    }
+                                }
+                            }
+                            else if (decidedir == 1)
+                            {
+                                if (dirfb == 0)
+                                {
+                                    Vector3 somevec = listoftileloc[p];
+                                    somevec.Z -= 1;
+                                    if (somevec.Z > minz)
+                                    {
+                                        listoftileloc[p] = somevec;
+                                    }
+                                    else
+                                    {
+                                        listoftileloc[p] = Vector3.Zero;
+                                    }
+                                }
+                                else if (dirfb == 1)
+                                {
+                                    Vector3 somevec = listoftileloc[p];
+                                    somevec.Z += 1;
+                                    if (somevec.Z > maxz)
+                                    {
+                                        listoftileloc[p] = somevec;
+                                    }
+                                    else
+                                    {
+                                        listoftileloc[p] = Vector3.Zero;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            listoftileloc[p] = Vector3.Zero;
+                        }
+
+                        /*else if (decidedir == 2)
+                        {
+
+                            if (dirldrd == 0)
+                            {
+                                Vector3 somevec = listoftileloc[p];
+                                somevec.X -= 1;
+                                somevec.Z -= 1;
+                                listoftileloc[p] = somevec;
+                            }
+                            else if (dirldrd == 1)
+                            {
+                                Vector3 somevec = listoftileloc[p];
+                                somevec.X -= 1;
+                                somevec.Z += 1;
+                                listoftileloc[p] = somevec;
+                            }
+                        }
+                        else if (decidedir == 3)
+                        {
+                            if (dirfdbd == 0)
+                            {
+                                Vector3 somevec = listoftileloc[p];
+                                somevec.X += 1;
+                                somevec.Z -= 1;
+                                listoftileloc[p] = somevec;
+                            }
+                            else if (dirfdbd == 1)
+                            {
+                                Vector3 somevec = listoftileloc[p];
+                                somevec.X += 1;
+                                somevec.Z += 1;
+                                listoftileloc[p] = somevec;
+                            }
+                        }
+                    }
+                }*/
+
+
+
+                //Console.WriteLine("NOT OUT OF RANGE0");
+
+                /*
+                int someround0 =(int)Math.Round(-1.1f);
+                int someround1 = (int)Math.Round(-1.9f);
+                int someround2 = (int)Math.Round(-0.1f);
+                Console.WriteLine("rounded0:" + someround0 + "/rounded1:" + someround1 + "/rounded2:" + someround2);
+                */
+
+
+
+
+
+
+
+
+                /*
+                var enumerator0 = typeoftiles.GetEnumerator();
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    var currentTile = currentTuile.Key;
+                    checkAllSides(currentTile);
+                }
+                //Console.WriteLine("NOT OUT OF RANGE1");
+
+                createfinal();*/
+
+
+
+
+
+
+
+
+
+                /*
+
+                //Console.WriteLine("NOT OUT OF RANGE2");
+
+                enumerator0 = typeoftiles.GetEnumerator();
+                int indexoftile = 0;
+
+                //int startingtile = 0;
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    var currentTile = currentTuile.Key;
+                    var currentTileType = currentTuile.Value;
+
+                    listoftiles.Add(currentTile);
+                    listoftilesvalues.Add(currentTileType);
+                }
+
+                levelmap[0] = 999;
+
+                startingtile = 0;
+
+                for (var x = minx; x < maxx; x++)
+                {
+                    for (var y = miny; y < maxy; y++)
+                    {
+                        for (var z = minz; z < maxz; z++)
+                        {
+                            int xx = x;
+                            int yy = y;
+                            int zz = z;
+
+                            if (xx < 0)
+                            {
+                                xx *= -1;
+                                xx = xx + (maxx - 1);
+                            }
+
+                            if (yy < 0)
+                            {
+                                yy *= -1;
+                                yy = yy + (maxy - 1);
+                            }
+                            if (zz < 0)
+                            {
+                                zz *= -1;
+                                zz = zz + (maxz - 1);
+                            }
+
+                            int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                            if (levelmap[indexinarray] == 0)
+                            {
+                                levelmap[indexinarray] = -1;
+                            }
+
+                            for (int i = 0; i < listoftiles.Count; i++)
+                            {
+                                int xi = (int)Math.Round(listoftiles[i].X);
+                                int yi = (int)Math.Round(listoftiles[i].Y);
+                                int zi = (int)Math.Round(listoftiles[i].Z);
+
+                                int xxi = xi;
+                                int yyi = yi;
+                                int zzi = zi;
+
+                                if (xxi < 0)
+                                {
+                                    xxi *= -1;
+                                    xxi = xxi + (maxx - 1);
+                                }
+
+                                if (yyi < 0)
+                                {
+                                    yyi *= -1;
+                                    yyi = yyi + (maxy - 1);
+                                }
+                                if (zzi < 0)
+                                {
+                                    zzi *= -1;
+                                    zzi = zzi + (maxz - 1);
+                                }
+
+                                int indexinveclist= xxi + somewidth * (yyi + someheight * zzi);
+
+
+                                levelmap[indexinveclist] = i;
+
+
+
+                                if (levelmap[indexinarray] == 0)
+                                {
+                                    levelmap[indexinarray] = -1;
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+
+                for (int i = 0; i < levelmap.Length; i++)
+                {
+                    if (levelmap[i] == 0)
+                    {
+                        levelmap[i] = -1;
+                    }
+                }
+
+
+                levelmap[startingtile] = 0;
+                */
+
+
+
+                /*
+                var enumerator0 = typeoftiles.GetEnumerator();
+                int indexoftile = 0;
+
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    var currentTile = currentTuile.Key;
+                    var currentTileType = currentTuile.Value;
+
+                    int xx = (int)Math.Round(currentTile.X);
+                    int yy = (int)Math.Round(currentTile.Y);
+                    int zz = (int)Math.Round(currentTile.Z);
+
+                    if (xx < 0)
+                    {
+                        xx *= -1;
+                        xx = xx + (maxx - 1);
+                    }
+
+                    if (yy < 0)
+                    {
+                        yy *= -1;
+                        yy = yy + (maxy - 1);
+                    }
+                    if (zz < 0)
+                    {
+                        zz *= -1;
+                        zz = zz + (maxz - 1);
+                    }
+
+                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                    if (indexinarray < somewidth * someheight * somedepth)
+                    {
+                        if (indexoftile == 0)
+                        {
+                            levelmap[indexinarray] = 999;
+                            startingtile = indexinarray;
+                        }
+                        else
+                        {
+                            //levelmap[indexinarray] = indexoftile;
+                        }
+
+                        if (levelmap[indexinarray] != indexoftile)
+                        {
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("tile is out of range and shouldn't be");
+                        //levelmap[indexinarray] = -1;
+                    }
+                    indexoftile++;
+                }
+                */
+
+                /*levelmap[0] = 999;
+
+                for (int i = 0; i < levelmap.Length; i++)
+                {
+                    if (levelmap[i] == 0)
+                    {
+                        levelmap[i] = -1;
+                        if (levelmap[i] != i && levelmap[i] != -1 && levelmap[i] != 0)
+                        {
+                            Console.WriteLine("ERROR. The index is not the same.");
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+                }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                for (int i = 0; i < listoftiles.Count; i++)
+                {
+
+                    int xx = (int)Math.Round(listoftiles[i].X);
+                    int yy = (int)Math.Round(listoftiles[i].Y);
+                    int zz = (int)Math.Round(listoftiles[i].Z);
+
+                    if (xx < 0)
+                    {
+                        xx *= -1;
+                        xx = xx + (maxx - 1);
+                    }
+
+                    if (yy < 0)
+                    {
+                        yy *= -1;
+                        yy = yy + (maxy - 1);
+                    }
+                    if (zz < 0)
+                    {
+                        zz *= -1;
+                        zz = zz + (maxz - 1);
+                    }
+
+
+                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                    if (levelmap[indexinarray] != i)
+                    {
+                        Console.WriteLine(i + "/index not equal:" + levelmap[indexinarray]);
+                        //Console.WriteLine("ERROR. The index is not the same.");
+                        levelmap[indexinarray] = i;
+                    }
+                }*/
+
+
+
+
+
+                //levelmap[0] = 0;
+
+                //Console.WriteLine("NOT OUT OF RANGE3");
+
+                /*
+                int startingtile = 0;
+
+                for (var x = minx; x < maxx; x++)
+                {
+                    for (var y = miny; y < maxy; y++)
+                    {
+                        for (var z = minz; z < maxz; z++)
+                        {
+                            int xx = x;
+                            int yy = y;
+                            int zz = z;
+
+                            if (xx < 0)
+                            {
+                                xx *= -1;
+                                xx = xx + (maxx - 1);
+                            }
+
+                            if (yy < 0)
+                            {
+                                yy *= -1;
+                                yy = yy + (maxy - 1);
+                            }
+                            if (zz < 0)
+                            {
+                                zz *= -1;
+                                zz = zz + (maxz - 1);
+                            }
+
+                            int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+
+                            for (int i = 0; i < listoftiles.Count; i++)
+                            {
+                                int xi = (int)Math.Round(listoftiles[i].X);
+                                int yi = (int)Math.Round(listoftiles[i].Y);
+                                int zi = (int)Math.Round(listoftiles[i].Z);
+
+                                if (xi == x && yi == y && zi == z)
+                                {
+                                    if (i == 0)
+                                    {
+                                        levelmap[indexinarray] = 999;
+                                        startingtile = indexinarray;
+
+                                    }
+                                    else
+                                    {
+                                        //levelmap[indexinarray] = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                for (int i = 0; i < levelmap.Length; i++)
+                {
+                    if (levelmap[i] == 0)
+                    {
+                        levelmap[i] = -1;
+                    }
+                }
+
+
+                levelmap[startingtile] = 0;*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //unLOADING CHUNK to XML
+                //unLOADING CHUNK to XML
+                string pathofrelease = Directory.GetCurrentDirectory();
+                                //Console.WriteLine(pathofrelease);
+                                string pathofchunkmap = pathofrelease + @"\chunkmaps\";
+
+                                if (!Directory.Exists(pathofchunkmap))
+                                {
+                                    //Console.WriteLine("created directory");
+                                    Directory.CreateDirectory(pathofchunkmap);
+                                }
+
+                //int writetofilecounter = 0;
+
+                System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+                customCulture.NumberFormat.NumberDecimalSeparator = ".";
+                System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+                var path = pathofchunkmap + @"\levelfloordata" + ".xml";
+
+                var writer = new XmlTextWriter(path, System.Text.Encoding.UTF8);
+
+                writer.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 2;
+
+                writer.WriteStartElement("root"); // open 0
+
+                writer.WriteStartElement("size"); //open 4 //"\r\n" + 
+                writer.WriteStartElement("w");
+                writer.WriteValue(somewidth);
+                writer.WriteEndElement();
+                writer.WriteStartElement("h");
+                writer.WriteValue(someheight);
+                writer.WriteEndElement();
+                writer.WriteStartElement("d");
+                writer.WriteValue(somedepth);
+                writer.WriteEndElement();
+                writer.WriteStartElement("minx");
+                writer.WriteValue(minx);
+                writer.WriteEndElement();
+                writer.WriteStartElement("maxx");
+                writer.WriteValue(maxx);
+                writer.WriteEndElement();
+                writer.WriteStartElement("minz");
+                writer.WriteValue(minz);
+                writer.WriteEndElement();
+                writer.WriteStartElement("maxz");
+                writer.WriteValue(maxz);
+                writer.WriteEndElement();
+                writer.WriteStartElement("miny");
+                writer.WriteValue(miny);
+                writer.WriteEndElement();
+                writer.WriteStartElement("maxy");
+                writer.WriteValue(maxy);
+                writer.WriteEndElement();
+
+                writer.WriteEndElement(); //open 4 //"\r\n" + 
+
+                writer.WriteStartElement("intmap"); //open 4 //"\r\n" + 
+                writer.WriteValue("\r\n");
+                //for (int x = 0; x < levelmapfloor.Length; x++)
+                //{
+                //    writer.WriteValue(levelmapfloor[x]);
+                //    writer.WriteValue("\r\n");
+                //}
+                writer.WriteValue(levelmap);
+
+
+                writer.WriteEndElement();
+                writer.WriteEndElement(); //close 2
+                writer.Close();
+
+                Console.WriteLine("generated new level");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                var enumerator0 = typeoftiles.GetEnumerator();
+
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    var currentTile = currentTuile.Key;
+                    checkAllSides(currentTile);
+                }*/
+
+                //Console.WriteLine("mw:" + minx + "/mh:" + miny + "/md:" + minz + "/mxw:" + maxx + "/mxh:" + maxy + "/mxd:" + maxz);
+
+                /*
+
+                Console.WriteLine("w:" + somewidth + "/h:" + someheight + "/d:" + somedepth);
+
+                somewidth = (int)(maxx.X - minx.X);
+                someheight = (int)(maxy.Y - miny.Y);
+                somedepth = (int)(maxz.Z - minz.Z);
+
+                levelmap = new int[width * height * depth];*/
+
+                /*
+                //unLOADING CHUNK to XML
+                //unLOADING CHUNK to XML
+                pathofrelease = Directory.GetCurrentDirectory();
+                //Console.WriteLine(pathofrelease);
+                pathofchunkmap = pathofrelease + @"\chunkmaps\";
+
+                if (!Directory.Exists(pathofchunkmap))
+                {
+                    //Console.WriteLine("created directory");
+                    Directory.CreateDirectory(pathofchunkmap);
+                }
+
+                //int writetofilecounter = 0;
+
+                customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+                customCulture.NumberFormat.NumberDecimalSeparator = ".";
+                System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
+                path = pathofchunkmap + @"\levelfloordataneighboors" + ".xml";
+
+                writer = new XmlTextWriter(path, System.Text.Encoding.UTF8);
+
+                writer.WriteProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 2;
+
+                writer.WriteStartElement("root"); // open 0
+
+                writer.WriteStartElement("size"); //open 4 //"\r\n" + 
+                writer.WriteStartElement("w");
+                writer.WriteValue(somewidth);
+                writer.WriteEndElement();
+                writer.WriteStartElement("h");
+                writer.WriteValue(someheight);
+                writer.WriteEndElement();
+                writer.WriteStartElement("d");
+                writer.WriteValue(somedepth);
+                writer.WriteEndElement();
+                writer.WriteEndElement(); //open 4 //"\r\n" + 
+
+                writer.WriteStartElement("intmap"); //open 4 //"\r\n" + 
+                writer.WriteValue("\r\n");
+                for (int x = 0; x < levelmapfloor.Length; x++)
+                {
+                    writer.WriteValue(levelmapfloor[x]);
+                    writer.WriteValue("\r\n");
+                }
+                writer.WriteEndElement();
+
+                writer.WriteEndElement(); //close 2
+                writer.Close();
+
+
+
+
+                Console.WriteLine("generated new level w neighboors");*/
+
+            }
+            catch (Exception ex)
+            {
+                Program.MessageBox((IntPtr)0, "" + ex.ToString(), "scmsg", 0);
+            }
+        }
+
+
+
+        void checkAllSides(Vector3 currentTilePos)
+        {
+
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int z = -1; z <= 1; z++)
+                {
+                    int checkx = (int)Math.Round(currentTilePos.X) + x;
+                    int checkz = (int)Math.Round(currentTilePos.Z) + z;
+
+                    //float checkx = ((currentTilePos.x + x));
+                    //float checkz = ((currentTilePos.z + z));
+
+                    if (checkx == currentTilePos.X && checkz == currentTilePos.Z + (1) ||
+                        checkx == currentTilePos.X && checkz == currentTilePos.Z - (1) ||
+                        checkx == currentTilePos.X + (1) && checkz == currentTilePos.Z ||
+                        checkx == currentTilePos.X - (1) && checkz == currentTilePos.Z ||
+
+                        checkx == currentTilePos.X + (1) && checkz == currentTilePos.Z + (1) ||
+                        checkx == currentTilePos.X - (1) && checkz == currentTilePos.Z + (1) ||
+                        checkx == currentTilePos.X + (1) && checkz == currentTilePos.Z - (1) ||
+                        checkx == currentTilePos.X - (1) && checkz == currentTilePos.Z - (1))
+                    {
+
+
+                        int xi = checkx;
+                        int zi = checkz;
+
+                        if (xi < 0)
+                        {
+                            xi *= -1;
+                            xi = xi + (maxx - 1);
+                        }
+                        if (zi < 0)
+                        {
+                            zi *= -1;
+                            zi = zi + (maxz - 1);
+                        }
+
+                        // Console.WriteLine("test0");
+
+                        //if (xi < somewidth && somedepth < zi)
+                        {
+                            //Console.WriteLine("test1");
+                            //Instantiate(sphere, new Vector3(checkx, 0, checkz), Quaternion.identity);
+
+                            //int countofarray = typeoftiles.Count;
+                            if (!adjacentWall.Contains(new Vector3(checkx, 0, checkz)) && !somelevelgentypeoftiles.tilestypeof[0].ContainsKey(new Vector3(checkx, 0, checkz)))
+                            {
+
+
+
+                                /*int xx = (checkx);
+                                int yy = 0;// (int)Math.Round(0);
+                                int zz = (checkz);
+
+                                if (xx < 0)
+                                {
+                                    xx *= -1;
+                                    xx = xx + (maxx - 1);
+                                }
+
+                                if (yy < 0)
+                                {
+                                    yy *= -1;
+                                    yy = yy + (maxy - 1);
+                                }
+                                if (zz < 0)
+                                {
+                                    zz *= -1;
+                                    zz = zz + (maxz - 1);
+                                }
+
+                                int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles*/
+
+
+                                //if (indexinarray < somewidth * someheight * somedepth)
+                                {
+                                    ////levelmap[indexinarray] = countofarray;
+
+
+                                    //Program.MessageBox((IntPtr)0, "test0", "scmsg", 0);
+                                    adjacentWall.Add(new Vector3(checkx, 0, checkz));
+                                    //typeoftiles.Add(new Vector3(checkx, 0, checkz),0);
+
+                                    //levelmapfloor[xi][zi] = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    istypeofl = -2;
+                                    istypeofr = -2;
+                                    istypeoft = -2;
+                                    istypeofb = -2;
+
+                                    istypeoflt = -2;
+                                    istypeofrt = -2;
+                                    istypeoflb = -2;
+                                    istypeofrb = -2;
+
+                                    Vector3 currentTile = new Vector3(checkx, 0, checkz);
+
+                                    Vector3 tempvec = currentTile;//.X - 1;
+                                    tempvec.X -= 1;
+                                    var leftTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (leftTile != null)
+                                    {
+                                        if (leftTile.Length > 0)
+                                        {
+                                            if (leftTile[0].Value == 0)
+                                            {
+                                                istypeofl = 0;
+                                            }
+                                            else if (leftTile[0].Value == -1)
+                                            {
+                                                istypeofl = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeofl = -1;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        istypeofl = -1;
+                                    }
+
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.X += 1;
+                                    var rightTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (rightTile != null)
+                                    {
+                                        if (rightTile.Length > 0)
+                                        {
+                                            if (rightTile[0].Value == 0)
+                                            {
+                                                istypeofr = 0;
+                                            }
+                                            else if (rightTile[0].Value == -1)
+                                            {
+                                                istypeofr = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeofr = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeofr = -1;
+                                    }
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.Z += 1;
+                                    var topTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (topTile != null)
+                                    {
+                                        if (topTile.Length > 0)
+                                        {
+                                            if (topTile[0].Value == 0)
+                                            {
+                                                istypeoft = 0;
+                                            }
+                                            else if (topTile[0].Value == -1)
+                                            {
+                                                istypeoft = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeoft = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeoft = -1;
+                                    }
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.Z -= 1;
+                                    var backTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (backTile != null)
+                                    {
+                                        if (backTile.Length > 0)
+                                        {
+                                            if (backTile[0].Value == 0)
+                                            {
+                                                istypeofb = 0;
+                                            }
+                                            else if (backTile[0].Value == -1)
+                                            {
+                                                istypeofb = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeofb = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeofb = -1;
+                                    }
+
+
+
+
+
+
+
+
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.X -= 1;
+                                    tempvec.Z += 1;
+                                    var topTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (topTilel != null)
+                                    {
+                                        if (topTilel.Length > 0)
+                                        {
+                                            if (topTilel[0].Value == 0)
+                                            {
+                                                //Console.WriteLine("found0");
+                                                istypeoflt = 0;
+                                            }
+                                            else if (topTilel[0].Value == -1)
+                                            {
+                                                //Console.WriteLine("found1");
+                                                istypeoflt = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeoflt = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeoflt = -1;
+                                    }
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.X -= 1;
+                                    tempvec.Z -= 1;
+                                    var backTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (backTilel != null)
+                                    {
+                                        if (backTilel.Length > 0)
+                                        {
+                                            if (backTilel[0].Value == 0)
+                                            {
+                                                istypeoflb = 0;
+                                            }
+                                            else if (backTilel[0].Value == -1)
+                                            {
+                                                istypeoflb = 1;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            istypeoflb = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeoflb = -1;
+                                    }
+
+
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.X += 1;
+                                    tempvec.Z += 1;
+                                    var topTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (topTiler != null)
+                                    {
+                                        if (topTiler.Length > 0)
+                                        {
+                                            if (topTiler[0].Value == 0)
+                                            {
+                                                istypeofrt = 0;
+                                            }
+                                            else if (topTiler[0].Value == -1)
+                                            {
+                                                istypeofrt = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            istypeofrt = -1;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        istypeofrt = -1;
+                                    }
+
+
+                                    tempvec = currentTile;//.X - 1;
+                                    tempvec.X += 1;
+                                    tempvec.Z -= 1;
+                                    var backTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+                                    if (backTiler != null)
+                                    {
+                                        if (backTiler.Length > 0)
+                                        {
+                                            if (backTiler[0].Value == 0)
+                                            {
+                                                istypeofrb = 0;
+                                            }
+                                            else if (backTiler[0].Value == -1)
+                                            {
+                                                istypeofrb = 1;
+                                            }
+                                        }
+
+                                        else
+                                        {
+                                            istypeofrb = -1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        istypeofrb = -1;
+                                    }
+
+
+                                    //IS THIS A TILE OR A WALL
+                                    /////////////////////////////////////////////////////////////
+                                    if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                                        istypeofl == 0 && istypeofr == 0 &&
+                                        istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+                                    {
+
+                                        forsortingtiles.Add(new Vector3(checkx, 0, checkz), 0);
+
+
+                                    }
+                                    else
+                                    {
+                                        forsortingtiles.Add(new Vector3(checkx, 0, checkz), -1);
+                                    }
+                                }
+
+
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+        int counter = 1;
+        public void createfinal()
+        {
+            if (counter == 1)
+            {
+
+                /*var enumerator0 = adjacentWall.GetEnumerator();
+                while (enumerator0.MoveNext())
+                {
+                    var currentTuile = enumerator0.Current;
+                    //currentTile = currentTuile;
+                    StartCoroutine(buildWalls(currentTuile));
+                }*/
+
+
+
+
+
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                for (int i = 0; i < adjacentWall.Count; i++)
+                {
+                    var currentTuile = adjacentWall[i];
+                    buildsomefloortiles(currentTuile);
+                    //adjacentWall.Remove(adjacentWall[i]);
+                }
+
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                //REMOVING THE EASILY SORTABLE TILES FROM THE ADJACENTWALL LIST AND ADDING THEM TO THE typeoftiles LIST
+                for (int i = 0; i < adjacentWall.Count; i++)
+                {
+                    var currentTuile = adjacentWall[i];
+                    //currentTuile.Y = 1.0f;
+                    buildsomewallremains(currentTuile);
+                    //adjacentWall.Remove(adjacentWall[i]);
+                }
+
+
+                
+                for (int i = 0; i < adjacentWall.Count; i++)
+                {
+                    var currentTuile = adjacentWall[i];
+                    //currentTuile.Y = 1.0f;
+                    buildWallsRerolled(currentTuile);
+                    //adjacentWall.Remove(adjacentWall[i]);
+                }
+
+                
+                toRemove = adjacentWall;
+
+                for (int i = 0; i < backWall.Count; i++)
+                {
+                    toRemove.Remove(backWall[i]);
+                }
+                for (int i = 0; i < frontWall.Count; i++)
+                {
+                    toRemove.Remove(frontWall[i]);
+                }
+                for (int i = 0; i < rightWall.Count; i++)
+                {
+                    toRemove.Remove(rightWall[i]);
+                }
+                for (int i = 0; i < leftWall.Count; i++)
+                {
+                    toRemove.Remove(leftWall[i]);
+                }
+                for (int i = 0; i < builtLeftFrontInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftFrontInsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightFrontInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightFrontInsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftBackInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftBackInsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightBackInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightBackInsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftFrontOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftFrontOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightFrontOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightFrontOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftBackOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftBackOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightBackOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightBackOutsideCorner[i]);
+                }
+                for (int i = 0; i < listofremainingwalls.Count; i++)
+                {
+                    toRemove.Remove(listofremainingwalls[i]);
+                }
+                
+                buildFloorTiles();
+                
+                for (int i = 0; i < listofremainingwalls.Count; i++)
+                {
+                    var currentTuile = listofremainingwalls[i];
+                    //currentTuile.Y = 1.0f;
+                    buildWallsRerolled(currentTuile);
+                    //adjacentWall.Remove(adjacentWall[i]);
+
+                }
+
+
+                
+                toRemove = listofremainingwalls;
+
+                for (int i = 0; i < backWall.Count; i++)
+                {
+                    toRemove.Remove(backWall[i]);
+                }
+                for (int i = 0; i < frontWall.Count; i++)
+                {
+                    toRemove.Remove(frontWall[i]);
+                }
+                for (int i = 0; i < rightWall.Count; i++)
+                {
+                    toRemove.Remove(rightWall[i]);
+                }
+                for (int i = 0; i < leftWall.Count; i++)
+                {
+                    toRemove.Remove(leftWall[i]);
+                }
+                for (int i = 0; i < builtLeftFrontInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftFrontInsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightFrontInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightFrontInsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftBackInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftBackInsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightBackInsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightBackInsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftFrontOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftFrontOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightFrontOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightFrontOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtLeftBackOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtLeftBackOutsideCorner[i]);
+                }
+                for (int i = 0; i < builtRightBackOutsideCorner.Count; i++)
+                {
+                    toRemove.Remove(builtRightBackOutsideCorner[i]);
+                }
+
+                
+
+                
+                for (int i = 0; i < toRemove.Count; i++)
+                {
+                    var currentTuile = toRemove[i];
+                    //buildWallsRerolled(currentTuile);
+
+                    int countofarray = somelevelgentypeoftiles.tilestypeof[13].Count;
+                    if (!somelevelgentypeoftiles.tilestypeof[13].ContainsKey(currentTuile))
+                    {
+
+                        int xx = (int)Math.Round(currentTuile.X);
+                        int yy = (int)Math.Round(currentTuile.Y);
+                        int zz = (int)Math.Round(currentTuile.Z);
+
+                        if (xx < 0)
+                        {
+                            xx *= -1;
+                            xx = xx + (maxx - 1);
+                        }
+
+                        if (yy < 0)
+                        {
+                            yy *= -1;
+                            yy = yy + (maxy - 1);
+                        }
+                        if (zz < 0)
+                        {
+                            zz *= -1;
+                            zz = zz + (maxz - 1);
+                        }
+
+                        int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                        //levelmap[indexinarray] = countofarray;
+                        somelevelgentypeoftiles.tilestypeof[13].Add(currentTuile, -2);
+                        //leftWall.Add(currentTile);
+                        //buildWallLeft();
+                        //forsortingtiles.Remove(currentTile);
+                    }
+                }
+
+
+
+
+
+                /*
+
+                Dictionary<Vector3, int> topwalllayer = new Dictionary<Vector3, int>();
+
+                var enumerator0 = somelevelgentypeoftiles.tilestypeof[0].GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator0.MoveNext())
+                {
+                    var tls0 = enumerator0.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (someval != 0) //&& someval != 16
+                    {
+
+                        for (int tw = 1; tw <= wallheightsize; tw++)
+                        {
+                            if (!topwalllayer.ContainsKey(new Vector3(somekey.X, somekey.Y + tw, somekey.Z)))
+                            {
+                                topwalllayer.Add(new Vector3(somekey.X, somekey.Y + tw, somekey.Z), someval);
+                            }
+                        }
+                    }
+                }
+
+
+                
+                var enumerator1 = topwalllayer.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator1.MoveNext())
+                {
+                    var tls0 = enumerator1.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    int countofarray = typeoftiles.Count;
+                    if (!typeoftiles.ContainsKey(somekey))
+                    {
+
+                        int xx = (int)Math.Round(somekey.X);
+                        int yy = (int)Math.Round(somekey.Y);
+                        int zz = (int)Math.Round(somekey.Z);
+
+                        if (xx < 0)
+                        {
+                            xx *= -1;
+                            xx = xx + (maxx - 1);
+                        }
+
+                        if (yy < 0)
+                        {
+                            yy *= -1;
+                            yy = yy + (maxy - 1);
+                        }
+                        if (zz < 0)
+                        {
+                            zz *= -1;
+                            zz = zz + (maxz - 1);
+                        }
+
+                        int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                        //levelmap[indexinarray] = countofarray;
+
+
+                        typeoftiles.Add(somekey, someval);
+                        //leftWall.Add(currentTile);
+                        //buildWallLeft();
+                        //forsortingtiles.Remove(currentTile);
+                    }
+                }
+
+                
+                //TOP ROOF IS INVERTED FLOOR
+                //TOP ROOF IS INVERTED FLOOR
+                //TOP ROOF IS INVERTED FLOOR
+                Dictionary<Vector3, int> toprooflayer = new Dictionary<Vector3, int>();
+
+                var enumerator2 = typeoftiles.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator2.MoveNext())
+                {
+                    var tls0 = enumerator2.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (someval == 0)
+                    {
+                        if (!toprooflayer.ContainsKey(new Vector3(somekey.X, somekey.Y + wallheightsize, somekey.Z)))
+                        {
+                            toprooflayer.Add(new Vector3(somekey.X, somekey.Y + wallheightsize, somekey.Z), someval);
+                        }
+                    }
+                }
+
+                var enumerator3 = toprooflayer.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator3.MoveNext())
+                {
+                    var tls0 = enumerator3.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    int countofarray = typeoftiles.Count;
+                    if (!typeoftiles.ContainsKey(somekey))
+                    {
+
+                        int xx = (int)Math.Round(somekey.X);
+                        int yy = (int)Math.Round(somekey.Y);
+                        int zz = (int)Math.Round(somekey.Z);
+
+                        if (xx < 0)
+                        {
+                            xx *= -1;
+                            xx = xx + (maxx - 1);
+                        }
+
+                        if (yy < 0)
+                        {
+                            yy *= -1;
+                            yy = yy + (maxy - 1);
+                        }
+                        if (zz < 0)
+                        {
+                            zz *= -1;
+                            zz = zz + (maxz - 1);
+                        }
+
+                        int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                        //levelmap[indexinarray] = countofarray;
+
+                        typeoftiles.Add(somekey, 15);
+                        //leftWall.Add(currentTile);
+                        //buildWallLeft();
+                        //forsortingtiles.Remove(currentTile);
+                    }
+                }
+                //TOP ROOF IS INVERTED FLOOR
+                //TOP ROOF IS INVERTED FLOOR
+                //TOP ROOF IS INVERTED FLOOR
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                Dictionary<Vector3, int> firstlayerwallisfloor = new Dictionary<Vector3, int>();
+
+                var enumerator00 = typeoftiles.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator00.MoveNext())
+                {
+                    var tls0 = enumerator00.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (someval != 0)
+                    {
+                        if (!firstlayerwallisfloor.ContainsKey(new Vector3(somekey.X, somekey.Y - 1.0f, somekey.Z)))
+                        {
+                            firstlayerwallisfloor.Add(new Vector3(somekey.X, somekey.Y - 1.0f, somekey.Z), someval);
+                        }
+
+                    }
+                }
+
+                var enumerator11 = firstlayerwallisfloor.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator11.MoveNext())
+                {
+                    var tls0 = enumerator11.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (!typeoftiles.ContainsKey(somekey))
+                    {
+                        typeoftiles.Add(somekey, 0);
+                        //leftWall.Add(currentTile);
+                        //buildWallLeft();
+                        //forsortingtiles.Remove(currentTile);
+                    }
+                }*/
+
+
+                /*
+                Dictionary<Vector3, int> toplayerwallisfloor = new Dictionary<Vector3, int>();
+
+                var enumerator000 = typeoftiles.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator000.MoveNext())
+                {
+                    var tls0 = enumerator000.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (someval != 0)
+                    {
+                        /*if (!firstlayerwallisfloor.ContainsKey(new Vector3(somekey.X, somekey.Y - 1.0f, somekey.Z)))
+                        {
+                            firstlayerwallisfloor.Add(new Vector3(somekey.X, somekey.Y - 1.0f, somekey.Z), someval);
+                        }
+                        
+                       if (!toplayerwallisfloor.ContainsKey(new Vector3(somekey.X, somekey.Y + 4.0f, somekey.Z)))
+                        {
+                            toplayerwallisfloor.Add(new Vector3(somekey.X, somekey.Y + 4.0f, somekey.Z), someval);
+                        }
+                        /*if (!topwalllayer.ContainsKey(new Vector3(somekey.X, somekey.Y + 1, somekey.Z)))
+                        {
+                            topwalllayer.Add(new Vector3(somekey.X, somekey.Y + 1, somekey.Z), someval);
+                        }
+                    }
+                }
+
+                var enumerator111 = toplayerwallisfloor.GetEnumerator();
+                //Vector3? tls0 = null;     
+                while (enumerator111.MoveNext())
+                {
+                    var tls0 = enumerator111.Current;
+                    var somekey = tls0.Key;
+                    var someval = tls0.Value;
+
+                    if (!typeoftiles.ContainsKey(somekey))
+                    {
+                        typeoftiles.Add(somekey, 16);
+                        //leftWall.Add(currentTile);
+                        //buildWallLeft();
+                        //forsortingtiles.Remove(currentTile);
+                    }
+                }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                for (int i = 0; i < typeoftiles.Count; i++)
+                {
+
+                    var currentTuile = adjacentWall[i];
+                    buildWallsRerolled(currentTuile);
+                }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                for (int i = 0; i < toRemove.Count; i++)
+                {
+                    var currentTuile = toRemove[i];
+                    buildWallsRerolled(currentTuile);
+                }*/
+
+
+                /* 
+
+                 for (int i = 0; i < toRemove.Count; i++)
+                 {
+                     var currentTuile = toRemove[i];
+                     buildWallsRerolled(currentTuile);
+                     //adjacentWall.Remove(adjacentWall[i]);
+                 }*/
+
+
+
+
+                /*
+                for (int i = 0; i < adjacentWall.Count; i++)
+                {
+                    var currentTuile = adjacentWall[i];
+                    buildsomewallremains(currentTuile);
+                    //adjacentWall.Remove(adjacentWall[i]);
+                }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*if (counter999 == 0)
+                {
+                    totalTiles = toRemove.Count;
+
+                    for (int i = 0; i < toRemove.Count; i++)
+                    {
+                        var currentTile = toRemove[i];
+                        buildFloorTiles();
+                    }
+
+
+
+                    //chunks = new List<GameObject>();
+                    //chunkz = GameObject.FindGameObjectsWithTag("chunks");
+                    //StartCoroutine(buildFaces());
+
+                    counter999 = 1;
+                }*/
+
+
+                //singleChunk.GetComponent<newFloorTiles>().Regenerate();
+
+                //GetComponent<startGeneratingFaces>().BuildFaces();
+
+
+                counter = 2;
+            }
+
+
+
+            /*
+            if (counter == 2)
+            {
+                //Debug.Log("total: " + totalTiles + " corout: " + countingCoroutines);
+
+                if (countingCoroutinesStart == countingCoroutinesEnd)
+                {
+                    //BuildFaces();
+
+                    counter = 3;
+                }
+            }*/
+
+        }
+
+
+        void buildFloorTiles()
+        {
+            //countingCoroutinesStart++;
+
+            //yield return new WaitForSeconds(BuildingWaitTime);
+
+            for (int i = 0; i < toRemove.Count; i++)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[0].Count;
+                if (!somelevelgentypeoftiles.tilestypeof[0].ContainsKey(toRemove[i]))
+                {
+                    int xx = (int)Math.Round(toRemove[i].X);
+                    int yy = (int)Math.Round(toRemove[i].Y);
+                    int zz = (int)Math.Round(toRemove[i].Z);
+
+                    if (xx < 0)
+                    {
+                        xx *= -1;
+                        xx = xx + (maxx - 1);
+                    }
+
+                    if (yy < 0)
+                    {
+                        yy *= -1;
+                        yy = yy + (maxy - 1);
+                    }
+                    if (zz < 0)
+                    {
+                        zz *= -1;
+                        zz = zz + (maxz - 1);
+                    }
+
+                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[0].Add(toRemove[i], 0);
+                    forsortingtiles.Remove(toRemove[i]);
+                    forsortingtiles.Add(toRemove[i], 0);
+                }
+                /*if (!builtFloorTiles.Contains(toRemove[i]))
+                {
+                    //Instantiate(floorTiles, toRemove[i], Quaternion.identity);
+                    builtFloorTiles.Add(toRemove[i]);
+                    //yield return new WaitForSeconds(BuildingWaitTime);
+                }*/
+                //yield return new WaitForSeconds(BuildingWaitTime);
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+
+            //countingCoroutinesEnd++;
+
+        }
+
+
+
+
+
+
+        void buildWallsRerolled(Vector3 currentTile)
+        {
+            int xx = (int)Math.Round(currentTile.X);
+            int yy = (int)Math.Round(currentTile.Y);
+            int zz = (int)Math.Round(currentTile.Z);
+
+            if (xx < 0)
+            {
+                xx *= -1;
+                xx = xx + (maxx - 1);
+            }
+
+            if (yy < 0)
+            {
+                yy *= -1;
+                yy = yy + (maxy - 1);
+            }
+            if (zz < 0)
+            {
+                zz *= -1;
+                zz = zz + (maxz - 1);
+            }
+
+            int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+            istypeofl = -2;
+            istypeofr = -2;
+            istypeoft = -2;
+            istypeofb = -2;
+
+            istypeoflt = -2;
+            istypeofrt = -2;
+            istypeoflb = -2;
+            istypeofrb = -2;
+
+            /*var somevalueindict = typeoftiles.Where(x => x.Key == currentTile).ToArray();
+
+            if (somevalueindict!= null)
+            {
+                if (somevalueindict[0].Value == 0)
+                {
+                    istypeof = 0;
+                }
+                else if (somevalueindict[0].Value == -1)
+                {
+                    istypeof = -1;
+                }
+            }*/
+
+            Vector3 tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            var leftTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (leftTile != null)
+            {
+                if (leftTile.Length > 0)
+                {
+                    if (leftTile[0].Value == 0)
+                    {
+                        istypeofl = 0;
+                    }
+                    else if (leftTile[0].Value == -1)
+                    {
+                        istypeofl = 1;
+                    }
+                }
+                else
+                {
+                    istypeofl = -1;
+                }
+
+            }
+            else
+            {
+                istypeofl = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            var rightTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (rightTile != null)
+            {
+                if (rightTile.Length > 0)
+                {
+                    if (rightTile[0].Value == 0)
+                    {
+                        istypeofr = 0;
+                    }
+                    else if (rightTile[0].Value == -1)
+                    {
+                        istypeofr = 1;
+                    }
+                }
+                else
+                {
+                    istypeofr = -1;
+                }
+            }
+            else
+            {
+                istypeofr = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z += 1;
+            var topTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTile != null)
+            {
+                if (topTile.Length > 0)
+                {
+                    if (topTile[0].Value == 0)
+                    {
+                        istypeoft = 0;
+                    }
+                    else if (topTile[0].Value == -1)
+                    {
+                        istypeoft = 1;
+                    }
+                }
+                else
+                {
+                    istypeoft = -1;
+                }
+            }
+            else
+            {
+                istypeoft = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z -= 1;
+            var backTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTile != null)
+            {
+                if (backTile.Length > 0)
+                {
+                    if (backTile[0].Value == 0)
+                    {
+                        istypeofb = 0;
+                    }
+                    else if (backTile[0].Value == -1)
+                    {
+                        istypeofb = 1;
+                    }
+                }
+                else
+                {
+                    istypeofb = -1;
+                }
+            }
+            else
+            {
+                istypeofb = -1;
+            }
+
+
+
+
+
+
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z += 1;
+            var topTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTilel != null)
+            {
+                if (topTilel.Length > 0)
+                {
+                    if (topTilel[0].Value == 0)
+                    {
+                        //Console.WriteLine("found0");
+                        istypeoflt = 0;
+                    }
+                    else if (topTilel[0].Value == -1)
+                    {
+                        //Console.WriteLine("found1");
+                        istypeoflt = 1;
+                    }
+                }
+                else
+                {
+                    istypeoflt = -1;
+                }
+            }
+            else
+            {
+                istypeoflt = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z -= 1;
+            var backTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTilel != null)
+            {
+                if (backTilel.Length > 0)
+                {
+                    if (backTilel[0].Value == 0)
+                    {
+                        istypeoflb = 0;
+                    }
+                    else if (backTilel[0].Value == -1)
+                    {
+                        istypeoflb = 1;
+                    }
+
+                }
+                else
+                {
+                    istypeoflb = -1;
+                }
+            }
+            else
+            {
+                istypeoflb = -1;
+            }
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z += 1;
+            var topTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTiler != null)
+            {
+                if (topTiler.Length > 0)
+                {
+                    if (topTiler[0].Value == 0)
+                    {
+                        istypeofrt = 0;
+                    }
+                    else if (topTiler[0].Value == -1)
+                    {
+                        istypeofrt = 1;
+                    }
+                }
+                else
+                {
+                    istypeofrt = -1;
+                }
+
+            }
+            else
+            {
+                istypeofrt = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z -= 1;
+            var backTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTiler != null)
+            {
+                if (backTiler.Length > 0)
+                {
+                    if (backTiler[0].Value == 0)
+                    {
+                        istypeofrb = 0;
+                    }
+                    else if (backTiler[0].Value == -1)
+                    {
+                        istypeofrb = 1;
+                    }
+                }
+
+                else
+                {
+                    istypeofrb = -1;
+                }
+            }
+            else
+            {
+                istypeofrb = -1;
+            }
+
+
+            //Console.WriteLine(istypeoflt + "_" + istypeoft + "_" + istypeofrt + "_" + istypeofl + "_" + istypeofr + "_" + istypeoflb + "_" + istypeofb + "_" + istypeofrb);
+
+
+
+
+
+
+
+
+
+            /////////BUILD WALL LEFT/////////////////
+            if (istypeoflt == -1 && istypeoft == 1 &&
+                istypeofl == -1 && istypeofr == 0 &&
+                istypeoflb == -1 && istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                int countofarray = somelevelgentypeoftiles.tilestypeof[1].Count;
+                if (!somelevelgentypeoftiles.tilestypeof[1].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[1].Add(currentTile, 1);
+                    //leftWall.Add(currentTile);
+                    buildWallLeft();
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 1 &&
+                istypeofl == -1 && istypeofr == 0 &&
+                istypeoflb == -1 && istypeofb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[1].Count;
+                if (!somelevelgentypeoftiles.tilestypeof[1].ContainsKey(currentTile))
+                {
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[1].Add(currentTile, 1);
+                    //leftWall.Add(currentTile);
+                    buildWallLeft();
+                }
+            }
+            if (istypeoflt == -1 && istypeoft == 1 &&
+              istypeofl == -1 && istypeofr == 0 &&
+              istypeoflb == 1 && istypeofb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[1].Count;
+                if (!somelevelgentypeoftiles.tilestypeof[1].ContainsKey(currentTile))
+                {
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[1].Add(currentTile, 1);
+                    //leftWall.Add(currentTile);
+                    buildWallLeft();
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 1 &&
+                istypeofl == -1 && istypeofr == 0 &&
+                istypeoflb == 1 && istypeofb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[1].Count;
+                if (!somelevelgentypeoftiles.tilestypeof[1].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[1].Add(currentTile, 1);
+                    //leftWall.Add(currentTile);
+                    buildWallLeft();
+                }
+            }
+
+            /////////BUILD WALL RIGHT/////////////////
+            if (istypeoft == 1 && istypeofrt == -1 &&
+                 istypeofl == 0 && istypeofr == -1 &&
+                                 istypeofb == 1 && istypeofrb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[2].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[2].ContainsKey(currentTile))
+                {
+
+                    somelevelgentypeoftiles.tilestypeof[2].Add(currentTile, 2);
+                    //leftWall.Add(currentTile);
+                    buildWallRight();
+                }
+            }
+
+            if (istypeoft == 1 && istypeofrt == 1 &&
+                 istypeofl == 0 && istypeofr == -1 &&
+                 istypeofb == 1 && istypeofrb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[2].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[2].ContainsKey(currentTile))
+                {
+
+                    somelevelgentypeoftiles.tilestypeof[2].Add(currentTile, 2);
+                    //leftWall.Add(currentTile);
+                    buildWallRight();
+                }
+            }
+
+            if (istypeoft == 1 && istypeofrt == -1 &&
+                istypeofl == 0 && istypeofr == -1 &&
+                istypeofb == 1 && istypeofrb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[2].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[2].ContainsKey(currentTile))
+                {
+
+                    somelevelgentypeoftiles.tilestypeof[2].Add(currentTile, 2);
+                    //leftWall.Add(currentTile);
+                    buildWallRight();
+                }
+            }
+
+            if (istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 && istypeofr == -1 &&
+                istypeofb == 1 && istypeofrb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[2].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[2].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[2].Add(currentTile, 2);
+                    //leftWall.Add(currentTile);
+                    buildWallRight();
+                }
+            }
+
+            /////////BUILD WALL BACK/////////////////
+
+            if (istypeoflt == -1 && istypeoft == -1 && istypeofrt == -1 &&
+               istypeofl == 1 && istypeofr == 1 &&
+               istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[4].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[4].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[4].Add(currentTile, 4);
+                    //leftWall.Add(currentTile);
+                    buildWallBack();
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == -1 && istypeofrt == -1 &&
+              istypeofl == 1 && istypeofr == 1 &&
+              istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[4].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[4].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[4].Add(currentTile, 4);
+                    //leftWall.Add(currentTile);
+                    buildWallBack();
+                }
+            }
+            if (istypeoflt == -1 && istypeoft == -1 && istypeofrt == 1 &&
+              istypeofl == 1 && istypeofr == 1 &&
+              istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[4].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[4].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[4].Add(currentTile, 4);
+                    //leftWall.Add(currentTile);
+                    buildWallBack();
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == -1 && istypeofrt == 1 &&
+                   istypeofl == 1 && istypeofr == 1 &&
+                   istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[4].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[4].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[4].Add(currentTile, 4);
+                    //leftWall.Add(currentTile);
+                    buildWallBack();
+                }
+            }
+
+
+            /////////BUILD WALL FRONT/////////////////
+
+            if (istypeoft == 0 &&
+               istypeofl == 1 && istypeofr == 1 &&
+                 istypeoflb == -1 && istypeofb == -1 && istypeofrb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[3].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[3].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[3].Add(currentTile, 3);
+                    //leftWall.Add(currentTile);
+                    buildWallFront();
+                }
+            }
+            if (istypeoft == 0 &&
+              istypeofl == 1 && istypeofr == 1 &&
+                istypeoflb == 1 && istypeofb == -1 && istypeofrb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[3].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[3].ContainsKey(currentTile))
+                {
+                  
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[3].Add(currentTile, 3);
+                    //leftWall.Add(currentTile);
+                    buildWallFront();
+                }
+            }
+            if (istypeoft == 0 &&
+              istypeofl == 1 && istypeofr == 1 &&
+                istypeoflb == -1 && istypeofb == -1 && istypeofrb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[3].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[3].ContainsKey(currentTile))
+                {
+
+                    somelevelgentypeoftiles.tilestypeof[3].Add(currentTile, 3);
+                    //leftWall.Add(currentTile);
+                    buildWallFront();
+                }
+            }
+            if (istypeoft == 0 &&
+              istypeofl == 1 && istypeofr == 1 &&
+                istypeoflb == 1 && istypeofb == -1 && istypeofrb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[3].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[3].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[3].Add(currentTile, 3);
+                    //leftWall.Add(currentTile);
+                    buildWallFront();
+                }
+            }
+
+            /////////BUILD WALL LEFT FRONT INSIDE/////////////////
+            if (istypeoft == -1 &&
+               istypeofl == -1 && istypeofr == 1 &&
+                                  istypeofb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[5].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[5].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[5].Add(currentTile, 5);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+
+            /////////BUILD WALL RIGHT FRONT INSIDE/////////////////
+            if (istypeoft == -1 &&
+               istypeofl == 1 && istypeofr == -1 &&
+                                  istypeofb == 1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[6].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[6].ContainsKey(currentTile))
+                {
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[6].Add(currentTile, 6);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontInsideCorner();
+                }
+            }
+            /////////BUILD WALL LEFT BACK INSIDE/////////////////
+            if (istypeoft == 1 &&
+               istypeofl == -1 && istypeofr == 1 &&
+                                  istypeofb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[7].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[7].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[7].Add(currentTile, 7);
+                    //leftWall.Add(currentTile);
+                    buildRightBackInsideCorner();
+                }
+            }
+
+            /////////BUILD WALL LEFT BACK INSIDE/////////////////
+            if (istypeoft == 1 &&
+               istypeofl == 1 && istypeofr == -1 &&
+                                  istypeofb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[8].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[8].ContainsKey(currentTile))
+                {
+                  
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[8].Add(currentTile, 8);
+                    //leftWall.Add(currentTile);
+                    buildLeftBackInsideCorner();
+                }
+            }
+
+
+
+
+
+            /////////BUILD WALL LEFT FRONT OUTSIDE/////////////////
+            if (istypeoflt == -1 && istypeoft == 1 &&
+               istypeofl == 1 && istypeofr == 0 &&
+                                  istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[9].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[9].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[9].Add(currentTile, 9);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontOutsideCorner();
+                }
+            }
+
+            /////////BUILD WALL RIGHT FRONT OUTSIDE/////////////////
+            if (istypeoft == 1 && istypeofrt == -1 &&
+               istypeofl == 0 && istypeofr == 1 &&
+                                  istypeofb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[10].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[10].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[10].Add(currentTile, 10);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            /////////BUILD WALL LEFT BACK OUTSIDE/////////////////
+            if (istypeoft == 0 &&
+               istypeofl == 1 && istypeofr == 0 &&
+                 istypeoflb == -1 && istypeofb == 1)
+            {
+
+                int countofarray = somelevelgentypeoftiles.tilestypeof[11].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[11].ContainsKey(currentTile))
+                {
+                   
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[11].Add(currentTile, 11);
+                    //leftWall.Add(currentTile);
+                    buildLeftBackOutsideCorner();
+                }
+            }
+
+            
+            /////////BUILD WALL RIGHT FRONT OUTSIDE/////////////////
+            if (istypeoft == 0 &&
+               istypeofl == 0 && istypeofr == 1 &&
+                                  istypeofb == 1 && istypeofrb == -1)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[12].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[12].ContainsKey(currentTile))
+                {
+                    
+                    //levelmap[indexinarray] = countofarray;
+                    somelevelgentypeoftiles.tilestypeof[12].Add(currentTile, 12);
+                    //leftWall.Add(currentTile);
+                    buildRightBackOutsideCorner();
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /////////////////////////////////////////////////////
+            /////////BUILD WALL LEFT FRONT OUTSIDE/////////////////
+            /*if (istypeoflt == -1 && istypeoft == 1 &&
+               istypeofl == 1 &&                istypeofr == 0 &&
+                                  istypeofb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 9);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoflt == -1 && istypeoft == 1 &&
+             istypeofl == 1 &&                  istypeofr == 1 &&
+                                istypeofb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 9);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoflt == -1 && istypeoft == 1 &&
+                istypeofl == 1 &&               istypeofr == 0 &&
+                                istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 9);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoflt == -1 && istypeoft == 1 &&
+                istypeofl == 1 &&               istypeofr == 1 &&
+                             istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 9);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+
+
+
+
+
+            /////////BUILD WALL RIGHT FRONT OUTSIDE/////////////////
+            if (istypeoft == 1 && istypeofrt == -1 &&
+              istypeofl == 0 && istypeofr == 1 &&
+                                 istypeofb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 10);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 1 && istypeofrt == -1 &&
+             istypeofl == 1 && istypeofr == 1 &&
+                                istypeofb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 10);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 1 && istypeofrt == -1 &&
+                istypeofl == 0 && istypeofr == 1 &&
+                                istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 10);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 1 && istypeofrt == -1 &&
+                istypeofl == 1 && istypeofr == 1 &&
+                             istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 10);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+
+            /////////BUILD WALL LEFT BACK OUTSIDE/////////////////
+            if (                istypeoft == 0 &&
+               istypeofl == 1 &&                 istypeofr == 0 &&
+               istypeoflb == -1 &&               istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 11);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoft == 0 &&
+             istypeofl == 1 && istypeofr == 1 &&
+                 istypeoflb == -1 && istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 11);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoft == 1 &&
+                istypeofl == 1 && istypeofr == 0 &&
+                 istypeoflb == -1 && istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 11);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            if (istypeoft == 1 &&
+                istypeofl == 1 && istypeofr == 1 &&
+                 istypeoflb == -1 && istypeofb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 11);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }
+            /////////BUILD WALL RIGHT BACK OUTSIDE/////////////////
+            if (istypeoft == 0 &&
+              istypeofl == 0 && istypeofr == 1 &&
+                                 istypeofb == 1 && istypeofrb == -1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 12);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 0 &&
+             istypeofl == 1 && istypeofr == 1 &&
+                                istypeofb == 1 && istypeofrb == -1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 12);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 1 &&
+                istypeofl == 0 && istypeofr == 1 &&
+                                istypeofb == 1 && istypeofrb == -1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 12);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }
+            if (istypeoft == 1 &&
+                istypeofl == 1 && istypeofr == 1 &&
+                                 istypeofb == 1 && istypeofrb == -1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 12);
+                    //leftWall.Add(currentTile);
+                    buildRightFrontOutsideCorner();
+                }
+            }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == -1 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl  == -1          &&           istypeofr == 0 &&
+                istypeoflb == -1 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 1);
+                    //leftWall.Add(currentTile);
+                    buildWallLeft();
+                }
+            }*/
+
+
+
+
+
+
+            //00w inside corners 
+            //www
+            //tww
+
+            //0wt inside corners 
+            //wwt
+            //www
+
+            //0wt inside corners 
+            //0ww
+            //ww0
+
+            //0ww inside corners 
+            //ww0
+            //tww
+
+
+
+
+
+
+
+            //frontleftinside
+            //1 -1 -1
+            //1 1 1
+            //1 1 0
+
+            //frontrightinside
+            //-1 -1 1
+            //1 1 1
+            //0 1 1
+
+            //backleftinside
+            //1 1 0
+            //1 1 1
+            //1 -1 -1
+
+            //backrightinside
+            //0 1 1
+            //1 1 1
+            //-1 -1 1
+
+
+            //frontleftinside
+            //-1 1 0
+            //1 1 0
+            //1 1 1
+
+            //frontrightinside
+            //0 1 -1
+            //0 1 1
+            //1 1 1
+
+            //backleftinside
+            //1 1 1
+            //1 1 0
+            //-1 1 0
+
+            //backrightinside
+            //1 1 1
+            //0 1 1
+            //0 1 -1
+
+
+
+
+            //frontleftoutside
+            //-1 1 0
+            //1 1 0
+            //000
+
+            //frontrightoutside
+            //0 1 -1
+            //0 1 1
+            //0 0 0
+
+            //leftbackoutside
+            //0 0 0
+            //1 1 0
+            //-1 1 0
+
+            //rightbackoutside
+            //0 0 0
+            //0 1 1
+            //0 1 -1
+
+
+
+            //backleftoutside
+            //-1 1 0
+            //-1 1 1
+            //1 1 -1
+
+            //frontrightoutside
+            //0 1 -1
+            //1 1 -1
+            //-1 1 1
+
+            //leftbackoutside
+            //1 1 -1
+            //-1 1 1
+            //-1 1 0
+
+            //rightbackoutside
+            //-1 1 1
+            //1 1 -1
+            //0 1 -1
+
+
+
+            //frontleftinside
+            //111
+            //110
+            //-110
+
+            //frontrightinside
+            //111
+            //011
+            //01-1
+
+            //leftbackinside
+            //-110
+            //110
+            //111
+
+            //rightbackinside
+            //01-1
+            //011
+            //111
+
+            //frontleftinside
+            //111
+            //-110
+            //-110
+
+            //frontrightinside
+            //111
+            //01-1
+            //01-1
+
+            //leftbackinside
+            //-110
+            //-110
+            //111
+
+            //rightbackinside
+            //01-1
+            //01-1
+            //111
+
+
+
+
+
+            //frontleftinside
+            // 1 -1  1
+            // 1  1  0
+            //-1  1  0
+
+
+            //frontrightinside
+            // 1 -1  1
+            // 0  1  1
+            //0  1  -1
+
+            //leftbackinside
+            // -1 1 0
+            // 1  1  0
+            //1 -1 1
+
+            //rightbackinside
+            // 0 1  -1
+            // 0  1  1
+            // 1  -1  1
+
+
+            //-1 1 0
+            //-1 1 1
+            //1 1 0
+
+            //-1 1 1
+            //1 1 -1
+            //0 1 0
+
+            //-1 1 0
+            //1 1-1
+            //0 1 0
+
+
+
+            //-1-11
+            //111
+            //011
+
+
+
+
+
+
+            /////////////////INSIDE CORNERS//////////////////
+            ///////////////////////LEFT FRONT INSIDE CORNER///////////////
+            /*if (//istypeoflt == -1 && istypeoft == -1 && istypeofrt == -1 &&
+                /*istypeofl == -1 &&                     istypeofr == 1 &&
+                /*istypeoflb == -1 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 5);
+                    //leftWall.Add(currentTile);
+                    buildLeftFrontInsideCorner();
+                }
+            }*/
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        void buildsomewallremains(Vector3 currentTile)
+        {
+            istypeofl = -2;
+            istypeofr = -2;
+            istypeoft = -2;
+            istypeofb = -2;
+
+            istypeoflt = -2;
+            istypeofrt = -2;
+            istypeoflb = -2;
+            istypeofrb = -2;
+
+            /*var somevalueindict = typeoftiles.Where(x => x.Key == currentTile).ToArray();
+
+            if (somevalueindict!= null)
+            {
+                if (somevalueindict[0].Value == 0)
+                {
+                    istypeof = 0;
+                }
+                else if (somevalueindict[0].Value == -1)
+                {
+                    istypeof = -1;
+                }
+            }*/
+
+            Vector3 tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            var leftTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (leftTile != null)
+            {
+                if (leftTile.Length > 0)
+                {
+                    if (leftTile[0].Value == 0)
+                    {
+                        istypeofl = 0;
+                    }
+                    else if (leftTile[0].Value == -1)
+                    {
+                        istypeofl = 1;
+                    }
+                }
+                else
+                {
+                    istypeofl = -1;
+                }
+
+            }
+            else
+            {
+                istypeofl = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            var rightTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (rightTile != null)
+            {
+                if (rightTile.Length > 0)
+                {
+                    if (rightTile[0].Value == 0)
+                    {
+                        istypeofr = 0;
+                    }
+                    else if (rightTile[0].Value == -1)
+                    {
+                        istypeofr = 1;
+                    }
+                }
+                else
+                {
+                    istypeofr = -1;
+                }
+            }
+            else
+            {
+                istypeofr = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z += 1;
+            var topTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTile != null)
+            {
+                if (topTile.Length > 0)
+                {
+                    if (topTile[0].Value == 0)
+                    {
+                        istypeoft = 0;
+                    }
+                    else if (topTile[0].Value == -1)
+                    {
+                        istypeoft = 1;
+                    }
+                }
+                else
+                {
+                    istypeoft = -1;
+                }
+            }
+            else
+            {
+                istypeoft = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z -= 1;
+            var backTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTile != null)
+            {
+                if (backTile.Length > 0)
+                {
+                    if (backTile[0].Value == 0)
+                    {
+                        istypeofb = 0;
+                    }
+                    else if (backTile[0].Value == -1)
+                    {
+                        istypeofb = 1;
+                    }
+                }
+                else
+                {
+                    istypeofb = -1;
+                }
+            }
+            else
+            {
+                istypeofb = -1;
+            }
+
+
+
+
+
+
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z += 1;
+            var topTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTilel != null)
+            {
+                if (topTilel.Length > 0)
+                {
+                    if (topTilel[0].Value == 0)
+                    {
+                        //Console.WriteLine("found0");
+                        istypeoflt = 0;
+                    }
+                    else if (topTilel[0].Value == -1)
+                    {
+                        //Console.WriteLine("found1");
+                        istypeoflt = 1;
+                    }
+                }
+                else
+                {
+                    istypeoflt = -1;
+                }
+            }
+            else
+            {
+                istypeoflt = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z -= 1;
+            var backTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTilel != null)
+            {
+                if (backTilel.Length > 0)
+                {
+                    if (backTilel[0].Value == 0)
+                    {
+                        istypeoflb = 0;
+                    }
+                    else if (backTilel[0].Value == -1)
+                    {
+                        istypeoflb = 1;
+                    }
+
+                }
+                else
+                {
+                    istypeoflb = -1;
+                }
+            }
+            else
+            {
+                istypeoflb = -1;
+            }
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z += 1;
+            var topTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTiler != null)
+            {
+                if (topTiler.Length > 0)
+                {
+                    if (topTiler[0].Value == 0)
+                    {
+                        istypeofrt = 0;
+                    }
+                    else if (topTiler[0].Value == -1)
+                    {
+                        istypeofrt = 1;
+                    }
+                }
+                else
+                {
+                    istypeofrt = -1;
+                }
+
+            }
+            else
+            {
+                istypeofrt = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z -= 1;
+            var backTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTiler != null)
+            {
+                if (backTiler.Length > 0)
+                {
+                    if (backTiler[0].Value == 0)
+                    {
+                        istypeofrb = 0;
+                    }
+                    else if (backTiler[0].Value == -1)
+                    {
+                        istypeofrb = 1;
+                    }
+                }
+
+                else
+                {
+                    istypeofrb = -1;
+                }
+            }
+            else
+            {
+                istypeofrb = -1;
+            }
+
+            //walls to the right
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == -1 || istypeoft == -1 || istypeofrt == -1 ||
+                istypeofl == -1 ||  /*/////////////*/ istypeofr == -1 ||
+                istypeoflb == -1 || istypeofb == -1 || istypeofrb == -1)
+            {
+                //Console.WriteLine("sometest");
+                /*if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, -2);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    //forsortingtiles.Remove(currentTile);
+                }*/
+
+
+                if (!listofremainingwalls.Contains(currentTile))
+                {
+                    listofremainingwalls.Add(currentTile);
+                }
+
+
+
+                if (forsortingtiles.ContainsKey(currentTile))
+                {
+                    forsortingtiles.Remove(currentTile);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Add(currentTile, -1);
+                }
+
+            }
+        }
+
+
+
+
+
+        void buildsomefloortiles(Vector3 currentTile)
+        {
+            istypeofl = -2;
+            istypeofr = -2;
+            istypeoft = -2;
+            istypeofb = -2;
+
+            istypeoflt = -2;
+            istypeofrt = -2;
+            istypeoflb = -2;
+            istypeofrb = -2;
+
+            /*var somevalueindict = typeoftiles.Where(x => x.Key == currentTile).ToArray();
+
+            if (somevalueindict!= null)
+            {
+                if (somevalueindict[0].Value == 0)
+                {
+                    istypeof = 0;
+                }
+                else if (somevalueindict[0].Value == -1)
+                {
+                    istypeof = -1;
+                }
+            }*/
+
+            Vector3 tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            var leftTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (leftTile != null)
+            {
+                if (leftTile.Length > 0)
+                {
+                    if (leftTile[0].Value == 0)
+                    {
+                        istypeofl = 0;
+                    }
+                    else if (leftTile[0].Value == -1)
+                    {
+                        istypeofl = 1;
+                    }
+                }
+                else
+                {
+                    istypeofl = -1;
+                }
+
+            }
+            else
+            {
+                istypeofl = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            var rightTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (rightTile != null)
+            {
+                if (rightTile.Length > 0)
+                {
+                    if (rightTile[0].Value == 0)
+                    {
+                        istypeofr = 0;
+                    }
+                    else if (rightTile[0].Value == -1)
+                    {
+                        istypeofr = 1;
+                    }
+                }
+                else
+                {
+                    istypeofr = -1;
+                }
+            }
+            else
+            {
+                istypeofr = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z += 1;
+            var topTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTile != null)
+            {
+                if (topTile.Length > 0)
+                {
+                    if (topTile[0].Value == 0)
+                    {
+                        istypeoft = 0;
+                    }
+                    else if (topTile[0].Value == -1)
+                    {
+                        istypeoft = 1;
+                    }
+                }
+                else
+                {
+                    istypeoft = -1;
+                }
+            }
+            else
+            {
+                istypeoft = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.Z -= 1;
+            var backTile = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTile != null)
+            {
+                if (backTile.Length > 0)
+                {
+                    if (backTile[0].Value == 0)
+                    {
+                        istypeofb = 0;
+                    }
+                    else if (backTile[0].Value == -1)
+                    {
+                        istypeofb = 1;
+                    }
+                }
+                else
+                {
+                    istypeofb = -1;
+                }
+            }
+            else
+            {
+                istypeofb = -1;
+            }
+
+
+
+
+
+
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z += 1;
+            var topTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTilel != null)
+            {
+                if (topTilel.Length > 0)
+                {
+                    if (topTilel[0].Value == 0)
+                    {
+                        //Console.WriteLine("found0");
+                        istypeoflt = 0;
+                    }
+                    else if (topTilel[0].Value == -1)
+                    {
+                        //Console.WriteLine("found1");
+                        istypeoflt = 1;
+                    }
+                }
+                else
+                {
+                    istypeoflt = -1;
+                }
+            }
+            else
+            {
+                istypeoflt = -1;
+            }
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X -= 1;
+            tempvec.Z -= 1;
+            var backTilel = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTilel != null)
+            {
+                if (backTilel.Length > 0)
+                {
+                    if (backTilel[0].Value == 0)
+                    {
+                        istypeoflb = 0;
+                    }
+                    else if (backTilel[0].Value == -1)
+                    {
+                        istypeoflb = 1;
+                    }
+
+                }
+                else
+                {
+                    istypeoflb = -1;
+                }
+            }
+            else
+            {
+                istypeoflb = -1;
+            }
+
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z += 1;
+            var topTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (topTiler != null)
+            {
+                if (topTiler.Length > 0)
+                {
+                    if (topTiler[0].Value == 0)
+                    {
+                        istypeofrt = 0;
+                    }
+                    else if (topTiler[0].Value == -1)
+                    {
+                        istypeofrt = 1;
+                    }
+                }
+                else
+                {
+                    istypeofrt = -1;
+                }
+
+            }
+            else
+            {
+                istypeofrt = -1;
+            }
+
+
+            tempvec = currentTile;//.X - 1;
+            tempvec.X += 1;
+            tempvec.Z -= 1;
+            var backTiler = forsortingtiles.Where(x => x.Key == tempvec).ToArray();//  findTiles(currentTile.X - 1, currentTile.Z);
+            if (backTiler != null)
+            {
+                if (backTiler.Length > 0)
+                {
+                    if (backTiler[0].Value == 0)
+                    {
+                        istypeofrb = 0;
+                    }
+                    else if (backTiler[0].Value == -1)
+                    {
+                        istypeofrb = 1;
+                    }
+                }
+
+                else
+                {
+                    istypeofrb = -1;
+                }
+            }
+            else
+            {
+                istypeofrb = -1;
+            }
+
+
+
+
+
+            
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&  /*/////////////*/ istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                int countofarray = somelevelgentypeoftiles.tilestypeof[0].Count;
+                //Console.WriteLine("sometest");
+                if (!somelevelgentypeoftiles.tilestypeof[0].ContainsKey(currentTile))
+                {
+
+                    int xx = (int)Math.Round(currentTile.X);
+                    int yy = (int)Math.Round(currentTile.Y);
+                    int zz = (int)Math.Round(currentTile.Z);
+
+                    if (xx < 0)
+                    {
+                        xx *= -1;
+                        xx = xx + (maxx - 1);
+                    }
+
+                    if (yy < 0)
+                    {
+                        yy *= -1;
+                        yy = yy + (maxy - 1);
+                    }
+                    if (zz < 0)
+                    {
+                        zz *= -1;
+                        zz = zz + (maxz - 1);
+                    }
+
+                    int indexinarray = xx + somewidth * (yy + someheight * zz); //y is always 0 on floor tiles
+
+                    //levelmap[indexinarray] = countofarray;
+
+                    somelevelgentypeoftiles.tilestypeof[0].Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+            /*
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            ////////////////////////////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            ////////////////////////////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            ////////////////////////////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 1 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /////////////////////////////////////////////////////////////
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 1 &&   istypeofr == 0 &&
+                istypeoflb == 1 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 1 &&   istypeofr == 0 &&
+             istypeoflb == 1 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 1 &&   istypeofr == 0 &&
+             istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 1 &&   istypeofr == 0 &&
+             istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 0 &&   istypeofr == 0 &&
+             istypeoflb == 1 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 0 &&   istypeofr == 0 &&
+             istypeoflb == 1 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 0 &&
+             istypeofl == 0 &&   istypeofr == 0 &&
+             istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            /////////////////////////////////////////////////////////////////////////////////
+            if (istypeoflt == 1 && istypeoft == 1 && istypeofrt == 1 &&
+             istypeofl == 0 &&   istypeofr == 0 &&
+             istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 1 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 1 && istypeofrt == 0 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 1 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 1 && istypeoft == 0 && istypeofrt == 0 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 1 && istypeofrt == 0 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 1 &&
+          istypeofl == 0 &&   istypeofr == 0 &&
+          istypeoflb == 0 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            ///////////////////////////////////////////////////////////////////////
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+                istypeofl == 0 &&   istypeofr == 0 &&
+                istypeoflb == 1 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 1 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 0 && istypeofb == 1 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 1 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 1 && istypeofb == 0 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 0 && istypeofb == 1 && istypeofrb == 0)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }
+            if (istypeoflt == 0 && istypeoft == 0 && istypeofrt == 0 &&
+            istypeofl == 0 &&   istypeofr == 0 &&
+            istypeoflb == 0 && istypeofb == 0 && istypeofrb == 1)
+            {
+                //Console.WriteLine("sometest");
+                if (!typeoftiles.ContainsKey(currentTile))
+                {
+                    typeoftiles.Add(currentTile, 0);
+                    //leftWall.Add(currentTile);
+                    //buildWallLeft();
+                    forsortingtiles.Remove(currentTile);
+                }
+            }*/
+        }
+
+
+        void buildWallLeft()
+        {
+            for (int i = 0; i < leftWall.Count; i++)
+            {
+                if (!builtLeftWall.Contains(leftWall[i]))
+                {
+                    //Instantiate(leftWallz, leftWall[i], Quaternion.identity);
+                    builtLeftWall.Add(leftWall[i]);
+                }
+            }
+            // //yield return new WaitForSeconds(BuildingWaitTime);
+
+
+        }
+
+
+        void buildWallRight()
+        {
+            for (int i = 0; i < rightWall.Count; i++)
+            {
+                if (!builtRightWall.Contains(rightWall[i]))
+                {
+                    //Instantiate(rightWallz, rightWall[i], Quaternion.identity);
+                    builtRightWall.Add(rightWall[i]);
+                }
+            }
+            ////yield return new WaitForSeconds(BuildingWaitTime);       
+        }
+
+
+
+        void buildWallFront()
+        {
+            for (int i = 0; i < frontWall.Count; i++)
+            {
+                if (!builtFrontWall.Contains(frontWall[i]))
+                {
+                    //Instantiate(frontWallz, frontWall[i], Quaternion.identity);
+                    builtFrontWall.Add(frontWall[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+        void buildWallBack()
+        {
+            for (int i = 0; i < backWall.Count; i++)
+            {
+                if (!builtBackWall.Contains(backWall[i]))
+                {
+                    //Instantiate(backWallz, backWall[i], Quaternion.identity);
+                    builtBackWall.Add(backWall[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+        void buildLeftFrontInsideCorner()
+        {
+            for (int i = 0; i < leftFrontCornerInside.Count; i++)
+            {
+                if (!builtLeftFrontInsideCorner.Contains(leftFrontCornerInside[i]))
+                {
+                    //Instantiate(leftFrontInsideCornerWall, leftFrontCornerInside[i], Quaternion.identity);
+                    builtLeftFrontInsideCorner.Add(leftFrontCornerInside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+        void buildRightFrontInsideCorner()
+        {
+            for (int i = 0; i < rightFrontCornerInside.Count; i++)
+            {
+                if (!builtRightFrontInsideCorner.Contains(rightFrontCornerInside[i]))
+                {
+                    //Instantiate(RightFrontInsideCornerWall, rightFrontCornerInside[i], Quaternion.identity);
+                    builtRightFrontInsideCorner.Add(rightFrontCornerInside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+        void buildLeftBackInsideCorner()
+        {
+            for (int i = 0; i < leftBackCornerInside.Count; i++)
+            {
+                if (!builtLeftBackInsideCorner.Contains(leftBackCornerInside[i]))
+                {
+                    //Instantiate(leftBackInsideCornerWall, leftBackCornerInside[i], Quaternion.identity);
+                    builtLeftBackInsideCorner.Add(leftBackCornerInside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+
+
+        void buildRightBackInsideCorner()
+        {
+            for (int i = 0; i < rightBackCornerInside.Count; i++)
+            {
+                if (!builtRightBackInsideCorner.Contains(rightBackCornerInside[i]))
+                {
+                    //Instantiate(RightBackInsideCornerWall, rightBackCornerInside[i], Quaternion.identity);
+                    builtRightBackInsideCorner.Add(rightBackCornerInside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+
+        void buildLeftFrontOutsideCorner()
+        {
+            for (int i = 0; i < leftFrontCornerOutside.Count; i++)
+            {
+                if (!builtLeftFrontOutsideCorner.Contains(leftFrontCornerOutside[i]))
+                {
+                    //Instantiate(leftFrontOutsideCornerWall, leftFrontCornerOutside[i], Quaternion.identity);
+                    builtLeftFrontOutsideCorner.Add(leftFrontCornerOutside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+
+        void buildRightFrontOutsideCorner()
+        {
+            for (int i = 0; i < rightFrontCornerOutside.Count; i++)
+            {
+                if (!builtRightFrontOutsideCorner.Contains(rightFrontCornerOutside[i]))
+                {
+                    //Instantiate(RightFrontOutsideCornerWall, rightFrontCornerOutside[i], Quaternion.identity);
+                    builtRightFrontOutsideCorner.Add(rightFrontCornerOutside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+
+        void buildLeftBackOutsideCorner()
+        {
+            for (int i = 0; i < leftBackCornerOutside.Count; i++)
+            {
+                if (!builtLeftBackOutsideCorner.Contains(leftBackCornerOutside[i]))
+                {
+                    //Instantiate(leftBackOutsideCornerWall, leftBackCornerOutside[i], Quaternion.identity);
+                    builtLeftBackOutsideCorner.Add(leftBackCornerOutside[i]);
+                }
+            }
+            //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+
+
+
+        void buildRightBackOutsideCorner()
+        {
+            for (int i = 0; i < rightBackCornerOutside.Count; i++)
+            {
+                if (!builtRightBackOutsideCorner.Contains(rightBackCornerOutside[i]))
+                {
+                    //Instantiate(RightBackOutsideCornerWall, rightBackCornerOutside[i], Quaternion.identity);
+                    builtRightBackOutsideCorner.Add(rightBackCornerOutside[i]);
+                }
+            }
+            // //yield return new WaitForSeconds(BuildingWaitTime);
+        }
+
+    }
+}

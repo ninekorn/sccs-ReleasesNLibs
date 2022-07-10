@@ -1,0 +1,207 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10.0</LangVersion>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="objloader\**" />
+    <Compile Remove="sclevelgen\**" />
+    <EmbeddedResource Remove="objloader\**" />
+    <EmbeddedResource Remove="sclevelgen\**" />
+    <None Remove="objloader\**" />
+    <None Remove="sclevelgen\**" />
+    <Page Remove="objloader\**" />
+    <Page Remove="sclevelgen\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="deferredrenderingsharpdx.cs" />
+    <Compile Remove="DFont\TextFont\DTextClass1 - backupLOD.cs" />
+    <Compile Remove="directx1buffer.cs" />
+    <Compile Remove="directx2buffers.cs" />
+    <Compile Remove="Program - fail.cs" />
+    <Compile Remove="Program - fail1.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail-0.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail-1.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail-2.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail-3.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail10.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail11.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail12.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail13.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail14.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail15.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail16.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail17.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail18.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail4.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail5.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail7.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail8.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - fail9.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successish.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successish0.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successish1.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successloadmap.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successloadmap0.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - successloadmap1.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen - waypointfail6.cs" />
+    <Compile Remove="scnewlevelgen\sccslevelgen -04june2022-success.cs" />
+    <Compile Remove="scnewlevelgen\sccstrigvertbuilder - backup.cs" />
+    <Compile Remove="scnewlevelgen\sccstrigvertbuilder.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgen - asint.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgen - failfaces-31may2022.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgen - failindexissues.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgen - original.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgen - sequenceequal.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenclass.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenmaps.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - asint.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - backu04june2022-2.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - backup04june2022-0.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - backup04june2022-1.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - backup04june2022-2.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - backup04june2022.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert - fail05june2022.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert -backup.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvert -backup01june2022.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertback.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertbottom.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertfront.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertleft.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertleftfail.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenvertright.cs" />
+    <Compile Remove="scnewlevelgen\sclevelgenverttop.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - 10june2022-2-fail.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - 10june2022-fail 1.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - backup09june2022-1.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - backup09june2022-2-fail.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - backup09june2022-3-successwtf.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - backup09june2022.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - backup10june2022-0.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - failfaceasint31may2022.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk - failfaces-31may2022.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk -asint.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunk -backup09june2022.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunkback.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunkbottom.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunkfront.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunkleft.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunkright.cs" />
+    <Compile Remove="scnewlevelgen\tutorialcubeaschunktop.cs" />
+    <Compile Remove="tutorialcube1buffer.cs" />
+    <Compile Remove="tutorialcube2buffers.cs" />
+    <Compile Remove="updatePrim - backup LOD.cs" />
+    <Compile Remove="updateSec - 10june2022-0fail.cs" />
+    <Compile Remove="updateSec - 10june2022-1lag.cs" />
+    <Compile Remove="updateSec - 10june2022-3fail.cs" />
+    <Compile Remove="updateSec - backup LOD.cs" />
+    <Compile Remove="updateSec - backup.cs" />
+    <Compile Remove="updateSec - backup06june2022.cs" />
+    <Compile Remove="updateSec - backup06june2022QUEUE.cs" />
+    <Compile Remove="updateSec - backup09june2022-1.cs" />
+    <Compile Remove="updateSec - backup09june2022.cs" />
+    <Compile Remove="updateSec - fail0.cs" />
+    <Compile Remove="updateSec - fail1.cs" />
+    <Compile Remove="updateSec - fail2.cs" />
+    <Compile Remove="updateSec - fail3.cs" />
+    <Compile Remove="updateSec - fail4.cs" />
+    <Compile Remove="updateSec - fail6.cs" />
+    <Compile Remove="updateSec - failthreaded.cs" />
+    <Compile Remove="updateSec - myoriginal.cs" />
+    <Compile Remove="updateSec - successish5.cs" />
+    <Compile Remove="updateSec -failobjloader.cs" />
+    <Compile Remove="updateSec1buffer.cs" />
+    <Compile Remove="updateSec2buffers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="blendercube.mtl" />
+    <None Remove="blendercube.obj" />
+    <None Remove="DFont\font.bmp" />
+    <None Remove="DFont\font.ps" />
+    <None Remove="DFont\Font.vs" />
+    <None Remove="DFont\font01.bmp" />
+    <None Remove="DFont\font01.txt" />
+    <None Remove="DFont\fontdata.txt" />
+    <None Remove="MultiCube - backup.fx" />
+    <None Remove="MultiCube.fx" />
+    <None Remove="someresources\monkey.mtl" />
+    <None Remove="someresources\monkey.obj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DFont\font.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DFont\font.ps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DFont\Font.vs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DFont\font01.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DFont\font01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DFont\fontdata.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MultiCube.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+    <PackageReference Include="SharpDX.MediaFoundation" Version="4.2.0" />
+    <PackageReference Include="SharpDX.RawInput" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\inputsimulator\WindowsInput\WindowsInput.csproj" />
+    <ProjectReference Include="..\..\..\libraries\jitter_sc\jitter_sc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="someresources\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a1d83c4c-34da-4a56-bac5-db7107985e0c": {
+      "ProjectGuid": "a1d83c4c-34da-4a56-bac5-db7107985e0c",
+      "DisplayName": "sccsr15forms",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "ea7a4d48-969f-4e19-8bab-bbc051f1c3ee": {
+      "ProjectGuid": "ea7a4d48-969f-4e19-8bab-bbc051f1c3ee",
+      "DisplayName": "WavefrontObjectLoader",
+      "ColorIndex": 1
+    },
+    "9ce39e88-9f89-4760-98f1-313f2d513e54": {
+      "ProjectGuid": "9ce39e88-9f89-4760-98f1-313f2d513e54",
+      "DisplayName": "CjClutter.ObjLoader.Loader",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
