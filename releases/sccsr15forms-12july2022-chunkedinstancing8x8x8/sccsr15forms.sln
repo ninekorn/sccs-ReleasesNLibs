@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sccsr15forms", "sccsr15forms\sccsr15forms.csproj", "{A1D83C4C-34DA-4A56-BAC5-DB7107985E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInput", "..\..\libraries\inputsimulator\WindowsInput\WindowsInput.csproj", "{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jitter_sc", "..\..\libraries\jitter_sc\jitter_sc.csproj", "{C2204205-32AA-42EA-A8A3-A8374CF2DF3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CjClutter.ObjLoader.Loader", "ObjLoader-master\source\CjClutter.ObjLoader.Loader\CjClutter.ObjLoader.Loader.csproj", "{9CE39E88-9F89-4760-98F1-313F2D513E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WavefrontObjectLoader", "file-format-wavefront-master\file-format-wavefront-master\source\WavefrontObjectLoader\WavefrontObjectLoader.csproj", "{EA7A4D48-969F-4E19-8BAB-BBC051F1C3EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileFormatWavefront", "file-format-wavefront-master\file-format-wavefront-master\source\FileFormatWavefront\FileFormatWavefront.csproj", "{878EC1C4-D57E-4749-AE1F-41F393977655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ab3d.OculusWrap", "..\..\libraries\Ab3d.OculusWrap-master\Ab3d.OculusWrap-master\Ab3d.OculusWrap\Ab3d.OculusWrap\Ab3d.OculusWrap.csproj", "{11AB87CB-3B83-4B81-92C4-ABF5C7935A3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1D83C4C-34DA-4A56-BAC5-DB7107985E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D83C4C-34DA-4A56-BAC5-DB7107985E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D83C4C-34DA-4A56-BAC5-DB7107985E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D83C4C-34DA-4A56-BAC5-DB7107985E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2204205-32AA-42EA-A8A3-A8374CF2DF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2204205-32AA-42EA-A8A3-A8374CF2DF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2204205-32AA-42EA-A8A3-A8374CF2DF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2204205-32AA-42EA-A8A3-A8374CF2DF3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE39E88-9F89-4760-98F1-313F2D513E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE39E88-9F89-4760-98F1-313F2D513E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE39E88-9F89-4760-98F1-313F2D513E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE39E88-9F89-4760-98F1-313F2D513E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7A4D48-969F-4E19-8BAB-BBC051F1C3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7A4D48-969F-4E19-8BAB-BBC051F1C3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7A4D48-969F-4E19-8BAB-BBC051F1C3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7A4D48-969F-4E19-8BAB-BBC051F1C3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878EC1C4-D57E-4749-AE1F-41F393977655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878EC1C4-D57E-4749-AE1F-41F393977655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878EC1C4-D57E-4749-AE1F-41F393977655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878EC1C4-D57E-4749-AE1F-41F393977655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11AB87CB-3B83-4B81-92C4-ABF5C7935A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11AB87CB-3B83-4B81-92C4-ABF5C7935A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11AB87CB-3B83-4B81-92C4-ABF5C7935A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11AB87CB-3B83-4B81-92C4-ABF5C7935A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9A83077-37E9-49C9-968C-01D67E165B06}
+	EndGlobalSection
+EndGlobal
