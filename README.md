@@ -71,7 +71,7 @@ July 2022 uploads: This last night, i uploaded my next version of chunked voxel 
 
 <img WIDTH=500 src="https://i.ibb.co/Jprc4Wb/Capture-d-cran-2022-07-07-225847.png" alt="Capture-d-cran-2022-07-07-225847" border="0">
 
-Edit-2022-July-12: I developed a way to increase the chunks size from 4x4x4 to simulating chunks up to 100x100x100x in size. But it doesn't help the performance. Although i will keep this new way to make the chunks bigger for my next developments, i am a bit chocked that it doesn't help the performance when rendering as i made sure that it uses my vertex/triangle reducer. I will investigate.
+Edit-2022-July-12: I developed a way to increase the chunks size from 4x4x4 to simulating chunks up to 100x100x100x in size. But it doesn't help the performance. Although i will keep this new way to make the chunks bigger for my next developments, i am a bit chocked that it doesn't help the performance when rendering as i made sure that it uses my vertex/triangle reducer. I will investigate. Edit: precision loss after 16x16x16. can only change chunks to dimensions of 4x4x4 or 8x8x8 or 16x16x16. I left notes in the script updateprim.cs
 
 <img WIDTH=500 src="https://i.ibb.co/XZmpM24/Capture-d-cran-2022-07-12-230527.png" alt="Capture-d-cran-2022-07-12-230527" border="0">
 
