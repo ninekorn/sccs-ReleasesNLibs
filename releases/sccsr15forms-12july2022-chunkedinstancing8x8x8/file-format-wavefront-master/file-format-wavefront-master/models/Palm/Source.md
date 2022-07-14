@@ -1,1 +1,0 @@
-http://tf3dm.com/3d-model/date-palm-2286.html

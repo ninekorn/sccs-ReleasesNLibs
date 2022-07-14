@@ -84,9 +84,9 @@ namespace sccsr15forms
 
         float floatarriving = 432.341f;// 432143.341234f;
 
-        int thechunkdivx = 3;
-        int thechunkdivy = 3;
-        int thechunkdivz = 3;
+        //public int thechunkbundlefractionx = 3;
+        //public int thechunkbundlefractiony = 3;
+        //public int thechunkbundlefractionz = 3;
 
         int maxarraychunkdataval = 0;
 
@@ -666,7 +666,7 @@ namespace sccsr15forms
             //VOXEL VIRTUAL DESKTOP
             somelevelgenprimglobals = new sclevelgenglobals();
 
-            somelevelgenprimglobals.planeSize = 0.02f; // * 10
+            somelevelgenprimglobals.planeSize = 0.01f; // * 10
 
             /*
             somelevelgenprimglobals.widthlod0 = 7;
@@ -1164,11 +1164,11 @@ namespace sccsr15forms
 
 
 
-                                for (int xi = 0; xi < thechunkdivx; xi++)
+                                for (int xi = 0; xi < updatePrim.thechunkbundlefractionx; xi++)
                                 {
-                                    for (int yi = 0; yi < thechunkdivy; yi++)
+                                    for (int yi = 0; yi < updatePrim.thechunkbundlefractiony; yi++)
                                     {
-                                        for (int zi = 0; zi < thechunkdivz; zi++)
+                                        for (int zi = 0; zi < updatePrim.thechunkbundlefractionz; zi++)
                                         {
 
 
@@ -1369,11 +1369,11 @@ namespace sccsr15forms
                                 int thefirstbundlechunkindex = 0;
 
                                 //int somecounter = 0;
-                                for (int xi = 0; xi < thechunkdivx; xi++)
+                                for (int xi = 0; xi < updatePrim.thechunkbundlefractionx; xi++)
                                 {
-                                    for (int yi = 0; yi < thechunkdivy; yi++)
+                                    for (int yi = 0; yi < updatePrim.thechunkbundlefractiony; yi++)
                                     {
-                                        for (int zi = 0; zi < thechunkdivz; zi++)
+                                        for (int zi = 0; zi < updatePrim.thechunkbundlefractionz; zi++)
                                         {
 
                                             if (xi == 0 && yi == 0 && zi == 0)
@@ -2442,11 +2442,11 @@ namespace sccsr15forms
                 int thefirstbundlechunkindex = 0;
                 //if (vertexlength > 0)
                 {
-                    for (int xi = 0; xi < thechunkdivx; xi++)
+                    for (int xi = 0; xi < updatePrim.thechunkbundlefractionx; xi++)
                     {
-                        for (int yi = 0; yi < thechunkdivy; yi++)
+                        for (int yi = 0; yi < updatePrim.thechunkbundlefractiony; yi++)
                         {
-                            for (int zi = 0; zi < thechunkdivz; zi++)
+                            for (int zi = 0; zi < updatePrim.thechunkbundlefractionz; zi++)
                             {
                                 /*
                                 if (xi == 0 && yi == 0 && zi == 0)

@@ -123,6 +123,8 @@
     <Compile Remove="updatePrim - 08july2022.cs" />
     <Compile Remove="updatePrim - 18june2022-0.cs" />
     <Compile Remove="updatePrim - 2022july10-fail.cs" />
+    <Compile Remove="updatePrim - 2022july13-1-success.cs" />
+    <Compile Remove="updatePrim - 2022july13.cs" />
     <Compile Remove="updatePrim - 21june2022-0fail.cs" />
     <Compile Remove="updatePrim - backup LOD.cs" />
     <Compile Remove="updatePrim -07july2022-fail.cs" />

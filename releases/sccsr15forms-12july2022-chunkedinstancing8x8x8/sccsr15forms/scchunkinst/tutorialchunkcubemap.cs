@@ -34,6 +34,11 @@ namespace sccsr15forms
         int somecountertopface = 0;
         public tutorialchunkcubemap(int x, int y, int z, float[] newchunkpos_)
         {
+            width = updatePrim.chunkwidthsim;
+            height = updatePrim.chunkheightsim;
+            depth = updatePrim.chunkdepthsim;
+
+
             chunkPos = new int[3];
 
             chunkPos[0] = x;
@@ -104,9 +109,9 @@ namespace sccsr15forms
         int total = 0;
         public int[] map;
 
-        public int width = 12;
-        public int height = 12;
-        public int depth = 12;
+        public int width = 4;
+        public int height = 4;
+        public int depth = 4;
         public int maxveclength = 4;
 
 
@@ -128,6 +133,8 @@ namespace sccsr15forms
 
         public void buildchunkmaps(int swtc,int typeofterraintiles_, tutorialcubeaschunkinst componentparent_, int levelofdetail_)// , int somechunkkeyboardpriminstanceindex_, int chunkprimindex_, int chunkinstindex_
         {
+
+
 
             typeofterraintiles = typeofterraintiles_;
 

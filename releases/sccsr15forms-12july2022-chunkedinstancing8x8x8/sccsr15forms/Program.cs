@@ -66,7 +66,7 @@ namespace sccsr15forms
 {
     internal static class Program
     {
-        public static int useOculusRift = 0;
+        public static int useOculusRift = 1;
 
         public static int createikrig = 1;
 

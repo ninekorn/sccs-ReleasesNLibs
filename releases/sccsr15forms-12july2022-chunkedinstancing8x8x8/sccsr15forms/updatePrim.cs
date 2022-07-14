@@ -74,6 +74,33 @@ namespace sccsr15forms
 {
     public class updatePrim : IDisposable
     {
+        public static float bundlechunkplanesize = 0;
+        public static float chunkplanesize = 0;
+
+        public static int chunkwidthsim = 0;
+        public static int chunkheightsim = 0;
+        public static int chunkdepthsim = 0;
+
+
+        public static float chunkwidthsimfloat = 0;
+        public static float chunkheightsimfloat = 0;
+        public static float chunkdepthsimfloat = 0;
+
+
+        public static int chunkwidthdiv = 0;
+        public static int chunkheightdiv = 0;
+        public static int chunkdepthdiv = 0;
+
+
+        public static float chunkwidthdivfloat = 0;
+        public static float chunkheightdivfloat = 0;
+        public static float chunkdepthdivfloat = 0;
+
+
+        public static int thechunkbundlefractionx = 0;
+        public static int thechunkbundlefractiony = 0;
+        public static int thechunkbundlefractionz = 0;
+
         int posmainx = 0;
         int posmainy = 0;
         int posmainz = 0;
@@ -166,13 +193,13 @@ namespace sccsr15forms
 
         sccslevelgen sccslevelgen = new sccslevelgen();
 
-        int incrementsdivx;
-        int incrementsdivy;
-        int incrementsdivz;
+        int incrementsfracx;
+        int incrementsfracy;
+        int incrementsfracz;
 
-        int divx;
-        int divy;
-        int divz;
+        int sccslevelgenfractionx;
+        int sccslevelgenfractiony;
+        int sccslevelgenfractionz;
 
 
         tutorialcubeaschunkinst[] mainchunkdivtop;
@@ -688,20 +715,290 @@ namespace sccsr15forms
 
 
 
+            //doesnt work LOSS OF PRECISION
+            //doesnt work LOSS OF PRECISION
+            //doesnt work LOSS OF PRECISION
+            /*
+            chunkwidth = 24;
+            chunkheight = 24;
+            chunkdepth = 24;
+
+            thechunkbundlefractionx = 6;
+            thechunkbundlefractiony = 6;
+            thechunkbundlefractionz = 6;
+
+            sccslevelgen.maxarraychunkdataval = 216;*/
+
+            /*chunkwidth = 28;
+            chunkheight = 28;
+            chunkdepth = 28;
+            thechunkbundlefractionx = 7;
+            thechunkbundlefractiony = 7;
+            thechunkbundlefractionz = 7;
+            sccslevelgen.maxarraychunkdataval = 343;*/
+
+            /*
+            chunkwidth = 20;
+            chunkheight = 20;
+            chunkdepth = 20;
+            thechunkbundlefractionx = 5;
+            thechunkbundlefractiony = 5;
+            thechunkbundlefractionz = 5;
+            sccslevelgen.maxarraychunkdataval = 125;*/
+
+            //doesnt work LOSS OF PRECISION
+            //doesnt work LOSS OF PRECISION
+            //doesnt work LOSS OF PRECISION
 
 
 
+            //////////NOT WORKING YET///////////////
+            //////////NOT WORKING YET///////////////
+            //////////NOT WORKING YET///////////////
+            /*chunkwidthsim = 12;
+            chunkheightsim = 12;
+            chunkdepthsim = 12;
+            chunkwidthsimfloat = (float)chunkwidthsim;
+            chunkheightsimfloat = (float)chunkheightsim;
+            chunkdepthsimfloat = (float)chunkdepthsim;
+            chunkwidthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkheightdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkdepthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkwidthdivfloat = (float)chunkwidthdiv;
+            chunkheightdivfloat = (float)chunkheightdiv;
+            chunkdepthdivfloat = (float)chunkdepthdiv;
+            float someratio =(float)((float)chunkwidthdiv / (float)chunkwidthsim);
+            //Console.WriteLine("ratio:" + someratio);
+            bundlechunkplanesize = 0.01f;
+            chunkplanesize = bundlechunkplanesize * someratio;
+            thechunkbundlefractionx = 3;
+            thechunkbundlefractiony = 3;
+            thechunkbundlefractionz = 3;
             sccslevelgen.maxarraychunkdataval = 27;
 
-            sccslevelgen.minw = 75;
+            sccslevelgen.minw = 10;
             sccslevelgen.minh = 4;
-            sccslevelgen.mind = 75;
+            sccslevelgen.mind = 10;  
             
-            sccslevelgen.maxw = 75;
+            sccslevelgen.maxw = 10;
             sccslevelgen.maxh = 4;
-            sccslevelgen.maxd = 75;
+            sccslevelgen.maxd = 10;
 
             sccslevelgen.createlevel();
+
+            sccslevelgenfractionx = 1;
+            sccslevelgenfractiony = 1; //sccsl5evelgen.wallheightsize
+            sccslevelgenfractionz = 1;*/
+            /////////////NOT WORKING YET///////////////
+            /////////////NOT WORKING YET///////////////
+            /////////////NOT WORKING YET///////////////
+
+
+
+
+
+
+
+
+            ////////////////USER REFERENCE SETTINGS/////////////////
+            ////////////////USER REFERENCE SETTINGS/////////////////
+            ////////////////USER REFERENCE SETTINGS/////////////////
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+
+            /*
+             chunkwidthsim = 4;
+             chunkheightsim = 4;
+             chunkdepthsim = 4;
+             chunkwidthsimfloat = (float)chunkwidthsim;
+             chunkheightsimfloat = (float)chunkheightsim;
+             chunkdepthsimfloat = (float)chunkdepthsim;
+             chunkwidthdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkheightdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkdepthdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkwidthdivfloat = (float)chunkwidthdiv;
+             chunkheightdivfloat = (float)chunkheightdiv;
+             chunkdepthdivfloat = (float)chunkdepthdiv;
+             float someratio = (float)((float)chunkwidthdiv / (float)chunkwidthsim);
+             //Console.WriteLine("ratio:" + someratio);
+             bundlechunkplanesize = 0.01f;
+             chunkplanesize = bundlechunkplanesize * someratio;
+             thechunkbundlefractionx = 1;
+             thechunkbundlefractiony = 1;
+             thechunkbundlefractionz = 1;
+             sccslevelgen.maxarraychunkdataval = 1;
+
+             sccslevelgen.minw = 100;
+             sccslevelgen.minh = 8;
+             sccslevelgen.mind = 100;
+
+             sccslevelgen.maxw = 100;
+             sccslevelgen.maxh = 8;
+             sccslevelgen.maxd = 100;
+
+             sccslevelgen.createlevel();
+
+             sccslevelgenfractionx = 4;
+             sccslevelgenfractiony = 4; //sccsl5evelgen.wallheightsize
+             sccslevelgenfractionz = 4;*/
+
+            //8x8x8
+            //8x8x8
+            //8x8x8
+            /*
+            chunkwidthsim = 8;
+            chunkheightsim = 8;
+            chunkdepthsim = 8;
+            chunkwidthsimfloat = (float)chunkwidthsim;
+            chunkheightsimfloat = (float)chunkheightsim;
+            chunkdepthsimfloat = (float)chunkdepthsim;
+            chunkwidthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkheightdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkdepthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkwidthdivfloat = (float)chunkwidthdiv;
+            chunkheightdivfloat = (float)chunkheightdiv;
+            chunkdepthdivfloat = (float)chunkdepthdiv;
+            float someratio = (float)((float)chunkwidthdiv / (float)chunkwidthsim);
+            //Console.WriteLine("ratio:" + someratio);
+            bundlechunkplanesize = 0.01f;
+            chunkplanesize = bundlechunkplanesize * someratio;
+            thechunkbundlefractionx = 2;
+            thechunkbundlefractiony = 2;
+            thechunkbundlefractionz = 2;
+            sccslevelgen.maxarraychunkdataval = 8;
+
+            sccslevelgen.minw = 10;
+            sccslevelgen.minh = 4;
+            sccslevelgen.mind = 10;
+
+            sccslevelgen.maxw = 10;
+            sccslevelgen.maxh = 4;
+            sccslevelgen.maxd = 10;
+
+            sccslevelgen.createlevel();
+
+            sccslevelgenfractionx = 1;
+            sccslevelgenfractiony = 1; //sccsl5evelgen.wallheightsize
+            sccslevelgenfractionz = 1;
+            */
+            //8x8x8
+            //8x8x8
+            //8x8x8
+
+
+
+            ///16x16x16
+            ///16x16x16
+            ///16x16x16
+            /*
+            chunkwidthsim = 16;
+            chunkheightsim = 16;
+            chunkdepthsim = 16;
+            chunkwidthsimfloat = (float)chunkwidthsim;
+            chunkheightsimfloat = (float)chunkheightsim;
+            chunkdepthsimfloat = (float)chunkdepthsim;
+            chunkwidthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkheightdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkdepthdiv = 4; //LEAVE THIS SETTING AT 4
+            chunkwidthdivfloat = (float)chunkwidthdiv;
+            chunkheightdivfloat = (float)chunkheightdiv;
+            chunkdepthdivfloat = (float)chunkdepthdiv;
+            float someratio = (float)((float)chunkwidthdiv / (float)chunkwidthsim);
+            //Console.WriteLine("ratio:" + someratio);
+            bundlechunkplanesize = 0.01f;
+            chunkplanesize = bundlechunkplanesize * someratio;
+            thechunkbundlefractionx = 4;
+            thechunkbundlefractiony = 4;
+            thechunkbundlefractionz = 4;
+            sccslevelgen.maxarraychunkdataval = 64;
+
+            sccslevelgen.minw = 10;
+            sccslevelgen.minh = 4;
+            sccslevelgen.mind = 10;
+
+            sccslevelgen.maxw = 10;
+            sccslevelgen.maxh = 4;
+            sccslevelgen.maxd = 10;
+
+            sccslevelgen.createlevel();
+
+            sccslevelgenfractionx = 1;
+            sccslevelgenfractiony = 1; //sccsl5evelgen.wallheightsize
+            sccslevelgenfractionz = 1;
+            */
+            ///16x16x16
+            ///16x16x16
+            ///16x16x16
+
+
+
+
+
+
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+            //ALSO CHANGE THE PLANESIZE IN THE SHADER MULTICUBENEWOVR.FX TO THE SAME AS THE VARIABLE chunkplanesize. CHANGE IT MANUALLY
+            ////////////////USER REFERENCE SETTINGS/////////////////
+            ////////////////USER REFERENCE SETTINGS/////////////////
+            ////////////////USER REFERENCE SETTINGS/////////////////
+
+
+
+
+            
+             chunkwidthsim = 4;
+             chunkheightsim = 4;
+             chunkdepthsim = 4;
+             chunkwidthsimfloat = (float)chunkwidthsim;
+             chunkheightsimfloat = (float)chunkheightsim;
+             chunkdepthsimfloat = (float)chunkdepthsim;
+             chunkwidthdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkheightdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkdepthdiv = 4; //LEAVE THIS SETTING AT 4
+             chunkwidthdivfloat = (float)chunkwidthdiv;
+             chunkheightdivfloat = (float)chunkheightdiv;
+             chunkdepthdivfloat = (float)chunkdepthdiv;
+             float someratio = (float)((float)chunkwidthdiv / (float)chunkwidthsim);
+             //Console.WriteLine("ratio:" + someratio);
+             bundlechunkplanesize = 0.01f;
+             chunkplanesize = bundlechunkplanesize * someratio;
+             thechunkbundlefractionx = 1;
+             thechunkbundlefractiony = 1;
+             thechunkbundlefractionz = 1;
+             sccslevelgen.maxarraychunkdataval = 1;
+
+             sccslevelgen.minw = 100;
+             sccslevelgen.minh = 8;
+             sccslevelgen.mind = 100;
+
+             sccslevelgen.maxw = 100;
+             sccslevelgen.maxh = 8;
+             sccslevelgen.maxd = 100;
+
+             sccslevelgen.createlevel();
+
+             sccslevelgenfractionx = 4;
+             sccslevelgenfractiony = 4; //sccsl5evelgen.wallheightsize
+             sccslevelgenfractionz = 4;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             int levelminx = sccslevelgen.minx;
             int levelminy = sccslevelgen.miny;
@@ -723,9 +1020,7 @@ namespace sccsr15forms
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
-            divx = 1;
-            divy = 1; //sccsl5evelgen.wallheightsize
-            divz = 1;
+          
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
             //HAS TO BE AN EVEN NUMBER. AND HAS TO BE A DIVISION/FRACTION OF SCCSLEVELGEN.SOMEWIDTH AND SCCSLEVELGEN.SOMEHEIGHT AND SCCSLEVELGEN.SOMEDEPTH WHERE SCCSLEVELGEN.SOMEWIDTH == SCCSLEVELGEN.MINW + SCCSLEVELGEN.MAXW
@@ -734,26 +1029,26 @@ namespace sccsr15forms
 
 
 
-            incrementsdivx = sccslevelgen.somewidth / divx;
-            incrementsdivy = sccslevelgen.someheight / divy;
-            incrementsdivz = sccslevelgen.somedepth / divz;
+            incrementsfracx = sccslevelgen.somewidth / sccslevelgenfractionx;
+            incrementsfracy = sccslevelgen.someheight / sccslevelgenfractiony;
+            incrementsfracz = sccslevelgen.somedepth / sccslevelgenfractionz;
 
             //50
 
-            //int halfincrementsdivx = incrementsdivx / 2;
-            //int halfincrementsdivy = incrementsdivy / 2;
-            //int halfincrementsdivz = incrementsdivz / 2;
+            //int halfincrementsfracx = incrementsfracx / 2;
+            //int halfincrementsfracy = incrementsfracy / 2;
+            //int halfincrementsfracz = incrementsfracz / 2;
 
-            //int incrementsdivxc = 0;
-            //int incrementsdivyc = 0;
-            //int incrementsdivzc = 0;
+            //int incrementsfracxc = 0;
+            //int incrementsfracyc = 0;
+            //int incrementsfraczc = 0;
 
-            mainchunkdivtop = new tutorialcubeaschunkinst[divx * divy * divz];
-            mainchunkdivbottom = new tutorialcubeaschunkinst[divx * divy * divz];
-            mainchunkdivfront = new tutorialcubeaschunkinst[divx * divy * divz];
-            mainchunkdivback = new tutorialcubeaschunkinst[divx * divy * divz];
-            mainchunkdivleft = new tutorialcubeaschunkinst[divx * divy * divz];
-            mainchunkdivright = new tutorialcubeaschunkinst[divx * divy * divz];
+            mainchunkdivtop = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
+            mainchunkdivbottom = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
+            mainchunkdivfront = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
+            mainchunkdivback = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
+            mainchunkdivleft = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
+            mainchunkdivright = new tutorialcubeaschunkinst[sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz];
 
             //staticContantBuffer = new SharpDX.Direct3D11.Buffer(D3D.Device, Utilities.SizeOf<Matrix>(), ResourceUsage.Default, BindFlags.ConstantBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, 0);
             //dynamicConstantBuffer = new SharpDX.Direct3D11.Buffer(D3D.Device, Utilities.SizeOf<Matrix>(), ResourceUsage.Dynamic, BindFlags.ConstantBuffer, CpuAccessFlags.Write, ResourceOptionFlags.None, 0);
@@ -761,12 +1056,12 @@ namespace sccsr15forms
 
             /*for (int i = 0; i < mainchunkdivtop.Length; i++)
             {
-                mainchunkdivtop[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
-                mainchunkdivbottom[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
-                mainchunkdivfront[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
-                mainchunkdivback[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
-                mainchunkdivleft[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
-                mainchunkdivright[i] = new tutorialcubeaschunkinst[incrementsdivx * incrementsdivy * incrementsdivz];
+                mainchunkdivtop[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
+                mainchunkdivbottom[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
+                mainchunkdivfront[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
+                mainchunkdivback[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
+                mainchunkdivleft[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
+                mainchunkdivright[i] = new tutorialcubeaschunkinst[incrementsfracx * incrementsfracy * incrementsfracz];
             }*/
 
 
@@ -800,11 +1095,11 @@ namespace sccsr15forms
 
             int maincounter = 0;
 
-            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
             {
-                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                 {
-                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                     {
                         int xx = x;
                         int yy = y;
@@ -829,25 +1124,25 @@ namespace sccsr15forms
 
 
 
-                        int posmainx = x / incrementsdivx;
-                        int posmainy = y / incrementsdivy;
-                        int posmainz = z / incrementsdivz;
+                        int posmainx = x / incrementsfracx;
+                        int posmainy = y / incrementsfracy;
+                        int posmainz = z / incrementsfracz;
 
                         if (posmainx < 0)
                         {
                             posmainx *= -1;
-                            posmainx = posmainx + ((divx/2) -1);
+                            posmainx = posmainx + ((sccslevelgenfractionx/2) -1);
                         }
 
                         if (posmainy < 0)
                         {
                             posmainy *= -1;
-                            posmainy = posmainy + ((divy / 2) - 1);
+                            posmainy = posmainy + ((sccslevelgenfractiony / 2) - 1);
                         }
                         if (posmainz < 0)
                         {
                             posmainz *= -1;
-                            posmainz = posmainz + ((divz / 2) - 1);
+                            posmainz = posmainz + ((sccslevelgenfractionz / 2) - 1);
                         }
 
                       
@@ -855,7 +1150,7 @@ namespace sccsr15forms
                         int somemainy = ye;
                         int somemainz = ze;
 
-                        someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
+                        someindexmain = posmainx + (sccslevelgenfractionx) * (posmainy + (sccslevelgenfractiony) * posmainz);
 
 
                         //Console.WriteLine("x:" + posmainx + "/y:" + posmainy + "/z:" + posmainz + "/m:" + someindexmain);
@@ -863,30 +1158,30 @@ namespace sccsr15forms
                         //Console.WriteLine("indexmain:" + someindexmain);
 
                         int facetype = 0;
-                        mainchunkdivtop[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounter, out somemaincounter_);
+                        mainchunkdivtop[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounter, out somemaincounter_);
                         somemaincounter = somemaincounter_;
 
                        
                         facetype = 1;
-                        mainchunkdivleft[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterl, out somemaincounter_l);
+                        mainchunkdivleft[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounterl, out somemaincounter_l);
                         somemaincounterl = somemaincounter_l;
 
                         facetype = 2;
-                        mainchunkdivright[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterr, out somemaincounter_r);
+                        mainchunkdivright[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounterr, out somemaincounter_r);
                         somemaincounterr = somemaincounter_r;
                         
                         
                         
                         facetype = 3;
-                        mainchunkdivfront[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterf, out somemaincounter_f);
+                        mainchunkdivfront[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounterf, out somemaincounter_f);
                         somemaincounterf = somemaincounter_f;
 
                         facetype = 4;
-                        mainchunkdivback[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterba, out somemaincounter_ba);
+                        mainchunkdivback[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounterba, out somemaincounter_ba);
                         somemaincounterba = somemaincounter_ba;
                         
                         facetype = 5;
-                        mainchunkdivbottom[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, somemaincounterbo, out somemaincounter_bo);
+                        mainchunkdivbottom[someindexmain] = new tutorialcubeaschunkinst(D3D.Device, facetype, sccslevelgen, x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, somemaincounterbo, out somemaincounter_bo);
                         somemaincounterbo = somemaincounter_bo;
 
 
@@ -919,11 +1214,11 @@ namespace sccsr15forms
             int someseccounterbo = 0;
             int someseccounter_bo = 0;
 
-            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
             {
-                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                 {
-                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                     {
                         int xx = x;
                         int yy = y;
@@ -946,25 +1241,25 @@ namespace sccsr15forms
                             zz = zz + (sccslevelgen.maxz - 1);
                         }
 
-                        int posmainx = x / incrementsdivx;
-                        int posmainy = y / incrementsdivy;
-                        int posmainz = z / incrementsdivz;
+                        int posmainx = x / incrementsfracx;
+                        int posmainy = y / incrementsfracy;
+                        int posmainz = z / incrementsfracz;
 
                         if (posmainx < 0)
                         {
                             posmainx *= -1;
-                            posmainx = posmainx + ((divx / 2) - 1);
+                            posmainx = posmainx + ((sccslevelgenfractionx / 2) - 1);
                         }
 
                         if (posmainy < 0)
                         {
                             posmainy *= -1;
-                            posmainy = posmainy + ((divy / 2) - 1);
+                            posmainy = posmainy + ((sccslevelgenfractiony / 2) - 1);
                         }
                         if (posmainz < 0)
                         {
                             posmainz *= -1;
-                            posmainz = posmainz + ((divz / 2) - 1);
+                            posmainz = posmainz + ((sccslevelgenfractionz / 2) - 1);
                         }
 
                         //Console.WriteLine("x:"+ posmainx + "/y:" + posmainy + "/z:" + posmainz);
@@ -975,40 +1270,40 @@ namespace sccsr15forms
                         int somemainy = ye;
                         int somemainz = ze;
 
-                        someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
+                        someindexmain = posmainx + (sccslevelgenfractionx) * (posmainy + (sccslevelgenfractiony) * posmainz);
 
                         int novalue;
 
                         
                         int facetype = 0;
-                        mainchunkdivtop[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounter, out someseccounter_);
+                        mainchunkdivtop[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounter, out someseccounter_);
                         someseccounter = someseccounter_;
                        
                         mainchunkdivtop[someindexmain].createinstances(facetype,0, out novalue);
                                   
                         facetype = 1;
-                        mainchunkdivleft[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterl, out someseccounter_l);
+                        mainchunkdivleft[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounterl, out someseccounter_l);
                         mainchunkdivleft[someindexmain].createinstances(facetype,0, out novalue);
                         someseccounterl = someseccounter_l;
                       
                         
                         facetype = 2;
-                        mainchunkdivright[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterr, out someseccounter_r);
+                        mainchunkdivright[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounterr, out someseccounter_r);
                         mainchunkdivright[someindexmain].createinstances(facetype, 0, out novalue);
                         someseccounterr = someseccounter_r;
                         
                         facetype = 3;
-                        mainchunkdivfront[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterf, out someseccounter_f);
+                        mainchunkdivfront[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounterf, out someseccounter_f);
                         mainchunkdivfront[someindexmain].createinstances(facetype, 0, out novalue);
                         someseccounterf = someseccounter_f;
                         
                         facetype = 4;
-                        mainchunkdivback[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterba, out someseccounter_ba);
+                        mainchunkdivback[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounterba, out someseccounter_ba);
                         mainchunkdivback[someindexmain].createinstances(facetype, 0, out novalue);
                         someseccounterba = someseccounter_ba;
                         
                         facetype = 5;
-                        mainchunkdivbottom[someindexmain].createthechunks(x, y, z, x + incrementsdivx, y + incrementsdivy, z + incrementsdivz, facetype, someseccounterbo, out someseccounter_bo);
+                        mainchunkdivbottom[someindexmain].createthechunks(x, y, z, x + incrementsfracx, y + incrementsfracy, z + incrementsfracz, facetype, someseccounterbo, out someseccounter_bo);
                         mainchunkdivbottom[someindexmain].createinstances(facetype, 0, out novalue);
                         someseccounterbo = someseccounter_bo;
                     }
@@ -2191,11 +2486,11 @@ namespace sccsr15forms
 
 
 
-                for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+                for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
                 {
-                    for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                    for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                     {
-                        for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                        for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                         {
                             int xx = x;
                             int yy = y;
@@ -2219,25 +2514,25 @@ namespace sccsr15forms
                             }
 
 
-                            posmainx = x / incrementsdivx;
-                             posmainy = y / incrementsdivy;
-                            posmainz = z / incrementsdivz;
+                            posmainx = x / incrementsfracx;
+                             posmainy = y / incrementsfracy;
+                            posmainz = z / incrementsfracz;
 
                             if (posmainx < 0)
                             {
                                 posmainx *= -1;
-                                posmainx = posmainx + ((divx / 2) - 1);
+                                posmainx = posmainx + ((sccslevelgenfractionx / 2) - 1);
                             }
 
                             if (posmainy < 0)
                             {
                                 posmainy *= -1;
-                                posmainy = posmainy + ((divy / 2) - 1);
+                                posmainy = posmainy + ((sccslevelgenfractiony / 2) - 1);
                             }
                             if (posmainz < 0)
                             {
                                 posmainz *= -1;
-                                posmainz = posmainz + ((divz / 2) - 1);
+                                posmainz = posmainz + ((sccslevelgenfractionz / 2) - 1);
                             }
 
 
@@ -2245,7 +2540,7 @@ namespace sccsr15forms
                              somemainy = ye;
                              somemainz = ze;
 
-                             someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
+                             someindexmain = posmainx + (sccslevelgenfractionx) * (posmainy + (sccslevelgenfractiony) * posmainz);
 
 
                             for (int i = 0; i < mainchunkdivtop[someindexmain].somefacemeshlisttodraw.Count; i++)
@@ -2711,11 +3006,11 @@ namespace sccsr15forms
 
 
 
-                            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+                            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
                             {
-                                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                                 {
-                                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                                     {
                                         int xx = x;
                                         int yy = y;
@@ -2740,25 +3035,25 @@ namespace sccsr15forms
 
 
 
-                                        int posmainx = x / incrementsdivx;
-                                        int posmainy = y / incrementsdivy;
-                                        int posmainz = z / incrementsdivz;
+                                        int posmainx = x / incrementsfracx;
+                                        int posmainy = y / incrementsfracy;
+                                        int posmainz = z / incrementsfracz;
 
                                         if (posmainx < 0)
                                         {
                                             posmainx *= -1;
-                                            posmainx = posmainx + ((divx / 2) - 1);
+                                            posmainx = posmainx + ((sccslevelgenfractionx / 2) - 1);
                                         }
 
                                         if (posmainy < 0)
                                         {
                                             posmainy *= -1;
-                                            posmainy = posmainy + ((divy / 2) - 1);
+                                            posmainy = posmainy + ((sccslevelgenfractiony / 2) - 1);
                                         }
                                         if (posmainz < 0)
                                         {
                                             posmainz *= -1;
-                                            posmainz = posmainz + ((divz / 2) - 1);
+                                            posmainz = posmainz + ((sccslevelgenfractionz / 2) - 1);
                                         }
 
 
@@ -2766,7 +3061,7 @@ namespace sccsr15forms
                                         int somemainy = ye;
                                         int somemainz = ze;
 
-                                        int someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
+                                        int someindexmain = posmainx + (sccslevelgenfractionx) * (posmainy + (sccslevelgenfractiony) * posmainz);
 
 
                                         //Console.WriteLine("mainindex:" + someindexmain);
@@ -3561,11 +3856,11 @@ namespace sccsr15forms
 
 
 
-                for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+                for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
                 {
-                    for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                    for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                     {
-                        for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                        for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                         {
                             int xx = x;
                             int yy = y;
@@ -3588,25 +3883,25 @@ namespace sccsr15forms
                                 zz = zz + (sccslevelgen.maxz - 1);
                             }
 
-                            int posmainx = x / incrementsdivx;
-                            int posmainy = y / incrementsdivy;
-                            int posmainz = z / incrementsdivz;
+                            int posmainx = x / incrementsfracx;
+                            int posmainy = y / incrementsfracy;
+                            int posmainz = z / incrementsfracz;
 
                             if (posmainx < 0)
                             {
                                 posmainx *= -1;
-                                posmainx = posmainx + ((divx / 2) - 1);
+                                posmainx = posmainx + ((sccslevelgenfractionx / 2) - 1);
                             }
 
                             if (posmainy < 0)
                             {
                                 posmainy *= -1;
-                                posmainy = posmainy + ((divy / 2) - 1);
+                                posmainy = posmainy + ((sccslevelgenfractiony / 2) - 1);
                             }
                             if (posmainz < 0)
                             {
                                 posmainz *= -1;
-                                posmainz = posmainz + ((divz / 2) - 1);
+                                posmainz = posmainz + ((sccslevelgenfractionz / 2) - 1);
                             }
 
 
@@ -3614,7 +3909,7 @@ namespace sccsr15forms
                             int somemainy = ye;
                             int somemainz = ze;
 
-                            int someindexmain = posmainx + (divx) * (posmainy + (divy) * posmainz);
+                            int someindexmain = posmainx + (sccslevelgenfractionx) * (posmainy + (sccslevelgenfractiony) * posmainz);
 
                             for (int i = 0; i < mainchunkdivtop[someindexmain].somefacemeshlisttodraw.Count; i++)
                             {
@@ -3954,11 +4249,11 @@ namespace sccsr15forms
 
             /*
 
-            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsdivx, xe++)
+            for (int x = sccslevelgen.minx, xe = 0; x < sccslevelgen.maxx; x += incrementsfracx, xe++)
             {
-                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsdivy, ye++)
+                for (int y = sccslevelgen.miny, ye = 0; y < sccslevelgen.maxy; y += incrementsfracy, ye++)
                 {
-                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsdivz, ze++)
+                    for (int z = sccslevelgen.minz, ze = 0; z < sccslevelgen.maxz; z += incrementsfracz, ze++)
                     {
                         int xx = x;
                         int yy = y;
@@ -3981,15 +4276,15 @@ namespace sccsr15forms
                             zz = zz + (sccslevelgen.maxz - 1);
                         }
 
-                        int posmainx = x / incrementsdivx;
-                        int posmainy = y / incrementsdivy;
-                        int posmainz = z / incrementsdivz;
+                        int posmainx = x / incrementsfracx;
+                        int posmainy = y / incrementsfracy;
+                        int posmainz = z / incrementsfracz;
 
                         int somemainx = xe;
                         int somemainy = ye;
                         int somemainz = ze;
 
-                        var someindexmain = somemainx + (divx) * (somemainy + (divy) * somemainz);
+                        var someindexmain = somemainx + (sccslevelgenfractionx) * (somemainy + (sccslevelgenfractiony) * somemainz);
 
 
                         for (int i = 0; i < mainchunkdivtop[someindexmain].arraychunkdatalod0.Length; i++)
@@ -4698,7 +4993,7 @@ namespace sccsr15forms
                 //int somefz = (int)Math.Abs(Math.Round(((pickaxetippoint.Z) - somevoxelvirtualdesktop[0].worldmatofobj.M43) / planeSize)); //
 
 
-                float somevaldiv = 1.0f / ((0.01f));
+                float somevaldiv = 1.0f / ((bundlechunkplanesize));
 
 
                 //Console.WriteLine(somevaldiv);
@@ -4709,9 +5004,9 @@ namespace sccsr15forms
                 //float someposfootz = (float)((Math.Floor(pickaxetippoint.Z / somevaldiv) * somevaldiv)) / (4);
 
 
-                int someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f));
-                int someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f));
-                int someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f));
+                int someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (bundlechunkplanesize));
+                int someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (bundlechunkplanesize));
+                int someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (bundlechunkplanesize));
 
                 //Console.WriteLine("/ix:" + ((someposfootx / 4) / 2) + "/iy:" + ((someposfooty / 4) / 2) + "/iz:" + ((someposfootz / 4) / 2));
 
@@ -4730,45 +5025,45 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 4.0f)) * 4;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthdivfloat)) * chunkwidthdiv;
                     totalTimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 4.0f)) * 4;
-                    totalTimesx = -4 + (int)(someremainsx - someposfootx) + 4;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthdivfloat)) * chunkwidthdiv;
+                    totalTimesx = -chunkwidthdiv + (int)(someremainsx - someposfootx) + chunkwidthdiv;
                     totalTimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 4.0f)) * 4;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightdivfloat)) * chunkheightdiv;
                     totalTimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 4.0f)) * 4;
-                    totalTimesy = -4 + (int)(someremainsy - someposfooty) + 4;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightdivfloat)) * chunkheightdiv;
+                    totalTimesy = -chunkheightdiv + (int)(someremainsy - someposfooty) + chunkheightdiv;
                     totalTimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 4.0f)) * 4;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthdivfloat)) * chunkdepthdiv;
                     totalTimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 4.0f)) * 4;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthdivfloat)) * chunkdepthdiv;
                     //Console.WriteLine(someremainsz);
 
-                    totalTimesz = -4 + (int)(someremainsz - someposfootz) + 4;
+                    totalTimesz = -chunkdepthdiv + (int)(someremainsz - someposfootz) + chunkdepthdiv;
                     totalTimesz *= -1;
                 }
 
-                int totaltimesforonepartschunksx = (someremainsx / 4) ;
-                int totaltimesforonepartschunksy = (someremainsy / 4) ;
-                int totaltimesforonepartschunksz = (someremainsz / 4) ;
+                int totaltimesforonepartschunksx = (someremainsx / chunkwidthdiv) ;
+                int totaltimesforonepartschunksy = (someremainsy / chunkheightdiv) ;
+                int totaltimesforonepartschunksz = (someremainsz / chunkdepthdiv) ;
 
                 //Console.WriteLine("x:" + totaltimesforonepartschunksx + "/y:" + totaltimesforonepartschunksy + ":z/" + totaltimesforonepartschunksz);
 
@@ -4784,9 +5079,9 @@ namespace sccsr15forms
 
 
      
-                int thechunkinthebundlex = (someremainsx / 4);
-                int thechunkinthebundley = (someremainsy / 4);
-                int thechunkinthebundlez = (someremainsz / 4);
+                int thechunkinthebundlex = (someremainsx / chunkwidthdiv);
+                int thechunkinthebundley = (someremainsy / chunkheightdiv);
+                int thechunkinthebundlez = (someremainsz / chunkdepthdiv);
 
 
                 int chunkposx = thechunkinthebundlex ;
@@ -4805,18 +5100,17 @@ namespace sccsr15forms
 
 
 
-                somevaldiv = 1.0f / ((0.01f * 0.5f));
+                somevaldiv = 1.0f / ((chunkplanesize));
                 //Console.WriteLine(somevaldiv);
-                //0.01f == 4 face == 1 chunk => 0.0025f for 1 face
+                //bundlechunkplanesize == 4 face == 1 chunk => 0.0025f for 1 face
 
                 //float someposfootx = (float)((Math.Floor(pickaxetippoint.X / somevaldiv) * somevaldiv)) / (4);
                 //float someposfooty = (float)((Math.Floor(pickaxetippoint.Y / somevaldiv) * somevaldiv)) / (4);
                 //float someposfootz = (float)((Math.Floor(pickaxetippoint.Z / somevaldiv) * somevaldiv)) / (4);
 
-
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize));
 
                 int maptotaltimesx = 0;
                 int maptotaltimesy = 0;
@@ -4824,39 +5118,39 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
@@ -4864,15 +5158,15 @@ namespace sccsr15forms
                 int indexy = maptotaltimesy;
                 int indexz = maptotaltimesz;
 
-                int sometotaltimesx = someremainsx / 8;// totalTimesx;
-                int sometotaltimesy = someremainsy / 8;//totalTimesy;
-                int sometotaltimesz = someremainsz / 8;//totalTimesz;
+                int sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                int sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                int sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
               
 
 
 
-                int someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                int someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 //Console.WriteLine("/ix:" + indexx + "/iy:" + indexy + "/iz:" + indexz);
                 //Console.WriteLine("/0x:" + someposfootx + "/0y:" + someposfooty + "/0z:" + someposfootz);
@@ -4882,53 +5176,53 @@ namespace sccsr15forms
                 int somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 float sometotaltx = sometotaltimesx;
                 float sometotalty = sometotaltimesy;
                 float sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                int someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
+                int someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
                 //Console.WriteLine("mainindex:" + someindexmain);
 
-                if (someindexmain < divx * divy * divz)
+                if (someindexmain < sccslevelgenfractionx * sccslevelgenfractiony * sccslevelgenfractionz)
                 {
                     int arrayindexmap;
 
@@ -4939,18 +5233,18 @@ namespace sccsr15forms
                     /*if (totaltimesforonepartschunksx < 0)
                     {
                         totaltimesforonepartschunksx *= -1;
-                        totaltimesforonepartschunksx = totaltimesforonepartschunksx + ((incrementsdivx));
+                        totaltimesforonepartschunksx = totaltimesforonepartschunksx + ((incrementsfracx));
                     }
 
                     if (totaltimesforonepartschunksy < 0)
                     {
                         totaltimesforonepartschunksy *= -1;
-                        totaltimesforonepartschunksy = totaltimesforonepartschunksy + ((incrementsdivy));
+                        totaltimesforonepartschunksy = totaltimesforonepartschunksy + ((incrementsfracy));
                     }
                     if (totaltimesforonepartschunksz < 0)
                     {
                         totaltimesforonepartschunksz *= -1;
-                        totaltimesforonepartschunksz = totaltimesforonepartschunksz + ((incrementsdivz));
+                        totaltimesforonepartschunksz = totaltimesforonepartschunksz + ((incrementsfracz));
                     }
                     */
 
@@ -4979,7 +5273,7 @@ namespace sccsr15forms
                                 if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
                                 {
                                     //Console.WriteLine("found chunk");
-                                    if (someindexmap >= 0 && someindexmap < 8 * 8 * 8)
+                                    if (someindexmap >= 0 && someindexmap < chunkwidthsim * chunkheightsim * chunkdepthsim)
                                     {
                                         if (somechunk.map[someindexmap] == 1)
                                         {
@@ -4988,11 +5282,11 @@ namespace sccsr15forms
 
                                             int realindexofchunkinbundle = arrayindexmap;
 
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5028,11 +5322,11 @@ namespace sccsr15forms
 
                                             
                                             realindexofchunkinbundle = arrayindexmap;
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5068,11 +5362,11 @@ namespace sccsr15forms
 
 
                                             realindexofchunkinbundle = arrayindexmap;
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5110,11 +5404,11 @@ namespace sccsr15forms
 
 
                                             realindexofchunkinbundle = arrayindexmap;
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5152,11 +5446,11 @@ namespace sccsr15forms
 
 
                                             realindexofchunkinbundle = arrayindexmap;
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5194,11 +5488,11 @@ namespace sccsr15forms
 
 
                                             realindexofchunkinbundle = arrayindexmap;
-                                            for (int xi = 0; xi < 2; xi++)
+                                            for (int xi = 0; xi < thechunkbundlefractionx; xi++) 
                                             {
-                                                for (int yi = 0; yi < 2; yi++)
+                                                for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                                 {
-                                                    for (int zi = 0; zi < 2; zi++)
+                                                    for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                     {
 
                                                         int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5251,20 +5545,21 @@ namespace sccsr15forms
 
 
 
-                
-                
+
+
+
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
 
 
 
-                somevaldiv = 1.0f / ((0.01f * 0.5f));
+                somevaldiv = 1.0f / ((chunkplanesize));
                 //xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f)) - 1;
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize)) - 1;
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize));
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -5272,39 +5567,39 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
@@ -5312,81 +5607,81 @@ namespace sccsr15forms
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
-                
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
+
                 //someindexmain = 0;
-                var somewidth = 8 - 1;
-                var someheight = 8 - 1;
-                var somedepth = 8 - 1;
+                var somewidth = chunkwidthsim - 1;
+                var someheight = chunkheightsim - 1;
+                var somedepth = chunkdepthsim - 1;
 
                 if (indexx == 0)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx-1, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx - 1, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
                         if (somechunkadjacent.map != null)
                         {
-                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx-1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx - 1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx-1 && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
 
-                                someindexmap = (somewidth) + 8 * ((indexy) + 8 * indexz);
+                                someindexmap = (somewidth) + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
@@ -5394,11 +5689,11 @@ namespace sccsr15forms
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5437,11 +5732,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5477,11 +5772,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5519,11 +5814,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5561,11 +5856,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5603,11 +5898,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5662,10 +5957,10 @@ namespace sccsr15forms
 
 
 
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f)) + 1;
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize)) + 1;
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize));
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -5673,112 +5968,112 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
-                          //indexx = maptotaltimesx;
+                //indexx = maptotaltimesx;
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
                 //someindexmain = 0;
-                somewidth = 8 - 1;
-                 someheight = 8 - 1;
-                 somedepth = 8 - 1;
+                 somewidth = chunkwidthsim - 1;
+                 someheight = chunkheightsim - 1;
+                 somedepth = chunkdepthsim - 1;
 
-               
+
                 if (indexx == somewidth)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx+1, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx + 1, totaltimesforonepartschunksy, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
@@ -5789,18 +6084,18 @@ namespace sccsr15forms
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx+1 && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
-                                someindexmap = (0) + 8 * ((indexy) + 8 * indexz);
+                                someindexmap = (0) + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
                                     if (somechunkadjacent.map[someindexmap] == 1)
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5839,11 +6134,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -5879,11 +6174,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5921,11 +6216,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -5963,11 +6258,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6005,11 +6300,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6057,10 +6352,10 @@ namespace sccsr15forms
 
                 //ZZZZZZZZZZZZZZZZZZZZZZZ
 
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f))-1;
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize)) - 1;
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -6068,126 +6363,124 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
-
-                          //indexx = maptotaltimesx;
+                //indexx = maptotaltimesx;
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
-                
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
+
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
                 //someindexmain = 0;
-
-                somewidth = 8 - 1;
-                someheight = 8 - 1;
-                somedepth = 8 - 1;
+                somewidth = chunkwidthsim - 1;
+                someheight = chunkheightsim - 1;
+                somedepth = chunkdepthsim - 1;
 
 
                 if (indexz == 0)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz-1, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz - 1, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
                         if (somechunkadjacent.map != null)
                         {
 
-                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz-1)
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz - 1)
 
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz -1)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
-                                someindexmap = (indexx) + 8 * ((indexy) + 8 * somedepth);
+                                someindexmap = (indexx) + chunkwidthsim * ((indexy) + chunkheightsim * somedepth);
                                 //someindexmap = (somewidth) + 8 * ((indexy) + 8 * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
@@ -6195,11 +6488,11 @@ namespace sccsr15forms
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -6238,11 +6531,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -6278,11 +6571,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6320,11 +6613,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6362,11 +6655,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6404,11 +6697,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6463,10 +6756,10 @@ namespace sccsr15forms
 
 
 
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f)) ;
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f))+1;
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize)) + 1;
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -6474,126 +6767,123 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
-                          //indexx = maptotaltimesx;
+                //indexx = maptotaltimesx;
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
-                
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
                 //someindexmain = 0;
-
-
-                somewidth = 8 - 1;
-                someheight = 8 - 1;
-                somedepth = 8 - 1;
+                somewidth = chunkwidthsim - 1;
+                someheight = chunkheightsim - 1;
+                somedepth = chunkdepthsim - 1;
 
                 if (indexz == somedepth)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz+1, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy, totaltimesforonepartschunksz + 1, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
                         if (somechunkadjacent.map != null)
                         {
 
-                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz+1)
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz + 1)
 
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz + 1)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
-                                someindexmap = (indexx) + 8 * ((indexy) + 8 * 0);
+                                someindexmap = (indexx) + chunkwidthsim * ((indexy) + chunkheightsim * 0);
                                 //someindexmap = (somewidth) + 8 * ((indexy) + 8 * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
@@ -6601,11 +6891,11 @@ namespace sccsr15forms
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -6644,11 +6934,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -6684,11 +6974,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6726,11 +7016,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6768,11 +7058,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6810,11 +7100,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -6870,10 +7160,10 @@ namespace sccsr15forms
 
 
                 //YYYYYYYYYYYYYYYYYY
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f))-1;
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize)) - 1;
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize));
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -6881,125 +7171,122 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
-
 
                 //indexx = maptotaltimesx;
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
-                
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
-                ///someindexmain = 0;
-
-                somewidth = 8 - 1;
-                someheight = 8 - 1;
-                somedepth = 8 - 1;
+                //someindexmain = 0;
+                somewidth = chunkwidthsim - 1;
+                someheight = chunkheightsim - 1;
+                somedepth = chunkdepthsim - 1;
 
                 if (indexy == 0)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy-1, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy - 1, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
                         if (somechunkadjacent.map != null)
                         {
 
-                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy-1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
+                            if (sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[0] == totaltimesforonepartschunksx && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[1] == totaltimesforonepartschunksy - 1 && sccslevelgen.arraychunkdatalod0[0][arrayindexmap].chunkPos[2] == totaltimesforonepartschunksz)
                             // if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy -1&& somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
-                                someindexmap = (indexx) + 8 * ((someheight) + 8 * indexz);
+                                someindexmap = (indexx) + chunkwidthsim * ((someheight) + chunkheightsim * indexz);
                                 //someindexmap = (somewidth) + 8 * ((indexy) + 8 * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
@@ -7007,11 +7294,11 @@ namespace sccsr15forms
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -7050,11 +7337,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -7090,11 +7377,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7132,11 +7419,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7174,11 +7461,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7216,11 +7503,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7275,10 +7562,10 @@ namespace sccsr15forms
 
 
 
-                
-                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
-                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (0.01f * 0.5f))+1;
-                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (0.01f * 0.5f));
+
+                someposfootx = (int)(((float)Math.Floor(pickaxetippoint.X * somevaldiv) / somevaldiv) / (chunkplanesize));
+                someposfooty = (int)(((float)Math.Floor(pickaxetippoint.Y * somevaldiv) / somevaldiv) / (chunkplanesize)) + 1;
+                someposfootz = (int)(((float)Math.Floor(pickaxetippoint.Z * somevaldiv) / somevaldiv) / (chunkplanesize));
 
                 maptotaltimesx = 0;
                 maptotaltimesy = 0;
@@ -7286,114 +7573,111 @@ namespace sccsr15forms
 
                 if (pickaxetippoint.X >= 0)
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
                     maptotaltimesx = (int)(someposfootx - someremainsx);
                 }
                 else
                 {
-                    someremainsx = (int)Math.Floor((someposfootx / 8.0f)) * 8;
-                    maptotaltimesx = -8 + (int)(someremainsx - someposfootx) + 8;
+                    someremainsx = (int)Math.Floor((someposfootx / chunkwidthsimfloat)) * chunkwidthsim;
+                    maptotaltimesx = -chunkwidthsim + (int)(someremainsx - someposfootx) + chunkwidthsim;
                     maptotaltimesx *= -1;
                 }
 
                 if (pickaxetippoint.Y >= 0)
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
                     maptotaltimesy = (int)(someposfooty - someremainsy);
                 }
                 else
                 {
-                    someremainsy = (int)Math.Floor((someposfooty / 8.0f)) * 8;
-                    maptotaltimesy = -8 + (int)(someremainsy - someposfooty) + 8;
+                    someremainsy = (int)Math.Floor((someposfooty / chunkheightsimfloat)) * chunkheightsim;
+                    maptotaltimesy = -chunkheightsim + (int)(someremainsy - someposfooty) + chunkheightsim;
                     maptotaltimesy *= -1;
                 }
 
                 if (pickaxetippoint.Z >= 0)
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     maptotaltimesz = (int)(someposfootz - someremainsz);
                 }
                 else
                 {
-                    someremainsz = (int)Math.Floor((someposfootz / 8.0f)) * 8;
+                    someremainsz = (int)Math.Floor((someposfootz / chunkdepthsimfloat)) * chunkdepthsim;
                     //Console.WriteLine(someremainsz);
 
-                    maptotaltimesz = -8 + (int)(someremainsz - someposfootz) + 8;
+                    maptotaltimesz = -chunkdepthsim + (int)(someremainsz - someposfootz) + chunkdepthsim;
                     maptotaltimesz *= -1;
                 }
 
-
-                          //indexx = maptotaltimesx;
+                //indexx = maptotaltimesx;
                 //indexy = maptotaltimesy;
                 //indexz = maptotaltimesz;
 
-                chunkposx = someremainsx / 8;
-                chunkposy = someremainsy / 8;
-                chunkposz = someremainsz / 8;
+                chunkposx = someremainsx / chunkwidthsim;
+                chunkposy = someremainsy / chunkheightsim;
+                chunkposz = someremainsz / chunkdepthsim;
 
 
 
-                someindexmap = indexx + 8 * ((indexy) + 8 * indexz);
+                someindexmap = indexx + chunkwidthsim * ((indexy) + chunkheightsim * indexz);
 
                 somearrayindex = 0;
 
 
-                sometotaltimesx = someremainsx / 8;// totalTimesx;
-                sometotaltimesy = someremainsy / 8;//totalTimesy;
-                sometotaltimesz = someremainsz / 8;//totalTimesz;
+                sometotaltimesx = someremainsx / chunkwidthsim;// totalTimesx;
+                sometotaltimesy = someremainsy / chunkheightsim;//totalTimesy;
+                sometotaltimesz = someremainsz / chunkdepthsim;//totalTimesz;
 
                 sometotaltx = sometotaltimesx;
                 sometotalty = sometotaltimesy;
                 sometotaltz = sometotaltimesz;
 
 
-                sometotaltx /= incrementsdivx;
-                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsdivx;
-                sometotaltimesx = (int)sometotaltx / incrementsdivx;
+                sometotaltx /= incrementsfracx;
+                sometotaltx = (float)Math.Floor(sometotaltx) * incrementsfracx;
+                sometotaltimesx = (int)sometotaltx / incrementsfracx;
 
 
-                sometotalty /= incrementsdivy;
-                sometotalty = (float)Math.Floor(sometotalty) * incrementsdivy;
-                sometotaltimesy = (int)sometotalty / incrementsdivy;
+                sometotalty /= incrementsfracy;
+                sometotalty = (float)Math.Floor(sometotalty) * incrementsfracy;
+                sometotaltimesy = (int)sometotalty / incrementsfracy;
 
 
-                sometotaltz /= incrementsdivz;
-                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsdivz;
-                sometotaltimesz = (int)sometotaltz / incrementsdivz;
+                sometotaltz /= incrementsfracz;
+                sometotaltz = (float)Math.Floor(sometotaltz) * incrementsfracz;
+                sometotaltimesz = (int)sometotaltz / incrementsfracz;
 
                 if (sometotaltimesx < 0)
                 {
                     sometotaltimesx *= -1;
-                    sometotaltimesx = sometotaltimesx + ((divx / 2) - 1);
+                    sometotaltimesx = sometotaltimesx + ((sccslevelgenfractionx / 2) - 1);
                 }
 
                 if (sometotaltimesy < 0)
                 {
                     sometotaltimesy *= -1;
-                    sometotaltimesy = sometotaltimesy + ((divy / 2) - 1);
+                    sometotaltimesy = sometotaltimesy + ((sccslevelgenfractiony / 2) - 1);
                 }
                 if (sometotaltimesz < 0)
                 {
                     sometotaltimesz *= -1;
-                    sometotaltimesz = sometotaltimesz + ((divz / 2) - 1);
+                    sometotaltimesz = sometotaltimesz + ((sccslevelgenfractionz / 2) - 1);
                 }
 
                 //Console.WriteLine("x:" + sometotaltimesx + "/y:" + sometotaltimesy + ":z/" + sometotaltimesz);
 
-                someindexmain = sometotaltimesx + divx * ((sometotaltimesy) + divy * sometotaltimesz);
-                
+                someindexmain = sometotaltimesx + sccslevelgenfractionx * ((sometotaltimesy) + sccslevelgenfractiony * sometotaltimesz);
 
                 //someindexmain = 0;
-
-                somewidth = 8 - 1;
-                someheight = 8 - 1;
-                somedepth = 8 - 1;
+                somewidth = chunkwidthsim - 1;
+                someheight = chunkheightsim - 1;
+                somedepth = chunkdepthsim - 1;
 
                 if (indexy == someheight)
                 {
                     int arrayindexmap;
                     int somearrayindexadjacent;
-                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy+1, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
+                    var somechunkadjacent = sccslevelgen.getchunkinlevelgenmap(totaltimesforonepartschunksx, totaltimesforonepartschunksy + 1, totaltimesforonepartschunksz, 1, out arrayindexmap); ;
 
                     if (somechunkadjacent != null)
                     {
@@ -7404,7 +7688,7 @@ namespace sccsr15forms
                             //if (somechunkadjacent.chunkPos[0] == totaltimesforonepartschunksx && somechunkadjacent.chunkPos[1] == totaltimesforonepartschunksy + 1 && somechunkadjacent.chunkPos[2] == totaltimesforonepartschunksz)
                             {
                                 //someindexmap = (indexx) + 8 * ((indexy) + 8 * indexz);
-                                someindexmap = (indexx) + 8 * ((0) + 8 * indexz);
+                                someindexmap = (indexx) + chunkwidthsim * ((0) + chunkheightsim * indexz);
                                 //someindexmap = (somewidth) + 8 * ((indexy) + 8 * indexz);
                                 if (somechunkadjacent.map != null)
                                 {
@@ -7412,11 +7696,11 @@ namespace sccsr15forms
                                     {
                                         int realindexofchunkinbundle = arrayindexmap;
 
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[0][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -7455,11 +7739,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[1][realindexofchunkinbundle].vertexcount;// somechunk.vertexcountermemory;
@@ -7495,11 +7779,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[2][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7537,11 +7821,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[3][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7579,11 +7863,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[4][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7621,11 +7905,11 @@ namespace sccsr15forms
 
 
                                         realindexofchunkinbundle = arrayindexmap;
-                                        for (int xi = 0; xi < 2; xi++)
+                                        for (int xi = 0; xi < thechunkbundlefractionx; xi++)
                                         {
-                                            for (int yi = 0; yi < 2; yi++)
+                                            for (int yi = 0; yi < thechunkbundlefractiony; yi++)
                                             {
-                                                for (int zi = 0; zi < 2; zi++)
+                                                for (int zi = 0; zi < thechunkbundlefractionz; zi++)
                                                 {
 
                                                     int whatsthecurrentvertexcount = sccslevelgen.arraychunkdatalod0[5][realindexofchunkinbundle].vertexcount;// somechunkadjacent.vertexcountermemory;
@@ -7669,7 +7953,8 @@ namespace sccsr15forms
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
                 //ADJACENT CHUNKS 
-                
+
+
 
 
 

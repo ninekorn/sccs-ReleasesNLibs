@@ -166,7 +166,22 @@ struct PS_IN
 static int width = 4;
 static int height = 4;
 static int depth = 4;
-static float planesize = 0.006666666666666666666667f;
+
+//0.006666666666666666666667f
+//0.005f
+//0.001666666666666666666667f
+//0.003333333333333333333333f;
+//0.0028571428571428571428571428571429f
+//0.01f
+
+static float planesize = 0.01f;
+
+
+//16x16x16 == 0.0025f;
+//12x12x12 == 0.00333333333333333333333333333333f;
+//8x8x8 == 0.005f;
+//4x4x4 == 0.01f;
+
 
 
 static const int maxfloatbytemaparraylength = 4; //4 // 8 
